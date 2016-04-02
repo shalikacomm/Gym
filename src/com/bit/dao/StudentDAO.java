@@ -85,4 +85,52 @@ public class StudentDAO {
 		return st_list;
 	}
 
+    public StudentEntity getUserById(int st_Id) {
+    	Connection con = null;
+    	StudentEntity student = new StudentEntity();
+        try {
+        	con=DBUtil.getConnection();
+            PreparedStatement preparedStatement = con.
+                    prepareStatement("SELECT * FROM student_tbl WHERE st_id=?");
+            preparedStatement.setInt(1, st_Id);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+            	student.setSt_id(rs.getInt("st_id"));
+            	student.setSt_name(rs.getString("st_name"));
+            	student.setEmail(rs.getString("email"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+        return student;
+    }
+    public void updateStudent(StudentEntity student) {
+    	Connection con = null;
+        try {
+        	con=DBUtil.getConnection();
+        	String sql="UPDATE student_tbl SET st_name=?,email=? WHERE st_id=?";
+            
+        	PreparedStatement preparedStatement = con.prepareStatement(sql);
+            // Parameters start with 1
+            preparedStatement.setString(1, student.getSt_name());
+            preparedStatement.setString(2, student.getEmail());
+            preparedStatement.setInt(3, student.getSt_id());
+      
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

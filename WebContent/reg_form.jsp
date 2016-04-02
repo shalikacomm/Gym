@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -16,6 +16,7 @@
  <script src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
  <script src="assets/js/validationInit.js"></script>
  <script>
+ /*
      $(function () { formValidation();});
     
      $(document).ready(function (){
@@ -38,7 +39,7 @@
     	 });
     	
      });
-
+*/
  </script>
 </head>
 <body class="padTop53 ">
@@ -53,27 +54,34 @@
 							<div class="box">
 
 								<div id="collapseOne" class="accordion-body collapse in body">
-									<form action="#" class="form-horizontal" id="block-validate">
+									<form action="St_Con" method="post" class="form-horizontal" id="block-validate">
 
+										<div class="form-group">
+											<label class="control-label col-lg-4">Student ID</label>
+											<div class="col-lg-4">
+												<input type="text" id="st_id" name="st_id" readonly="readonly"
+													class="form-control"  value="<c:out value="${student.st_id}" />"/>
+											</div>
+										</div>
 										<div class="form-group">
 											<label class="control-label col-lg-4">Student Name</label>
 											<div class="col-lg-4">
-												<input type="text" id="st_name" name="required2"
-													class="form-control" />
+												<input type="text" id="st_name" name="st_name"
+													class="form-control"  value="<c:out value="${student.st_name}" />"/>
 											</div>
 										</div>
 										<div class="form-group">
 											<label class="control-label col-lg-4">E-mail</label>
 
 											<div class="col-lg-4">
-												<input type="email" id="email" name="email2"
-													class="form-control" />
+												<input type="email" id="email" name="mail"
+													class="form-control" value="<c:out value="${student.email}" />" />
 											</div>
-										</div>
+										</div>${message}
 								
 										<div class="form-actions no-margin-bottom"
 											style="text-align: center;">
-											<input id="btn_save" type="button" value="Save"
+											<input id="btn_save" type="submit" value="Save"
 												class="btn btn-primary btn-lg " />
 										</div>
 
