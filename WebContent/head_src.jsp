@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="assets/css/theme.css" />
     <link rel="stylesheet" href="assets/css/MoneAdmin.css" />
     <link rel="stylesheet" href="assets/plugins/Font-Awesome/css/font-awesome.css" />
-    <!--END GLOBAL STYLES -->
+    <!--END GLOBAL STYLES -->    
 
     
      <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
