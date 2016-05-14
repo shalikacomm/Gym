@@ -24,19 +24,22 @@ public class StudentController extends HttpServlet {
 		String action = req.getParameter("action");
 
 		if (action.equalsIgnoreCase("list")) {
-			
-			StudentDAO st_dao= new StudentDAO();
-			
-			List<StudentEntity> list=st_dao.getAllStudents();
-			Gson  gson=new Gson();
-			PrintWriter out=resp.getWriter();
+
+			StudentDAO st_dao = new StudentDAO();
+
+			List<StudentEntity> list = st_dao.getAllStudents();
+			Gson gson = new Gson();
+			PrintWriter out = resp.getWriter();
 			out.println(gson.toJson(list));
-			
-			
-		}else if(action.equalsIgnoreCase("edit")){
-			
+
+		} else if (action.equalsIgnoreCase("edit")) {
+
 		}
 
+		PrintWriter writer = new PrintWriter("myFile.txt", "UTF-8");
+		writer.println("The line");
+
+		writer.close();
 	}
 
 	@Override
@@ -46,7 +49,7 @@ public class StudentController extends HttpServlet {
 		String st_name = req.getParameter("st_name");
 
 		StudentEntity st_entity = new StudentEntity();
-		st_entity.setSt_id(st_id);
+		// st_entity.setSt_id(st_id);
 		st_entity.setSt_name(st_name);
 
 		StudentDAO st_dao = new StudentDAO();

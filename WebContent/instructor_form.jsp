@@ -59,32 +59,32 @@
 							<div class="box">
 
 								<div id="collapseOne" class="accordion-body collapse in body">
-									<form action="St_Con" method="post" class="form-horizontal"
+									<form action="InstructorController" method="post" class="form-horizontal"
 										id="block-validate">
 
 										<div class="form-group">
-											<label class="control-label col-lg-4">Student ID</label>
+											<label class="control-label col-lg-4">Instructor ID</label>
 											<div class="col-lg-4">
-												<input type="text" id="st_id" name="st_id"
+												<input type="text" id="ins_id" name="ins_id"
 													readonly="readonly" class="form-control"
-													value="${stu_id }<c:out value="${studentObj.st_id}" />" />
+													value="${ins_id }<c:out value="${instructorObj.ins_id}" />" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-lg-4">Student Name</label>
+											<label class="control-label col-lg-4">Instructor Name</label>
 											<div class="col-lg-4">
-												<input type="text" id="st_name" name="st_name"
+												<input type="text" id="ins_name" name="ins_name"
 													class="form-control"
-													value="<c:out value="${studentObj.st_name}" />" />
+													value="<c:out value="${instructorObj.ins_name}" />" />
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-lg-4">E-mail</label>
+											<label class="control-label col-lg-4">Instructor E-mail</label>
 
 											<div class="col-lg-4">
-												<input type="email" id="email" name="mail"
+												<input type="email" id="email" name="ins_mail"
 													class="form-control"
-													value="<c:out value="${studentObj.email}" />" />
+													value="<c:out value="${instructorObj.ins_email}" />" />
 											</div>
 										</div>${message}
 

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bit.dao.StudentDAO;
 import com.bit.entity.StudentEntity;
+import com.bit.util.Methods;
 import com.google.gson.Gson;
 
 public class St_Con extends HttpServlet {
@@ -36,17 +37,19 @@ public class St_Con extends HttpServlet {
 			forward = INSERT_OR_EDIT;
 			String st_id = request.getParameter("st_id");
 			System.out.println(st_id);
-			int student_id = new Integer(st_id);
+		
 			StudentDAO stDAO = new StudentDAO();
 
-			StudentEntity student = stDAO.getUserById(student_id);
-
-			request.setAttribute("student", student);
+			StudentEntity student = stDAO.getUserById(st_id);
+			request.setAttribute("studentObj", student);
 
 		} else if (action.equalsIgnoreCase("deactive")) {
 
 		} else {
 			forward = INSERT_OR_EDIT;
+			Methods method=new Methods();
+			String generateID= method.generateID("U", "st_id", "student_tbl");
+			request.setAttribute("stu_id", generateID);
 		}
 
 		RequestDispatcher view = request.getRequestDispatcher(forward);
@@ -64,24 +67,26 @@ public class St_Con extends HttpServlet {
 		System.out.println("OUT:: " + st_id);
 		String forward = "";
 		StudentEntity student = new StudentEntity();
+		student.setSt_id(st_id);
 		student.setSt_name(st_name);
 		student.setEmail(mail);
 
 		StudentDAO dao = new StudentDAO();
 
-	
-		
-			if (st_id == null || st_id.isEmpty()) {
-				 dao.addStudent(student);
-				
-			} else {
-				student.setSt_id(Integer.parseInt(st_id));
-				dao.updateStudent(student);
-			}
+		Methods methods = new Methods();
 
-		
+		String generateID = methods.generateID("U", "st_id", "student_tbl");
+
+		if (st_id.equals(generateID)) {
+			dao.addStudent(student);
+
+		} else {
+
+			dao.updateStudent(student);
+		}
+
 		forward = "St_Con?action=list";
 		response.sendRedirect(forward);// Redirect to the reg_list.jsp
-		    System.out.println("SUCCESS");
+		System.out.println("SUCCESS");
 	}
 }

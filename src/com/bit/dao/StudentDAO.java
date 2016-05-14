@@ -24,7 +24,7 @@ public class StudentDAO {
 			String sql = "INSERT INTO student_tbl VALUES (?,?,?)";
 			st = con.prepareStatement(sql);
 
-			st.setInt(1, entity.getSt_id());
+			st.setString(1, entity.getSt_id());
 			st.setString(2, entity.getSt_name());
 			st.setString(3, entity.getEmail());
 
@@ -62,7 +62,7 @@ public class StudentDAO {
 
 			while (rs.next()) {
 				StudentEntity st_entity = new StudentEntity();
-				st_entity.setSt_id(rs.getInt("st_id"));
+				st_entity.setSt_id(rs.getString("st_id"));
 				st_entity.setSt_name(rs.getString("st_name"));
 				st_entity.setEmail(rs.getString("email"));
 
@@ -85,18 +85,18 @@ public class StudentDAO {
 		return st_list;
 	}
 
-    public StudentEntity getUserById(int st_Id) {
+    public StudentEntity getUserById(String st_Id) {
     	Connection con = null;
     	StudentEntity student = new StudentEntity();
         try {
         	con=DBUtil.getConnection();
             PreparedStatement preparedStatement = con.
                     prepareStatement("SELECT * FROM student_tbl WHERE st_id=?");
-            preparedStatement.setInt(1, st_Id);
+            preparedStatement.setString(1, st_Id);
             ResultSet rs = preparedStatement.executeQuery();
 
             if (rs.next()) {
-            	student.setSt_id(rs.getInt("st_id"));
+            	student.setSt_id(rs.getString("st_id"));
             	student.setSt_name(rs.getString("st_name"));
             	student.setEmail(rs.getString("email"));
             }
@@ -125,7 +125,7 @@ public class StudentDAO {
             // Parameters start with 1
             preparedStatement.setString(1, student.getSt_name());
             preparedStatement.setString(2, student.getEmail());
-            preparedStatement.setInt(3, student.getSt_id());
+            preparedStatement.setString(3, student.getSt_id());
       
             preparedStatement.executeUpdate();
 

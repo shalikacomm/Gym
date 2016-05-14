@@ -12,6 +12,16 @@
         <url-pattern>/StudentController</url-pattern>
     </servlet-mapping>
     
+     <servlet>
+        <servlet-name>InstructorController</servlet-name>
+        <servlet-class>com.bit.controller.InstructorController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>InstructorController</servlet-name>
+        <url-pattern>/InstructorController</url-pattern>
+    </servlet-mapping>
+    
     
    <servlet>
         <servlet-name>St_Con</servlet-name>

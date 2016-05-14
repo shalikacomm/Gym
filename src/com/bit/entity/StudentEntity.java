@@ -2,14 +2,14 @@ package com.bit.entity;
 
 public class StudentEntity {
 
-	private int st_id;
+	private String st_id;
 	private String st_name;
 	private String email;
 	
-	public int getSt_id() {
+	public String getSt_id() {
 		return st_id;
 	}
-	public void setSt_id(int st_id) {
+	public void setSt_id(String st_id) {
 		this.st_id = st_id;
 	}
 	public String getSt_name() {

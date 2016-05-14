@@ -1,5 +1,5 @@
-
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+	pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -24,7 +24,7 @@
 					<div class="col-lg-12">
 
 
-						<h2>Data Tables</h2>
+						<h2>Instructor List</h2>
 
 
 
@@ -36,9 +36,13 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							<div class="panel-heading">DataTables Advanced Tables <a class="pull-right" href="St_Con?action=insert"><button class="btn-primary">Add New</button></a></div>
+							<div class="panel-heading">
+								Instructor List <a class="pull-right"
+									href="InstructorController?action=insert"><button
+										class="btn-primary">Add New</button></a>
+							</div>
 							<div class="panel-body">
-							
+
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover"
 										id="dataTables-example">
@@ -47,20 +51,25 @@
 												<th>ID</th>
 												<th>Name</th>
 												<th>Email</th>
-												<th >Action</th>
-											
+												<th>Action</th>
+
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${users}" var="temp">
+											<c:forEach items="${instructors}" var="temp">
 												<tr class="odd gradeX">
-													<td><c:out value="${temp.st_id}" /></td>
-													<td><c:out value="${temp.st_name}" /></td>
-													<td><c:out value="${temp.email}" /></td>	
+													<td><c:out value="${temp.ins_id}" /></td>
+													<td><c:out value="${temp.ins_name}" /></td>
+													<td><c:out value="${temp.ins_email}" /></td>
 													<td><a
-														href="St_Con?action=edit&st_id=<c:out value="${temp.st_id}"/>">Update</a>
-													<a
-														href="UserController?action=delete&userId=<c:out value="${temp.st_id}"/>">Delete</a></td>
+														href="InstructorController?action=edit&ins_id=<c:out value="${temp.ins_id}"/>">Update</a>
+														<c:if test="${temp.status ==1 }">
+															<a
+																href="InstructorController?action=deactive&ins_id=<c:out value="${temp.ins_id}"/>">Deactivate</a>
+														</c:if> <c:if test="${temp.status ==0 }">
+															<a
+																href="InstructorController?action=active&ins_id=<c:out value="${temp.ins_id}"/>">Activate</a>
+														</c:if></td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -83,44 +92,10 @@
 		<script src="assets/plugins/dataTables/jquery.dataTables.js"></script>
 		<script src="assets/plugins/dataTables/dataTables.bootstrap.js"></script>
 		<script>
-		$(document).ready(function(){
-			$('#dataTables-example').dataTable();
-			
-		});
-	
-			//$(document).ready(
-			//function() {
-/*
-			$.ajax({
-				type : 'GET',
-				url : 'StudentController?action=list',
-				dataType : 'json',
-				success : function(data) {
-					// alert(data);
-					for (var i = 0; i <= data.length; i++) {
-
-						var id = data[i]["st_id"];
-						var name = data[i]["st_name"];
-						var mail = data[i]["email"];
-						//alert(name);
-
-						var row_data = "<tr> <td>" + id + "</td><td>" + name
-								+ "</td><td>" + mail + "</td></tr>";
-						$(row_data).prependTo("#tBody");
-					}
-					 $(this).each(data, function (i, obj)
-					            {
-					                row_data = "<tr> <td>" + obj.id + "</td><td>" + obj.name + "</td><td>"+obj.email+"<td></tr>";
-					                $(div_data).appendTo("#tBody");
-					            });
-					
-				}
-			});
-			setTimeout(function() {
+			$(document).ready(function() {
 				$('#dataTables-example').dataTable();
-			}, 1000);
-*/
-			//	});
+
+			});
 		</script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 </body>
