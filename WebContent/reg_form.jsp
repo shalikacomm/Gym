@@ -53,56 +53,52 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
-				<div class="inner">
-					<div class="row">
-						<div class="col-lg-12">
-							<div class="box">
 
-								<div id="collapseOne" class="accordion-body collapse in body">
-									<form action="St_Con" method="post" class="form-horizontal"
-										id="block-validate">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="box">
 
-										<div class="form-group">
-											<label class="control-label col-lg-4">Student ID</label>
-											<div class="col-lg-4">
-												<input type="text" id="st_id" name="st_id"
-													readonly="readonly" class="form-control"
-													value="${stu_id }<c:out value="${studentObj.st_id}" />" />
-											</div>
+							<div id="collapseOne" class="accordion-body collapse in body">
+								<form action="St_Con" method="post" class="form-horizontal"
+									id="block-validate">
+
+									<div class="form-group">
+										<label class="control-label col-lg-4">Student ID</label>
+										<div class="col-lg-4">
+											<input type="text" id="st_id" name="st_id"
+												readonly="readonly" class="form-control"
+												value="${stu_id }<c:out value="${studentObj.st_id}" />" />
 										</div>
-										<div class="form-group">
-											<label class="control-label col-lg-4">Student Name</label>
-											<div class="col-lg-4">
-												<input type="text" id="st_name" name="st_name"
-													class="form-control"
-													value="<c:out value="${studentObj.st_name}" />" />
-											</div>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-4">Student Name</label>
+										<div class="col-lg-4">
+											<input type="text" id="st_name" name="st_name"
+												class="form-control"
+												value="<c:out value="${studentObj.st_name}" />" />
 										</div>
-										<div class="form-group">
-											<label class="control-label col-lg-4">E-mail</label>
+									</div>
+									<div class="form-group">
+										<label class="control-label col-lg-4">E-mail</label>
 
-											<div class="col-lg-4">
-												<input type="email" id="email" name="mail"
-													class="form-control"
-													value="<c:out value="${studentObj.email}" />" />
-											</div>
-										</div>${message}
-
-										<div class="form-actions no-margin-bottom"
-											style="text-align: center;">
-											<input id="btn_save" type="submit" value="Save"
-												class="btn btn-primary btn-lg " />
+										<div class="col-lg-4">
+											<input type="email" id="email" name="mail"
+												class="form-control"
+												value="<c:out value="${studentObj.email}" />" />
 										</div>
+									</div>${message}
 
-									</form>
-								</div>
+									<div class="form-actions no-margin-bottom"
+										style="text-align: center;">
+										<input id="btn_save" type="submit" value="Save"
+											class="btn btn-primary btn-lg " />
+									</div>
 
+								</form>
 							</div>
+
 						</div>
 					</div>
-
-
-
 
 				</div>
 

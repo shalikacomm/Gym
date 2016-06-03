@@ -67,7 +67,7 @@
 											<div class="col-lg-4">
 												<input type="text" id="ins_id" name="ins_id"
 													readonly="readonly" class="form-control"
-													value="${ins_id }<c:out value="${instructorObj.ins_id}" />" />
+													value="${ins_id}<c:out value="${instructorObj.ins_id}" />" />
 											</div>
 										</div>
 										<div class="form-group">

@@ -22,17 +22,10 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-
-
 						<h2>Instructor List</h2>
-
-
-
 					</div>
 				</div>
-
 				<hr />
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
@@ -52,7 +45,6 @@
 												<th>Name</th>
 												<th>Email</th>
 												<th>Action</th>
-
 											</tr>
 										</thead>
 										<tbody>
@@ -66,7 +58,8 @@
 														<c:if test="${temp.status ==1 }">
 															<a
 																href="InstructorController?action=deactive&ins_id=<c:out value="${temp.ins_id}"/>">Deactivate</a>
-														</c:if> <c:if test="${temp.status ==0 }">
+														</c:if> 
+														<c:if test="${temp.status ==0 }">
 															<a
 																href="InstructorController?action=active&ins_id=<c:out value="${temp.ins_id}"/>">Activate</a>
 														</c:if></td>

@@ -13,10 +13,12 @@ import com.bit.util.DBUtil;
 
 public class InstructorDAO {
 
+	private Connection con;
+	
 	public boolean addInstructor(InstructorEntity entity) {
 		boolean rs = false;
 		PreparedStatement st = null;
-		Connection con = null;
+		con = null;
 
 		try {
 			con = DBUtil.getConnection();
@@ -51,7 +53,7 @@ public class InstructorDAO {
 	}
 
 	public List<InstructorEntity> getAllInstructors() {
-		Connection con = null;
+		con = null;
 
 		List<InstructorEntity> ins_list = new ArrayList<InstructorEntity>();
 		try {
@@ -86,7 +88,7 @@ public class InstructorDAO {
 	}
 
     public InstructorEntity getInstructorById(String ins_id) {
-    	Connection con = null;
+    	con = null;
     	InstructorEntity instructor = new InstructorEntity();
         try {
         	con=DBUtil.getConnection();
@@ -115,7 +117,7 @@ public class InstructorDAO {
         return instructor;
     }
     public void updateInstructor(InstructorEntity instructor) {
-    	Connection con = null;
+    	con = null;
         try {
         	con=DBUtil.getConnection();
         	String sql="UPDATE instructor_tbl SET ins_name=?,ins_email=? WHERE ins_id=?";
@@ -142,7 +144,7 @@ public class InstructorDAO {
 		}
     }
     public void deactiveInstructor(String ins_id) {
-    	Connection con = null;
+    	con = null;
         try {
         	con=DBUtil.getConnection();
         	String sql="UPDATE instructor_tbl SET status=0 WHERE ins_id=?";
@@ -166,7 +168,7 @@ public class InstructorDAO {
 		}
     }
     public void activeInstructor(String ins_id) {
-    	Connection con = null;
+     con = null;
     	try {
     		con=DBUtil.getConnection();
     		String sql="UPDATE instructor_tbl SET status=1 WHERE ins_id=?";
