@@ -2,8 +2,7 @@
 <!-- HEADER SECTION -->
 <div id="top">
 
-	<nav class="navbar navbar-inverse navbar-fixed-top"
-		style="padding-top: 10px; background-color: #bbb;">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white; margin-top: -32px; padding-top: 34px;">
 		<a data-original-title="Show/Hide Menu" data-placement="bottom"
 			data-tooltip="tooltip"
 			class="accordion-toggle btn btn-primary btn-sm visible-xs"

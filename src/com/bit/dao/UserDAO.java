@@ -6,7 +6,7 @@ import com.bit.entity.UserEntity;
 
 public interface UserDAO {
 
-	public void addUser(UserEntity user);
+	public boolean addUser(UserEntity user);
 
 	public void updateUser(UserEntity user);
 
@@ -17,4 +17,6 @@ public interface UserDAO {
 	public void activate(String userId);
 
 	public void deactivate(String userId);
+	
+	public UserEntity login(UserEntity loginUsers);
 }

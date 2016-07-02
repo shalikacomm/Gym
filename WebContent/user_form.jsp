@@ -6,59 +6,16 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <%@include file="head_src.jsp"%>
-<!-- PAGE LEVEL STYLES -->
-<link href="assets/plugins/jquery-steps-master/demo/css/normalize.css"
-	rel="stylesheet" />
-<link href="assets/plugins/jquery-steps-master/demo/css/wizardMain.css"
-	rel="stylesheet" />
-<link
-	href="assets/plugins/jquery-steps-master/demo/css/jquery.steps.css"
-	rel="stylesheet" />
-<!-- END PAGE LEVEL  STYLES -->
-<!-- PAGE LEVEL STYLES date picker -->
-
-<link href="assets/css/jquery-ui.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="assets/plugins/uniform/themes/default/css/uniform.default.css" />
-<link rel="stylesheet"
-	href="assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css" />
+    <!-- PAGE LEVEL STYLES -->
+    
+ <link href="assets/css/jquery-ui.css" rel="stylesheet" />
+<link rel="stylesheet" href="assets/plugins/uniform/themes/default/css/uniform.default.css" />
 <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
-<link rel="stylesheet"
-	href="assets/plugins/colorpicker/css/colorpicker.css" />
-<link rel="stylesheet"
-	href="assets/plugins/tagsinput/jquery.tagsinput.css" />
-<link rel="stylesheet"
-	href="assets/plugins/daterangepicker/daterangepicker-bs3.css" />
-<link rel="stylesheet"
-	href="assets/plugins/datepicker/css/datepicker.css" />
-<link rel="stylesheet"
-	href="assets/plugins/timepicker/css/bootstrap-timepicker.min.css" />
-<link rel="stylesheet"
-	href="assets/plugins/switch/static/stylesheets/bootstrap-switch.css" />
+<link rel="stylesheet" href="assets/plugins/datepicker/css/datepicker.css" />
+   
+    <!-- END PAGE LEVEL  STYLES -->
 
-<!-- END PAGE LEVEL  STYLES -->
-<link rel="stylesheet"
-	href="assets/plugins/datepicker/css/datepicker.css" />
-<!-- PAGE LEVEL STYLES -->
-
-<link href="assets/css/jquery-ui.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="assets/plugins/uniform/themes/default/css/uniform.default.css" />
-<link rel="stylesheet"
-	href="assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css" />
-<link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
-<link rel="stylesheet"
-	href="assets/plugins/colorpicker/css/colorpicker.css" />
-<link rel="stylesheet"
-	href="assets/plugins/tagsinput/jquery.tagsinput.css" />
-<link rel="stylesheet"
-	href="assets/plugins/daterangepicker/daterangepicker-bs3.css" />
-<link rel="stylesheet"
-	href="assets/plugins/datepicker/css/datepicker.css" />
-<link rel="stylesheet"
-	href="assets/plugins/timepicker/css/bootstrap-timepicker.min.css" />
-<link rel="stylesheet"
-	href="assets/plugins/switch/static/stylesheets/bootstrap-switch.css" />
+<link rel="stylesheet" href="assets/css/sweetalert.css" />
 
 <!-- END PAGE LEVEL  STYLES -->
 
@@ -72,15 +29,15 @@
 
 
 				<div class="panel panel-default">
-					<div class="panel-heading">Instructor Registration</div>
+					<div class="panel-heading">User Registration</div>
 					<div class="panel-body">
-						<form role="form" action="UserCon" method="POST">
+						<form role="form" id="userForm" action="UserCon" method="POST">
 
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
 										<label> User ID </label> <input class="form-control"
-											value="${user_id }" readonly="readonly" />
+											name="user_id" value="${user_id }" readonly="readonly" />
 									</div>
 								</div>
 							</div>
@@ -120,12 +77,10 @@
 									<div class="form-group">
 										<label> DOB</label><em style="color: red;">*</em>
 
-										<div class="input-group input-append  date" id="dpYears"
-											data-date="12-02-2012" data-date-format="dd-mm-yyyy"
-											data-date-viewmode="years">
-											<input class="form-control" type="text" value="12-02-2012"
-												name="dob" readonly="" /> <span
-												class="input-group-addon add-on"><i
+										<div class="input-group input-append date" id="dp3"
+											data-date="12-02-2012" data-date-format="dd-mm-yyyy">
+											<input class="form-control" type="text" value="12-02-1991" name="dob"
+												readonly="" /> <span class="input-group-addon add-on"><i
 												class="icon-calendar"></i></span>
 										</div>
 
@@ -159,13 +114,14 @@
 											name="address" cols="20" rows=""></textarea>
 									</div>
 								</div>
-								
+
 							</div>
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>User Role</label><em style="color: red;">*</em> <select name="role"
-											class="form-control" id="doctor_title" name="doctor_title">
+										<label>User Role</label><em style="color: red;">*</em> <select
+											name="role" class="form-control" id="doctor_title"
+											name="doctor_title">
 											<option>Administrator</option>
 											<option>Instructor</option>
 											<option>Member</option>
@@ -173,10 +129,10 @@
 										</select>
 									</div>
 									<div class="col-sm-3">
-									<div class="form-group">
-										<input type="submit" value="Save" />
+										<div class="form-group">
+											<input type="submit" value="Save" class="btn btn-success btn-lg "/>
+										</div>
 									</div>
-								</div>
 								</div>
 							</div>
 
@@ -201,46 +157,78 @@
 	<!--Start PAGE LEVEL SCRIPTS date picker-->
 
 
-	<script>
-		$(document).ready(function() {
-			/* Bootstrap Datepicker Validation */
-			$('#sandbox-container .input-group.date').datepicker({
-				format : "yyyy-mm-dd",
-				weekStart : 1,
-				todayBtn : false,
-				clearBtn : true,
-				forceParse : false,
-				autoclose : true,
-				todayHighlight : true,
-				endDate : '-16y'
-			});
-		});
-	</script>
+
 
 	<!--end PAGE LEVEL SCRIPTS date picker-->
 	<!-- PAGE LEVEL SCRIPT date picker-->
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/plugins/uniform/jquery.uniform.min.js"></script>
-	<script
-		src="assets/plugins/inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>
 	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
-	<script src="assets/plugins/colorpicker/js/bootstrap-colorpicker.js"></script>
-	<script src="assets/plugins/tagsinput/jquery.tagsinput.min.js"></script>
-	<script src="assets/plugins/validVal/js/jquery.validVal.min.js"></script>
-	<script src="assets/plugins/daterangepicker/daterangepicker.js"></script>
-	<script src="assets/plugins/daterangepicker/moment.min.js"></script>
 	<script src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>
-	<script src="assets/plugins/timepicker/js/bootstrap-timepicker.min.js"></script>
-	<script src="assets/plugins/switch/static/js/bootstrap-switch.min.js"></script>
-	<script
-		src="assets/plugins/jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js"></script>
-	<script src="assets/plugins/autosize/jquery.autosize.min.js"></script>
-	<script src="assets/plugins/jasny/js/bootstrap-inputmask.js"></script>
-	<script src="assets/js/formsInit.js"></script>
-	<script>
-		$(function() {
-			formInit();
-		});
+
+	<script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+
+	<script src="assets/js/validationInit.js"></script>
+	<script src="assets/js/sweetalert.min.js"></script>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							  $(function () { 
+								  $('#dp3').datepicker();
+							  });
+							$(function() {
+								formValidation();
+							});
+
+							$("#userForm")
+									.submit(
+											function(e) {
+												e.preventDefault();
+
+												if (!$("#userForm").valid())
+													return false;
+
+												$
+														.ajax({
+															type : "POST",
+															url : "UserCon",
+															data : $(
+																	"#userForm")
+																	.serialize(),
+
+															success : function(
+																	data) {
+
+																if (data == 'true') {
+
+																	swal(
+																			{
+																				title : "Good job!",
+																				text : "You created a User!",
+																				type : "success",
+																				showCancelButton : false,
+																				confirmButtonColor : "#DD6B55",
+																				confirmButtonText : "OK!",
+																				closeOnConfirm : false
+																			},
+																			function() {
+																				window.location = "UserCon?action=list";
+																			});
+																} else {
+																	swal(
+																			"Data not saved!",
+																			"Please contact administrator!",
+																			"error");
+																}
+
+															}
+
+														});
+
+											});
+						});
 	</script>
 
 	<!--END PAGE LEVEL SCRIPT date picker-->

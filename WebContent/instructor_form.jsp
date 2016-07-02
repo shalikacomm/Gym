@@ -46,73 +46,105 @@
 	    });
 	 */
 </script>
+
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
-				<div class="inner">
+
+			<div class="panel panel-default">
+				<div class="panel-heading">Instructor Registration</div>
+				<div class="panel-body">
 					<div class="row">
-						<div class="col-lg-12">
-							<div class="box">
+						<div class="col-md-12">
+							<form action="InstructorController" method="post"
+								class="form-horizontal" id="block-validate">
 
-								<div id="collapseOne" class="accordion-body collapse in body">
-									<form action="InstructorController" method="post" class="form-horizontal"
-										id="block-validate">
-
-										<div class="form-group">
-											<label class="control-label col-lg-4">Instructor ID</label>
-											<div class="col-lg-4">
-												<input type="text" id="ins_id" name="ins_id"
-													readonly="readonly" class="form-control"
-													value="${ins_id}<c:out value="${instructorObj.ins_id}" />" />
-											</div>
+								<div class="row">
+									<div class="form-group">
+										<label class="control-label col-md-4">Instructor ID</label>
+										<div class="col-md-4">
+											<input type="text" id="ins_id" name="ins_id"
+												readonly="readonly" class="form-control"
+												value="${ins_id}<c:out value="${instructorObj.ins_id}" />" />
 										</div>
-										<div class="form-group">
-											<label class="control-label col-lg-4">Instructor Name</label>
-											<div class="col-lg-4">
-												<input type="text" id="ins_name" name="ins_name"
-													class="form-control"
-													value="<c:out value="${instructorObj.ins_name}" />" />
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-lg-4">Instructor E-mail</label>
-
-											<div class="col-lg-4">
-												<input type="email" id="email" name="ins_mail"
-													class="form-control"
-													value="<c:out value="${instructorObj.ins_email}" />" />
-											</div>
-										</div>${message}
-
-										<div class="form-actions no-margin-bottom"
-											style="text-align: center;">
-											<input id="btn_save" type="submit" value="Save"
-												class="btn btn-primary btn-lg " />
-										</div>
-
-									</form>
+									</div>
 								</div>
+								<div class="row">
+									<div class="form-group">
+										<label class="control-label col-md-4">Instructor Name</label>
+										<div class="col-md-4">
+											<input type="text" id="ins_name" name="ins_name"
+												class="form-control"
+												value="<c:out value="${instructorObj.ins_name}" />" />
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group">
+										<label class="control-label col-md-4">Instructor
+											E-mail</label>
 
-							</div>
+										<div class="col-md-4">
+											<input type="email" id="email" name="ins_mail"
+												class="form-control"
+												value="<c:out value="${instructorObj.ins_email}" />" />
+										</div>
+										<div class="col-md-4">
+											<input type="email" id="number" name="test"
+												class="form-control"
+												value="<c:out value="${instructorObj.ins_email}" />" />
+										</div>
+									</div>${message}
+									<div class="row"></div class="form-group">
+									<p>This is a pragraph</p>
+									<p>Here we are going to count total number of paragraphs by
+										getElementByTagName() method.</p>
+									<p>Let's see the simple example</p>
+								</div>
 						</div>
 					</div>
+					<div class="row">
+						<div class="form-actions no-margin-bottom"
+							style="text-align: center;">
+							<input id="btn_save" type="submit" value="Save"
+								class="btn btn-primary btn-md " />
+						</div>
+						<div class="form-actions no-margin-bottom"
+							style="text-align: center;">
+							<form name="myForm">
+								<input type="button" value="comment" onclick="showcommentform()">
+								<div id="mylocation"></div>
+							</form>
+							<div id="mylocation"></div>
+						</div>
+						
+					</div>
 
-
-
-
+					</form>
 				</div>
-
-
 			</div>
 		</div>
-
-		<%@include file="right_panel.jsp"%>
 	</div>
-	<%@include file="footer.jsp"%>
+	</div>
 
+
+	</div>
+
+
+	<%@include file="right_panel.jsp"%>
+
+	<%@include file="footer.jsp"%>
+	<script type="text/javascript">
+	function showcommentform() {  
+		var data="Name:<input type='text' name='name'><br>Comment:<textarea rows='5' cols='80'>
+		</textarea><br><input type='submit' value='comment'>";  
+		  
+		document.getElementById('mylocation').innerHTML=data;  
+		 }  
+	
+	</script>
 </body>
 </html>

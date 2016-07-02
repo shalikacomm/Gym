@@ -7,7 +7,14 @@ public class UserEntity {
 	private String user_id,first_name,last_name,nic,email,password,gender,address,role,mobile_number;
 	private Date dob;
 	private int marital_status,status;
+	private boolean valid;
 	
+	public boolean isValid() {
+		return valid;
+	}
+	public void setValid(boolean valid) {
+		this.valid = valid;
+	}
 	public String getUser_id() {
 		return user_id;
 	}

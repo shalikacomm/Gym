@@ -67,8 +67,7 @@
 													<td><a
 														href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>">Update</a>
 														<c:if test="${temp.status ==1 }">
-														<a
-															 href="javascript:test('<c:out value='${temp.productID}'/>')" class="navg">Deactivate</a>
+														
 															<a
 															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg">Deactivate</a>
 														</c:if> <c:if test="${temp.status ==0 }">

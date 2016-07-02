@@ -21,10 +21,12 @@
 	<ul id="menu" class="collapse">
 
 
-		<li class="panel "><a href="#" data-parent="#menu"
+		<li class="panel "><a href="dashboard.jsp" data-parent="#menu"
 			data-toggle="collapse" class="accordion-toggle"
-			data-target="#register-nav"> 
-			<i class="glyphicon glyphicon-dashboard">&nbsp;</i>	Dashboard<span class="pull-right">
+			data-target="#"> 
+			<i class="glyphicon glyphicon-dashboard">&nbsp;
+			
+			</i>	Dashboard<span class="pull-right">
 			</span> 
 		</a>
 			
@@ -38,7 +40,7 @@
 		</a>
 			<ul class="collapse" id="register-nav">
 
-				<li class=""><a href="button.html"><i
+				<li class=""><a href="MemberCon?action=list"><i
 						class="icon-angle-right"></i> Member</a></li>
 				<li class=""><a href="InstructorController?action=list"><i
 						class="icon-angle-right"></i> Instructor </a></li>
@@ -48,8 +50,8 @@
 
 		<li class="panel"><a href="#" data-parent="#menu"
 			data-toggle="collapse" class="accordion-toggle"
-			data-target="#payment-nav"> <i class="glyphicon glyphicon-usd">&nbsp;</i> Payments
-				Handling <span class="pull-right"> <i class="icon-angle-down"></i>
+			data-target="#payment-nav"> <i class="glyphicon glyphicon-usd">&nbsp;</i> Payments Handling <span class="pull-right"> 
+			<i class="icon-angle-down"></i>
 			</span> 
 		</a>
 			<ul class="collapse" id="payment-nav">
@@ -89,7 +91,7 @@
 			<ul class="collapse" id="product-nav">
 				<li><a href="ProductCon?action=list"><i
 						class="icon-angle-right"></i> Item List </a></li>
-				<li><a href="pages_timeline.html"><i
+				<li><a href="ProductCon?action=insert"><i
 						class="icon-angle-right"></i> New Item </a></li>
 				<li><a href="pages_timeline.html"><i
 						class="icon-angle-right"></i> Update Product </a></li>

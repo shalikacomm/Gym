@@ -17,18 +17,8 @@
 <link rel="stylesheet"
 	href="assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css" />
 <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
-<link rel="stylesheet"
-	href="assets/plugins/colorpicker/css/colorpicker.css" />
-<link rel="stylesheet"
-	href="assets/plugins/tagsinput/jquery.tagsinput.css" />
-<link rel="stylesheet"
-	href="assets/plugins/daterangepicker/daterangepicker-bs3.css" />
-<link rel="stylesheet"
-	href="assets/plugins/datepicker/css/datepicker.css" />
-<link rel="stylesheet"
-	href="assets/plugins/timepicker/css/bootstrap-timepicker.min.css" />
-<link rel="stylesheet"
-	href="assets/plugins/switch/static/stylesheets/bootstrap-switch.css" />
+<link rel="stylesheet" href="assets/css/sweetalert.css" />
+
 
 <!-- END PAGE LEVEL  STYLES -->
 </head>
@@ -49,8 +39,8 @@
 							<h5>Enter Product Details</h5>
 							</header>
 
-							<form class="form-horizontal" align="center" action="ProductCon"
-								method="POST">
+							<form id="productForm" class="form-horizontal" align="center"
+								novalidate>
 
 
 								</br>
@@ -74,7 +64,7 @@
 												style="float: right;">Description</label>
 										</div>
 										<div class="col-md-4">
-											<input type="text" id="text1" name="desc"
+											<input type="text" id="desc" name="desc"
 												placeholder="Product description" class="form-control"
 												value="<c:out value="${productobj.description}" />" />
 										</div>
@@ -83,12 +73,12 @@
 
 								<div class="row">
 									<div class="form-group">
-<div class="col-md-4">
-										<label for="text1" class="control-label col-md-5" style="float: right;" >Purchase
-											Price</label>
-</div>
 										<div class="col-md-4">
-											<input type="text" id="text1" name="p_price"
+											<label for="text1" class="control-label col-md-5"
+												style="float: right;">Purchase Price</label>
+										</div>
+										<div class="col-md-4">
+											<input type="text" id="p_price" name="p_price"
 												placeholder="Purchase Price" class="form-control"
 												value="<c:out value="${productobj.purchasePrice}" />" />
 										</div>
@@ -98,12 +88,12 @@
 								</div>
 								<div class="row">
 									<div class="form-group">
-									<div class="col-md-4">
-										<label for="text1" class="control-label col-md-5" style="float: right;">Selling
-											Price</label>
-</div>
 										<div class="col-md-4">
-											<input type="text" id="text1" name="s_price"
+											<label for="text1" class="control-label col-md-5"
+												style="float: right;">Selling Price</label>
+										</div>
+										<div class="col-md-4">
+											<input type="text" id="s_price" name="s_price"
 												placeholder="Selling Price" class="form-control"
 												value="<c:out value="${productobj.sellingPrice}" />" />
 
@@ -112,8 +102,9 @@
 								</div>
 								<div class="row">
 									<div class="form-group">
-									<div class="col-md-4">
-										<label class="control-label col-md-5 style="float: right;" style="float: right;">Measuring Unit</label>
+										<div class="col-md-4">
+											<label class="control-label col-md-5 style="
+												style="float: right;">Measuring Unit</label>
 										</div>
 										<div class="col-md-4">
 											<select name="unit_id"
@@ -131,23 +122,33 @@
 
 								<div class="row">
 									<div class="form-group">
-									<div class="col-md-4">
-										<label for="text1" class="control-label col-md-5 style=" style="float: right;">Re-order
-											Level</label>
-</div>
 										<div class="col-md-4">
-											<input type="text" id="text1" placeholder="Re-order Level"
+											<label for="text1" class="control-label col-md-5 style="
+												style="float: right;">Re-order Level</label>
+										</div>
+										<div class="col-md-4">
+											<input type="text" id="r_level" placeholder="Re-order Level"
 												name="r_level" class="form-control"
 												value="${r_level}<c:out value="${productobj.reorderLevel}" />" />
 										</div>
 									</div>
 								</div>
+
 								<div class="row">
 									<div class="form-actions no-margin-bottom"
 										style="text-align: center;">
+										<div class="col-sm-6"></div>
 										<div class="col-sm-6">
-										<input style="position: relative; left: 563px;" id="btn_save" value="Save" class="btn btn-primary btn-lg " type="submit">
+											<div>
+												<input style="left: 118%; width: 15%;" id="btn_save"
+													value="Save" class="btn btn-success btn-lg " type="submit">
+												<input id="btn_reset" value="Reset"
+													class="btn btn-warning btn-lg " type="reset" /> <a
+													class="btn btn-primary btn-lg"
+													href="ProductCon?action=list">Cancel</a>
 											</div>
+
+										</div>
 									</div>
 								</div>
 							</form>
@@ -166,6 +167,7 @@
 	<%@include file="footer.jsp"%>
 
 
+
 	<!-- PAGE LEVEL SCRIPT-->
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/plugins/uniform/jquery.uniform.min.js"></script>
@@ -175,17 +177,64 @@
 	<script src="assets/plugins/tagsinput/jquery.tagsinput.min.js"></script>
 	<script src="assets/plugins/validVal/js/jquery.validVal.min.js"></script>
 	<script src="assets/plugins/switch/static/js/bootstrap-switch.min.js"></script>
-	<script
-		src="assets/plugins/jquery.dualListbox-1.3/jquery.dualListBox-1.3.min.js"></script>
+	<script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+
 	<script src="assets/plugins/autosize/jquery.autosize.min.js"></script>
 	<script src="assets/plugins/jasny/js/bootstrap-inputmask.js"></script>
 	<script src="assets/js/formsInit.js"></script>
-	<script>
-		$(function() {
-			formInit();
-		});
-	</script>
+	<script src="assets/js/sweetalert.min.js"></script>
+	<script src="assets/js/validationInit.js"></script>
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$(function() {
+								formValidation();
+							});
+							$("#productForm").submit(
+											function(e) {
+												e.preventDefault();
+												if (!$("#productForm").valid())
+													return false;
+												$.ajax({
+															type : "POST",
+															url : "ProductCon",
+															data : $(
+																	"#productForm")
+																	.serialize(),
+															success : function(
+																	data) {
+																if (data == 'true') {
+																	swal(
+																			{
+																				title : "Good job!",
+																				text : "You created a product!",
+																				type : "success",
+																				showCancelButton : false,
+																				confirmButtonColor : "#DD6B55",
+																				confirmButtonText : "OK!",
+																				closeOnConfirm : false
+																			},
+																			function() {
+																				window.location = "ProductCon?action=list";
+																			});
+																} else {
+																	swal(
+																			"Data not saved!",
+																			"Please contact administrator!",
+																			"error");
+																}
+															}
 
+														});
+
+											});
+						});
+	</script>
+	<script>
+		
+	</script>
 	<!--END PAGE LEVEL SCRIPT-->
 
 </body>

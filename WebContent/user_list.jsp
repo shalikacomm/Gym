@@ -38,7 +38,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Instructor List <a class="pull-right"
-									href="InstructorController?action=insert"><button
+									href="UserCon?action=insert"><button
 										class="btn-primary">Add New</button></a>
 							</div>
 							<div class="panel-body">

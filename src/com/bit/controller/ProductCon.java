@@ -1,6 +1,7 @@
 package com.bit.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,9 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.bit.dao.ProductDAO;
 import com.bit.dao.ProductDAOImpl;
+import com.bit.dao.UserDAO;
+import com.bit.dao.UserDAOImpl;
 import com.bit.entity.InstructorEntity;
 import com.bit.entity.ProductEntity;
+import com.bit.entity.UserEntity;
 import com.bit.util.Methods;
+import com.google.gson.Gson;
 import com.sun.org.apache.bcel.internal.classfile.Method;
 
 @WebServlet(urlPatterns = "/ProductCon")
@@ -57,6 +62,27 @@ public class ProductCon extends HttpServlet {
 			req.setAttribute("product", list);
 			forward = LIST_USER;
 			
+			
+		}else if (action.equalsIgnoreCase("products")) {
+			
+			String prd_id = req.getParameter("product_id");
+			ProductDAO prd_dao = new ProductDAOImpl();
+			ProductEntity product = prd_dao.getProductById(prd_id);
+			
+			
+
+				try (PrintWriter out = resp.getWriter()) {
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
+
+					out.write("{ \"record\":" + new Gson().toJson(product) + "}");
+
+					out.flush();
+					out.close();
+					return;
+				}
+
+			
 		}else if (action.equalsIgnoreCase("activate")){
 			String prd_id = req.getParameter("prd_id");
 			ProductDAO prd_dao = new ProductDAOImpl();
@@ -97,9 +123,9 @@ public class ProductCon extends HttpServlet {
 
 		Methods methods = new Methods();
 		String generateID = methods.generateID("P", "product_id", "product_tbl");
-
+		boolean result = false;
 		if (productId.equals(generateID)) {
-			dao.addProduct(product);
+			result=dao.addProduct(product);
 
 		} else {
 
@@ -107,10 +133,11 @@ public class ProductCon extends HttpServlet {
 
 		}
 
-		dao.addProduct(product);
+		PrintWriter out=resp.getWriter();
+		out.print(result);
 
-		// forward = "ProductCon?action=list";
-		// resp.sendRedirect(forward);
+		//forward = "ProductCon?action=list";
+		//resp.sendRedirect(forward);
 	}
 
 }

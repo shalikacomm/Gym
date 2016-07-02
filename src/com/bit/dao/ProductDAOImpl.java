@@ -17,8 +17,8 @@ public class ProductDAOImpl implements ProductDAO {
 
 	private Connection connection;
 
-	public void addProduct(ProductEntity product) {
-
+	public boolean addProduct(ProductEntity product) {
+		boolean result=false;
 		connection = DBUtil.getConnection();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
@@ -33,8 +33,11 @@ public class ProductDAOImpl implements ProductDAO {
 			preparedStatement.setFloat(6, 0);
 			preparedStatement.setString(7, product.getMeasuringUnit());
 			preparedStatement.setInt(8, 1);
-			preparedStatement.executeUpdate();
-
+			
+		int res=preparedStatement.executeUpdate();
+		if(res >0){
+			result=true;
+		}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -46,7 +49,7 @@ public class ProductDAOImpl implements ProductDAO {
 				}
 
 		}
-
+		return result;
 	}
 
 	public List<ProductEntity> getAllProducts() {

@@ -1,6 +1,7 @@
 package com.bit.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -82,51 +83,54 @@ public class UserController  extends HttpServlet{
 		String dob = req.getParameter("dob");
 		String nic = req.getParameter("nic");
 		String email = req.getParameter("email");
-		//String password = req.getParameter("password");
 		String gender = req.getParameter("gender");
 		String address = req.getParameter("address");
 		String mobileNumber = req.getParameter("mobile_number");
 		String role = req.getParameter("role");
-		String status = req.getParameter("status");
-		int marital_status=Integer.parseInt(req.getParameter("marital_status"));
+	//	int marital_status=Integer.parseInt(req.getParameter("marital_status"));
 		
 		String forward = "";
 		UserEntity user = new UserEntity();
+		System.out.println("DOB:"+dob);
 		
-		DateFormat format=new SimpleDateFormat("YYYY-MM-DD", Locale.ENGLISH);
-		Date dob_cast = null;
-		try {
-			dob_cast = (Date) format.parse(dob);
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		System.out.println(dob_cast);
+		
+		 SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
+	        java.util.Date parsed = null;
+			
+				try {
+					parsed =  format.parse(dob);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			
+	        java.sql.Date sql_date = new java.sql.Date(parsed.getTime());
+		System.out.println(sql_date);
 		user.setUser_id(userId);
 		user.setFirst_name(firstName);
 		user.setLast_name(lastName);
-		user.setDob(dob_cast);
+		user.setDob(sql_date);
 		user.setNic(nic);
 		user.setEmail(email);
 		user.setGender(gender);
 		user.setAddress(address);
 		user.setMobile_number(mobileNumber);
-		user.setMarital_status(marital_status);
+		user.setMarital_status(0);
 		
 		UserDAO dao=new UserDAOImpl();
 		
 		Methods methods = new Methods();
 		String generateID = methods.generateID("U", "user_id", "user_tbl");
 		
-		
+		boolean result=false;
 		if (userId.equals(generateID)) {
-			dao.addUser(user);
+			result=dao.addUser(user);
 		} else {
 			dao.updateUser(user);
 		}
-
-		forward = "UserCon?action=list";
-		resp.sendRedirect(forward);// Redirect to the reg_list.jsp
+		PrintWriter out=resp.getWriter();
+		
+		out.print(result);
 
 	}
 	

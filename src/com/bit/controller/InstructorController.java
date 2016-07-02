@@ -96,7 +96,7 @@ public class InstructorController extends HttpServlet {
 		}
 
 		forward = "InstructorController?action=list";
-		resp.sendRedirect(forward);// Redirect to the reg_list.jsp
+		resp.sendRedirect(forward);// Redirect to the instructor list.jsp
 
 	}
 

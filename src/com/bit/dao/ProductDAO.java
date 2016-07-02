@@ -6,7 +6,7 @@ import com.bit.entity.ProductEntity;
 
 public interface ProductDAO {
 
-	public void addProduct(ProductEntity product);
+	public boolean addProduct(ProductEntity product);
 
 	public List<ProductEntity> getAllProducts(); 
 	

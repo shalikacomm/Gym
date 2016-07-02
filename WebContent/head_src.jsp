@@ -23,3 +23,25 @@
     <script src="assets/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     <!-- END GLOBAL SCRIPTS -->
 
+<!-- tiles styles  -->
+
+
+<!-- BOOTSTRAP STYLES-->
+    <link href="assets/assets_tiles/css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="assets/assets_tiles/css/font-awesome.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="assets/assets_tiles/css/custom.css" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+
+ <!-- JQUERY SCRIPTS -->
+    <script src="assets/assets_tiles/js/jquery-1.10.2.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/assets_tiles/js/bootstrap.min.js"></script>
+      <!-- CUSTOM SCRIPTS -->
+    <script src="assets/assets_tiles/js/custom.js"></script>
+
+
+<!-- tiles styles  -->
