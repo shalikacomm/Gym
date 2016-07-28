@@ -42,16 +42,16 @@ public class InvoiceDAOImpl implements InvoiceDAO{
 	}
 	
 	
-	public void addInvoiceProduct(InvoiceProductEntity invoice) {
+	public void addInvoiceProduct(InvoiceProductEntity productSell) {
 		connection = DBUtil.getConnection();
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
 					"INSERT INTO invoice_product_tbl  values (?, ?, ?, ?)");
-			preparedStatement.setString(1, invoice.getInvoice_id());
-			preparedStatement.setString(2, invoice.getProduct_id());
-			preparedStatement.setDouble(3, invoice.getQty());
-			preparedStatement.setDouble(4, invoice.getItem_total());
+			preparedStatement.setString(1, productSell.getInvoice_id());
+			preparedStatement.setString(2, productSell.getProduct_id());
+			preparedStatement.setDouble(3, productSell.getQty());
+			preparedStatement.setDouble(4, productSell.getItem_total());
 			
 			
 			preparedStatement.executeUpdate();

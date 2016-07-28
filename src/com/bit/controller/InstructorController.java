@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,6 +14,8 @@ import com.bit.dao.InstructorDAO;
 import com.bit.entity.InstructorEntity;
 import com.bit.util.Methods;
 
+
+@WebServlet(urlPatterns="/InsCon")
 public class InstructorController extends HttpServlet {
 
 	private static String INSERT_OR_EDIT = "/instructor_form.jsp";

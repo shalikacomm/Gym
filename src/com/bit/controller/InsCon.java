@@ -18,7 +18,7 @@ import com.bit.entity.InsEntity;
 import com.google.gson.Gson;
 
 
-@WebServlet(urlPatterns="/InsCon")
+@WebServlet(urlPatterns="/InsCon2")
 public class InsCon extends HttpServlet{
 
 	@Override
@@ -38,13 +38,13 @@ public class InsCon extends HttpServlet{
 					resp.setContentType("application/json");
 					resp.setCharacterEncoding("UTF-8");
 
-					out.write("{ \"record\":" + new Gson().toJson(ins) + "}");
-
+				
+				out.write("{ \"record\":" + new Gson().toJson(ins) + "}");
+				
 					out.flush();
 					out.close();
 					return;
 				}
-
 			}
 		 
 		 
@@ -57,6 +57,7 @@ public class InsCon extends HttpServlet{
 					resp.setContentType("application/json");
 					resp.setCharacterEncoding("UTF-8");
 
+				
 					out.write("{ \"record\":" + new Gson().toJson(ins) + "}");
 
 					out.flush();

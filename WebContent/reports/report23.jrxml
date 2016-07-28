@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report23" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="9ab34f38-6858-4cd2-bfae-6f58ab125048">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="Title" fontName="Arial" fontSize="26" isBold="true" pdfFontName="Helvetica-Bold"/>
+	<style name="SubTitle" forecolor="#666666" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<parameter name="product_name" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     product_tbl.`product_id` AS product_tbl_product_id,
+     product_tbl.`description` AS product_tbl_description,
+     product_tbl.`purchase_price` AS product_tbl_purchase_price,
+     product_tbl.`selling_price` AS product_tbl_selling_price,
+     product_tbl.`reorder_level` AS product_tbl_reorder_level,
+     product_tbl.`stock` AS product_tbl_stock,
+     product_tbl.`measuring_unit` AS product_tbl_measuring_unit,
+     product_tbl.`status` AS product_tbl_status,
+     invoice_product_tbl.`product_id` AS invoice_product_tbl_product_id,
+     invoice_product_tbl.`qty` AS invoice_product_tbl_qty,
+     invoice_product_tbl.`item_total` AS invoice_product_tbl_item_total
+FROM
+     `invoice_product_tbl` invoice_product_tbl INNER JOIN `product_tbl` product_tbl ON invoice_product_tbl.`product_id` = product_tbl.`product_id`
+WHERE
+product_tbl.`description`=$P{product_name}]]>
+	</queryString>
+	<field name="product_tbl_product_id" class="java.lang.String"/>
+	<field name="product_tbl_description" class="java.lang.String"/>
+	<field name="product_tbl_purchase_price" class="java.lang.Float"/>
+	<field name="product_tbl_selling_price" class="java.lang.Float"/>
+	<field name="product_tbl_reorder_level" class="java.lang.Integer"/>
+	<field name="product_tbl_stock" class="java.lang.Float"/>
+	<field name="product_tbl_measuring_unit" class="java.lang.String"/>
+	<field name="product_tbl_status" class="java.lang.Integer"/>
+	<field name="invoice_product_tbl_product_id" class="java.lang.String"/>
+	<field name="invoice_product_tbl_qty" class="java.lang.Double"/>
+	<field name="invoice_product_tbl_item_total" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<image>
+				<reportElement x="275" y="0" width="300" height="64" uuid="8a4b36f6-3946-4b54-a2c9-129c343d54e8"/>
+				<imageExpression><![CDATA["leaf_banner_green.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="0" y="13" width="263" height="33" uuid="84bcd095-0732-435e-8b22-8c524f94b0f7"/>
+				<textElement verticalAlignment="Middle"/>
+				<text><![CDATA[Leaf Green Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="100" y="46" width="174" height="22" uuid="6d090b50-4591-4d58-a4ce-c8ba06eaaa6d"/>
+				<text><![CDATA[Leaf Green SubTitle]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="35" width="555" height="1" uuid="e0f3534f-6add-40b2-828c-aa66111e1ce2"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="19" width="111" height="15" uuid="3df60a33-79aa-40c0-b2bf-35557bde3f55"/>
+				<text><![CDATA[product_tbl_product_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="111" y="19" width="111" height="15" uuid="860ad703-d8b0-4333-87fb-e6ba84151bfa"/>
+				<text><![CDATA[product_tbl_description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="222" y="19" width="111" height="15" uuid="67893a4d-c2fb-41f6-9a96-81dec895d34a"/>
+				<text><![CDATA[product_tbl_purchase_price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="333" y="19" width="111" height="15" uuid="5c5e4703-38f7-4d6d-9ef9-188ed790741f"/>
+				<text><![CDATA[product_tbl_selling_price]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="444" y="19" width="111" height="15" uuid="84337764-e995-4bfc-b083-8be0a6c82322"/>
+				<text><![CDATA[product_tbl_reorder_level]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1" uuid="0d3dea92-47c4-4961-9e94-ade4611d8846"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="Detail" x="0" y="0" width="111" height="15" uuid="fd9c3eb9-3518-4155-b6e0-0e6a808daae7"/>
+				<textFieldExpression><![CDATA[$F{product_tbl_product_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="111" y="0" width="111" height="15" uuid="7a1aa02b-c872-491d-81fe-4f30aa2ff217"/>
+				<textFieldExpression><![CDATA[$F{product_tbl_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="222" y="0" width="111" height="15" uuid="4909b749-fca7-466c-95a4-2f10e7939163"/>
+				<textFieldExpression><![CDATA[$F{product_tbl_purchase_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="333" y="0" width="111" height="15" uuid="cc736c24-1b7f-4eea-9f27-f1ec31ba8498"/>
+				<textFieldExpression><![CDATA[$F{product_tbl_selling_price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="Detail" x="444" y="0" width="111" height="15" uuid="f7870094-d555-4c16-ac36-bd0900310d69"/>
+				<textFieldExpression><![CDATA[$F{product_tbl_reorder_level}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="95374302-42c9-4f45-835c-7456bcbf77ac"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="Column header" x="433" y="0" width="80" height="20" uuid="f1798117-6330-4a53-809b-d339dd64fc37"/>
+				<textElement textAlignment="Right">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement style="Column header" x="513" y="0" width="40" height="20" uuid="b2b2a057-6a45-4681-91e3-ddb088612b08"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement style="Column header" x="0" y="0" width="197" height="20" uuid="4f3eb2f1-4605-4a1d-a7ee-93f44bdb4505"/>
+				<textElement>
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

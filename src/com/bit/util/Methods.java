@@ -48,5 +48,22 @@ public class Methods {
 			}
 	        return generatedId;
 	    }
+	  
+	  /*
+	    public void ExportPDFquote(String jasperPath, String PdfOutPath, String id, String ver_no, String jasperPara1, String jasperPara2) throws SQLException, JRException {
+
+	        Connection con = DBUtil.getConnection();
+	        HashMap para = new HashMap();
+	        para.put(jasperPara1, id);
+	        para.put(jasperPara2, ver_no);
+	        JasperPrint jp = JasperFillManager.fillReport(jasperPath, para, con);
+	        JRExporter exporter = new net.sf.jasperreports.engine.export.JRPdfExporter();
+
+	        exporter.setParameter(JRExporterParameter.JASPER_PRINT, jp);
+	        exporter.setParameter(JRExporterParameter.OUTPUT_FILE_NAME, PdfOutPath);
+	        exporter.exportReport();
+
+	    }
+	    */
 
 }

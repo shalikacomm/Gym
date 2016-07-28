@@ -25,7 +25,7 @@ import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.MemberEntity;
 import com.bit.entity.UserEntity;
-import com.bit.util.Methods;
+import com.bit.util.*;
 import com.google.gson.Gson;
 
 @WebServlet(urlPatterns = "/MemberCon")

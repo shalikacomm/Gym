@@ -7,6 +7,31 @@
 <title>Insert title here</title>
 <%@include file="head_src.jsp"%>
 
+<!-- tiles styles  -->
+
+
+<!-- BOOTSTRAP STYLES-->
+
+    <link href="assets/assets_tiles/css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="assets/assets_tiles/css/font-awesome.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="assets/assets_tiles/css/custom.css" rel="stylesheet" />
+     <!-- GOOGLE FONTS-->
+   <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+
+
+ <!-- JQUERY SCRIPTS -->
+    <script src="assets/assets_tiles/js/jquery-1.10.2.js"></script>
+      <!-- BOOTSTRAP SCRIPTS -->
+    
+      <!-- CUSTOM SCRIPTS -->
+    <script src="assets/assets_tiles/js/custom.js"></script>
+
+
+<!-- tiles styles  -->
+
+
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
@@ -50,7 +75,7 @@
                       <div class="div-square">
                            <a href="MemberCon?action=insert" >
  <i class="fa fa fa-user fa-5x"></i>
-                      <h4>Register user</h4>
+                      <h4>Reg. Member</h4>
                       </a>
                       </div>
                      
@@ -141,7 +166,7 @@
                       <div class="div-square">
                            <a href="UserCon?action=insert" >
  <i class="fa fa-users fa-5x"></i>
-                      <h4>See Users</h4>
+                      <h4>Add Users</h4>
                       </a>
                       </div>
                         

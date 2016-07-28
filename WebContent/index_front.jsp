@@ -161,14 +161,13 @@
 						<div class="slider-content">
 							<div class="col-md-12 text-center">
 								<h2 class="animated2">
-									<span>Welcome to <strong>Margo</strong></span>
+									<span><strong>FIT & FUN</strong> </span>
 								</h2>
 								<h3 class="animated3">
 									<span>The ultimate aim of your business</span>
 								</h3>
 								<p class="animated4">
-									<a href="#" class="slider btn btn-system btn-large">Check
-										Now</a>
+									<a href="#" class="slider btn btn-system btn-large">Join Now</a>
 								</p>
 							</div>
 						</div>
@@ -180,13 +179,13 @@
 						<div class="slider-content">
 							<div class="col-md-12 text-center">
 								<h2 class="animated4">
-									<span><strong>Margo</strong> for the highest</span>
+									<span><strong>FIT & FUN</strong> </span>
 								</h2>
 								<h3 class="animated5">
-									<span>The Key of your Success</span>
+									<span>Strenth And Honour</span>
 								</h3>
 								<p class="animated6">
-									<a href="#" class="slider btn btn-system btn-large">Buy Now</a>
+									<a href="#" class="slider btn btn-system btn-large">Join Now</a>
 								</p>
 							</div>
 						</div>
@@ -195,9 +194,9 @@
 					<div class="item">
 						<img class="img-responsive"
 							src="assets_front/images/slider/bg3.jpg" alt="slider" style="max-height: 800px; max-width: 1600px;">
-						<div class="slider-content">
+							<div class="col-md-12 text-center">
 						
-						</div>
+							</div>
 					</div>
 					<!--/ Carousel item end -->
 				</div>

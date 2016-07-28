@@ -92,17 +92,7 @@
 												class="form-control"
 												value="<c:out value="${instructorObj.ins_email}" />" />
 										</div>
-										<div class="col-md-4">
-											<input type="email" id="number" name="test"
-												class="form-control"
-												value="<c:out value="${instructorObj.ins_email}" />" />
-										</div>
-									</div>${message}
-									<div class="row"></div class="form-group">
-									<p>This is a pragraph</p>
-									<p>Here we are going to count total number of paragraphs by
-										getElementByTagName() method.</p>
-									<p>Let's see the simple example</p>
+								
 								</div>
 						</div>
 					</div>
@@ -118,17 +108,17 @@
 								<input type="button" value="comment" onclick="showcommentform()">
 								<div id="mylocation"></div>
 							</form>
-							<div id="mylocation"></div>
+					
 						</div>
 						
 					</div>
 
-					</form>
+				
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
+	
 
 
 	</div>
@@ -137,14 +127,6 @@
 	<%@include file="right_panel.jsp"%>
 
 	<%@include file="footer.jsp"%>
-	<script type="text/javascript">
-	function showcommentform() {  
-		var data="Name:<input type='text' name='name'><br>Comment:<textarea rows='5' cols='80'>
-		</textarea><br><input type='submit' value='comment'>";  
-		  
-		document.getElementById('mylocation').innerHTML=data;  
-		 }  
-	
-	</script>
+
 </body>
 </html>

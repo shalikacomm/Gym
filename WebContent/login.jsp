@@ -39,9 +39,9 @@
         <div id="login" class="tab-pane active">
             <form action="LoginCon" method="post" class="form-signin">
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">
-                    Enter your NIC and password
+                    Enter your Username and Password
                 </p>
-                <input type="text" placeholder="Enter your NIC" name="nic" class="form-control" required/>
+                <input type="text" placeholder="Enter your Username" name="nic" class="form-control" required/>
                 <input type="password" placeholder="Password" name="password" class="form-control" required/>
                 <button class="btn text-muted text-center btn-danger" type="submit">Sign in</button>
             </form>

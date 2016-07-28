@@ -64,11 +64,12 @@
 													<td><c:out value="${temp.reorderLevel}" /></td>
 													<td><c:out value="${temp.stock}" /></td>
 													<td><c:out value="${temp.measuringUnit}" /></td>
-													<td><a
-														href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>">Update</a>
+													<td>
+													
+													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>">Update</a>
 														<c:if test="${temp.status ==1 }">
 														
-															<a
+														<a
 															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg">Deactivate</a>
 														</c:if> <c:if test="${temp.status ==0 }">
 															<a

@@ -94,7 +94,7 @@ public class UserController  extends HttpServlet{
 		System.out.println("DOB:"+dob);
 		
 		
-		 SimpleDateFormat format = new SimpleDateFormat("DD-MM-YYYY");
+		 SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
 	        java.util.Date parsed = null;
 			
 				try {
