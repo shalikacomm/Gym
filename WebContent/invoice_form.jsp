@@ -11,67 +11,9 @@
 <!-- new drodown select -->
 <link rel="stylesheet" href="assets/css/bootstrap-select.min.css" " />
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
+<link rel="stylesheet" href="assets/css/jquery-ui.css" />
+<link rel="stylesheet" href="assets/css/modal.css" />
 
-<style type="text/css">
-.nav-tabs-dropdown {
-	display: none;
-	border-bottom-left-radius: 0;
-	border-bottom-right-radius: 0;
-}
-
-.nav-tabs-dropdown:before {
-	content: "\e114";
-	font-family: 'Glyphicons Halflings';
-	position: absolute;
-	right: 30px;
-}
-
-@media screen and (min-width: 769px) {
-	#nav-tabs-wrapper {
-		display: block !important;
-	}
-}
-
-@media screen and (max-width: 768px) {
-	.nav-tabs-dropdown {
-		display: block;
-	}
-	#nav-tabs-wrapper {
-		display: none;
-		border-top-left-radius: 0;
-		border-top-right-radius: 0;
-		text-align: center;
-	}
-	.nav-tabs-horizontal {
-		min-height: 20px;
-		padding: 19px;
-		margin-bottom: 20px;
-		background-color: #f5f5f5;
-		border: 1px solid #e3e3e3;
-		border-radius: 4px;
-		-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-		box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-	}
-	.nav-tabs-horizontal>li {
-		float: none;
-	}
-	.nav-tabs-horizontal>li+li {
-		margin-left: 2px;
-	}
-	.nav-tabs-horizontal>li, .nav-tabs-horizontal>li>a {
-		background: transparent;
-		width: 100%;
-	}
-	.nav-tabs-horizontal>li>a {
-		border-radius: 4px;
-	}
-	.nav-tabs-horizontal>li.active>a, .nav-tabs-horizontal>li.active>a:hover,
-		.nav-tabs-horizontal>li.active>a:focus {
-		color: #ffffff;
-		background-color: #428bca;
-	}
-}
-</style>
 
 </head>
 <body class="padTop53 ">
@@ -211,7 +153,7 @@
 										</div>
 										<div class="col-md-2 text-center">
 											<input readonly id="inv_unit0" class="form-control inv_unit"
-												type="text" />
+												name="inv_unit" type="text" />
 										</div>
 										<div class="col-md-1 text-center ">
 											<input class="form-control child" name="inv_qty"
@@ -267,7 +209,7 @@
 										</div>
 										<div class="col-md-2 text-center">
 											<input readonly placeholder="Total" type="text" id="total"
-												style="text-align: right;" class="form-control">
+												name="total" style="text-align: right;" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -276,12 +218,12 @@
 									<div class="form-group">
 										<div class="col-md-8">
 											<label for="text1" class="control-label col-md-5"
-												style="float: right;">Discount</label>
+												style="float: right;">Discount<span>%</span></label>
 										</div>
 										<div class="col-md-1">
 											<div class="input-group pull-right discount">
 												<input class="form-control " type="text" id="disc"
-													data-mask="99%" />
+													name="disc" value="" placeholder="Disc" />
 											</div>
 										</div>
 									</div>
@@ -295,8 +237,8 @@
 										</div>
 										<div class="col-md-1 vatc">
 											<div class="input-group pull-right vat">
-												<input type="text" id="vat" name="vat" class="form-control"
-													data-mask="99%" default />
+												<input type="text" id="vat" name="vat" readonly="readonly"
+													class="form-control" value="8" />
 											</div>
 										</div>
 									</div>
@@ -310,8 +252,8 @@
 										</div>
 										<div class="col-md-2 text-center">
 											<input readonly placeholder="Invoiced Total" type="text"
-												id="invoiced_total" style="text-align: right;"
-												class="form-control">
+												name="invoiced_tot" id="invoiced_total"
+												style="text-align: right;" class="form-control">
 										</div>
 									</div>
 								</div>
@@ -323,14 +265,14 @@
 										style="text-align: center;">
 										<div class="col-sm-6"></div>
 										<div class="col-sm-6">
-											<div>
+											<!-- <div>
 												<input style="left: 80%; width: 10%;" id="btn_save"
 													value="Save" class="btn btn-primary " type="submit">
 												<input id="btn_reset" value="Reset" style="width: 10%;"
 													class="btn btn-warning " type="reset" /> <a
 													class="btn btn-success " style="width: 10%;"
 													href="ProductCon?action=list">Cancel</a>
-											</div>
+											</div> -->
 
 										</div>
 									</div>
@@ -340,7 +282,7 @@
 
 									<div class="col-md-6"></div>
 									<div class="col-md-6">
-										<button class="btn-primary prcd" data-toggle="modal"
+										<button class="btn btn-primary prcd" data-toggle="modal"
 											data-target="#formModal">Proceed to Payments</button>
 									</div>
 
@@ -351,122 +293,126 @@
 											aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-													<div class="modal-header">
+													<!-- 	<div class="modal-header">
 														<button type="button" class="close" data-dismiss="modal"
 															aria-hidden="true">&times;</button>
-														<h4 class="modal-title" id="H2">Payemnt Select</h4>
-													</div>
+														<h4 class="modal-title" id="H2">Payment Select</h4>
+													</div> -->
 													<div class="modal-body">
-														<div class="body">
-															<div class="container">
+														<!-- 	// starts here  -->
+
+														<h1>
+															id of selected tab: <span id="idDisplay">cash</span>
+														</h1>
+
+														<div id="tabs">
+															<ul>
+																<li><a href="#cash">Cash</a></li>
+																<li><a href="#credit">Credit Card</a></li>
+																<li><a href="#subs">Add to Subscription</a></li>
+															</ul>
+															<div id="cash">
+
+																<input readonly placeholder="Total" type="text"
+																	id="pay_total" style="text-align: right;"
+																	class="form-control">
+
+															</div>
+															<div id="credit">
 																<div class="row">
-																	<div class="col-md-3">
-																		<a href="#"
-																			class="nav-tabs-dropdown btn btn-block btn-primary">Tabs</a>
-																		<ul id="nav-tabs-wrapper"
-																			class="nav nav-tabs nav-pills nav-stacked well">
-																			<li class="active"><a href="#vtab1"
-																				data-toggle="tab">Cash</a></li>
-																			<li><a href="#vtab2" data-toggle="tab">Credit</a></li>
-																			<li><a href="#vtab3" data-toggle="tab">Monthly</a></li>
-																		</ul>
+																	<div class="col-md-4">
+																		<div class="checkbox">
+																			<label> <input class="uniform" type="radio"
+																				value="amex" name="card" checked="checked" /> <img
+																				src="${pageContext.request.contextPath}/logo/amex.gif" />
+																			</label>
+																		</div>
 																	</div>
-																	<div class="col-md-9">
-																		<div class="tab-content">
-																			<div role="tabpanel" class="tab-pane fade in active"
-																				id="vtab1">
-
-																				<input readonly placeholder="Total" type="text"
-																					id="pay_total" style="text-align: right;"
-																					class="form-control">
-
-
-																			</div>
-																			<div role="tabpanel" class="tab-pane fade" id="vtab2">
-																				<div class="row">
-																					<div class="col-md-4">
-																						<div class="checkbox">
-																							<label> <input class="uniform"
-																								type="radio" value="option1" name="card"
-																								checked="checked" /> <img
-																								src="${pageContext.request.contextPath}/logo/amex.gif" />
-																							</label>
-																						</div>
-																					</div>
-																					<div class="col-md-4">
-																						<div class="checkbox">
-																							<label> <input class="uniform"
-																								type="radio" value="option2" name="card" /> <img
-																								src="${pageContext.request.contextPath}/logo/visa.gif" />
-																							</label>
-																						</div>
-																					</div>
-																					<div class="col-md-4">
-																						<div class="checkbox">
-																							<label> <input class="uniform"
-																								type="radio" value="option3" name="card" /> <img
-																								src="${pageContext.request.contextPath}/logo/master.gif" />
-																							</label>
-																						</div>
-																					</div>
-																				</div>
-																				</br>
-																				<div class="row">
-																					<div class="col-md-12">
-																						<div class="col-md-2">
-																							<span class="label label-info">First 4 No</span>
-																						</div>
-																						<div class="col-md-4">
-																							<input class="form-control autotab"
-																								style="margin-left: 23%" type="text"
-																								maxlength="4" tabindex="11" />
-																						</div>
-																						<div class="col-md-2">
-																							<span class="label label-info">Last 4 No</span>
-																						</div>
-																						<div class="col-md-4">
-																							<input class="form-control autotab"
-																								style="margin-left: 23%" type="text"
-																								maxlength="4" tabindex="12" />
-																						</div>
-
-
-																					</div>
-																				</div>
-</br>
-																				<div class="form-group">
-
-																					<div class="col-md-8" style=" margin-left: 13%;">
-																						<select style="width: 60%;"
-																							data-placeholder="Your Favorite Type of Bear"
-																							class="form-control select-picker bank_drop"
-																							data-live-search="true" tabindex="-1">
-																							<option selected="selected">Commercial Bank</option>
-																							<option>Sampath Bank</option>
-																							<option>HSBC Bank</option>
-																							<option>Nations Trust Bank</option>
-																							<option>HNB Bank</option>
-																							
-																						</select>
-																					</div>
-																				</div>
-																			</div>
-																			<div role="tabpanel" class="tab-pane fade in"
-																				id="vtab3">
-																				<h3>Tab 3</h3>
-																				<p>Your Payment will be added to your mobthly payment</p>
-																			</div>
+																	<div class="col-md-4">
+																		<div class="checkbox">
+																			<label> <input class="uniform" type="radio"
+																				value="visa" name="card" /> <img
+																				src="${pageContext.request.contextPath}/logo/visa.gif" />
+																			</label>
+																		</div>
+																	</div>
+																	<div class="col-md-4">
+																		<div class="checkbox">
+																			<label> <input class="uniform" type="radio"
+																				value="master" name="card" /> <img
+																				src="${pageContext.request.contextPath}/logo/master.gif" />
+																			</label>
 																		</div>
 																	</div>
 																</div>
+																</br>
+																<div class="row">
+																	<div class="col-md-12">
+																		<div class="col-md-2">
+																			<span class="label label-info">First 4 No</span>
+																		</div>
+																		<div class="col-md-4">
+																			<input class="form-control autotab f4"
+																				style="margin-left: 23%" type="text" maxlength="4" value ="0000" placeholder="Card No"
+																				name="f4"  tabindex="11" />
+																		</div>
+																		<div class="col-md-2">
+																			<span class="label label-info">Last 4 No</span>
+																		</div>
+																		<div class="col-md-4">
+																			<input class="form-control autotab l4"
+																				style="margin-left: 23%" type="text" maxlength="4"placeholder="Card No" value="1111" 
+																				name="l4"  tabindex="12" />
+																		</div>
+
+
+																	</div>
+																</div>
+																</br>
+																<div class="form-group">
+
+																	<div class="col-md-8" style="margin-left: 13%;">
+																		<select style="width: 60%;"
+																			data-placeholder="Your Favorite Type of Bear"
+																			class="form-control select-picker bank_drop"
+																			data-live-search="true" tabindex="-1"
+																			name="bank_name">
+																			<option selected="selected">Commercial Bank</option>
+																			<option>Sampath Bank</option>
+																			<option>HSBC Bank</option>
+																			<option>Nations Trust Bank</option>
+																			<option>HNB Bank</option>
+
+																		</select>
+																	</div>
+																</div>
+															</div>
+															<div id="subs">
+																<div class="row">
+																	<input readonly placeholder="Total" type="text"
+																		id="pay_total" style="text-align: right;"
+																		class="form-control">
+																</div>
+																<div class="row">
+																	<input readonly placeholder="Total fee" type="text"
+																		id="fee_total" style="text-align: right;"
+																		name="fee_total" class="form-control">
+																</div>
 															</div>
 														</div>
+
+
+														<!-- 	// ends here  -->
+														<div class="body"></div>
 													</div>
+
 													<div class="modal-footer">
+														<input type="hidden" id="payment_type" value="cash"
+															name="payment_type" />
+
 														<button type="button" class="btn btn-default"
 															data-dismiss="modal">Close</button>
-														<button type="button" class="btn btn-primary">Save
-															changes</button>
+														<button class="btn btn-primary " type="submit">Check Out</button>
 													</div>
 												</div>
 											</div>
@@ -489,6 +435,7 @@
 	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
 	<script src="assets/js/jquery.tagsinput.min.js"></script>
 	<script src="assets/js/sweetalert.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
 	<script>
 		$(function() {
 			formValidation();
@@ -616,6 +563,18 @@
 							}
 						});
 	</script>
+	<script>
+function onBlur(el) {
+    if (el.value == '') {
+        el.value = el.defaultValue;
+    }
+}
+function onFocus(el) {
+    if (el.value == el.defaultValue) {
+        el.value = '';
+    }
+}
+</script>
 
 	<script>
 		$.ajax({
@@ -639,6 +598,7 @@
 		$(document)
 				.ready(
 						function() {
+
 							$(".chzn-select").prop('disabled', false).trigger(
 									'chosen:updated');
 							var index = 1;
@@ -723,6 +683,8 @@
 								totalCal();
 
 							});
+										
+											
 
 							$("body")
 									.on(
@@ -730,12 +692,12 @@
 											".inv_item",
 											function() {
 												var id = this.id;
-												
+
 												var product_id = this.value;
-												
+
 												var current_id = id.replace(
 														"inv_item", "");
-													
+
 												$
 														.ajax({
 															method : 'GET',
@@ -747,7 +709,7 @@
 																console
 																		.log(data.record);
 																var product = data.record;
-																
+
 																$(
 																		"#inv_price"
 																				+ current_id)
@@ -797,143 +759,161 @@
 									if (inv_sub_total !== undefined) {
 										var sub_total = Number(inv_sub_total);
 										total = total + sub_total;
+
 									}
 								}
 
 								$('#total').val(total.toFixed(2));
+								calVat();
 
-								discountCal();
 							}
 
+							// Clculate Vat%
+							function calVat() {
+								var vat = parseInt($('#vat').val());
+								total = $('#total').val();
+								vat_final = total * (1 + vat / 100);
+								$('#invoiced_total').val(vat_final.toFixed(2));
+							}
 							// Calculate Discount	
 
 							function discountCal() {
 
-								var total = $('#total').val();
+								var total = $('#invoiced_total').val();
+
 								var disc_rate = parseInt($("#disc").val());
+								// $('#disc').val(disc_rate)
 
 								discounted_val = total * (1 - disc_rate / 100);
 
-								$('#invoiced_total').val(discounted_val.toFixed(2));
+								$('#invoiced_total').val(
+										discounted_val.toFixed(2));
 
 							}
 							$('.discount').on('keyup change', '#disc',
 									function() {
+										totalCal();
 										discountCal();
 									});
 
-							// Clculate Vat%
-
-							function vatCal() {
-
-								var vat_perc = $('#vat').val();
-
-							}
 							$('.prcd').on('click', function() {
-
-								var tot = $('#invoiced_total').val();
-								$('#pay_total').val(tot).toFixed(2);
-
+								total = $('#invoiced_total').val();
+								$('#pay_total').val(total);
+								$('#fee_total').val(total);
 							});
 
-							/* 
-							$("[id^='inv_row']").each(function(){
-								var id =  this.id;
-								ElementID=this.id.replace("inv_row","");
-							alert(this.id);
-							 */
-							//a=$("#inv_price"+ElementID).val();
-							/* 	}); */
+						
 
-							/* $(this).on('keyup click',"div[id^='inv_row_']" ,function() {
-								var id =  this.id;
-								ElementID=this.id.replace("inv_row_","");
-								a=$("#inv_price"+ElementID).val();
-								//var price = $(id).closest('.t_row').find('#inv_price').val();
-								alert(a);
+							/* 		Select the payment mode tab */
+
+							function getSelectedTabId() {
+								return $("#tabs .ui-tabs-panel:visible").attr(
+										"id");
+							}
+
+							$(function() {
+
+								$("#tabs").tabs();
+
+								//update the display of the selected id 
+								$("#tabs").click(function(e) {
+									$("#idDisplay").text(getSelectedTabId());
+									var test = getSelectedTabId();
+									//$('#payment_type').val("cash");
+									$('#payment_type').val(test);
+								});
+
+								//initalize the selected id display    
+								//	$("#tabs").click();
+
 							});
-							 */
-
-							/* 		function sub_cal() {
-										var unit_price = Number($("#inv_qty'+index+'").val());
-										var qty = Number($("#inv_qty'+index+'").val());
-
-										sub_totalt =  unit_price* qty;
-
-										$("#inv_sub_total'+index+'").val(sub_totalt.toFixed(2));
-									} */
+							/* 	end 	Select the payment mode tab */
 
 						});
 	</script>
 	<script>
-	$(document)
-	.ready(
-			function() {
-				$(function() {
-					formValidation();
-				});
-				$("#invoiceForm").submit(
-								function(e) {
-									e.preventDefault();
-									//alert("adad");
-									if (!$("#invoiceForm").valid())
-										return false;
-									
-									swal({
-										  title: "Are you sure?",
-										  text: "You will not be able to recover this imaginary file!",
-										  type: "warning",
-										  showCancelButton: true,
-										  confirmButtonColor: "#DD6B55",
-										  confirmButtonText: "Yes, delete it!",
-										  cancelButtonText: "No, cancel plx!",
-										  closeOnConfirm: false,
-										  closeOnCancel: false
-										},
-										function(isConfirm){
-										  if (isConfirm) {
-												$.ajax({
-													type : "POST",
-													url : "InvoiceCon",
-													data : $(
-															"#invoiceForm")
-															.serialize(),
-													success : function(
-															data) {
-														if (data == 'true') {
-															swal(
-																	{
-																		title : "Good job!",
-																		text : "You created a product!",
-																		type : "success",
-																		showCancelButton : false,
-																		confirmButtonColor : "#DD6B55",
-																		confirmButtonText : "OK!",
-																		closeOnConfirm : false
-																	},
-																	function() {
-																		window.location = "ProductCon?action=list";
-																	});
-														} else {
-															swal(
-																	"Data not saved!",
-																	"Please contact administrator!",
-																	"error");
-														}
-													}
-
-												});
-										  } else {
-											    swal("Cancelled", "Your imaginary file is safe :)", "error");
-										  }
-										});
-									
-									
-									
-							
-								});
-			});
+	$(document).ready(function(){
+	   $('.prcd').on('click',function(){
+		   var d_val = $('#disc').val();
+		   if(d_val = " ");
 	
+	   });
+	       
+	    });
+
+	
+	</script>
+	<script>
+		$(document)
+				.ready(
+						function() {
+							$(function() {
+								formValidation();
+							});
+							$("#invoiceForm")
+									.submit(
+											function(e) {
+												e.preventDefault();
+												//alert("adad");
+												if (!$("#invoiceForm").valid())
+													return false;
+
+												swal(
+														{
+															title : "Are you sure?",
+															text : "You will not be able to recover this imaginary file!",
+															type : "warning",
+															showCancelButton : true,
+															confirmButtonColor : "#DD6B55",
+															confirmButtonText : "Yes, Proceed!",
+															cancelButtonText : "No, cancel!",
+															closeOnConfirm : false,
+															closeOnCancel : false
+														},
+														function(isConfirm) {
+															if (isConfirm) {
+																$
+																		.ajax({
+																			type : "POST",
+																			url : "InvoiceCon",
+																			data : $(
+																					"#invoiceForm")
+																					.serialize(),
+																			success : function(
+																					data) {
+																				if (data == 'true') {
+																					swal(
+																							{
+																								title : "Transacion Completed!",
+																								text : "You completed a selling cycle",
+																								type : "success",
+																								showCancelButton : false,
+																								confirmButtonColor : "#DD6B55",
+																								confirmButtonText : "OK!",
+																								closeOnConfirm : true
+																							},
+																							function() {
+																								 window.location = "InvoiceCon?action=invoice_list";
+																							});
+																				} else {
+																					swal(
+																							"Data not saved!",
+																							"Please contact administrator!",
+																							"error");
+																				}
+																			}
+
+																		});
+															} else {
+																swal(
+																		"Cancelled",
+																		"Your Transaction details are removed:)",
+																		"error");
+															}
+														});
+
+											});
+						});
 	</script>
 </body>
 </html>

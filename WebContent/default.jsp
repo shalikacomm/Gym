@@ -6,7 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <%@include file="head_src.jsp"%>
-
+<link rel="stylesheet" href="assets/css/jquery-ui.css" />
+<link rel="stylesheet" href="assets/css/bootstrap-select.min.css" />
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
@@ -14,14 +15,25 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
+
 		
-			
+
+
+
+
+
+
 			</div>
 		</div>
 
-		<%@include file="right_panel.jsp"%>
 	</div>
-	<%@include file="footer.jsp"%>
 
+
+	<%@include file="right_panel.jsp"%>
+
+	<%@include file="footer.jsp"%>
+	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+	<script src="assets/js/jquery-ui.min.js"></script>
+	
 </body>
 </html>

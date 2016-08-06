@@ -2,6 +2,7 @@ package com.bit.dao;
 
 import java.util.List;
 
+import com.bit.entity.InvoiceEntity;
 import com.bit.entity.MemberEntity;
 import com.bit.entity.UserEntity;
 
@@ -20,4 +21,8 @@ public interface MemberDAO {
 	public void activate(String memberId);
 
 	public void deactivate(String memberId);
+
+	
+
+	
 }

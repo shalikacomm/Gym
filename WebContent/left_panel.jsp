@@ -40,7 +40,7 @@
 		</a>
 			<ul class="collapse" id="register-nav">
 
-				<li class=""><a href="MemberCon?action=list"><i
+				<li class=""><a href="MemberCon?action=insert"><i
 						class="icon-angle-right"></i> Member</a></li>
 				<li class=""><a href="InstructorController?action=list"><i
 						class="icon-angle-right"></i> Instructor </a></li>
