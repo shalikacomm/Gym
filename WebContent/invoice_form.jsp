@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Invoice Form</title>
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
 <!-- new drodown select -->
@@ -117,7 +117,7 @@
 								</div>
 								</header>
 
-
+								<br/>
 								<div class="row">
 									<div class="col-md-4 text-center">
 										<strong>Item</strong>
@@ -140,7 +140,7 @@
 								</div>
 								<div class="inv_body">
 									<div class="row inv_row" id="inv_row0">
-										<div class="col-md-4 text-center">
+										<div class="col-md-4 text-center" style="margin-left:1%;">
 											<select id="inv_item0" name="inv_item"
 												class="form-control chzn-select inv_item keep">
 
@@ -164,25 +164,25 @@
 												id="inv_sub_total0" readonly="readonly" type="text"
 												style="text-align: right;" />
 										</div>
-										<div class="col-md-2 text-center">
+										<div class="col-md-1 text-center">
 											<button id="kmk" class="btn btn-danger  item_remove"
-												type="button">-</button>
+												type="button"><i class="icon-minus-sign"></i></button>
 										</div>
 									</div>
 
 
 
 								</div>
-
+								<br/>
 								<div class="row">
 									<div class="col-md-6"></div>
 
 									<div class="col-md-2 pull-right">
-										<button id="add-item" class="btn btn-primary" type="button">
-											<span>+</span>
+										<button id="add-item" class="btn btn-info" type="button">
+											<i class="icon-plus-sign"></i>
 										</button>
 									</div>
-								</div>
+								</div><br/>
 
 
 							</div>
@@ -222,8 +222,8 @@
 										</div>
 										<div class="col-md-1">
 											<div class="input-group pull-right discount">
-												<input class="form-control " type="text" id="disc"
-													name="disc" value="" placeholder="Disc" />
+												<input class="form-control child" type="text" id="disc"
+													name="disc" value="0" placeholder="Disc" />
 											</div>
 										</div>
 									</div>
@@ -309,7 +309,7 @@
 															<ul>
 																<li><a href="#cash">Cash</a></li>
 																<li><a href="#credit">Credit Card</a></li>
-																<li><a href="#subs">Add to Subscription</a></li>
+																<li class="three"><a href="#subs">Add to Subscription</a></li>
 															</ul>
 															<div id="cash">
 
@@ -448,6 +448,7 @@
 			$(".chzn-select").chosen();
 			$(".chzn-select-deselect").chosen({
 				allow_single_deselect : false
+				 
 			});
 			/*----------- END chosen CODE -------------------------*/
 		});
@@ -466,12 +467,8 @@
 		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
 	<script src="assets/js/validationInit.js"></script>
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							$(".cus_type").on(
-									"change",
-									function() {
+		$(document).ready(function() {
+							$(".cus_type").on("change",function() {
 										var cus_type = this.value;
 
 										if (cus_type == "rg") {
@@ -487,6 +484,7 @@
 													"#user_id");
 
 										} else {
+											
 											$("#user_id").empty();
 											$(".chzn-select").prop('disabled',
 													true).trigger(
@@ -505,14 +503,9 @@
 
 									});
 
-							$("#user_id")
-									.on(
-											'change',
-											function() {
-												var user_id = $("#user_id")
-														.val();
-												$
-														.ajax({
+							$("#user_id").on('change',function() {
+												var user_id = $("#user_id").val();
+												$.ajax({
 															type : 'GET',
 															url : 'InvoiceCon?action=user_details&user_id='
 																	+ user_id,
@@ -520,11 +513,9 @@
 																	data) {
 																var user = data.record;
 																$('#b_name')
-																		.val(
-																				user.first_name);
+																		.val(user.first_name);
 																$('#email')
-																		.val(
-																				user.email);
+																		.val(user.email);
 															}
 
 														});
@@ -543,18 +534,14 @@
 												var div_data = "<option></option>";
 
 												$(div_data).appendTo(id);
-												$
-														.each(
-																data.record,
-																function(i, obj) {
+												
+														$.each(data.record,function(i, obj) {
 																	div_data = "<option value=" + obj.user_id + ">"
 																			+ obj.user_id
 																			+ " "
 																			+ obj.first_name
 																			+ "</option>";
-																	$(div_data)
-																			.appendTo(
-																					id);
+																	$(div_data).appendTo(id);
 																});
 												$(id).chosen().trigger(
 														"chosen:updated");
@@ -595,20 +582,14 @@ function onFocus(el) {
 				$("#inv_item0").chosen().trigger("chosen:updated");
 			}
 		});
-		$(document)
-				.ready(
-						function() {
-
-							$(".chzn-select").prop('disabled', false).trigger(
-									'chosen:updated');
+		$(document).ready(function() {
+							$(".chzn-select").prop('disabled', false).trigger('chosen:updated');
 							var index = 1;
-							$("#add-item")
-									.click(
-											function(e) {
+							$("#add-item").click(function(e) {
 												e.preventDefault();
 
 												var inv_row = $('<div id="inv_row'+index+'"  class="row inv_row" style="margin-top:8px">'
-														+ '<div class="col-md-4 text-center">'
+														+ '<div class="col-md-4 text-center" style="margin-left:1%;">'
 														+ '<select id="inv_item'+index+'" name="inv_item"  class=" keep form-control chzn-select inv_item">'
 														+ '<option></option>'
 														+ '</select>'
@@ -625,52 +606,30 @@ function onFocus(el) {
 														+ '<div class="col-md-2 text-center">'
 														+ '<input class="form-control" readonly="readonly" name="inv_sub_total" id="inv_sub_total'+index+'" type="text" style="text-align: right;" />'
 														+ '</div>'
-														+ '<div class="col-md-2 text-center">'
-														+ '<button  class="btn btn-danger item_remove" id = "kmk" type="button"> - </button>'
+														+ '<div class="col-md-1 text-center">'
+														+ '<button  class="btn btn-danger item_remove" id = "kmk" type="button"><i class="icon-minus-sign"></i></button>'
 														+ '</div>' + '</div>');
-												$(".inv_body").append(inv_row);
+												$(".inv_body").append(inv_row).show('slow');
 
-												$
-														.ajax({
+												$.ajax({
 															type : "GET",
 															url : "InvoiceCon?action=products",
 															dataType : "json",
 															beforeSend : function(
 																	xhr) {
-																$(
-																		"#inv_item"
-																				+ index)
-																		.empty();
+																$("#inv_item"+ index).empty();
 															},
-															success : function(
-																	data) {
+															success : function(data) {
 																var div_data = "<option></option>";
-																$(div_data)
-																		.appendTo(
-																				"#inv_item"
-																						+ index);
-																$
-																		.each(
-																				data.record,
-																				function(
-																						i,
-																						obj) {
+																$(div_data).appendTo("#inv_item"+ index);
+																$.each(data.record,function(i,obj) {
 																					div_data = "<option value=" + obj.productID + ">"
 																							+ obj.description
 																							+ "</option>";
-																					$(
-																							div_data)
-																							.appendTo(
-																									"#inv_item"
-																											+ index);
+																					$(div_data).appendTo("#inv_item"+ index);
 																				});
 
-																$(
-																		"#inv_item"
-																				+ index)
-																		.chosen()
-																		.trigger(
-																				"chosen:updated");
+																$("#inv_item"+ index).chosen().trigger("chosen:updated");
 																index++;
 															}
 
@@ -683,43 +642,38 @@ function onFocus(el) {
 								totalCal();
 
 							});
+										// to hide sub non registered members	
+											$('.prcd').on('click',function(){
+												var cus_type;
+												var res = $('input[name=cus_type]:checked').val();
+												
+												if(res == "un_rg"){
+												$('li.three').hide();
+												} else if(res != "un_rg")
+													$('li.three').show();
+											});
 										
 											
 
-							$("body")
-									.on(
-											'change',
-											".inv_item",
-											function() {
+							$("body").on('change',".inv_item",function() {
 												var id = this.id;
 
 												var product_id = this.value;
 
 												var current_id = id.replace(
 														"inv_item", "");
-
-												$
-														.ajax({
+												
+												$.ajax({
 															method : 'GET',
-															url : 'ProductCon?action=products&product_id='
-																	+ product_id,
-															success : function(
-																	data,
-																	status) {
+															url : 'ProductCon?action=products&product_id='+ product_id,
+															success : function(data,status) {
 																console
 																		.log(data.record);
 																var product = data.record;
 
-																$(
-																		"#inv_price"
-																				+ current_id)
-																		.val(
-																				product.sellingPrice);
-																$(
-																		"#inv_unit"
-																				+ current_id)
-																		.val(
-																				product.measuringUnit);
+																$("#inv_price"+ current_id)
+																		.val(product.sellingPrice);
+																$("#inv_unit"+ current_id).val(product.measuringUnit);
 
 															}
 														});
@@ -728,17 +682,12 @@ function onFocus(el) {
 
 							//SUubTotal calcuation
 
-							$("body").on(
-									"keyup",
-									"[id^='inv_qty']",
-									function() {
-										elementID = this.id.replace("inv_qty",
-												"");
+							$("body").on("keyup","[id^='inv_qty']",function() {
+										elementID = this.id.replace("inv_qty","");
 
 										/* alert($("#inv_qty"+elementID).val()); */
 										qty = $("#inv_qty" + elementID).val();
-										price = +($("#inv_price" + elementID)
-												.val());
+										price = +($("#inv_price" + elementID).val());
 										subtotal = qty * price;
 										$("#inv_sub_total" + elementID).val(
 												subtotal.toFixed(2));
@@ -748,8 +697,7 @@ function onFocus(el) {
 							//		Calcuate Grand total 
 							function totalCal() {
 								var count = Number($("[id^='inv_sub_total']")
-										.last().attr('id').replace(
-												"inv_sub_total", ""));
+										.last().attr('id').replace("inv_sub_total", ""));
 
 								var total = 0;
 								for (i = 0; i <= count; i++) {
@@ -800,6 +748,8 @@ function onFocus(el) {
 								total = $('#invoiced_total').val();
 								$('#pay_total').val(total);
 								$('#fee_total').val(total);
+							
+								
 							});
 
 						
@@ -831,28 +781,13 @@ function onFocus(el) {
 
 						});
 	</script>
-	<script>
-	$(document).ready(function(){
-	   $('.prcd').on('click',function(){
-		   var d_val = $('#disc').val();
-		   if(d_val = " ");
-	
-	   });
-	       
-	    });
 
-	
-	</script>
 	<script>
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							$(function() {
 								formValidation();
 							});
-							$("#invoiceForm")
-									.submit(
-											function(e) {
+							$("#invoiceForm").submit(function(e) {
 												e.preventDefault();
 												//alert("adad");
 												if (!$("#invoiceForm").valid())
@@ -893,7 +828,7 @@ function onFocus(el) {
 																								closeOnConfirm : true
 																							},
 																							function() {
-																								 window.location = "InvoiceCon?action=invoice_list";
+																							//	 window.location = "InvoiceCon?action=invoice_list";
 																							});
 																				} else {
 																					swal(

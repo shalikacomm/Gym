@@ -46,24 +46,42 @@ public class MemberController extends HttpServlet {
 			req.setAttribute("members", list);
 			forward = LIST_USER;
 
-		} else if (action.equalsIgnoreCase("users")) {
-			String userId = req.getParameter("userId");
-			UserDAO userDao = new UserDAOImpl();
-			UserEntity user = userDao.getUserById(userId);
+		}else if (action.equalsIgnoreCase("members")) {
+			MemberDAO memDao = new MemberDAOImpl();
+			List<UserEntity> members = memDao.getAllUsersbyMember();
 			Gson gson = new Gson();
 
 			try (PrintWriter out = resp.getWriter()) {
 				resp.setContentType("application/json");
 				resp.setCharacterEncoding("UTF-8");
 
-				out.write("{ \"record\":" + new Gson().toJson(user) + "}");
+				out.write("{ \"record\":" + new Gson().toJson(members) + "}");
 
 				out.flush();
 				out.close();
 				return;
 			}
+		}
+		
+		 else if (action.equalsIgnoreCase("user_details")) {
+				UserDAO userDao = new UserDAOImpl();
+				String userId = req.getParameter("user_id");
+				UserEntity user = userDao.getUserById(userId);
+				Gson gson = new Gson();
 
-		} else if (action.equalsIgnoreCase("insert")) {
+				try (PrintWriter out = resp.getWriter()) {
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
+
+					out.write("{ \"record\":" + new Gson().toJson(user) + "}");
+
+					out.flush();
+					out.close();
+					return;
+				}
+
+			} 
+		else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
 			Methods method = new Methods();
 			String generateID = method.generateID("M", "member_id", "member_tbl");

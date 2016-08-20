@@ -96,8 +96,21 @@
 							</form>
 						</div>
 					</div>
+					<div class="row">
+									<div class="form-group">
+										<div class="col-md-4">
+											<label style="float: right;"> Instructor Name</label>
+										</div>
+										<div class="col-md-4">
+											<select name="ins_name" class="form-control chzn-select keep"
+												id="ins_name">
+												<option></option>
+											</select>
+										</div>
+									</div>
+								</div>
 				</div>
-				
+					
 				
 				
 						<div class="row">
@@ -187,7 +200,6 @@
 <script>
 $(function() {
 			/*----------- BEGIN chosen CODE -------------------------*/
-
 			$(".chzn-select").chosen();
 			$(".chzn-select-deselect").chosen({
 				allow_single_deselect : true
@@ -237,6 +249,13 @@ $(document).ready(function(){
 		});
 		
 	});
+
+	$('#ins_name').on('change',function(){
+		var ins_name = $(this).val();
+		
+	});
+	
+	
 /* 	$('#ins_id').on('change',function(){
 		var ins_id = $(this).val();
 			$.ajax({
@@ -285,11 +304,9 @@ $(document).ready(function(){
 		
 	}
 });
-
-
 </script>
 <script>
-$.ajax({
+ $.ajax({
 	type : 'GET',
 	url: 'InvoiceCon?action=products',
 			dataType: 'json',
@@ -306,11 +323,10 @@ $.ajax({
 				});
 				$('#inv_item0').chosen().trigger("chosen:updated");
 			}
-});
+}); 
 
 </script>
 <script>
-
 $(document).ready(function(){
 	
 	$(".chzn-select").prop('disabled', false).trigger(
@@ -373,7 +389,6 @@ $(document).ready(function(){
 		
 		
 	});
-
 	$('.inv_body').on('click', '#kmk', function() {
 		this.closest(".inv_row").remove();
 		totalCal();
@@ -382,7 +397,7 @@ $(document).ready(function(){
 		
 		var id = this.id;
 		var product_id = this.value;
-		alert(product_id);
+		
 		var current_id = id.replace('inv_item',"");
 		$.ajax({
 			method : 'GET',
@@ -393,11 +408,7 @@ $(document).ready(function(){
 					var product = data.record;
 					
 					$('#inv_price' + current_id).val(product.sellingPrice);
-					$(
-							"#inv_unit"
-									+ current_id)
-							.val(
-									product.measuringUnit);
+					$("#inv_unit" + current_id).val(product.measuringUnit);
 				}
 		});
 		

@@ -23,6 +23,7 @@ public interface MemberDAO {
 	public void deactivate(String memberId);
 
 	
+	
 
 	
 }

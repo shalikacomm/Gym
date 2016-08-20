@@ -14,9 +14,9 @@ public interface ProductDAO {
 	
 	 public void updateProduct(ProductEntity product);
 	 
-	 public void  deactivateProduct(String prd_id);
+	 public boolean  deactivateProduct(String prd_id);
 	 
-	 public void activateProduct(String prd_id);
+	 public boolean activateProduct(String prd_id);
 	 
 	 
 }

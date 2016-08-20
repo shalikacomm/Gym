@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12c91483-e136-4445-b2f8-d7c595515d57">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="505"/>
+	<property name="ireport.y" value="192"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -210,9 +210,6 @@ WHERE
 	</columnHeader>
 	<detail>
 		<band height="23" splitType="Stretch">
-			<rectangle>
-				<reportElement x="0" y="1" width="554" height="20" uuid="cd761c45-7fd5-420c-9225-877704999d14"/>
-			</rectangle>
 			<textField>
 				<reportElement x="104" y="0" width="170" height="20" uuid="13c42a22-b158-4ea1-9916-4ae2b5f39a3b"/>
 				<textFieldExpression><![CDATA[$F{product_tbl_description}]]></textFieldExpression>
@@ -233,25 +230,10 @@ WHERE
 				<reportElement x="7" y="-1" width="87" height="20" uuid="50a7af3f-25e8-4549-bd70-7aa94bb3c058"/>
 				<textFieldExpression><![CDATA[$F{invoice_product_tbl_product_id}]]></textFieldExpression>
 			</textField>
-			<line>
-				<reportElement x="0" y="0" width="1" height="20" uuid="186fb768-eb21-4646-8bf4-6c434b4ff6d3"/>
-			</line>
-			<line>
-				<reportElement x="96" y="1" width="1" height="20" uuid="ba4e5454-f3e6-42f7-93bf-2b3ac358bfc1"/>
-			</line>
-			<line>
-				<reportElement x="275" y="1" width="1" height="20" uuid="27d24e47-e9b2-4c7f-98bf-09a50bf7a254"/>
-			</line>
-			<line>
-				<reportElement x="351" y="0" width="1" height="20" uuid="e1aa4a0b-8d66-4be3-a5a5-ff13e2c3329e"/>
-			</line>
-			<line>
-				<reportElement x="446" y="1" width="1" height="20" uuid="c146b323-8e20-45c9-a330-a5e9c11b108c"/>
-			</line>
 		</band>
 	</detail>
 	<pageFooter>
-		<band height="67" splitType="Stretch">
+		<band height="44" splitType="Stretch">
 			<textField>
 				<reportElement x="434" y="19" width="80" height="20" uuid="7f8ccd83-c04a-4a15-9413-d15ef0872268"/>
 				<textElement textAlignment="Right"/>
@@ -260,10 +242,6 @@ WHERE
 			<textField evaluationTime="Report">
 				<reportElement x="515" y="19" width="40" height="20" uuid="9dc00d6e-9b97-4762-8f7b-320eda491df1"/>
 				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="231" y="19" width="100" height="20" uuid="3f06686f-bb51-41da-ab6a-ac651ae6316c"/>
-				<textFieldExpression><![CDATA[$F{invoice_tbl_invoiced_total}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>
@@ -334,18 +312,22 @@ WHERE
 			</staticText>
 			<textField>
 				<reportElement x="504" y="35" width="50" height="20" uuid="e68d657a-7599-4b20-b332-b1946b7db8f8"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{invoice_tbl_vat}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="504" y="57" width="50" height="20" uuid="40ede9d4-e8eb-4b9a-bba3-ab859a8bf25c"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{invoice_tbl_discount}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="504" y="15" width="50" height="20" uuid="90b89b73-f57d-4ffa-aeb7-1688f587f942"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{invoice_tbl_total}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="504" y="77" width="50" height="20" uuid="950943dd-42eb-49e1-be59-0aebc677b31b"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{invoice_tbl_invoiced_total}]]></textFieldExpression>
 			</textField>
 			<frame>

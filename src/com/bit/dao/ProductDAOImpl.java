@@ -69,7 +69,7 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setPurchasePrice(rs.getFloat("purchase_price"));
 				product.setSellingPrice(rs.getFloat("selling_price"));
 				product.setReorderLevel(rs.getInt("reorder_level"));
-				// product.setStock(rs.getFloat("stock"));
+				 product.setStock(rs.getFloat("stock"));
 				product.setMeasuringUnit(rs.getString("measuring_unit"));
 				product.setStatus(rs.getInt("status"));
 				prd_list.add(product);
@@ -157,16 +157,20 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 	}
 
-	public void deactivateProduct(String prd_id) {
+	public boolean deactivateProduct(String prd_id) {
 		connection = null;
+		boolean result=false;
 		try {
 			connection = DBUtil.getConnection();
 			String sql = "UPDATE product_tbl SET status = 0 WHERE product_id = ?";
 
 			PreparedStatement pre_statement = connection.prepareStatement(sql);
 			pre_statement.setString(1, prd_id);
-			pre_statement.executeUpdate();
+			int res=pre_statement.executeUpdate();
 
+			if(res>0){
+				result=true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 
@@ -182,19 +186,23 @@ public class ProductDAOImpl implements ProductDAO {
 			}
 
 		}
+		return result;
 
 	}
 
-	public void activateProduct(String prd_id) {
+	public boolean activateProduct(String prd_id) {
 
 		connection = null;
+		boolean result=false;
 		try {
 			connection = DBUtil.getConnection();
 			String sql = "UPDATE product_tbl SET status = 1 WHERE product_id = ?";
 			PreparedStatement pre_st = connection.prepareStatement(sql);
 			pre_st.setString(1, prd_id);
-			pre_st.executeUpdate();
-
+			int res=pre_st.executeUpdate();
+if(res>0){
+	result=true;
+}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -205,6 +213,7 @@ public class ProductDAOImpl implements ProductDAO {
 					e2.printStackTrace();
 				}
 		}
+		return result;
 	}
 
 }

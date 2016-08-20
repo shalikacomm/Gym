@@ -215,7 +215,7 @@ public class MemberDAOImpl implements MemberDAO {
 		List<UserEntity> users = new ArrayList<UserEntity>();
 		try {
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * FROM user_tbl WHERE role='Member'");
+			ResultSet rs = statement.executeQuery("SELECT * FROM user_tbl WHERE role='member'");
 			while (rs.next()) {
 				UserEntity user = new UserEntity();
 				user.setUser_id(rs.getString("user_id"));

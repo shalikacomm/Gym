@@ -58,7 +58,7 @@ public class InvoiceController extends HttpServlet {
 
 		if (action.equalsIgnoreCase("list")) {
 			List<MemberEntity> list = dao.getAllMembers();
-			req.setAttribute("members", list);
+			req.setAttribute("members", list); // for jstl  pass object 
 			forward = LIST_USER;
 
 		} else if (action.equalsIgnoreCase("users")) {
@@ -235,9 +235,14 @@ public class InvoiceController extends HttpServlet {
 		String card_type = req.getParameter("card");
 		String bank_name = req.getParameter("bank_name");
 		Double subscrip_total = Double.parseDouble(req.getParameter("fee_total"));
-		Integer first_4 = Integer.parseInt(req.getParameter("f4"));
-		Integer last_4 = Integer.parseInt(req.getParameter("l4"));
-
+		String f4=req.getParameter("f4");
+		String l4=req.getParameter("l4");
+		Integer first_4=1111;
+		Integer last_4=2222;
+		if(f4 !="" && l4 != ""){
+		 first_4 = Integer.parseInt(f4);
+		 last_4 = Integer.parseInt(l4);
+		}
 		InvoiceEntity sellerDetails = new InvoiceEntity();
 
 		sellerDetails.setInvoice_id(invoice_id);

@@ -5,14 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Product List</title>
 <%@include file="head_src.jsp"%>
 <!-- PAGE LEVEL STYLES -->
 <link href="assets/plugins/dataTables/dataTables.bootstrap.css"
 	rel="stylesheet" />
-<link href ="assets/sweetalert2/sweetalert2.css" rel = "stylesheet" />
-<link href ="assets/sweetalert2/sweetalert2.min.css" rel = "stylesheet" />
-<script type="text/javascript" src="assets/sweetalert2/sweetalert2.min.js" ></script>
+<link rel="stylesheet" href="assets/css/sweetalert.css" />
 <!-- END PAGE LEVEL  STYLES -->
 
 </head>
@@ -34,8 +32,8 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Product List <a class="pull-right"
-									href="ProductCon?action=insert"><button
-										class="btn-primary">Add New</button></a>
+									href="ProductCon?action=insert"><button style="margin-top: -9%;"
+										class="btn btn-primary">Add New</button></a>
 							</div>
 							<div class="panel-body">
 
@@ -66,14 +64,14 @@
 													<td><c:out value="${temp.measuringUnit}" /></td>
 													<td>
 													
-													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>">Update</a>
+													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>"><span class="btn btn btn-primary">Edit</span></a>
 														<c:if test="${temp.status ==1 }">
 														
 														<a
-															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg">Deactivate</a>
+															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg status"><span class="btn btn btn-success ">Activate</span></a>
 														</c:if> <c:if test="${temp.status ==0 }">
 															<a
-																href="ProductCon?action=activate&prd_id=<c:out value="${temp.productID}"/>">Activate</a>
+																href="ProductCon?action=activate&prd_id=<c:out value="${temp.productID}"/>" class="status"><span class="btn btn btn-danger ">Deactivate</span></a>
 														</c:if></td>
 												</tr>
 											</c:forEach>
@@ -94,9 +92,10 @@
 		<%@include file="footer.jsp"%>
 
 		<!-- PAGE LEVEL SCRIPTS -->
-		<
-				<script>
+			<script src="assets/js/sweetalert.min.js"></script>
 		
+				<script>
+	/* 	
 		function test(x){
 			swal({
 				  title: 'Are you sure?',
@@ -117,7 +116,7 @@
 				    );
 				  }
 				})
-		}
+		} */
 			
 		
 				
@@ -127,6 +126,43 @@
 		<script>
 			$(document).ready(function() {
 				$('#dataTables-example').dataTable();
+				
+				$(".status").on('click',function(e){
+					e.preventDefault();
+					var url=this.href;
+										
+				swal({
+						  title: "Are you sure?",
+						  text: "You will not be able to recover this imaginary file!",
+						  type: "warning",
+						  showCancelButton: true,
+						  confirmButtonColor: "#DD6B55",
+						  confirmButtonText: "Yes, delete it!",
+						  cancelButtonText: "No, cancel plx!",
+						  closeOnConfirm: false,
+						  closeOnCancel: false
+						},
+						function(isConfirm){
+						  if (isConfirm) {
+							  $.ajax({
+									method:'GET',
+									url:url,
+									success: function(data){
+										if(data==true){
+											swal("Good job!", "You clicked the button!", "success");
+											window.location="ProductCon?action=list";
+										}else{
+											
+										}
+									}
+								});						 
+							  } else {
+							    swal("Cancelled", "Your imaginary file is safe :)", "error");
+						  }
+						}); 
+						
+			
+				});
 
 			});
 		</script>

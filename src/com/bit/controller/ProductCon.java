@@ -2,6 +2,7 @@ package com.bit.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -27,7 +28,11 @@ public class ProductCon extends HttpServlet {
 
 	private static String INSERT_OR_EDIT = "/product_form.jsp";
 	private static String LIST_USER = "/product_list.jsp";
-
+	public static final int getMonthsDifference(Date date1, Date date2) {
+	    int m1 = date1.getYear() * 12 + date1.getMonth();
+	    int m2 = date2.getYear() * 12 + date2.getMonth();
+	    return m2 - m1 + 1;
+	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -45,6 +50,7 @@ public class ProductCon extends HttpServlet {
 			req.setAttribute("product", list);
 			forward = LIST_USER;
 			
+			
 		} else if (action.equalsIgnoreCase("edit")) {
 			
 			String prd_id = req.getParameter("prd_id");
@@ -57,11 +63,19 @@ public class ProductCon extends HttpServlet {
 		else if(action.equalsIgnoreCase("deactivate")){
 			String prd_id = req.getParameter("prd_id");
 			ProductDAO prd_dao = new ProductDAOImpl();
-			prd_dao.deactivateProduct(prd_id);
+			boolean result=prd_dao.deactivateProduct(prd_id);
 			List<ProductEntity> list = prd_dao.getAllProducts();
 			req.setAttribute("product", list);
-			forward = LIST_USER;
-			
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+
+				out.print(result);
+
+				out.flush();
+				out.close();
+				return;
+			}
 			
 		}else if (action.equalsIgnoreCase("products")) {
 			
@@ -86,16 +100,27 @@ public class ProductCon extends HttpServlet {
 		}else if (action.equalsIgnoreCase("activate")){
 			String prd_id = req.getParameter("prd_id");
 			ProductDAO prd_dao = new ProductDAOImpl();
-			prd_dao.activateProduct(prd_id);
+			boolean result=prd_dao.activateProduct(prd_id);
 			List<ProductEntity> list = prd_dao.getAllProducts();
 			req.setAttribute("product", list);
-			forward = LIST_USER;
 			
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+
+				out.print(result);
+
+				out.flush();
+				out.close();
+				return;
+			}
+
 		}
 			
-	
+	if(forward !=""){
 		RequestDispatcher view = req.getRequestDispatcher(forward);
 		view.forward(req, resp);
+	}
 	}
 
 	@Override

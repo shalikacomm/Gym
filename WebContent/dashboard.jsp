@@ -15,6 +15,7 @@
     <link href="assets/assets_tiles/css/bootstrap.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="assets/assets_tiles/css/font-awesome.css" rel="stylesheet" />
+
         <!-- CUSTOM STYLES-->
     <link href="assets/assets_tiles/css/custom.css" rel="stylesheet" />
      <!-- GOOGLE FONTS-->
@@ -138,10 +139,10 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="blank.html" >
- <i class="fa fa-cogs  fa-5x"></i>
+                           <a href="InvoiceCon?action=insert" >
+ <i class="fa fa-globe  fa-5x"></i>
 <!--  <i class="fa fa-user fa-5x"></i> -->
-                      <h4>Launch</h4>
+                      <h4>Sell Products</h4>
                       </a>
                       </div>
                      
@@ -175,9 +176,9 @@
                    
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="blank.html" >
- <i class="fa fa-gear fa-5x"></i>
-                      <h4>Settings</h4>
+                           <a href="InvoiceCon?action=invoice_list" >
+ <i class="fa fa-file-text fa-5x"></i>
+                      <h4>Receipts</h4>
                       </a>
                       </div>
                      

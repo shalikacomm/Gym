@@ -25,14 +25,10 @@
 <link rel="stylesheet"
 	href="assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css" />
 <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
-<link rel="stylesheet"
-	href="assets/plugins/colorpicker/css/colorpicker.css" />
+
 <link rel="stylesheet"
 	href="assets/plugins/tagsinput/jquery.tagsinput.css" />
-<link rel="stylesheet"
-	href="assets/plugins/daterangepicker/daterangepicker-bs3.css" />
-<link rel="stylesheet"
-	href="assets/plugins/datepicker/css/datepicker.css" />
+
 <link rel="stylesheet"
 	href="assets/plugins/timepicker/css/bootstrap-timepicker.min.css" />
 <link rel="stylesheet"
@@ -260,9 +256,9 @@
 			
 			var userid = $("#users").val();
 			if(userid !=""){
-			jQuery.ajax({
+			$.ajax({
 				method : 'GET',
-				url : 'MemberCon?action=users&userId=' + userid,
+				url : 'MemberCon?action=user_details&userId=' + userid,
 				success : function(data, status) {
 					console.log(data.record);
 					var users = data.record;
@@ -276,9 +272,9 @@
 			
 			$("#users").on('change', function() {
 				var userID = $("#users").val();
-				jQuery.ajax({
+				$.ajax({
 					method : 'GET',
-					url : 'MemberCon?action=users&userId=' + userID,
+					url : 'MemberCon?action=user_details&user_id=' + userID,
 					success : function(data, status) {
 						console.log(data.record);
 						var users = data.record;

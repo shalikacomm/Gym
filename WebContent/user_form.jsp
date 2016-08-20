@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>User Registration</title>
 <%@include file="head_src.jsp"%>
 <!-- PAGE LEVEL STYLES -->
 
@@ -171,18 +171,18 @@
 	<script src="assets/plugins/uniform/jquery.uniform.min.js"></script>
 	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
 	<script src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>
-	<script
+	<!-- <script
 		src="assets/plugins/datepicker/js/bootstrap-datepicker.en-GB.min.js"></script>
-
+ -->
 	<script type="text/javascript"
 		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
 
 	<script src="assets/js/validationInit.js"></script>
 	<script src="assets/js/sweetalert.min.js"></script>
-
 	<script>
 		$(document).ready(function() {
 			/* Bootstrap Datepicker Validation */
+			
 			$('#sandbox-container .input-group.date').datepicker({
 				format : "yyyy-mm-dd",
 				weekStart : 1,
