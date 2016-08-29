@@ -39,7 +39,7 @@ public class StockCon extends HttpServlet {
 		
 		 if (action.equalsIgnoreCase("products")) {
 				ProductDAO productDao = new ProductDAOImpl();
-				List<ProductEntity> products = productDao.getAllProducts();
+				List<ProductEntity> products = productDao.getActiveProducts();
 				Gson gson = new Gson();
 
 				try (PrintWriter out = resp.getWriter()) {
@@ -61,12 +61,12 @@ public class StockCon extends HttpServlet {
 				req.setAttribute("series_id", generateID);
 				forward = INSERT_OR_EDIT;
 					}
-		 
+				 
 		 else if (action.equalsIgnoreCase("getBatch")) {
 				boolean result = false;
 				
 			String product_id = req.getParameter("prd_id");
-			 boolean prdAvailable = stock_dao.checkProductId(product_id);
+			boolean prdAvailable = stock_dao.checkProductId(product_id);
 			int batch = 0;
 			 if(prdAvailable){
 				 StockEntity newBatch = stock_dao.getMaxBatchById(product_id);
@@ -156,17 +156,7 @@ public class StockCon extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-/*		String seriesID = req.getParameter("series_id");
-		String productID = req.getParameter("inv_item");
-		String expDate = req.getParameter("dob");
-		Integer batchNo = Integer.parseInt(req.getParameter("batch_no"));
-		Integer qty = Integer.parseInt(req.getParameter("qty"));
-		
-		StockEntity addSeries = new StockEntity();
-		
-		addSeries.setSeriesID(seriesID);
-		addSeries.setProduct_id(product_id);*/
+
 		
 		String seriesID = req.getParameter("series_id");
 		String[] inv_items = req.getParameterValues("inv_item");
@@ -174,43 +164,44 @@ public class StockCon extends HttpServlet {
 		String[] batchNo = req.getParameterValues("batch_no");
 		String[] qty = (req.getParameterValues("qty"));
 		
-		List<Integer> lsBatchNo = new ArrayList<Integer>();
-		
+	//	List<Integer> lsBatchNo = new ArrayList<Integer>();
+		StockEntity stockAdd = new StockEntity();
+		stockAdd.setSeriesID(seriesID);
 		for (int i = 0; i < inv_items.length; i++) {
 			
 			
-			
-			lsBatchNo.add(Integer.parseInt(batchNo[i]));
-			
-		//	System.out.println(req.getParameterValues("batch_no" + i));
+			boolean result = false; 
+	
 			System.out.println("products:" + inv_items[i]);
 			System.out.println(" expDate:" + expDate[i]);
 			System.out.println(" batch:" + batchNo[i]);
 			System.out.println(" qty:" + qty[i]);
 
-			StockEntity stockAdd = new StockEntity();
-			stockAdd.setSeriesID(seriesID);
+			
+		
 			stockAdd.setProduct_id(inv_items[i]);
 			stockAdd.setExpiary_date(expDate[i]);
-			stockAdd.setBatch_no(lsBatchNo[i]);
-		//	stockAdd.setItem_total(new Double(inv_sub[i]));
+			stockAdd.setBatch_no(Integer.parseInt(batchNo[i]));
+			stockAdd.setQty(Float.parseFloat(qty[i]));
+	
 
-			InvoiceDAO Seller = new InvoiceDAOImpl();
-
-		//	Seller.addInvoiceProduct(productSell);
+			StockDAO Series = new StockDAOImpl();
+			
+			result = Series.addStock(stockAdd);
+			
+			PrintWriter out=resp.getWriter();
+			out.print(result);
+			
 		}
-		
+
+	/*	
 		for(Integer i:lsBatchNo){
 			System.out.println("### "+i);
 		}
-		
+		*/
 		
 	}
 
-	private String parseInt(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	
 }

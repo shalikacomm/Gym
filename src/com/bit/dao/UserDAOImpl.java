@@ -173,7 +173,7 @@ public class UserDAOImpl implements UserDAO {
 	            String hash_value = new String(Hex.encode(svPass));// digest the password
 	            
 	            String searchQuery = "SELECT * from user_tbl where nic='" + username
-	                    + "' AND password='" + hash_value + "' AND status !=0 ";
+	                    + "' AND password='" + hash_value + "' AND status =1 ";
 	            try {
 	                conn = DBUtil.getConnection(); // Connect to the database
 	                stmt = conn.createStatement();
@@ -185,6 +185,8 @@ public class UserDAOImpl implements UserDAO {
 	                    loginUsers.setUser_id(rs.getString("user_id"));
 	                    loginUsers.setFirst_name(rs.getString("first_name"));
 	                    loginUsers.setLast_name(rs.getString("last_name"));
+	                    loginUsers.setRole(rs.getString("role"));
+	                    loginUsers.setStatus(rs.getInt("status"));
 	                    loginUsers.setValid(true);
 	                    
 	                }

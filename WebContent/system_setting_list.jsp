@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product List</title>
+<title>Setting List</title>
 <%@include file="head_src.jsp"%>
 <!-- PAGE LEVEL STYLES -->
 <link href="assets/plugins/dataTables/dataTables.bootstrap.css"
@@ -23,7 +23,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Product List</h2>
+						<h2>System Setting List</h2>
 					</div>
 				</div>
 				<hr />
@@ -31,9 +31,7 @@
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								Product List <a class="pull-right"
-									href="ProductCon?action=insert"><button style="margin-top: -9%;"
-										class="btn btn-primary">Add New</button></a>
+								Setting List 
 							</div>
 							<div class="panel-body">
 
@@ -42,37 +40,22 @@
 										id="dataTables-example">
 										<thead>
 											<tr>
-												<th>ID</th>
-												<th>Description</th>
-												<th>Purchase Price</th>
-												<th>Selling Price</th>
-												<th>Reorder Level</th>
-												<th>Available Stock</th>
-												<th>Measuring Unit</th>
-												<th>Action</th>
+												<th style="width: 19%;">ID</th>
+												<th style="width: 50%;">Description</th>
+												<th style="width: 10%;">Value</th>
+												<th style="width: 20%;">Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${product}" var="temp">
+											<c:forEach items="${settings}" var="temp">
 												<tr class="odd gradeX">
-													<td><c:out value="${temp.productID}" /></td>
+													<td><c:out value="${temp.set_id}" /></td>
 													<td><c:out value="${temp.description}" /></td>
-													<td><c:out value="${temp.purchasePrice}" /></td>
-													<td><c:out value="${temp.sellingPrice}" /></td>
-													<td><c:out value="${temp.reorderLevel}" /></td>
-													<td><c:out value="${temp.stock}" /></td>
-													<td><c:out value="${temp.measuringUnit}" /></td>
+													<td><c:out value="${temp.value}" /></td>
 													<td>
 													
-													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>"><span class="btn btn btn-primary">Edit</span></a>
-														<c:if test="${temp.status ==1 }">
-														
-														<a
-															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg status"><span class="btn btn btn-success ">Activated</span></a>
-														</c:if> <c:if test="${temp.status ==0 }">
-															<a
-																href="ProductCon?action=activate&prd_id=<c:out value="${temp.productID}"/>" class="status"><span class="btn btn btn-danger ">Deactivated</span></a>
-														</c:if></td>
+													<a href="SystemCon?action=edit&set_id=<c:out value="${temp.set_id}"/>"><div class="col-md-4"></div><div class=col-md-3><span class="btn btn btn-default btn-grad md"><i class="icon-edit"></i></span></div></a>
+													</td>
 												</tr>
 											</c:forEach>
 										</tbody>
@@ -152,7 +135,7 @@
 										success: function(data){
 											if(data==true){
 												swal("Good job!", "You clicked the button!", "success");
-												window.location="ProductCon?action=list";
+											//	window.location="ProductCon?action=list";
 											}else{
 												
 											}

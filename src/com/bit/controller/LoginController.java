@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
 			session.removeAttribute("currentSessionUser");
 			session.invalidate();
 
-			rd = request.getRequestDispatcher("index.jsp");
+			rd = request.getRequestDispatcher("login.jsp");
 
 			rd.forward(request, response);
 
@@ -66,9 +66,10 @@ public class LoginController extends HttpServlet {
 
 			} else {
 				HttpSession session = request.getSession(true);
-				response.sendRedirect("login.jsp"); // Return to index page
 				session.setAttribute("InvalidUser", user);
-				session.setAttribute("msg", "User details not found ");
+				//session.setAttribute("msg", "User details not found ");
+				response.sendRedirect("login.jsp"); // Return to index page
+
 				
 			}
 		} finally {

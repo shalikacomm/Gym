@@ -12,4 +12,8 @@ public interface StockDAO {
 	public StockEntity getMaxBatchById(String productId) ;
 	
 	public boolean checkProductId(String productId);
+	
+	public boolean addStock(StockEntity stock);
+	
+	public boolean updateFullStock(String productId) ;
 }

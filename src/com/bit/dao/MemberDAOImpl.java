@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bit.entity.MemberEntity;
+import com.bit.entity.MemberPaymentEntity;
 import com.bit.entity.UserEntity;
 import com.bit.util.DBUtil;
 
@@ -154,6 +155,10 @@ public class MemberDAOImpl implements MemberDAO {
 	        }
 			return member;
 	}
+	
+	
+
+	
 
 	@Override
 	public void activate(String memberId) {

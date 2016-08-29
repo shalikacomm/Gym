@@ -12,11 +12,11 @@ public interface ProductDAO {
 	
 	public ProductEntity getProductById(String productId);
 	
-	 public void updateProduct(ProductEntity product);
+	public boolean updateProduct(ProductEntity product) ;
 	 
 	 public boolean  deactivateProduct(String prd_id);
 	 
 	 public boolean activateProduct(String prd_id);
 	 
-	 
+	 public List<ProductEntity> getActiveProducts();
 }

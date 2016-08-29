@@ -173,6 +173,7 @@
 
 
 								</div>
+						
 								<br/>
 								<div class="row">
 									<div class="col-md-6"></div>
@@ -493,7 +494,7 @@
 													.prop('disabled', false)
 													.trigger('chosen:updated');
 
-											//$('#user_id').attr('disabled', 'disabled');
+											//$('#user_id').attr('disabled', false);
 											$('#b_name').removeAttr('readonly',
 													'readonly');
 											$('#email').removeAttr('readonly',
@@ -649,8 +650,12 @@ function onFocus(el) {
 												
 												if(res == "un_rg"){
 												$('li.three').hide();
+												$('#user_id').val("1");
+												
 												} else if(res != "un_rg")
 													$('li.three').show();
+											
+												
 											});
 										
 											

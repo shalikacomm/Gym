@@ -24,6 +24,7 @@ import com.bit.dao.MemberDAOImpl;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.MemberEntity;
+import com.bit.entity.MemberPaymentEntity;
 import com.bit.entity.UserEntity;
 import com.bit.util.*;
 import com.google.gson.Gson;
@@ -81,6 +82,8 @@ public class MemberController extends HttpServlet {
 				}
 
 			} 
+	
+		
 		else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
 			Methods method = new Methods();

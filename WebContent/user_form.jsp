@@ -124,14 +124,21 @@
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>User Role</label><em style="color: red;">*</em> <select
-											name="role" class="form-control" id="doctor_title"
-											name="doctor_title">
+										<label>User Role</label><em style="color: red;">*</em>
+										
+										<% String role=currentUser.getRole();
+										if(role.equals("administrator")) { %>
+										 <select
+											name="role" class="form-control" id="user_type"
+											name="user_type">
 											<option>Administrator</option>
 											<option>Instructor</option>
 											<option selected>Member</option>
-											<option>Operator</option>
+											<option >Operator</option>
 										</select>
+										<%} else if(role.equals("operator")){ %>
+										<input readonly="readonly"  class="form-control" value="member" type="text" name="user_type">
+										<%} %>
 									</div>
 									<div class="col-sm-3">
 										<div class="form-group">

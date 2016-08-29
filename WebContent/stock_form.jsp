@@ -360,13 +360,13 @@ $(document).ready(function(){
 															data : $("#stockForm").serialize(),
 
 															success : function(data) {
-/* 
+
 																if (data == 'true') {
 
 																	swal(
 																			{
-																				title : "User Added !",
-																				text : "You created a User!",
+																				title : "Stock Added !",
+																				text : "You Added a new Stock Series!",
 																				type : "success",
 																				showCancelButton : false,
 																				confirmButtonColor : "#DD6B55",
@@ -374,14 +374,14 @@ $(document).ready(function(){
 																				closeOnConfirm : false
 																			},
 																			function() {
-																				window.location = "UserCon?action=list";
+																			//	window.location = "UserCon?action=list";
 																			});
 																} else {
 																	swal(
 																			"Data not saved!",
 																			"Please contact administrator!",
 																			"error");
-																} */
+																} 
 
 															}
 

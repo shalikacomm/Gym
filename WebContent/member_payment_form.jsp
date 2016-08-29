@@ -49,6 +49,8 @@
 										</div>
 									</div>
 								</div>
+								
+								
 								<div class="row">
 									<div class="form-group">
 										<div class="col-md-4">
@@ -56,8 +58,20 @@
 												style="float: right;">Current Status</label>
 										</div>
 										<div class="col-md-2">
-											<input type="text" id="current_status" name="status" readonly="readonly"
-											 class="form-control"
+										<br/>
+											<div id="lbl_status"></div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-4">
+											<label for="limiter" class="control-label col-md-5"
+												style="float: right;">Due Supplement Payments</label>
+										</div>
+										<div class="col-md-2">
+											<input type="text" id="due_payment" name="due_payment" readonly="readonly"
+											 class="form-control" style="text-align:right;"
 												value="" />
 										</div>
 									</div>
@@ -81,14 +95,28 @@
 									</div>
 								</div>
 
+								<div class="row">
+									<div class="form-group">
+										<div class="col-md-4">
+											<label for="limiter" class="control-label col-md-5"
+												style="float: right;">Total Payment</label>
+										</div>
+										<div class="col-md-2">
+											<input type="text" id="total_payment" name="total_payment" 
+											 class="form-control" style="text-align:right;"
+												value="" />
+										</div>
+									</div>
+								</div>
 
+									<div class="col-md-6"></div>
+									<div class="col-md-6">
+										<button class="btn btn-primary" >Payment Done</button>
+									</div>
 
 							</div>
 						</div>
 					</div>
-
-
-
 
 				</form>
 			</div>
@@ -120,8 +148,7 @@
 $('document').ready(function(){
 	dropdownList("MemberCon?action=members","#mem_id");
 
-
-	
+		
 	function dropdownList(url, id) {
 		$
 				.ajax({
@@ -154,23 +181,45 @@ $('document').ready(function(){
 		var mem_id = $("#mem_id").val();
 		$.ajax({
 					type : 'GET',
-					url : 'MemberCon?action=user_details&user_id='
+					url : 'MemberFeeCon?action=mem_status&user_id='
 							+ mem_id,
 					success : function(
 							data) {
-						var members = data.record;
-						$('#b_name')
-								.val(members.first_name);
-						$('#email')
-								.val(members.email);
+						var member_status = data.record;
+						if (member_status.status == 0){
+							$("#lbl_status").empty().append("<span class='label label-danger'>Inactive</span>");
+						}else if(member_status.status == 1){
+							$("#lbl_status").empty().append("<span class='label label-success'>Active</span>");
+						}else if(member_status.status == 2){
+							$("#lbl_status").empty().append("<span class='label label-warning'>Pending</span>");
+
+						}
 					}
 
 				});
+		
 	});
-	
-	
-});
+	$("#mem_id").on('change',function() {
+		var mem_id = $("#mem_id").val();
+		$.ajax({
+			type : 'GET',
+			url : 'MemberFeeCon?action=getSubs&user_id='
+					+ mem_id,
+			success : function(
+					data) {
+				var member_subs = data;
+				$('#due_payment').val(member_subs);
+			}
 
+		});
+});
+	$('#total_payment').on('keyup',function(){
+		
+	
+	var dot = $('#total_payment');
+	$(('#total_payment').val(dot).toFixed(2));
+	});
+});
 
 </script>
 <script>

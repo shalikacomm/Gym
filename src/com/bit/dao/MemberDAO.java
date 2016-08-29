@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.bit.entity.InvoiceEntity;
 import com.bit.entity.MemberEntity;
+import com.bit.entity.MemberPaymentEntity;
 import com.bit.entity.UserEntity;
 
 public interface MemberDAO {

@@ -44,7 +44,9 @@ public class ProductCon extends HttpServlet {
 			Methods method = new Methods();
 			String generateID = method.generateID("P", "product_id", "product_tbl");
 			req.setAttribute("prd_id", generateID);
-		} else if (action.equalsIgnoreCase("list")) {
+		} 
+		
+		else if (action.equalsIgnoreCase("list")) {
 			ProductDAO prd_dao = new ProductDAOImpl();
 			List<ProductEntity> list = prd_dao.getAllProducts();
 			req.setAttribute("product", list);
@@ -154,7 +156,7 @@ public class ProductCon extends HttpServlet {
 
 		} else {
 
-			 dao.updateProduct(product);
+			result = dao.updateProduct(product);
 
 		}
 

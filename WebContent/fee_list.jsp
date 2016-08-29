@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Product List</title>
+<title>Monthly Fee List</title>
 <%@include file="head_src.jsp"%>
 <!-- PAGE LEVEL STYLES -->
 <link href="assets/plugins/dataTables/dataTables.bootstrap.css"
@@ -32,7 +32,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Product List <a class="pull-right"
-									href="ProductCon?action=insert"><button style="margin-top: -9%;"
+									href="FeeCon?action=insert"><button style="margin-top: -9%;"
 										class="btn btn-primary">Add New</button></a>
 							</div>
 							<div class="panel-body">
@@ -43,35 +43,28 @@
 										<thead>
 											<tr>
 												<th>ID</th>
-												<th>Description</th>
-												<th>Purchase Price</th>
-												<th>Selling Price</th>
-												<th>Reorder Level</th>
-												<th>Available Stock</th>
-												<th>Measuring Unit</th>
+												<th>Fee</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${product}" var="temp">
+											<c:forEach items="${feeList}" var="temp">
 												<tr class="odd gradeX">
-													<td><c:out value="${temp.productID}" /></td>
-													<td><c:out value="${temp.description}" /></td>
-													<td><c:out value="${temp.purchasePrice}" /></td>
-													<td><c:out value="${temp.sellingPrice}" /></td>
-													<td><c:out value="${temp.reorderLevel}" /></td>
-													<td><c:out value="${temp.stock}" /></td>
-													<td><c:out value="${temp.measuringUnit}" /></td>
+													<td><c:out value="${temp.fee_id}" /></td>
+													<td><c:out value="${temp.fee}" /></td>
+											
 													<td>
 													
-													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>"><span class="btn btn btn-primary">Edit</span></a>
+													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.fee_id}"/>"><span class="btn btn btn-primary">Edit</span></a>
 														<c:if test="${temp.status ==1 }">
 														
 														<a
-															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg status"><span class="btn btn btn-success ">Activated</span></a>
-														</c:if> <c:if test="${temp.status ==0 }">
+															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.fee_id}"/>" class="navg status"><span class="btn btn btn-success ">Activated</span></a>
+														</c:if> 
+														
+														<c:if test="${temp.status ==0 }">
 															<a
-																href="ProductCon?action=activate&prd_id=<c:out value="${temp.productID}"/>" class="status"><span class="btn btn btn-danger ">Deactivated</span></a>
+																href="ProductCon?action=activate&prd_id=<c:out value="${temp.fee_id}"/>" class="status"><span class="btn btn btn-danger ">Deactivated</span></a>
 														</c:if></td>
 												</tr>
 											</c:forEach>
@@ -152,7 +145,7 @@
 										success: function(data){
 											if(data==true){
 												swal("Good job!", "You clicked the button!", "success");
-												window.location="ProductCon?action=list";
+												window.location="FeeCon?action=list";
 											}else{
 												
 											}

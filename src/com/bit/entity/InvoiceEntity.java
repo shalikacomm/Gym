@@ -2,14 +2,30 @@ package com.bit.entity;
 
 public class InvoiceEntity {
 
-	private String invoice_id,customer_name,email,payment_type,card_type,bank_name,date;
+	private String invoice_id,customer_name,email,payment_type,card_type,bank_name,date,user_id,idfor;
 	private Double discount,invoiced_total,vat,total_subscription,total;
-	private Integer f4,l4;
+	private Integer f4,l4,sub_status;
 	
 	
+	public Integer getSub_status() {
+		return sub_status;
+	}
+	public void setSub_status(Integer sub_status) {
+		this.sub_status = sub_status;
+	}
+	public String getIdfor() {
+		return idfor;
+	}
+	public void setIdfor(String idfor) {
+		this.idfor = idfor;
+	}
 	
-	
-	
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	public String getDate() {
 		return date;
 	}

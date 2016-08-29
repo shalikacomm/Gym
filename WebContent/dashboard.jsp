@@ -150,9 +150,9 @@
                   </div>
                      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="blank.html" >
- <i class="fa fa-user fa-5x"></i>
-                      <h4>Register User</h4>
+                           <a href="StockCon?action=insert" >
+ <i class="glyphicon glyphicon-cutlery fa-4x"></i>
+                      <h4>Add Inventory</h4>
                       </a>
                       </div>
                      
@@ -197,9 +197,9 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="#" >
- <i class="fa fa-comments-o fa-5x"></i>
-                      <h4>Support</h4>
+                           <a href="SystemCon?action=list" >
+ <i class="fa fa-cog fa-4x"></i>
+                      <h4>System Settings</h4>
                       </a>
                       </div>
                      

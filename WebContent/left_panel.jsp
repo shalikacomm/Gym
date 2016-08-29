@@ -1,3 +1,4 @@
+<%@page import="com.bit.entity.UserEntity"%>
 
 <!-- MENU SECTION -->
 <div id="left">
@@ -7,7 +8,14 @@
 			src="assets/img/user.gif" />
 		</a> <br />
 		<div class="media-body">
-			<h5 class="media-heading">Joe Romlin</h5>
+			<h5 class="media-heading">
+			 <% UserEntity currentUser = (UserEntity) (session.getAttribute("currentSessionUser"));%>
+                Hi, <span id="user"><%
+                    if (currentUser == null) {
+                        response.sendRedirect("errorLogin.jsp");
+                    } else {%>
+                    <%=currentUser.getFirst_name()%>
+			<% } %></h5>
 			<ul class="list-unstyled user-info">
 
 				<li><a class="btn btn-success btn-xs btn-circle"
@@ -73,8 +81,8 @@
 			</span>
 		</a>
 			<ul class="collapse" id="inventory-nav">
-				<li><a href="pages_calendar.html"><i
-						class="icon-angle-right"></i> Inventory measurements </a></li>
+				<li><a href="StockCon?action=insert"><i
+						class="icon-angle-right"></i> Add Inventory </a></li>
 				<li><a href="pages_timeline.html"><i
 						class="icon-angle-right"></i> Product Images </a></li>
 				<li><a href="pages_timeline.html"><i

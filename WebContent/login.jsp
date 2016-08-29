@@ -2,7 +2,7 @@
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-
+<%@page import="com.bit.entity.UserEntity" %>
 <!-- BEGIN HEAD -->
 <head>
      <meta charset="UTF-8" />
@@ -44,6 +44,15 @@
                 <input type="text" placeholder="Enter your Username" name="nic" class="form-control" required/>
                 <input type="password" placeholder="Password" name="password" class="form-control" required/>
                 <button class="btn text-muted text-center btn-danger" type="submit">Sign in</button>
+              <div>
+
+                    <% UserEntity currentUser = (UserEntity) (session.getAttribute("InvalidUser"));
+                        if (currentUser != null) {
+                    %>                                     
+<span class="text-danger">User Details are not found!</span>
+                    <%}%>
+
+                </div>
             </form>
         </div>
        

@@ -1,7 +1,6 @@
 ﻿function formValidation() {
     "use strict";
   
-   
 
     $('#productForm').validate({
         rules: {/*
@@ -182,6 +181,42 @@
         }
     });
     
+    
+    $('#feeForm').validate({
+    	
+   	 rules: {/*
+            this is product form validation */         
+            
+           fee: {
+               required: true,
+                minlength: 1,
+                qty:true
+       },
+       messages: {
+       	
+       	fee:{
+       		required:"Please fill this field",
+       		minlength: "Please Enter atleast 1 number",
+       		qty : "Only numeric valeus allowed"
+       			
+       	}
+     
+       
+       
+       },
+       errorClass: 'help-block',
+       errorElement: 'span',
+       highlight: function (element, errorClass, validClass) {
+           $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+           $(element).parents('.input-group-addon').removeClass('has-success').addClass('has-error');
+           
+       },
+       unhighlight: function (element, errorClass, validClass) {
+           $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+       }
+   	 }
+   });
+   
     
     $('#invoiceForm').validate({
     	

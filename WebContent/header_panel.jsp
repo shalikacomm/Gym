@@ -1,5 +1,10 @@
 
 <!-- HEADER SECTION -->
+<%
+    response.addHeader("Cache-Control", "no-cache,no-store,private,must-revalidate,max-stale=0,post-check=0,pre-check=0");
+    response.addHeader("Pragma", "no-cache");
+    response.addDateHeader("Expires", 0);
+%>
 <div id="top">
 
 	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white; margin-top: -32px; padding-top: 34px;">
@@ -31,8 +36,9 @@
 					<li><a href="#"><i class="icon-user"></i> User Profile </a></li>
 					<li><a href="#"><i class="icon-gear"></i> Settings </a></li>
 					<li class="divider"></li>
-					<li><a href="login.html"><i class="icon-signout"></i>
-							Logout </a></li>
+					<li><a href="LoginCon?action=logout"><i class="icon-signout"></i>
+							Logout </a>
+							</li>
 				</ul></li>
 			<!--END chat bar SETTINGS -->
 		</ul>

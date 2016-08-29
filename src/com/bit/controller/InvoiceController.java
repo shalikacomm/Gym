@@ -79,7 +79,7 @@ public class InvoiceController extends HttpServlet {
 
 		} else if (action.equalsIgnoreCase("products")) {
 			ProductDAO productDao = new ProductDAOImpl();
-			List<ProductEntity> products = productDao.getAllProducts();
+			List<ProductEntity> products = productDao.getActiveProducts();
 			Gson gson = new Gson();
 
 			try (PrintWriter out = resp.getWriter()) {
@@ -113,7 +113,7 @@ public class InvoiceController extends HttpServlet {
 		} else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
 			Methods method = new Methods();
-			String generateID = method.generateID("I", "invoice_id", "invoice_product_tbl");
+			String generateID = method.generateID("I", "invoice_id", "invoice_tbl");
 			req.setAttribute("invoice_id", generateID);
 				}
 
@@ -224,8 +224,12 @@ public class InvoiceController extends HttpServlet {
 		// TODO Auto-generated method stub
 
 		String invoice_id = req.getParameter("invoice_id");
+		String user_id = req.getParameter("user_id");
+		
+		//String no_reg_user = req.getParameter("idfor");
 		String cus_name = req.getParameter("b_name");
 		System.out.println("NAME:" + cus_name);
+	
 		String email = req.getParameter("email");
 		Double vat = Double.parseDouble(req.getParameter("vat"));
 		Double disc = Double.parseDouble(req.getParameter("disc"));
@@ -243,8 +247,24 @@ public class InvoiceController extends HttpServlet {
 		 first_4 = Integer.parseInt(f4);
 		 last_4 = Integer.parseInt(l4);
 		}
+		
+		
+		
 		InvoiceEntity sellerDetails = new InvoiceEntity();
+		
+		if("subs".equals(req.getParameter("payment_type")))
+			sellerDetails.setSub_status(0);
+			else{
+				sellerDetails.setSub_status(2);
+			}
 
+		if (user_id != null){
+			sellerDetails.setUser_id(user_id);
+		}else{
+			sellerDetails.setUser_id("0");
+		}
+		
+	
 		sellerDetails.setInvoice_id(invoice_id);
 		sellerDetails.setCustomer_name(cus_name);
 		sellerDetails.setEmail(email);
@@ -259,6 +279,7 @@ public class InvoiceController extends HttpServlet {
 		sellerDetails.setDiscount(disc);
 		sellerDetails.setTotal(total);
 
+	
 		InvoiceDAO dao = new InvoiceDAOImpl();
 		boolean result = false;
 		dao.addSellerDetails(sellerDetails);
@@ -282,8 +303,9 @@ public class InvoiceController extends HttpServlet {
 			InvoiceDAO Seller = new InvoiceDAOImpl();
 
 			Seller.addInvoiceProduct(productSell);
+			Seller.updateBatchQty(inv_items[i], new Float(inv_units[i]));
 		}
-
+// to reduce the sold items from the old stock
 		for (int r = 0; r < inv_items.length; r++) {
 			System.out.println("Item name :" + inv_items);
 			System.out.println("Item quantity :" + inv_units);

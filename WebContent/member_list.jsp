@@ -82,10 +82,11 @@
 														<c:if test="${temp.status ==1 }">
 															<a
 																href="MemberCon?action=deactive&member_id=<c:out value="${temp.member_id}"/>">
-																<span class="btn btn-danger">Deactivate</span></a>
-														</c:if> <c:if test="${temp.status ==0 }">
+																<span class="btn btn-success">Activated</span></a>
+														</c:if>
+														 <c:if test="${temp.status ==0 }">
 															<a href="MemberCon?action=active&member_id=<c:out value="${temp.member_id}"/>">
-															<span class="btn btn-success">Activate</span>
+															<span class="btn btn-danger">Deactivated</span>
 															</a>
 														
 														</c:if></td>

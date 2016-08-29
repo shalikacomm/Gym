@@ -3,8 +3,8 @@ package com.bit.entity;
 public class StockEntity {
 
 	private String product_id,expiary_date,date_added,seriesID;
-	private Integer batch_status,batch_no,qty;
-	
+	private Integer batch_status,batch_no;
+	private Float qty;
 	
 	
 	public String getSeriesID() {
@@ -14,10 +14,10 @@ public class StockEntity {
 		this.seriesID = seriesID;
 	}
 	
-	public Integer getQty() {
+	public Float getQty() {
 		return qty;
 	}
-	public void setQty(Integer qty) {
+	public void setQty(Float qty) {
 		this.qty = qty;
 	}
 	public Integer getBatch_no() {
