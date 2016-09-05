@@ -84,7 +84,7 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="MemberCon?action=list" >
+                           <a href="UserCon?action=list" >
  <i class="fa fa-graduation-cap fa-5x"></i>
                       <h4>See Users</h4>
                       </a>
@@ -104,7 +104,7 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="blank.html" >
+                           <a href="MemberFeeCon?action=insert" >
  <i class="fa fa-money  fa-5x"></i>
                       <h4>Payables</h4>
                       </a>

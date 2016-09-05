@@ -122,7 +122,28 @@
 
 							</div>
 							<div class="row">
+							
 								<div class="col-sm-2">
+									<div class="form-group">
+										<div class="checkbox">
+											<label><b>Marital Status</b></label><em style="color: red;">*</em></br> <label>
+												<input class="uniform" type="radio" name="status"
+												value="0" checked="checked" />Single
+											</label>
+										</div>
+										<div class="checkbox">
+											<label> <input class="uniform" type="radio"
+												name="status" value="1" /> Married
+											</label>
+										</div>
+									</div>
+								</div>
+							
+							
+							
+								<div class = "row">
+								<div class="col-sm-2">
+								
 									<div class="form-group">
 										<label>User Role</label><em style="color: red;">*</em>
 										
@@ -131,22 +152,25 @@
 										 <select
 											name="role" class="form-control" id="user_type"
 											name="user_type">
-											<option>Administrator</option>
-											<option>Instructor</option>
-											<option selected>Member</option>
-											<option >Operator</option>
+											<option value = "administrator">Administrator</option>
+											<option value ="instructor">Instructor</option>
+											<option selected value = "member">Member</option>
+											<option value = "operator">Operator</option>
 										</select>
 										<%} else if(role.equals("operator")){ %>
 										<input readonly="readonly"  class="form-control" value="member" type="text" name="user_type">
 										<%} %>
 									</div>
-									<div class="col-sm-3">
+									</div></div>
+									<div class="col-sm-12">
+									<div class="col-sm-2" style="float:right;">
 										<div class="form-group">
 											<input type="submit" value="Save"
-												class="btn btn-success btn-lg " />
+												class="btn btn-success btn-md " />
 										</div>
 									</div>
 								</div>
+								
 							</div>
 
 

@@ -11,4 +11,10 @@ public interface MemberPaymentDAO {
 	public UserEntity getMemberStatus(String userID);
 	
 	public List <MemberPaymentEntity> getMemberSubs(String userID);
+	
+	public MemberPaymentEntity getMonthlyFee();
+	
+	public void addFeeDetails(MemberPaymentEntity feePay);
+	
+	public MemberPaymentEntity getLastActiveDate(String userID);
 }

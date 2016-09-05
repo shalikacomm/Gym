@@ -1,6 +1,7 @@
 package com.bit.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,6 +15,34 @@ import com.bit.util.DBUtil;
 
 public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 	private Connection connection;
+	
+	
+	public MemberPaymentEntity getLastActiveDate(String userID) {
+		connection = DBUtil.getConnection();
+		MemberPaymentEntity lastDate = new MemberPaymentEntity();
+	        try {
+	            PreparedStatement preStmt = connection.prepareStatement("SELECT active_period FROM member_payment_tbl WHERE user_id =? ;");
+	            preStmt.setString(1, userID);
+	            ResultSet rs = preStmt.executeQuery();
+	            
+	            if (rs.next()) {
+	            	
+	            	lastDate.setActive_period(rs.getString("active_period"));
+	            	
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				if (connection != null)
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+			}
+			return lastDate;
+	}
 	
 	public UserEntity getMemberStatus(String userID) {
 		connection = DBUtil.getConnection();
@@ -30,8 +59,42 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        }
+	        }finally {
+				if (connection != null)
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+			}
 			return member;
+	}
+	
+	public MemberPaymentEntity getMonthlyFee() {
+		connection = DBUtil.getConnection();
+		MemberPaymentEntity fee = new MemberPaymentEntity();
+	        try {
+	            PreparedStatement preStmt = connection.prepareStatement("SELECT value FROM emp.system_set_tbl WHERE description = 'monthly_fee'");
+	            ResultSet rs = preStmt.executeQuery();
+	            
+	            if (rs.next()) {
+	            	
+	            	fee.setMonthly_fee(rs.getDouble("value"));
+	            	
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				if (connection != null)
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+			}
+			return fee;
 	}
 	
 	
@@ -54,8 +117,57 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+
+		}
 		return memberSubs;
 	}
 	
+	
+	public void addFeeDetails(MemberPaymentEntity feePay) {
+		connection = DBUtil.getConnection();
+		java.sql.Date date = getCurrentDatetime();
+
+		try {
+			PreparedStatement preparedStatement = connection
+					.prepareStatement("INSERT INTO member_payment_tbl  values (?,?, ?, ?, ?,?, ?,?,?,?,?,?)");
+			preparedStatement.setString(1, feePay.getPayment_id());
+			preparedStatement.setString(2, feePay.getUser_id());
+			preparedStatement.setString(3, feePay.getActive_period());
+			preparedStatement.setDouble(4, feePay.getAdditional_payments());
+			preparedStatement.setDouble(5, feePay.getFee_amount());
+			preparedStatement.setDouble(6, feePay.getDiscount());
+			preparedStatement.setDate(7, date);
+			preparedStatement.setString(8, feePay.getPayment_type());
+			preparedStatement.setString(9, feePay.getBank_name());
+			preparedStatement.setString(10, feePay.getCard_type());
+			preparedStatement.setInt(11, feePay.getFirst4());
+			preparedStatement.setInt(12, feePay.getLast4());
+			preparedStatement.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+
+	public java.sql.Date getCurrentDatetime() {
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
+	}
 	
 }

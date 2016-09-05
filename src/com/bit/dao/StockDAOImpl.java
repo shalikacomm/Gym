@@ -100,10 +100,6 @@ float total = 0;
 	    return new java.sql.Date(today.getTime());
 	}
 
-
-
-
-
 	public List<StockEntity> getStockDates(String productId) {
 		connection = DBUtil.getConnection();
 		List<StockEntity> dates = new ArrayList<StockEntity>();

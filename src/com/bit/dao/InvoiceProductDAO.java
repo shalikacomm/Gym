@@ -6,5 +6,6 @@ public interface InvoiceProductDAO {
 	
 	
 	public boolean addInvoiceProduct(InvoiceProductEntity in_product);
+	
 
 }

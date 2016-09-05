@@ -147,15 +147,71 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void activate(String userId) {
-		// TODO Auto-generated method stub
-
+	public boolean activate(String userId) {
+    	Connection con = null;
+    	boolean result = false;
+    	try {
+    		con=DBUtil.getConnection();
+    		String sql="UPDATE user_tbl SET status=1 WHERE user_id=?";
+    		
+    		PreparedStatement preparedStatement = con.prepareStatement(sql);
+    		// Parameters start with 1
+    		preparedStatement.setString(1, userId);
+    		int res = preparedStatement.executeUpdate();
+    		
+    		if(res > 0){
+    			result = true;
+    		}else{
+    			result = false;
+    		}
+    		
+    	} catch (SQLException e) {
+    		e.printStackTrace();
+    	}finally {
+    		
+    		if (con != null) {
+    			try {
+    				con.close();
+    			} catch (SQLException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		}
+    	}
+    	return result;
 	}
 
 	@Override
-	public void deactivate(String userId) {
-		// TODO Auto-generated method stub
+	public boolean deactivateUser(String user_id) {
+		connection = null;
+		boolean result=false;
+		try {
+			connection = DBUtil.getConnection();
+			String sql = "UPDATE user_tbl SET status = 0 WHERE user_id = ?";
 
+			PreparedStatement pre_statement = connection.prepareStatement(sql);
+			pre_statement.setString(1, user_id);
+			int res=pre_statement.executeUpdate();
+
+			if(res>0){
+				result=true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			// TODO: handle exception
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return result;
 	}
 
 	  public UserEntity login(UserEntity loginUsers) {

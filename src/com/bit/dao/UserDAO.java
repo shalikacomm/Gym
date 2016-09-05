@@ -14,9 +14,9 @@ public interface UserDAO {
 
 	public UserEntity getUserById(String userId);
 
-	public void activate(String userId);
+	public boolean activate(String userId);
 
-	public void deactivate(String userId);
+	public boolean deactivateUser(String user_id);
 	
 	public UserEntity login(UserEntity loginUsers);
 }

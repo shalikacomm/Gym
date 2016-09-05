@@ -15,4 +15,5 @@ public interface InvoiceDAO{
 	public List<InvoiceEntity> getInvoiceList();
 	public StockEntity getMinExpBatch(String productId);
 	public float updateBatchQty(String productId, float qty) ;
+	public  void updateSubStatusWithPay(String userID);
 }

@@ -168,7 +168,6 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 			ResultSet rs = p_st.executeQuery();
 
 			while (rs.next()) {
-				System.out.println();
 				 stkEnt.setQty(rs.getFloat("qty"));
 				 stkEnt.setSeriesID(rs.getString("series_id"));
 				// product.setStock(rs.getFloat("stock"));
@@ -190,6 +189,7 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 		float current_qty = 0;
 		StockEntity stkEnt= getMinExpBatch(productId);
 		float minExpQty =stkEnt.getQty();
+	//	String series_id = stkEnt.getSeriesID();
 		current_qty = minExpQty - qty;
 		System.out.println("CURRENT1="+current_qty);
 		if (current_qty < 0) {
@@ -202,11 +202,14 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 				StockEntity stkEnt2= getMinExpBatch(productId);
 
 				float minExpQty2 =stkEnt2.getQty() ;
+				String series_id2 = stkEnt2.getSeriesID();
 				float current_qty2 = minExpQty2 + current_qty;
 				System.out.println("CURRENT2="+current_qty2);
+				System.out.println("SeriesID="+series_id2);
 
+				
 				PreparedStatement last2 = connection.prepareStatement("UPDATE batch_tbl SET qty= " + current_qty2
-						+ "  WHERE product_id = '" + productId + "' series_id='"+stkEnt.getSeriesID()+"'");
+						+ "  WHERE product_id = '" + productId + "' and  series_id='" + series_id2 + "'");
 				last2.executeUpdate();
 				stk.updateFullStock(productId);
 
@@ -225,15 +228,14 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 			}
 		}
 		try {
-			PreparedStatement p_st = connection.prepareStatement(
-					"SELECT qty FROM emp.batch_tbl WHERE product_id=? AND status=1 order by expiary_date limit 1");
+			PreparedStatement p_st = connection.prepareStatement("");
 			p_st.setString(1, productId);
 			ResultSet rs = p_st.executeQuery();
 
 			while (rs.next()) {
 				
-				qty = rs.getFloat("qty");
-				System.out.println(qty);
+			//	 qty = rs.getFloat("qty");
+				//System.out.println(qty);
 				// product.setStock(rs.getFloat("stock"));
 
 			}
@@ -252,6 +254,41 @@ public class InvoiceDAOImpl implements InvoiceDAO {
 
 		return qty;
 
+	}
+	
+	
+	public  void updateSubStatusWithPay(String userID) {
+		connection = null;
+		
+		try {
+			connection = DBUtil.getConnection();
+			PreparedStatement p_st = connection.prepareStatement("SELECT invoice_id FROM invoice_tbl WHERE payment_type='subs' AND sub_status= 0 AND user_id = ?;");
+			p_st.setString(1, userID);
+			ResultSet rs = p_st.executeQuery();
+
+			while (rs.next()) {
+
+				InvoiceEntity sub = new InvoiceEntity();
+				sub.setInvoice_id(rs.getString("invoice_id"));
+				//PreparedStatement last = connection.prepareStatement("UPDATE product_tbl SET stock= "+total+" WHERE product_id = '"+productId+"'");
+				PreparedStatement last = connection.prepareStatement("UPDATE invoice_tbl SET total_subscription= 0 ,sub_status=1 WHERE user_id = '" + userID + "' AND invoice_id = '"+sub.getInvoice_id()+"'");
+				last.executeUpdate();
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// TODO: handle exception
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e2) {
+					e2.printStackTrace();
+					// TODO: handle exception
+				}
+		}
+
+		
 	}
 
 }

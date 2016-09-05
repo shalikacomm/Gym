@@ -302,12 +302,12 @@
 													<div class="modal-body">
 														<!-- 	// starts here  -->
 
-														<h1>
+													<!-- 	<h1>
 															id of selected tab: <span id="idDisplay">cash</span>
-														</h1>
+														</h1> -->
 
-														<div id="tabs">
-															<ul>
+														<div id="tabs" style="border: 0px solid #ffffff;">
+															<ul style = "background: #d9edf7">
 																<li><a href="#cash">Cash</a></li>
 																<li><a href="#credit">Credit Card</a></li>
 																<li class="three"><a href="#subs">Add to Subscription</a></li>
@@ -743,8 +743,7 @@ function onFocus(el) {
 										discounted_val.toFixed(2));
 
 							}
-							$('.discount').on('keyup change', '#disc',
-									function() {
+							$('.discount').on('keyup change', '#disc',function() {
 										totalCal();
 										discountCal();
 									});

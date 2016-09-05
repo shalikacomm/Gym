@@ -3,11 +3,67 @@ package com.bit.entity;
 public class MemberPaymentEntity {
 	
 	
-	private String member_id,active_period,paid_date;
-	private Double additional_payments,amount,total_subs;
+	private String member_id,active_period,paid_date,card_type,bank_name,payment_id,user_id,payment_type;
+		private Double additional_payments,fee_amount,total_subs,monthly_fee,discount;
+	private Integer first4,last4;
 	
 	
+	public String getPayment_type() {
+		return payment_type;
+	}
+	public void setPayment_type(String payment_type) {
+		this.payment_type = payment_type;
+	}
+	public String getUser_id() {
+		return user_id;
+	}
+	public void setUser_id(String user_id) {
+		this.user_id = user_id;
+	}
 	
+	public String getPayment_id() {
+		return payment_id;
+	}
+	public void setPayment_id(String payment_id) {
+		this.payment_id = payment_id;
+	}
+	public Integer getFirst4() {
+		return first4;
+	}
+	public void setFirst4(Integer first4) {
+		this.first4 = first4;
+	}
+	public Integer getLast4() {
+		return last4;
+	}
+	public void setLast4(Integer last4) {
+		this.last4 = last4;
+	}
+	public String getBank_name() {
+		return bank_name;
+	}
+	public void setBank_name(String bank_name) {
+		this.bank_name = bank_name;
+	}
+	public String getCard_type() {
+		return card_type;
+	}
+	public void setCard_type(String card_type) {
+		this.card_type = card_type;
+	}
+
+	public Double getMonthly_fee() {
+		return monthly_fee;
+	}
+	public Double getDiscount() {
+		return discount;
+	}
+	public void setDiscount(Double discount) {
+		this.discount = discount;
+	}
+	public void setMonthly_fee(Double monthly_fee) {
+		this.monthly_fee = monthly_fee;
+	}
 	public Double getTotal_subs() {
 		return total_subs;
 	}
@@ -38,10 +94,11 @@ public class MemberPaymentEntity {
 	public void setAdditional_payments(Double additional_payments) {
 		this.additional_payments = additional_payments;
 	}
-	public Double getAmount() {
-		return amount;
+	public Double getFee_amount() {
+		return fee_amount;
 	}
-	public void setAmount(Double amount) {
-		this.amount = amount;
+	public void setFee_amount(Double fee_amount) {
+		this.fee_amount = fee_amount;
 	}
+
 }

@@ -54,20 +54,36 @@ public class UserController  extends HttpServlet{
 		} else if (action.equalsIgnoreCase("deactive")) {
 
 			String userId = req.getParameter("user_id");
-			dao.deactivate(userId);
-
+			boolean result =  dao.deactivateUser(userId);
 			List<UserEntity> list = dao.getAllUsers();
 			req.setAttribute("users", list);
-			forward = LIST_USER;
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+
+				out.print(result);
+
+				out.flush();
+				out.close();
+				return;
+			}
 
 		} else if (action.equalsIgnoreCase("active")) {
 
 			String user_id = req.getParameter("user_id");
-			dao.activate(user_id);
-
-			List<UserEntity> list = dao.getAllUsers();
+			 boolean result = dao.activate(user_id);
+			 List<UserEntity> list = dao.getAllUsers();
 			req.setAttribute("users", list);
-			forward = LIST_USER;
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+
+				out.print(result);
+
+				out.flush();
+				out.close();
+				return;
+			}
 		}
 		RequestDispatcher view = req.getRequestDispatcher(forward);
 		view.forward(req, resp);
@@ -87,7 +103,7 @@ public class UserController  extends HttpServlet{
 		String address = req.getParameter("address");
 		String mobileNumber = req.getParameter("mobile_number");
 		String role = req.getParameter("role");
-	//	int marital_status=Integer.parseInt(req.getParameter("marital_status"));
+		Integer marital_status=Integer.parseInt(req.getParameter("status"));
 		
 		String forward = "";
 		UserEntity user = new UserEntity();
@@ -115,7 +131,8 @@ public class UserController  extends HttpServlet{
 		user.setGender(gender);
 		user.setAddress(address);
 		user.setMobile_number(mobileNumber);
-		user.setMarital_status(0);
+		user.setRole(role);
+		user.setMarital_status(marital_status);
 		
 		UserDAO dao=new UserDAOImpl();
 		

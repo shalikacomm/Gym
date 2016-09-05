@@ -48,30 +48,39 @@
 												<th>Selling Price</th>
 												<th>Reorder Level</th>
 												<th>Available Stock</th>
-												<th>Measuring Unit</th>
+												<th>Status</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${product}" var="temp">
 												<tr class="odd gradeX">
-													<td><c:out value="${temp.productID}" /></td>
-													<td><c:out value="${temp.description}" /></td>
-													<td><c:out value="${temp.purchasePrice}" /></td>
-													<td><c:out value="${temp.sellingPrice}" /></td>
-													<td><c:out value="${temp.reorderLevel}" /></td>
-													<td><c:out value="${temp.stock}" /></td>
-													<td><c:out value="${temp.measuringUnit}" /></td>
+													<td style="width: 10%;"><c:out value="${temp.productID}" /></td>
+													<td style="width: 25%;"><c:out value="${temp.description}" /></td>
+													<td align="right" style="width: 15%;"><c:out value="${temp.purchasePrice}" /></td>
+													<td align="right" style="width: 15%;"><c:out value="${temp.sellingPrice}" /></td>
+													<td align="right" style="width: 10%;"><c:out value="${temp.reorderLevel}" /></td>
+													<td align="right" style="width: 10%;"><c:out value="${temp.stock}" /></td>
 													<td>
+													<c:if test="${temp.status ==1 }">
+														<lable class=" label btn-success">Active</lable>
+														</c:if> 
+														<c:if test="${temp.status ==0 }">
+														<lable class=" label btn-danger">Deactive</lable>
+														</c:if>
+													</td>
+													<td style="width: 15%;">
 													
-													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"/>"><span class="btn btn btn-primary">Edit</span></a>
+													<a href="ProductCon?action=edit&prd_id=<c:out value="${temp.productID}"  />" class="btn btn-default btn-grad btn-sm" ><span ><i class="icon-edit" style="color:#455862;"></i></span></a>
 														<c:if test="${temp.status ==1 }">
 														
 														<a
-															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg status"><span class="btn btn btn-success ">Activated</span></a>
-														</c:if> <c:if test="${temp.status ==0 }">
+															 href="ProductCon?action=deactivate&prd_id=<c:out value="${temp.productID}"/>" class="navg status btn btn-default btn-grad btn-sm"><span><i class="icon-trash" style="color:#455862;"></i></span></a>
+														</c:if> 
+														
+														<c:if test="${temp.status ==0 }">
 															<a
-																href="ProductCon?action=activate&prd_id=<c:out value="${temp.productID}"/>" class="status"><span class="btn btn btn-danger ">Deactivated</span></a>
+																href="ProductCon?action=activate&prd_id=<c:out value="${temp.productID}"/>" class="status btn btn-default btn-grad btn-sm"><span><i class="icon-ok " style="color:#455862;"></i></span></a>
 														</c:if></td>
 												</tr>
 											</c:forEach>
@@ -151,7 +160,7 @@
 										url:url,
 										success: function(data){
 											if(data==true){
-												swal("Good job!", "You clicked the button!", "success");
+												swal("Product updated!", "You clicked the button!", "success");
 												window.location="ProductCon?action=list";
 											}else{
 												
