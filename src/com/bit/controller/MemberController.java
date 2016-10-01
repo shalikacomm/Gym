@@ -151,15 +151,23 @@ public class MemberController extends HttpServlet {
 				while (iterator.hasNext()) {
 					FileItem item = (FileItem) iterator.next();
 					if (!item.isFormField()) {
-						String fileName = member.getMember_id();
+						
+						String fileName="";
+						if(item.getContentType().equalsIgnoreCase("image/jpeg")){
+						fileName = member.getMember_id()+".jpg";
+						}else if(item.getContentType().equalsIgnoreCase("image/png")){
+							fileName = member.getMember_id()+".png";
+						}else{
+							//return false;
+						}
 						String root = getServletContext().getRealPath("/");
-						File path = new File(root + "/uploads/photos/");
+						File path = new File("C:\\Users\\amantha\\git\\Gym\\WebContent\\uploads");
 						if (!path.exists()) {
 							boolean status = path.mkdirs();
 						}
 
 						File uploadedFile = new File(path + "/" + fileName);
-						img_path = "/uploads/photos/" + fileName;
+						img_path = "C:\\Users\\amantha\\git\\Gym\\WebContent\\uploads\\" + fileName;
 						System.out.println(uploadedFile.getAbsolutePath());
 						item.write(uploadedFile);
 					}
@@ -214,7 +222,10 @@ public class MemberController extends HttpServlet {
 					dao.updateMember(member);
 				}
 				
-				resp.sendRedirect("MemberCon?action=list");
+				PrintWriter out=resp.getWriter();
+				out.print(true);
+				out.flush();
+				//resp.sendRedirect("MemberCon?action=list");
 			} catch (FileUploadException e) {
 				e.printStackTrace();
 			} catch (Exception e) {

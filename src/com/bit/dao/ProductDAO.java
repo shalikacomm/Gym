@@ -19,4 +19,6 @@ public interface ProductDAO {
 	 public boolean activateProduct(String prd_id);
 	 
 	 public List<ProductEntity> getActiveProducts();
+	 
+	 public List<ProductEntity> lowQuantityWarning();
 }

@@ -260,5 +260,43 @@ if(res>0){
 		}
 		return result;
 	}
+	
+	public List<ProductEntity> lowQuantityWarning() {
+
+		connection = null;
+
+		List<ProductEntity> prd_list = new ArrayList<ProductEntity>();
+		try {
+			connection = DBUtil.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("SELECT * FROM product_tbl WHERE status = 1 AND reorder_level < stock");
+
+			while (rs.next()) {
+				ProductEntity product = new ProductEntity();
+				product.setProductID(rs.getString("product_id"));
+				product.setDescription(rs.getString("description"));
+				product.setPurchasePrice(rs.getFloat("purchase_price"));
+				product.setSellingPrice(rs.getFloat("selling_price"));
+				product.setReorderLevel(rs.getInt("reorder_level"));
+				 product.setStock(rs.getFloat("stock"));
+				product.setMeasuringUnit(rs.getString("measuring_unit"));
+				product.setStatus(rs.getInt("status"));
+				prd_list.add(product);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+
+		return prd_list;
+	}
+	
 
 }

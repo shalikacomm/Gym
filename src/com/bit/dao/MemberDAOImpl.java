@@ -123,6 +123,7 @@ public class MemberDAOImpl implements MemberDAO {
 	        }
 			return members;
 	}
+	
 
 	@Override
 	public MemberEntity getMemberById(String memberId) {

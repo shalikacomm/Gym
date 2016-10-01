@@ -35,8 +35,7 @@
 	href="assets/plugins/switch/static/stylesheets/bootstrap-switch.css" />
 
 <!-- END PAGE LEVEL  STYLES -->
-<link rel="stylesheet"
-	href="assets/plugins/datepicker/css/datepicker.css" />
+
 <!-- PAGE LEVEL STYLES -->
 
 <link href="assets/css/jquery-ui.css" rel="stylesheet" />
@@ -44,16 +43,11 @@
 	href="assets/plugins/uniform/themes/default/css/uniform.default.css" />
 <link rel="stylesheet"
 	href="assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css" />
-<link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
+
 
 <link rel="stylesheet"
 	href="assets/plugins/tagsinput/jquery.tagsinput.css" />
-<link rel="stylesheet"
-	href="assets/plugins/daterangepicker/daterangepicker-bs3.css" />
-<link rel="stylesheet"
-	href="assets/plugins/datepicker/css/datepicker.css" />
-<link rel="stylesheet"
-	href="assets/plugins/timepicker/css/bootstrap-timepicker.min.css" />
+
 <link rel="stylesheet"
 	href="assets/plugins/switch/static/stylesheets/bootstrap-switch.css" />
 <link rel="stylesheet" href="assets/css/bootstrap-fileupload.min.css" />
@@ -72,7 +66,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">Member Details Registration</div>
 					<div class="panel-body">
-						<form  action="MemberCon" method="POST" enctype="multipart/form-data">
+						<form  action="MemberCon" method="POST" id="memForm"enctype="multipart/form-data">
 
 							<div class="row">
 								<div class="col-sm-2">
@@ -239,6 +233,32 @@
 
 	<script>
 		$(document).ready(function() {
+			
+			$("#memForm").submit(function(e){
+				e.preventDefault();
+				 var formData = new FormData($("#memForm")[0]);   // change form id
+
+		           $.ajax({
+		                url: 'MemberCon',
+		            	 type: 'POST',
+		                data: formData,
+		                async: false,
+		                cache: false,
+		                contentType: false,
+		                enctype: 'multipart/form-data',
+		                processData: false,
+		                success: function (response) {
+		                	if(response== 'true'){
+		                		alert("Success");
+		                	}else{
+		                		alert("fail");
+		                	}
+		                    
+		                }
+		            });
+				
+			});
+			  
 			/* Bootstrap Datepicker Validation */
 			$('#sandbox-container .input-group.date').datepicker({
 				format : "yyyy-mm-dd",
@@ -253,7 +273,7 @@
 			
 			
 		
-			
+	/* 		
 			var userid = $("#users").val();
 			if(userid !=""){
 			$.ajax({
@@ -269,8 +289,9 @@
 				}
 			});
 		}
+		*/
 			
-			$("#users").on('change', function() {
+	 		$("#users").on('change', function() {
 				var userID = $("#users").val();
 				$.ajax({
 					method : 'GET',
@@ -285,7 +306,7 @@
 					}
 				});
 
-			});
+			});  
 
 			//BMI calcuation
 			$("#weight").on('keyup click', function() {

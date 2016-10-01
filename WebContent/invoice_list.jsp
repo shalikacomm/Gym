@@ -24,7 +24,7 @@
 					<div class="col-lg-12">
 
 
-						<h2>Invoice List</h2>
+						<h2>Receipt List</h2>
 		</div>
 				</div>
 

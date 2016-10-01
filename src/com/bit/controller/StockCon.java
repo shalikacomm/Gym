@@ -1,5 +1,14 @@
 package com.bit.controller;
 
+import java.io.FileNotFoundException;
+
+import javax.servlet.http.HttpServlet; 
+import javax.servlet.http.HttpServletRequest; 
+import javax.servlet.http.HttpServletResponse; 
+import javax.servlet.ServletException; 
+import javax.servlet.ServletOutputStream; 
+
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -23,6 +32,13 @@ import com.bit.entity.ProductEntity;
 import com.bit.entity.StockEntity;
 import com.bit.util.Methods;
 import com.google.gson.Gson;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.PageSize;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.pdf.Barcode128;
+import com.itextpdf.text.pdf.PdfWriter;
 
 @WebServlet(urlPatterns = "/StockCon")
 public class StockCon extends HttpServlet {
@@ -54,6 +70,22 @@ public class StockCon extends HttpServlet {
 				}
 
 			}
+	/*	 else if (action.equalsIgnoreCase("barcode")) {
+			
+			 Barcode128 barcode = new Barcode128();
+	            barcode.setCode("U0001"); 
+	                 
+	            ServletOutputStream servletoutputstream = resp.getOutputStream(); 
+	              
+	            resp.setContentType("image/jpeg"); 
+	            resp.setHeader("Pragma", "no-cache"); 
+	            resp.setHeader("Cache-Control", "no-cache"); 
+	            resp.setDateHeader("Expires", 0); 
+	           
+	            // Generate Code-128 barcode & output to ServletOutputStream
+	            barcode.drawBarcode(servletoutputstream); 
+			 
+		 }*/
 		 else if (action.equalsIgnoreCase("insert")) {
 				
 				Methods method = new Methods();

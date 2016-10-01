@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1dd82ac0-8dc9-447c-a8b6-c8df7e800864">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT
+     user_tbl.`user_id` AS user_tbl_user_id,
+     user_tbl.`first_name` AS user_tbl_first_name,
+     user_tbl.`nic` AS user_tbl_nic,
+     user_tbl.`status` AS user_tbl_status,
+     user_tbl.`dob` AS user_tbl_dob
+FROM
+     `user_tbl` user_tbl]]>
+	</queryString>
+	<field name="user_tbl_user_id" class="java.lang.String"/>
+	<field name="user_tbl_first_name" class="java.lang.String"/>
+	<field name="user_tbl_nic" class="java.lang.String"/>
+	<field name="user_tbl_status" class="java.lang.Integer"/>
+	<field name="user_tbl_dob" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="2" width="100" height="20" uuid="03489245-827d-4c93-b24f-c3b08a51eb31"/>
+				<text><![CDATA[user_tbl_user_id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="274" y="2" width="100" height="20" uuid="a3dd4559-1c7d-4fd8-a674-63e870bb4579"/>
+				<text><![CDATA[user_tbl_nic]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
+			<componentElement>
+				<reportElement x="14" y="44" width="200" height="50" uuid="fd8182c0-3003-48ad-9c4c-3b343fbc5ff7"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{user_tbl_user_id}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="35" y="11" width="100" height="20" uuid="a3624aca-9d82-4081-a662-577902185efe"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_user_id}]]></textFieldExpression>
+			</textField>
+			<componentElement>
+				<reportElement x="237" y="44" width="200" height="50" uuid="608c8e9c-f079-41ad-a4ec-ff811f5d24a1"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA["1234"]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="274" y="11" width="100" height="20" uuid="9658babc-6d81-49c7-b5ae-0f975e433adb"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_nic}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

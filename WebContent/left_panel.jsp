@@ -85,8 +85,8 @@
 						class="icon-angle-right"></i> Add Inventory </a></li>
 				<li><a href="pages_timeline.html"><i
 						class="icon-angle-right"></i> Product Images </a></li>
-				<li><a href="pages_timeline.html"><i
-						class="icon-angle-right"></i> News Updates </a></li>
+				<li><a href="ExerciseCon?action=list"><i
+						class="icon-angle-right"></i> Add Exercise </a></li>
 				</ul>
 			</li>
 			
@@ -117,12 +117,24 @@
 						class="icon-angle-right"></i> Unit Progress </a></li>
 				<li><a href="pages_timeline.html"><i
 						class="icon-angle-right"></i> Growth Reports </a></li>
-				<li><a href="pages_timeline.html"><i
-						class="icon-angle-right"></i>  </a></li>
+			
 				</ul>
 			</li>
 
-		
+			<li class="panel"><a href="#" data-parent="#menu"
+			data-toggle="collapse" class="accordion-toggle"	data-target="#shedule-nav"> 
+			<i class="fa fa-university">&nbsp;</i> Member Shedules <span class="pull-right"> 
+			<i class="icon-angle-down"></i>
+			</span> 
+		</a>
+			<ul class="collapse" id="shedule-nav">
+				<li><a href="SheduleCon?action=insert"><i
+						class="icon-angle-right"></i> Add Member Shedules </a></li>
+				<li><a href="pages_timeline.html"><i
+						class="icon-angle-right"></i> Shedule List </a></li>
+				
+				</ul>
+			</li>
 
 	</ul>
 

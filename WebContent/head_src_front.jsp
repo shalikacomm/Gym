@@ -59,6 +59,10 @@
     <script type="text/javascript" src="assets_front/js/jquery.parallax.js"></script>
     <script type="text/javascript" src="assets_front/js/mediaelement-and-player.js"></script>
     <script type="text/javascript" src="assets_front/js/script.js"></script>
-
+<%
+    response.addHeader("Cache-Control", "no-cache,no-store,private,must-revalidate,max-stale=0,post-check=0,pre-check=0");
+    response.addHeader("Pragma", "no-cache");
+    response.addDateHeader("Expires", 0);
+%>
     <!--[if IE 8]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
     <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->

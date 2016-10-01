@@ -19,4 +19,8 @@ public interface UserDAO {
 	public boolean deactivateUser(String user_id);
 	
 	public UserEntity login(UserEntity loginUsers);
+	
+	public List<UserEntity>getAllActiveUsers() ;
+	
+	public List<UserEntity>getAllActiveMemberUsers() ;
 }

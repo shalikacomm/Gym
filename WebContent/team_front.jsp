@@ -123,32 +123,181 @@
 		</header>
 		<!-- End Header -->
 		  <!-- Start Page Banner -->
-    <div class="page-banner" style="padding:40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h2>Team WE</h2>
-            <p>We Are Hard Workers</p>
-          </div>
-          <div class="col-md-6">
-            <ul class="breadcrumbs">
-              <li><a href="index_front.jsp">Home</a></li>
-              <li>Team</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
+     <div class="page-banner" >;
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h2 style=" text-transform: none;">Members Application Form...</h2>
+                            <p style="font-weight: bold; color: #8A5497;">The Best Care for you Pet..</p>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="breadcrumbs">
+                                <li><a href="<?php echo base_url(); ?>site_main/index">Home</a></li>
+                                <li>Member</li>
+                                <li>Become a Member</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
     <!-- End Page Banner -->
 
 		<!-- Start Content -->
+	
+	<div id="content">
+                <div class="container">
+                    <div class="page-content" style="background-image: url('<?php echo base_url(); ?>/admin_assets/img/petowner_bg_img1.jpg'); background-size: 33% 90%; margin-left:-10%; background-repeat: no-repeat;">
+
+                        <!--Registration form start-->
+                        <div class="row" >
+                            <div class="col-lg-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3" style="margin-left:36%; margin-top: 4%;">
+                                <form id="petOwner_registration_form" role="form" method="POST" enctype="multipart/form-data">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <!--<label style="color: #5f5f5f; font: bold 14px sans-serif;">Pet Owner ID</label>-->
+                                                <input class="form-control hidden" type="text" id="petOwner_id" name="petOwner_id"  value="<?php echo $petOwner_id; ?>" readonly=""/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">Title</label><em style=" color: red;">*</em>
+                                                <select class="form-control" id="petOwner_title" name="petOwner_title">
+                                                    <option>Mr.</option>
+                                                    <option>Mrs.</option>
+                                                    <option>Ms.</option>
+                                                    <option>Miss.</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">Initials</label>
+                                                <input class="form-control" type="text" id="petOwner_initials" name="petOwner_initials" placeholder="Initials" />
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">First Name</label><em style=" color: red;">*</em>
+                                                <input class="form-control" type="text" id="petOwner_fname" name="petOwner_fname" placeholder="First Name"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">Last Name</label><em style=" color: red;">*</em>
+                                                <input class="form-control" type="text" id="petOwner_lname" name="petOwner_lname" placeholder="Last Name"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">Gender</label><em style=" color: red;">*</em>
+                                                <div class="radio" style="margin-top: -1%;">
+                                                    <span id="spryradio1">
+                                                        <label><input type="radio" name="petOwner_gender" id="RadioGroup1_0" value="Male" class="" /> Male</label><br/>
+                                                        <label><input type="radio" name="petOwner_gender" id="RadioGroup1_1" value="Female" class=""/> Female</label><br/>
+                                                        <label for="petOwner_gender" class="error" style="margin-left: -20px;"></label>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">Number of Pets</label><em style=" color: red;">*</em>
+                                                <input class="form-control" type="text" id="petOwner_Numb_of_pets" name="petOwner_Numb_of_pets" placeholder="Number of Pets"/>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label for="petOwner_email" style="color: #5f5f5f; font: bold 14px sans-serif;">Email</label><em style="color: red;">*</em>
+                                                <input type="email" class="form-control" id="petOwner_email" name="petOwner_email" placeholder="abc@gmail.com" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2">
+                                            <div class="form-group">
+                                                <label for="petOwner_nic" style="color: #5f5f5f; font: bold 14px sans-serif;">NIC</label><em style=" color: red;">*</em>
+                                                <input type="text" class=" gur new-empty form-control" id="petOwner_nic" name="petOwner_nic" placeholder="123456789V" maxlength="10" pattern="([0-9]{9}[VXvx])" title="Insert a Valid NIC" required="required" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-5">
+                                            <div class="form-group">
+                                                <label for="petOwner_address" style="color: #5f5f5f; font: bold 14px sans-serif;">Address</label><em style=" color: red;">*</em>
+                                                <textarea class="form-control" rows="5" id="petOwner_address" name="petOwner_address" placeholder="Enter the Address" required="required" ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">City</label><em style=" color: red;">*</em>
+                                                <input class="form-control" type="text" id="petOwner_city" name="petOwner_city" placeholder="City" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-3">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-lg-3">
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">Mobile Number</label><em style=" color: red;">*</em>
+                                                <input class="form-control" type="text" id="petOwner_mobile" name="petOwner_mobile" placeholder="Mobile" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label style="color: #5f5f5f; font: bold 14px sans-serif;">Telephone Number</label><em style=" color: red;">*</em>
+                                                <input class="form-control" type="text" id="petOwner_tele" name="petOwner_tele" placeholder="Telephone" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-1">
+                                            <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#petOwnerRegModal">
+                                                Register
+                                            </button>
+                                        </div>
+                                        <div class="col-md-1">
+                                            <input type="reset" class="btn btn-warning btn-sm" value="Reset" />
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- Modal -->
+                        <!--                        <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                                                <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique, itaque, modi, aliquam nostrum at sapiente consequuntur natus odio reiciendis perferendis rem nisi tempore possimus ipsa porro delectus quidem dolorem ad.</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-primary" data-dismiss="modal">I Agree</button>
+                                                            </div>
+                                                        </div> /.modal-content
+                                                    </div> /.modal-dialog
+                                                </div> /.modal -->
 
 
-		<section id="home">
-			<!-- Carousel -->
-			
-			<!-- /carousel -->
-		</section>
+                    </div>
+                </div>
+            </div>
 
 
 

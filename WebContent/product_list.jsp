@@ -159,7 +159,7 @@
 										method:'GET',
 										url:url,
 										success: function(data){
-											if(data==true){
+											if(data== true){
 												swal("Product updated!", "You clicked the button!", "success");
 												window.location="ProductCon?action=list";
 											}else{

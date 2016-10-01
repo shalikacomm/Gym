@@ -38,6 +38,11 @@
 										readonly="readonly" />
 
 								</div>
+								<div class="col-md-2">
+									<input class="form-control statSupp" name="stat" value="" type="text" id="statSupport"
+										readonly="readonly" />
+
+								</div>
 							</div>
 						</div>
 						<div class="row">
@@ -103,7 +108,7 @@
 								<div class="col-md-2 text-center">
 									<div id="sandbox-container">
 										<div class="input-group date">
-											<input type="text" placeholder="YYYY-MM-DD" name="activeUntil"
+											<input type="text" placeholder="YYYY-MM-DD" name="activeUntil" 
 												id="date" class="all form-control my_date"><span
 												class="input-group-addon"><li
 												class="glyphicon glyphicon-th"></li></span>
@@ -171,7 +176,7 @@
 								<div class="col-md-2">
 									<input type="text" id="monthly_payment" name="monthly_payment"
 										readonly="readonly" class="form-control"
-										style="text-align: right;" value="${monthly_fee.monthly_fee}" />
+										style="text-align: right;" value="${master_fee.monthly_fee}" />
 								</div>
 							</div>
 						</div>
@@ -397,7 +402,7 @@
 	$('#fee_mnul').on ('change',function(){
 		
 		months = $('#fee_mnul').val();
-		var stat = ${monthly_fee.monthly_fee};
+		var stat = ${master_fee.monthly_fee};
 		var stuff = Number($('#due_payment').val());
 			var monthly_fee = Number(months*stat);
 			var gross_fee = monthly_fee+stuff ;
@@ -517,11 +522,14 @@
 																					"<span class='label label-warning'>Pending</span>");
 
 																}
+																var love = (member_status.status);
+																$('#statSupport').val(love);
 															}
-
+												
 														});
 
 											});
+							
 							$("#mem_id").on('change',function() {
 												var mem_id = $("#mem_id").val();
 												$
@@ -594,12 +602,17 @@
 
 						});
 	</script>
+
+	
 	<script>
 		$(document).ready(function() {
 			/* Bootstrap Datepicker Validation */
 			// $('.page').animate('fadeIn').show('slow',true);
 			//	$('.page').hide('slow').fadeIn({queue: false, duration: 'slow'}).show('slow');
+			  
 			$('#sandbox-container .input-group.date .my_date').datepicker({
+			
+				
 				format : "yyyy-mm-dd",
 				weekStart : 1,
 				todayBtn : false,
@@ -609,8 +622,38 @@
 				todayHighlight : false,
 				startDate : 'today'
 			});
+			
+			$('#fee_mnul').on('change',function(){
+			var multiNo =$('#fee_mnul').val();
+			var lastActive = $('#act_date').val();
+			if(lastActive == ""){
+				var beginDate = new Date();
+			}else{
+				
+				var currentStatus = $('#statSupport').val();
+				if(currentStatus == (0 || 2)){
+					var beginDate = new Date();
+				}else{
+					var beginDate = new Date(lastActive);
+				}
+				
+			}
+				
+		//	var beginDate = new Date();
+	        var month = (parseInt(beginDate.getMonth()) + parseInt(multiNo)) % 12;
+	        var year = (parseInt(beginDate.getMonth()) + parseInt(multiNo)) / 12;
+	        beginDate.setMonth(month);
+	        beginDate.setFullYear(parseInt(beginDate.getFullYear()) + year );
+	        var twoDigitMonth = ((beginDate.getMonth().length+1) === 1)? "0"+(beginDate.getMonth()+1) : (beginDate.getMonth()+1);
+ 			var currentDate = beginDate.getFullYear() + "-" + twoDigitMonth + "-" + beginDate.getDate();
+				console.log(currentDate);
+	     //   $('#monthly_payment').val(currentDate);
+	   //     $('#date').val(currentDate);
+	        $(".my_date").datepicker("update",currentDate);
+	        
+			});
 		});
-	</script>
+	</script> 
 <script>
 		$(document).ready(function() {
 							$(function() {

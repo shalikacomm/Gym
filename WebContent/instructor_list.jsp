@@ -32,7 +32,7 @@
 							<div class="panel-heading">
 								Instructor List <a class="pull-right"
 									href="InstructorController?action=insert"><button
-										class="btn-primary">Add New</button></a>
+										class="btn btn-primary">Add New</button></a>
 							</div>
 							<div class="panel-body">
 
@@ -41,10 +41,11 @@
 										id="dataTables-example">
 										<thead>
 											<tr>
-												<th>ID</th>
-												<th>Name</th>
-												<th>Email</th>
-												<th>Action</th>
+												<th style="width: 10%;">ID</th>
+												<th style="width: 20%;">Name</th>
+												<th style="width: 40%;">Email</th>
+												<th style="width: 15%;">Status</th>
+												<th style="width: 15%;">Action</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -53,15 +54,25 @@
 													<td><c:out value="${temp.ins_id}" /></td>
 													<td><c:out value="${temp.ins_name}" /></td>
 													<td><c:out value="${temp.ins_email}" /></td>
+													<td>
+														<c:if test="${temp.status ==1 }">
+														<lable class=" label btn-success">Active</lable>
+														</c:if> 
+														<c:if test="${temp.status ==0 }">
+														<lable class=" label btn-danger">Deactive</lable>
+														</c:if>
+												
+													</td>
 													<td><a
-														href="InstructorController?action=edit&ins_id=<c:out value="${temp.ins_id}"/>">Update</a>
+														href="InstructorController?action=edit&ins_id=	<c:out value="${temp.ins_id}"/>" class="btn btn-default btn-grad btn-sm" ><span ><i class="icon-edit" style="color:#455862;"></i></span></a>
+														
 														<c:if test="${temp.status ==1 }">
 															<a
-																href="InstructorController?action=deactive&ins_id=<c:out value="${temp.ins_id}"/>">Deactivate</a>
+																href="InstructorController?action=deactive&ins_id=<c:out value="${temp.ins_id}"/>" class="navg status btn btn-default btn-grad btn-sm"><span><i class="icon-trash" style="color:#455862;"></i></span></a>
 														</c:if> 
 														<c:if test="${temp.status ==0 }">
 															<a
-																href="InstructorController?action=active&ins_id=<c:out value="${temp.ins_id}"/>">Activate</a>
+																href="InstructorController?action=active&ins_id=<c:out value="${temp.ins_id}"/>" class="status btn btn-default btn-grad btn-sm"><span><i class="icon-ok " style="color:#455862;"></i></span></a>
 														</c:if></td>
 												</tr>
 											</c:forEach>

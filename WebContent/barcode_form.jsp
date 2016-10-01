@@ -6,6 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <%@include file="head_src.jsp"%>
+<link rel="stylesheet" href="assets/css/jquery-ui.css" />
 
 </head>
 <body class="padTop53 ">
@@ -13,15 +14,26 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner">
+			<div class="inner" style="min-height: 700px;">
+
 		
-			
+
+
+
+
+
+
 			</div>
 		</div>
 
-		<%@include file="right_panel.jsp"%>
 	</div>
+
+
+	<%@include file="right_panel.jsp"%>
+
 	<%@include file="footer.jsp"%>
 
+	<script src="assets/js/jquery-ui.min.js"></script>
+	
 </body>
 </html>

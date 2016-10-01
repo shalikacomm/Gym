@@ -85,7 +85,7 @@ public class MemberFeeController extends HttpServlet {
 				req.setAttribute("fee_id", generateID);
 				MemberPaymentDAO dao = new MemberPaymentDAOImpl();
 				MemberPaymentEntity pay = dao.getMonthlyFee();
-				req.setAttribute("monthly_fee",pay);
+				req.setAttribute("master_fee",pay);
 				}
 		  
 		  else if (action.equalsIgnoreCase("getSubs")) {

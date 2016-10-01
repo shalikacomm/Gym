@@ -31,8 +31,36 @@
 
 
 <!-- tiles styles  -->
-
-
+ <link href="assets/bootstrap-notify-master/animate.css" rel="stylesheet" />
+ <!-- this is for notifications -->
+<style>
+            /*@import url(http://fonts.googleapis.com/css?family=Old+Standard+TT:400,700);*/
+            [data-notify="container"][class*="alert-pastel-"] {
+                background-color: rgb(255, 255, 238);
+                border-width: 0px;
+                border-left: 15px solid rgb(255, 240, 106);
+                border-radius: 0px;
+                box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.3);
+                font-family: 'Old Standard TT', serif;
+                letter-spacing: 1px;
+            }
+            [data-notify="container"].alert-pastel-info {
+                border-left-color: rgb(255, 179, 40);
+            }
+            [data-notify="container"].alert-pastel-danger {
+                border-left-color: rgb(255, 103, 76);
+            }
+            [data-notify="container"][class*="alert-pastel-"] > [data-notify="title"] {
+                color: rgb(80, 80, 57);
+                display: block;
+                font-weight: 700;
+                margin-bottom: 5px;
+            }
+            [data-notify="container"][class*="alert-pastel-"] > [data-notify="message"] {
+                font-weight: 400;
+            }
+        </style>
+ <!-- this is for notifications end -->
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
@@ -85,8 +113,8 @@
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="UserCon?action=list" >
- <i class="fa fa-graduation-cap fa-5x"></i>
-                      <h4>See Users</h4>
+ <i class=" fa fa-users fa-5x"></i>
+                      <h4>Manage Users</h4>
                       </a>
                       </div>
                      
@@ -166,7 +194,8 @@
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="UserCon?action=insert" >
- <i class="fa fa-users fa-5x"></i>
+                          
+ <i class="fa fa-graduation-cap fa-5x"></i>
                       <h4>Add Users</h4>
                       </a>
                       </div>
@@ -228,6 +257,71 @@
 		<%@include file="right_panel.jsp"%>
 	</div>
 	<%@include file="footer.jsp"%>
+	<script src="assets/bootstrap-notify-master/bootstrap-notify.min.js"></script>
+	
+	<!-- <script>
+            $(document).ready(function () {
+
+                var jqXHR = $.ajax({
+                    type: "POST",
+                    url: "<?php echo base_url(); ?>index.php/doctor/getTodayAppointmentsNotify",
+                    dataType: 'json',
+                    success: function (data) {
+                        console.log(data);
+                        if (data.record_1 === 'YES') {
+                            if (data.rec !== "") {
+
+                                $.each(data.rec, function (i, obj) {
+                                    $.notify({
+                                        // options
+//                                    icon: 'glyphicon glyphicon-warning-sign',
+                                        title: 'Appointments:',
+                                        message: 'You have ' + obj.number_count + ' appointments on ' + obj.session + '&nbsp;session',
+                                        url: '<?php echo base_url(); ?>index.php/appointments/view_calendar',
+                                        target: '_self'
+                                    }, {
+                                        // settings
+                                        type: 'pastel-warning',
+                                        delay: 2000,
+                                        timer: 5000,
+//                                    animate: {
+//                                        enter: 'animated fadeInDown',
+//                                        exit: 'animated fadeOutUp'
+//                                    }
+                                        placement: {
+                                            from: "top",
+                                            align: "right"
+                                        },
+                                    }
+                                    );
+
+                                });
+                            } else {
+                                $.notify({
+                                    // options
+//                                    icon: 'glyphicon glyphicon-warning-sign',
+                                    title: 'Bootstrap notify',
+                                    message: 'You have no appointments Today',
+                                    url: '<?php echo base_url(); ?>index.php/appointments/petOwnerBookAppointments',
+                                    target: '_self'
+                                }, {
+                                    // settings
+                                    type: 'pastel-warning',
+                                    delay: 2000,
+                                    timer: 5000,
+//                                    animate: {
+//                                        enter: 'animated fadeInDown',
+//                                        exit: 'animated fadeOutUp'
+//                                    }
+                                }
+                                );
+                            }
+                        }
+                    }
+                });
+            });
+        </script> -->
+	
 
 </body>
 </html>

@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
-<link rel="stylesheet" href="assets/css/bootstrap-select.min.css" />
+
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
@@ -32,7 +32,7 @@
 	<%@include file="right_panel.jsp"%>
 
 	<%@include file="footer.jsp"%>
-	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+
 	<script src="assets/js/jquery-ui.min.js"></script>
 	
 </body>

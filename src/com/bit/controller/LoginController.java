@@ -59,11 +59,15 @@ public class LoginController extends HttpServlet {
 			user.setPassword(request.getParameter("password"));
 			user =userDAO.login(user);// Send User name and Password to User DAO
 			if (user.isValid()) { // Check availability of the user
-
+				if(user.getRole().equalsIgnoreCase("member")){
+					HttpSession session = request.getSession(true);
+					session.setAttribute("frontSessionUser", user);
+					response.sendRedirect("index_front.jsp");
+				}else {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
 				response.sendRedirect("dashboard.jsp"); // Redirect to Home page
-
+				}
 			} else {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("InvalidUser", user);

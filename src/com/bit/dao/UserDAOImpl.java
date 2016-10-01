@@ -111,6 +111,65 @@ public class UserDAOImpl implements UserDAO {
 			return users;
 
 	}
+	public List<UserEntity>getAllActiveUsers() {
+		connection = DBUtil.getConnection();
+		List<UserEntity> users = new ArrayList<UserEntity>();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select * from user_tbl WHERE status =1");
+			while (rs.next()) {
+				UserEntity user = new UserEntity();
+				user.setUser_id(rs.getString("user_id"));
+				user.setFirst_name(rs.getString("first_name"));
+				user.setLast_name(rs.getString("last_name"));
+				user.setDob(rs.getDate("dob"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setAddress(rs.getString("address"));
+				user.setMarital_status(rs.getInt("marital_status"));
+				user.setMobile_number(rs.getString("mobile_number"));
+				user.setRole(rs.getString("role"));
+				user.setStatus(rs.getInt("status"));
+				user.setNic(rs.getString("nic"));
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+		
+	}
+	
+	public List<UserEntity>getAllActiveMemberUsers() {
+		connection = DBUtil.getConnection();
+		List<UserEntity> users = new ArrayList<UserEntity>();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select * from user_tbl WHERE status =1 AND role='member'");
+			while (rs.next()) {
+				UserEntity user = new UserEntity();
+				user.setUser_id(rs.getString("user_id"));
+				user.setFirst_name(rs.getString("first_name"));
+				user.setLast_name(rs.getString("last_name"));
+				user.setDob(rs.getDate("dob"));
+				user.setEmail(rs.getString("email"));
+				user.setPassword(rs.getString("password"));
+				user.setGender(rs.getString("gender"));
+				user.setAddress(rs.getString("address"));
+				user.setMarital_status(rs.getInt("marital_status"));
+				user.setMobile_number(rs.getString("mobile_number"));
+				user.setRole(rs.getString("role"));
+				user.setStatus(rs.getInt("status"));
+				user.setNic(rs.getString("nic"));
+				users.add(user);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return users;
+		
+	}
 
 	@Override
 	public UserEntity getUserById(String userId) {

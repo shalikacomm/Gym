@@ -12,11 +12,6 @@
 <!-- PAGE LEVEL STYLES -->
 
 <link href="assets/css/jquery-ui.css" rel="stylesheet" />
-<link rel="stylesheet"
-	href="assets/plugins/uniform/themes/default/css/uniform.default.css" />
-<link rel="stylesheet"
-	href="assets/plugins/inputlimiter/jquery.inputlimiter.1.0.css" />
-<link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
 
 
@@ -137,14 +132,14 @@
 								<div class="row">
 									<div class="form-actions no-margin-bottom"
 										style="text-align: center;">
-										<div class="col-sm-6"></div>
+										<div class="col-sm-3"></div>
 										<div class="col-sm-6">
 											<div>
-												<input style="left: 118%; width: 15%;" id="btn_save"
-													value="Save" class="btn btn-success btn-lg " type="submit">
+												<input id="btn_save"
+													value="Save" class="btn btn-success btn-md " type="submit">
 												<input id="btn_reset" value="Reset"
-													class="btn btn-warning btn-lg " type="reset" /> <a
-													class="btn btn-primary btn-lg"
+													class="btn btn-warning btn-md " type="reset" /> <a
+													class="btn btn-primary btn-md"
 													href="ProductCon?action=list">Cancel</a>
 											</div>
 
@@ -169,20 +164,9 @@
 
 
 	<!-- PAGE LEVEL SCRIPT-->
-	<script src="assets/js/jquery-ui.min.js"></script>
-	<script src="assets/plugins/uniform/jquery.uniform.min.js"></script>
- <script
-		src="assets/plugins/inputlimiter/jquery.inputlimiter.1.3.1.min.js"></script>
-	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
-	<script src="assets/plugins/tagsinput/jquery.tagsinput.min.js"></script>
-	<script src="assets/plugins/validVal/js/jquery.validVal.min.js"></script>
-	<script src="assets/plugins/switch/static/js/bootstrap-switch.min.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
 	<script type="text/javascript"
 		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script> 
-
-	<script src="assets/plugins/autosize/jquery.autosize.min.js"></script>
-	<script src="assets/plugins/jasny/js/bootstrap-inputmask.js"></script>
-	<script src="assets/js/formsInit.js"></script>
 	<script src="assets/js/sweetalert.min.js"></script>
 	<script src="assets/js/validationInit.js"></script>
 	<script type="text/javascript">
@@ -208,7 +192,7 @@
 																if (data == 'true') {
 																	swal(
 																			{
-																				title : "Good job!",
+																				title : "Success Function!",
 																				text : "You created a product!",
 																				type : "success",
 																				showCancelButton : false,
@@ -232,9 +216,7 @@
 											});
 						});
 	</script>
-	<script>
-		
-	</script>
+
 	<!--END PAGE LEVEL SCRIPT-->
 
 </body>

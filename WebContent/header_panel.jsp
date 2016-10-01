@@ -23,6 +23,7 @@
 			
 		</header>
 		<!-- END LOGO SECTION -->
+		
 		<ul class="nav navbar-top-links navbar-right">
 
 			<!--ADMIN chat bar SECTIONS -->
@@ -39,7 +40,29 @@
 					<li><a href="LoginCon?action=logout"><i class="icon-signout"></i>
 							Logout </a>
 							</li>
-				</ul></li>
+				</ul>
+			
+				
+				</li>
+			<!--END chat bar SETTINGS -->
+		</ul>
+		
+		<ul class="nav navbar-top-links navbar-right">
+
+			<!--ADMIN chat bar SECTIONS -->
+
+			<li class="dropdown"><a class="dropdown-toggle"
+				data-toggle="dropdown" href="#"><span class="label label-danger" id="count"></span> <i class="icon-globe"></i>&nbsp;
+					<i class="icon-chevron-down "></i>
+			</a>
+
+				 <ul class="dropdown-menu dropdown-alerts" id="lowQty">
+					<h4>Low Quantity</h4>
+                           
+                        </ul>
+				
+				
+				</li>
 			<!--END chat bar SETTINGS -->
 		</ul>
 
@@ -47,3 +70,23 @@
 
 </div>
 <!-- END HEADER SECTION -->
+<script>
+$(document).ready(function(){
+	
+	$.ajax({
+		type:'get',
+		url:'ProductCon?action=lowQuantity',
+		dataType:'json',
+		success:function(data){
+			$("#count").append(data.record.length);
+			$.each(data.record,function(i,obj){
+				html='<li><a href="ProductCon?action=list"><div><i class="icon-info" > </i>&nbsp;'+obj.description+'<span class="pull-right text-muted small">'+ obj.stock+
+				'</span></div></a></li>';
+				$("#lowQty").append(html);
+			});
+		}
+	});
+	
+	
+});
+</script>

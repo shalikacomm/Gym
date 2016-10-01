@@ -51,7 +51,40 @@ public class UserController  extends HttpServlet{
 			UserEntity user = dao.getUserById(user_id);
 			req.setAttribute("userObject", user);
 
-		} else if (action.equalsIgnoreCase("deactive")) {
+		}
+		else if (action.equalsIgnoreCase("sendEmail")) {
+			String result = null;
+			Methods method = new Methods();
+			//forward = INSERT_OR_EDIT;
+			String email = req.getParameter("email");
+			String first_name = req.getParameter("first_name");
+			String subject = req.getParameter("subject");
+			String message_body = req.getParameter("message_body");
+			String MsgBody = "Hi " + first_name + "," 
+                    +  " \n \n <strong>"+message_body + " </strong>"
+                    + "\n \n (Dear valued customer this is a System Generated message)"
+                    + " \n \n Thank you, \n System Administrator, \n Fit & Fun gym Management System";
+			
+			 result = method.sendMail(email, subject, MsgBody);
+			 boolean res = false;
+	if(result == "success"){
+		res = true;
+	}else {
+		res = false;
+	}
+	try (PrintWriter out = resp.getWriter()) {
+		resp.setContentType("application/json");
+		resp.setCharacterEncoding("UTF-8");
+
+		out.print(res);
+
+		out.flush();
+		out.close();
+		return;
+	}
+
+		}
+		else if (action.equalsIgnoreCase("deactive")) {
 
 			String userId = req.getParameter("user_id");
 			boolean result =  dao.deactivateUser(userId);
@@ -85,8 +118,11 @@ public class UserController  extends HttpServlet{
 				return;
 			}
 		}
+		
+		if(forward!=""){
 		RequestDispatcher view = req.getRequestDispatcher(forward);
 		view.forward(req, resp);
+		}
 		
 	}
 	@Override

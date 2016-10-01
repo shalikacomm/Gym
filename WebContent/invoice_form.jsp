@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/modal.css" />
 
-
 </head>
 <body class="padTop53 ">
 
@@ -734,9 +733,13 @@ function onFocus(el) {
 
 								var total = $('#invoiced_total').val();
 
-								var disc_rate = parseInt($("#disc").val());
+								var disc_rate1 = parseInt($("#disc").val());
 								// $('#disc').val(disc_rate)
-
+								 if(isNaN(disc_rate1)){
+						                disc_rate = 0;
+						            }else {
+						                 disc_rate = disc_rate1;
+						            }
 								discounted_val = total * (1 - disc_rate / 100);
 
 								$('#invoiced_total').val(
@@ -832,7 +835,7 @@ function onFocus(el) {
 																								closeOnConfirm : true
 																							},
 																							function() {
-																							//	 window.location = "InvoiceCon?action=invoice_list";
+																							 window.location = "InvoiceCon?action=invoice_list";
 																							});
 																				} else {
 																					swal(
