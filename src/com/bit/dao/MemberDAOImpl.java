@@ -20,6 +20,7 @@ public class MemberDAOImpl implements MemberDAO {
 	public void addMember(MemberEntity member) {
 		connection = DBUtil.getConnection();
 
+		java.sql.Date date = getCurrentDatetime();
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(
 					"INSERT INTO member_tbl  values (?, ?, ?, ?,?, ?, ?, ?,?, ?, ?, ?,? )");
@@ -35,7 +36,8 @@ public class MemberDAOImpl implements MemberDAO {
 			preparedStatement.setDouble(10, member.getShoulder_length());
 			preparedStatement.setDouble(11, member.getThigh());
 			preparedStatement.setDouble(12, member.getBicep());
-			preparedStatement.setInt(13, 1);
+			preparedStatement.setDate(13, date);
+			preparedStatement.setInt(14, 1);
 
 			preparedStatement.executeUpdate();
 
@@ -51,6 +53,10 @@ public class MemberDAOImpl implements MemberDAO {
 				}
 			}
 		}
+	}
+	public java.sql.Date getCurrentDatetime() {
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
 	}
 
 	@Override

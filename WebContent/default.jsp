@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
+<link rel="stylesheet" href="assets/css/login.css" />
 
 </head>
 <body class="padTop53 ">
@@ -16,15 +17,9 @@
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
 
-		
 
 
 
-
-
-
-			</div>
-		</div>
 
 	</div>
 
@@ -34,6 +29,13 @@
 	<%@include file="footer.jsp"%>
 
 	<script src="assets/js/jquery-ui.min.js"></script>
-	
+	<script src="assets/js/login.js"></script>
+	<script>
+	 $('#thedate').datepicker({
+		    dateFormat: 'dd-mm-yy',
+		    altField: '#thealtdate',
+		    altFormat: 'yy-mm-dd'
+		});
+	</script>
 </body>
 </html>

@@ -24,7 +24,10 @@
 					<div class="col-lg-12">
 
 
-						<h2>Receipt List</h2>
+														<ul class="breadcrumb">
+  <li><a href="dashboard.jsp">Home</a></li>
+  <li><a href="InvoiceCon?action=list">Receipt List</a></li>
+    </ul>
 		</div>
 				</div>
 

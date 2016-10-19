@@ -127,35 +127,15 @@
 					 dataName.push(obj.description);
 					dataValue.push(obj.stock);	
 			});
-//$("#c").click().trigger();	
-$( "#c" ).on( "click", function() {
-	 // alert( $( this ).text() );
-	});
-	$( "#c" ).trigger( "click" );
-			
-			//alert(dataName);
-			
+
 		}
 
 	});
 
-		
-	
-	
 	  var ctx = document.getElementById("c").getContext("2d");
       var data = {
           labels: dataName,
           datasets: [
-//    {
-//  label: "My First dataset",
-//  fillColor: "rgba(220,220,220,0.2)",
-//  strokeColor: "rgba(220,220,220,1)",
-//  pointColor: "rgba(220,220,220,1)",
-//  pointStrokeColor: "#fff",
-//  pointHighlightFill: "#fff",
-//  pointHighlightStroke: "rgba(220,220,220,1)",
-//  data: [65, 59, 80, 81, 56, 55, 40]
-//},
               {
                    backgroundColor: [
                       '#FF6384',
@@ -165,11 +145,7 @@ $( "#c" ).on( "click", function() {
                       '#4BC0C0',
                       '#FFCE56'
                   ],
-//                  borderColor: [
-//                      'rgba(255,99,132,1)',
-//                      'rgba(54, 162, 235, 1)',
-//                      'rgba(255, 159, 64, 1)'
-//                  ],
+              
                   data: dataValue,
                   spanGaps: false,
               }]
@@ -179,11 +155,10 @@ $( "#c" ).on( "click", function() {
           type: 'bar',
           data: data,
           options: {
-              // Elements options apply to all of the options unless overridden in a dataset
-              // In this case, we are setting the border of each bar to be 2px wide and green
-
+           
               responsive: true,
               legend: {
+            	  text : 'click here',
                   position: 'bottom',
               },
               title: {
@@ -194,8 +169,8 @@ $( "#c" ).on( "click", function() {
                   yAxes: [{
                           display: true,
                           scaleLabel: {
-                              show: true,
-                              labelString: 'Value'
+                          show: true,
+                          labelString: 'Value'
                           },
                           ticks: {
                               min: 1,

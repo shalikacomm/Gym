@@ -53,7 +53,7 @@ public class UserController  extends HttpServlet{
 
 		}
 		else if (action.equalsIgnoreCase("sendEmail")) {
-			String result = null;
+			boolean result = false;
 			Methods method = new Methods();
 			//forward = INSERT_OR_EDIT;
 			String email = req.getParameter("email");
@@ -66,17 +66,13 @@ public class UserController  extends HttpServlet{
                     + " \n \n Thank you, \n System Administrator, \n Fit & Fun gym Management System";
 			
 			 result = method.sendMail(email, subject, MsgBody);
-			 boolean res = false;
-	if(result == "success"){
-		res = true;
-	}else {
-		res = false;
-	}
+			
+	
 	try (PrintWriter out = resp.getWriter()) {
 		resp.setContentType("application/json");
 		resp.setCharacterEncoding("UTF-8");
 
-		out.print(res);
+		out.print(result);
 
 		out.flush();
 		out.close();

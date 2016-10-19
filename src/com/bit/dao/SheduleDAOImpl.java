@@ -59,10 +59,6 @@ public java.sql.Date getCurrentDatetime() {
 	return new java.sql.Date(today.getTime());
 }
 
-	
-	
-	
-	
 	public List<ExerciseEntity> getActiveExercise() {
 
 		connection = null;

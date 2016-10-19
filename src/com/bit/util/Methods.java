@@ -28,6 +28,46 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 
 public class Methods {
+	
+	  public String RandomCode() {
+	        java.util.Random r = new java.util.Random();
+	        int i = 1, n = 0;
+	        char c;
+	        String str = "";
+	        for (int t = 0; t < 3; t++) {
+	            while (true) {
+	                i = r.nextInt(10);
+	                if (i > 5 && i < 10) {
+
+	                    if (i == 9) {
+	                        i = 90;
+	                        n = 90;
+	                        break;
+	                    }
+	                    if (i != 90) {
+	                        n = i * 10 + r.nextInt(10);
+	                        while (n < 65) {
+	                            n = i * 10 + r.nextInt(10);
+	                        }
+	                    }
+
+	                    break;
+	                }
+	            }
+	            c = (char) n;
+
+	            str = String.valueOf(c) + str;
+	        }
+	        while (true) {
+	            i = r.nextInt(10000000);
+	            if (i > 999999) {
+	                break;
+	            }
+	        }
+	        str = str + i;
+	        System.out.println("CODE: " + str);
+	        return str;
+	    }
 	  public String generateID(String prefix, String column, String tableName) {
 	        String generatedId = "";
 	        Connection con=null;
@@ -70,8 +110,8 @@ public class Methods {
 			}
 	        return generatedId;
 	    }
-	 public String sendMail(String to, String subject, String Msgbody){
-		  String result = null;
+	 public boolean sendMail(String to, String subject, String Msgbody){
+		  boolean result = false;
 		  
 		//  to = "shalikacomm@gmail.com"; //change accordingly
 
@@ -118,7 +158,7 @@ public class Methods {
 	         Transport.send(message);
 
 	         System.out.println("Sent message successfully....");
-	         result = "success";
+	         result = true;
 	      } catch (MessagingException e) {
 	            throw new RuntimeException(e);
 	      }

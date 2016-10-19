@@ -7,6 +7,7 @@
 <title>Attendence Form</title>
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
+<link rel="stylesheet" href="assets/css/sweetalert.css" />
 <!--for the horizontal tabs-->
         <style>
             .tabbable-panel {
@@ -48,14 +49,14 @@
                 margin-top: 0px;
             }
             .tabbable-line > .nav-tabs > li.active {
-                border-bottom: 4px solid #27C3BB;
+                border-bottom: 4px solid  #333fff ;
                 position: relative;
             }
             .tabbable-line > .nav-tabs > li.active > a {
                 border: 0;
                 color: #333333;
                 margin-bottom: 15px;
-                color: #455862;
+                color: primary;
                 font-weight: 500;
                 font-family: inherit;
                 border-radius: 0px;
@@ -100,7 +101,7 @@
 								<div class="col-md-9" style="margin-top: 2.0%;">
                         <div class="tabbable-panel">
                             <div class="tabbable-line">
-                                <ul class="nav nav-tabs "style="border-radius: 0px; color: #455862; border-bottom: 3px solid #27C3BB; font-family: inherit; font-weight: 500;">
+                                <ul class="nav nav-tabs "style="border-radius: 0px; color:  #333fff ; border-bottom: 3px solid  #333fff ; font-family: inherit; font-weight: 500;">
                                     <li class="active">
                                         <a href="#tab_default_1" data-toggle="tab">
                                            BARCODE</a>
@@ -115,7 +116,7 @@
                                     <!--tab content of the ADD SERVICE tab-->
                                     <div class="tab-pane active" id="tab_default_1"><br/>
                                         <div class="row">
-                                            <form id="barcode_submit_form" method="POST">
+                                            <form id="barcode_submit_form" method="get" action="AttenCon">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label style=" font-size: 20.5px; margin-left:8%; margin-top:5%">Mark From Barcode</label>
@@ -125,17 +126,17 @@
                                                     <div class="row">
                                                         <div class="form-group" style="margin-top: 8%;">
                                                             <div class="col-md-3">
-                                                                <label style="font-size: 13.5px; margin-top:3%">Category ID</label>
+                                                                <label style="font-size: 13.5px; margin-top:3%">Barcode ID</label>
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <input class="form-control barcode" value="" type="text" id="category_id" name="category_id" />
+                                                                <input class="form-control barcode" value="" type="text" id="barcode_id" name="barcode_id" />
                                                             </div>
                                                         </div>
                                                     </div>
                                               <br/>
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <button type="submit" class="btn btn-info btn-sm" style=" border-radius: 6px; margin-left: 48%; background: #27C3BB;">Submit</button>
+                                                            <button type="button" id ="barSub" class="btn btn-primary btn-sm" style=" border-radius: 6px; margin-left: 48%; background: primary; " >Submit</button>
                                                            
                                                         </div>
                                                     </div></div>
@@ -144,7 +145,7 @@
                                     </div>
                                     <div class="tab-pane" id="tab_default_2"><br/>
                                         <div class="row">
-                                            <form id="manual_submit_form" method="POST">
+                                            <form id="manual_submit_form" method="get" action="AttenCon">
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <label style=" font-size: 20.5px; margin-left:8%; margin-top:5%">Add Sub-service</label>
@@ -170,7 +171,7 @@
                                                     <!--<hr style="margin-left: 15%; "/>-->
                                                     <div class="row">
                                                         <div class="col-md-12">
-                                                            <button type="submit" class="btn btn-info btn-sm" style=" border-radius: 6px; margin-left: 48%; background: #27C3BB;">Submit</button>
+                                                            <button type="button" class="btn btn-info btn-sm" style=" border-radius: 6px; margin-left: 48%; background: #27C3BB;">Submit</button>
                                                             <input type="reset" class="btn btn-default btn-sm" style="margin-left: 60%; margin-top: -7.5%; " value="Reset" />
                                                         </div>
                                                     </div>
@@ -205,12 +206,52 @@
 	<%@include file="right_panel.jsp"%>
 
 	<%@include file="footer.jsp"%>
-
+		<script src="assets/js/sweetalert.min.js"></script>
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script>
-	$(document).ready(function(){
+/* 	$(document).ready(function(){
 		$(".barcode").focus();
-	});
+	}); */
 	</script>
+	
+	<script>
+	$(document).ready(function(){
+		// alert(4566);
+		$('#barSub').on('click',function(){
+			
+			$('#barcode_id').keypress(function (e) {
+				alert(1235);
+				 var key = e.which;
+				 if(key == 13)  // the enter key code
+				  {
+				    $('#barSub').click();
+				     
+				  }
+				}); 
+			
+			var user_id = $('#barcode_id').val();
+			//alert(user_id);
+			$.ajax({
+				method: 'get',
+				dataType : "json",
+				url: 'AttenCon?action=check&user_id='+user_id,
+				success: function(data){
+					var result = data.record;
+					if(result== true){
+						swal("Product updated!", "You clicked the button!", "success");
+						//alert("its activated");
+						window.location="attendance_form.jsp";
+					}else{
+					alert("its not activated");
+				}
+			
+		}
+		
+	});
+	});
+	});
+	
+	</script>
+	
 </body>
 </html>

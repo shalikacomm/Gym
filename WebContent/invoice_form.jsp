@@ -13,14 +13,28 @@
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/modal.css" />
-
+<style>
+.popover-title {
+    background-color: #df6262;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align:;
+}
+</style>
 </head>
 <body class="padTop53 ">
+
 
 	<div id="wrap">
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
+	
+	
+		
+				
 		<div id="content">
+	
+		
 			<div class="inner" style="min-height: 700px;">
 				<form id="invoiceForm" class="form-horizontal" align="center"
 					method="post" action="InvoiceCon" novalidate>
@@ -29,9 +43,12 @@
 							<div class="box dark">
 								<header>
 								<div class="icons">
-									<i class="icon-glass"></i>
+									<i class="icon-bitbucket-sign "></i>
 								</div>
-								<h5>Invoice Header Details</h5>
+										<ul class="breadcrumb">
+  <li><a href="dashboard.jsp">Home</a></li>
+  <li><a href="InvoiceCon?action=insert">Sell Products</a></li>
+    </ul>
 								</header>
 
 
@@ -140,25 +157,24 @@
 								<div class="inv_body">
 									<div class="row inv_row" id="inv_row0">
 										<div class="col-md-4 text-center" style="margin-left:1%;">
-											<select id="inv_item0" name="inv_item"
-												class="form-control chzn-select inv_item keep">
+											<select id="inv_item0" name="inv_item" class="form-control chzn-select inv_item keep">
 
 											</select>
 										</div>
-										<div class="col-md-1 text-center">
+										<div class="col-md-1 text-center" id="price">
 											<input readonly id="inv_price0"
 												class="form-control inv_price" name="inv_price"
 												id="inv_price0" type="text" />
 										</div>
-										<div class="col-md-2 text-center">
+										<div class="col-md-2 text-center" id="unit">
 											<input readonly id="inv_unit0" class="form-control inv_unit"
 												name="inv_unit" type="text" />
 										</div>
-										<div class="col-md-1 text-center ">
+										<div class="col-md-1 text-center" id="quantity">
 											<input class="form-control child" name="inv_qty"
 												id="inv_qty0" type="text" />
 										</div>
-										<div class="col-md-2 text-center">
+										<div class="col-md-2 text-center" id="subTotal">
 											<input class="form-control" name="inv_sub_total"
 												id="inv_sub_total0" readonly="readonly" type="text"
 												style="text-align: right;" />
@@ -193,13 +209,8 @@
 					<div class="row">
 						<div class="col-lg-12">
 							<div class="box dark">
-								<header>
-								<div class="icons">
-									<i class="icon-glass"></i>
-								</div>
-								<h5>Invoice Header Details</h5>
-								</header>
-								</br>
+							
+						
 								<div class="row">
 									<div class="form-group">
 										<div class="col-md-8">
@@ -586,7 +597,9 @@ function onFocus(el) {
 							$(".chzn-select").prop('disabled', false).trigger('chosen:updated');
 							var index = 1;
 							$("#add-item").click(function(e) {
+								
 												e.preventDefault();
+												
 
 												var inv_row = $('<div id="inv_row'+index+'"  class="row inv_row" style="margin-top:8px">'
 														+ '<div class="col-md-4 text-center" style="margin-left:1%;">'
@@ -609,31 +622,49 @@ function onFocus(el) {
 														+ '<div class="col-md-1 text-center">'
 														+ '<button  class="btn btn-danger item_remove" id = "kmk" type="button"><i class="icon-minus-sign"></i></button>'
 														+ '</div>' + '</div>');
-												$(".inv_body").append(inv_row).show('slow');
+												
+												
+												var inv_qty=$("[id^='inv_qty']").last().val();
+												var line_id = $("[id^='inv_qty']").last().attr('id'); 
+												var cur_id = line_id.replace(
+														"inv_qty", ""); 
+												// alert(current_id);
+												if(inv_qty == ""){
+													$('#inv_qty'+cur_id).popover({
+											          //  title: 'Warning!',
+											            title: 'Value can not be empty',
+											            placement: 'bottom',
+											            color: '#df6262'
+											        }).popover('show');
+												}else{
+													$('#inv_qty'+cur_id).popover('destroy');
+													$(".inv_body").append(inv_row).show('slow');
 
-												$.ajax({
-															type : "GET",
-															url : "InvoiceCon?action=products",
-															dataType : "json",
-															beforeSend : function(
-																	xhr) {
-																$("#inv_item"+ index).empty();
-															},
-															success : function(data) {
-																var div_data = "<option></option>";
-																$(div_data).appendTo("#inv_item"+ index);
-																$.each(data.record,function(i,obj) {
-																					div_data = "<option value=" + obj.productID + ">"
-																							+ obj.description
-																							+ "</option>";
-																					$(div_data).appendTo("#inv_item"+ index);
-																				});
+													$.ajax({
+																type : "GET",
+																url : "InvoiceCon?action=products",
+																dataType : "json",
+																beforeSend : function(
+																		xhr) {
+																	$("#inv_item"+ index).empty();
+																},
+																success : function(data) {
+																	var div_data = "<option></option>";
+																	$(div_data).appendTo("#inv_item"+ index);
+																	$.each(data.record,function(i,obj) {
+																						div_data = "<option value=" + obj.productID + ">"
+																								+ obj.description
+																								+ "</option>";
+																						$(div_data).appendTo("#inv_item"+ index);
+																					});
 
-																$("#inv_item"+ index).chosen().trigger("chosen:updated");
-																index++;
-															}
+																	$("#inv_item"+ index).chosen().trigger("chosen:updated");
+																	index++;
+																}
 
-														});
+															});
+												}
+											
 
 											});//END (add-item)
 
@@ -656,11 +687,19 @@ function onFocus(el) {
 											
 												
 											});
-										
-											
+										/* 	$("#price").hide();
+											$("#unit").hide();
+											$("#quantity").hide();
+											$("#subTotal").hide();
+ */
 
 							$("body").on('change',".inv_item",function() {
 												var id = this.id;
+											/* 	
+												$("#price").show("slow");
+												$("#unit").show("slow");
+												$("#quantity").show("slow");
+												$("#subTotal").show("slow"); */
 
 												var product_id = this.value;
 
@@ -785,10 +824,22 @@ function onFocus(el) {
 
 							});
 							/* 	end 	Select the payment mode tab */
-
+							
+						
 						});
 	</script>
-
+	<script>
+	
+function checknull() {
+    var name = $('#address_input_slpw_adv').val();
+    if (!name.trim()) {
+        alert('You must enter a zip code or city name.');
+        return false;
+    } else {
+        alert('Proceed with submit');
+    }
+}
+</script>
 	<script>
 		$(document).ready(function() {
 							$(function() {

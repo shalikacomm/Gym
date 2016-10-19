@@ -1,16 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Schedule Form</title>
+<title>Workout Charts</title>
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
+<link rel="stylesheet" href="assets/css/login.css" />
 <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
-
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
+
+
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
@@ -19,10 +20,10 @@
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
 
-				<div class="panel panel-default">
-					<div class="panel-heading">Schedule Form</div>
+	<div class="panel panel-default">
+					<div class="panel-heading">Workout Charts</div>
 					<div class="panel-body">
-						<form action="SheduleCon" id="sheduleForm" method="POST"
+						<form action="BasicSheduleCon" id="workoutChartForm" method="POST"
 							enctype="multipart/form-data">
 
 
@@ -30,8 +31,8 @@
 								<div class="form-group">
 									<div class="col-md-6">
 										<div class="col-md-3">
-											<label> Shedule ID </label> <input class="form-control"
-												name="shedule_id" value="${shedule_id}" readonly="readonly" />
+											<label>Workout ID </label> <input class="form-control"
+												name="workout_id" value="${workoutID}" readonly="readonly" />
 										</div>
 										<div class="col-md-3">
 											<label> Instructor Name</label> <input class="form-control"
@@ -48,48 +49,17 @@
 								</div>
 							</div>
 							<div class="row inv_row" id="row" style="margin-left: 0%;">
-								<div class="col-md-2">
-									<select name="user_id" class="form-control chzn-select"
-										id="user_id">
-										<option></option>
-									</select>
-								</div>
-								<div class="col-sm-2">
+								<div class="col-sm-10">
 									<div class="form-group">
-										<input id="first_name" readonly="readonly"
-											class="form-control" name="first_name"
-											placeholder="First Name" />
-
+										<label for="text2" class="control-label col-sm-2">Workchart Name</label>
+										<div class="col-sm-5">
+                        <input id="text2" placeholder="please enter a workchart name" class="form-control" type="text" name="chartName">
+                    </div>
+					<div class="col-sm-2">
+					<button class="btn panelAdd" type ="button">click here</button>
+					</div>
 									</div>
 								</div>
-								<div class="col-md-2 text-center">
-									<input id="last_name" readonly="readonly" class="form-control"
-										name="last_name" placeholder="Last Name" />
-								</div>
-								<div class="col-md-2 text-center">
-									<input id="email" readonly="readonly" name="email"
-										class="form-control" placeholder="Email" />
-								</div>
-
-							<div class="form-group">
-									
-																	<div class="col-md-8" style="margin-left: 13%;" >
-																	<label for="text2" class="control-label col-md-2">Workchart Name</label>
-																		<select style="width: 60%;"
-																			data-placeholder="Your Favorite Type of Bear"
-																			class="form-control select-picker bank_drop" id="drop2"
-																			data-live-search="true" tabindex="-1"
-																			name="bank_name">
-																			<option selected="selected">Commercial Bank</option>
-																			<option>Sampath Bank</option>
-																			<option>HSBC Bank</option>
-																			<option>Nations Trust Bank</option>
-																			<option>HNB Bank</option>
-
-																		</select>
-																	</div>
-																</div>
-
 							</div>
 							<hr />
 							<div class="row">
@@ -111,7 +81,7 @@
 							<div class="inv_body">
 								<div class="row inv_row" id="exer">
 									<div class="col-md-4 text-center" style="margin-left: 1%;">
-										<select id="exercise0" name="exercise"
+										<select id="exercise0" name="exerciseID"
 											class="form-control chzn-select inv_item keep">
 
 										</select>
@@ -159,15 +129,11 @@
 											<%
 												String role = currentUser.getRole();
 
-												if (role.equals("administrator")) {
+												if (role.equals("administrator") || role.equals("instructor")) {
 											%>
 											<button type="submit" class="btn btn-success">Save</button>
 											<%
-												} else if (role.equals("instructor")) {
-											%>
-											<button type="submit" class="btn btn-success">Save</button>
-											<%
-												}
+												} 
 											%>
 											<input id="btn_reset" value="Reset"
 												class="btn btn-warning btn-md " type="reset" /> <a
@@ -182,8 +148,6 @@
 
 				</div>
 
-			</div>
-		</div>
 
 	</div>
 
@@ -191,18 +155,13 @@
 	<%@include file="right_panel.jsp"%>
 
 	<%@include file="footer.jsp"%>
-
-	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
-	<script src="assets/js/sweetalert.min.js"></script>
-	<script type="text/javascript"
-		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
-	<script src="assets/js/validationInit.js"></script>
-	<!--END PAGE LEVEL SCRIPT-->
-
-
-
-	<script>
+		<script src="assets/js/sweetalert.min.js"></script>
+	
+	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/js/login.js"></script>
+	
+		<script>
 		$(function() {
 			/*----------- BEGIN chosen CODE -------------------------*/
 
@@ -227,118 +186,34 @@
 		});
 	</script>
 	<script>
-		$(document).ready(function() {
-		//	$('.bank_drop').selectpicker();
-			
-			$("#drop2").change(function(){
-				var value=this.value;
-				
-				$.ajax({
-					type:'GET',
-					url:"StockCon?action=products",
-					success:function(data){
-						
-						$.each(data.record,function(i,obj){
-							var row='<div class="row inv_row" id="exer">'+
-								'<div class="col-md-4 text-center" style="margin-left: 1%;">'+
-							'<select id="exercise0" name="exercise" value="'+obj.measuringUnit+'" class="form-control chzn-select inv_item keep">'
-							+'</select>'
-						+'</div>'
-						+'<div class="col-md-2 text-center">'
-						+	'<input id="set_per_rep0" style="text-align: right;"'
-						+		'class="form-control inv_price" name="set_per_rep" value="'+obj.status+'" type="text" />'
-						+'</div>'
-						+'<div class="col-md-2 text-center">'
-						+	'<input class="form-control" name="no_of_rep" value="'+obj.stock+'" id="no_of_rep0"'
-						+		'type="text" style="text-align: right;" />'
-						+'</div>'
-						+'<div class="col-md-1 text-center">'
-						+	'<button id="kmk" class="btn btn-danger  item_remove"'
-						+		'type="button">'
-						+		'<i class="icon-minus-sign"></i>'
-						+	'</button>'
-						+'</div>'
-						+'</div>';
-						
-						$('.inv_body').append(row);
-						
-						});
-					}
-					
-				});
-			});
-		});
-		
-		
-	</script>
-	<script>
-		$(document)
-				.ready(
-						function() {
+	$(document).ready(function(){
+		function dropdownList(url, id) {
+			$.ajax({
+						type : "GET",
+						url : "" + url + "",
+						dataType : "json",
+						beforeSend : function(xhr) {
+							$(id).empty();
+						},
+						success : function(data) {
+							var div_data = "<option></option>";
 
-							dropdownList("SheduleCon?action=users", "#user_id");
+							$(div_data).appendTo(id);
 
-							$("#user_id")
-									.on(
-											'change',
-											function() {
-												var user_id = $("#user_id")
-														.val();
-												$
-														.ajax({
-															type : 'GET',
-															url : 'InvoiceCon?action=user_details&user_id='
-																	+ user_id,
-															success : function(
-																	data) {
-																var user = data.record;
-																$('#first_name')
-																		.val(
-																				user.first_name);
-																$('#email')
-																		.val(
-																				user.email);
-																$('#last_name')
-																		.val(
-																				user.last_name);
-															}
-
-														});
-											});
-
-							function dropdownList(url, id) {
-								$
-										.ajax({
-											type : "GET",
-											url : "" + url + "",
-											dataType : "json",
-											beforeSend : function(xhr) {
-												$(id).empty();
-											},
-											success : function(data) {
-												var div_data = "<option></option>";
-
+							$.each(data.record,function(i, obj) {
+												div_data = "<option value=" + obj.user_id + ">"
+														+ obj.user_id
+														+ " "
+														+ obj.first_name
+														+ "</option>";
 												$(div_data).appendTo(id);
-
-												$
-														.each(
-																data.record,
-																function(i, obj) {
-																	div_data = "<option value=" + obj.user_id + ">"
-																			+ obj.user_id
-																			+ " "
-																			+ obj.first_name
-																			+ "</option>";
-																	$(div_data)
-																			.appendTo(
-																					id);
-																});
-												$(id).chosen().trigger(
-														"chosen:updated");
-											}
-										});
-							}
-						});
+											});
+							$(id).chosen().trigger("chosen:updated");
+						}
+					});
+		}
+		
+	});
 	</script>
 	<script>
 		$.ajax({
@@ -359,81 +234,56 @@
 				$("#exercise0").chosen().trigger("chosen:updated");
 			}
 		});
-		$(document)
-				.ready(
-						function() {
-							$(".chzn-select").prop('disabled', false).trigger(
-									'chosen:updated');
+		$(document).ready(function() {
+							$(".chzn-select").prop('disabled', false).trigger('chosen:updated');
 							var index = 1;
-							$("#add-item")
-									.click(
-											function(e) {
+							$("#add-item").click(function(e) {
 												e.preventDefault();
 
 												var inv_row = $('<div class="row inv_row" id="exer_row'+index+'">'
 														+ '<div class="col-md-4 text-center" style="margin-left:1%;">'
-														+ '<select id="exer'+index+'" name="exercise"'
-												+ 'class="form-control chzn-select keep">'
+														+ '<select id="exer'+index+'" name="exerciseID"'
+														+ 'class="form-control chzn-select keep">'
 														+ '</select>'
 														+ '</div>'
 														+ '<div class="col-md-2 text-center">'
 														+ '<input id="set_per_rep'+index+'"'
-												+'class="form-control" style="text-align: right;" name="set_per_rep"'
-												+' type="text" />'
+														+'class="form-control" style="text-align: right;" name="set_per_rep"'
+														+' type="text" />'
 														+ '</div>'
 														+ '<div class="col-md-2 text-center">'
 														+ '<input class="form-control" name="no_of_rep"'
-												+'id="no_of_rep'+index+'" style="text-align: right;" type="text"'
-												+'style="text-align: right;" />'
+														+'id="no_of_rep'+index+'" style="text-align: right;" type="text"'
+														+'style="text-align: right;" />'
 														+ '</div>'
 														+ '<div class="col-md-1 text-center">'
 														+ '<button id="kmk" class="btn btn-danger  item_remove"'
-												+'type="button"><i class="icon-minus-sign"></i></button>'
+														+'type="button"><i class="icon-minus-sign"></i></button>'
 														+ '</div>' + '</div>');
 												$(".inv_body").append(inv_row)
 														.show('slow');
 
-												$
-														.ajax({
+												$.ajax({
 															type : "GET",
 															url : "SheduleCon?action=exercises",
 															dataType : "json",
 															beforeSend : function(
 																	xhr) {
-																$(
-																		"#exer"
-																				+ index)
-																		.empty();
+																$("#exer"+ index).empty();
 															},
 															success : function(
 																	data) {
 																var div_data = "<option></option>";
 																$(div_data)
-																		.appendTo(
-																				"#exer"
-																						+ index);
-																$
-																		.each(
-																				data.record,
-																				function(
-																						i,
-																						obj) {
+																		.appendTo("#exer"+ index);
+																$.each(data.record,function(i,obj) {
 																					div_data = "<option value=" + obj.exercise_id + ">"
 																							+ obj.description
 																							+ "</option>";
-																					$(
-																							div_data)
-																							.appendTo(
-																									"#exer"
-																											+ index);
+																					$(div_data).appendTo("#exer"+ index);
 																				});
 
-																$(
-																		"#exer"
-																				+ index)
-																		.chosen()
-																		.trigger(
-																				"chosen:updated");
+																$("#exer"+ index).chosen().trigger("chosen:updated");
 																index++;
 															}
 
@@ -476,20 +326,18 @@
 							});
 						});
 	</script>
+
 	<script>
 		$(document)
-				.ready(
-						function() {
+				.ready(function() {
 							$(function() {
-								formValidation();
+								// formValidation();
 							});
-							$("#sheduleForm")
-									.submit(
-											function(e) {
+							$("#workoutChartForm").submit(function(e) {
 												e.preventDefault();
 												//alert("adad");
-												if (!$("#sheduleForm").valid())
-													return false;
+												// if (!$("#workoutChartForm").valid())
+												//	return false; 
 
 												swal(
 														{
@@ -508,8 +356,10 @@
 																$
 																		.ajax({
 																			type : "POST",
-																			url : "SheduleCon",
-																			data : $("#sheduleForm").serialize(),
+																			url : "BasicSheduleCon",
+																			data : $(
+																					"#workoutChartForm")
+																					.serialize(),
 																			success : function(
 																					data) {
 																				if (data == 'true') {
@@ -524,7 +374,7 @@
 																								closeOnConfirm : true
 																							},
 																							function() {
-																								//	 window.location = "InvoiceCon?action=invoice_list";
+																									 window.location = "BasicSheduleCon?action=insert";
 																							});
 																				} else {
 																					swal(

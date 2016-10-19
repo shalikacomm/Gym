@@ -14,6 +14,7 @@ import org.bouncycastle.util.encoders.Hex;
 
 import com.bit.entity.UserEntity;
 import com.bit.util.DBUtil;
+import com.bit.util.Methods;
 
 public class UserDAOImpl implements UserDAO {
 
@@ -23,9 +24,11 @@ public class UserDAOImpl implements UserDAO {
 	public boolean addUser(UserEntity user) {
 		boolean result=false;
 		connection = DBUtil.getConnection();
-		String pass="123";
+		Methods method=new Methods();
+		String randomCode=method.RandomCode();
+		
 		try {
-		byte[] temp = pass.getBytes();  // convert password to byte 
+		byte[] temp = randomCode.getBytes();  // convert password to byte 
 
         MessageDigest md = MessageDigest.getInstance("SHA-256");
         md.update(temp);
@@ -50,10 +53,15 @@ public class UserDAOImpl implements UserDAO {
 			preparedStatement.setDate(10, user.getDob());
 			preparedStatement.setInt(11, user.getMarital_status());
 			preparedStatement.setString(12, user.getMobile_number());
-			preparedStatement.setInt(13, 1);
+			preparedStatement.setInt(13, 3);
 			
 			int val=preparedStatement.executeUpdate();
 			if(val>0){
+				 System.out.println("User Added");
+	                String MsgBody = "Hi " + user.getFirst_name() + ", \n \n Please follow the Username and Code for login to the System"
+	                        + "\n \n Username: " + user.getNic() + " \n Password: " + randomCode + " \n \n After that you can enter new password. "
+	                        + " \n \n Thanks you, \n System Administrator, \n Fit & Fun Health club";
+	                result = method.sendMail(user.getEmail(), "User Registration for Fit & Fun Health club", MsgBody);
 				result=true;
 			}
 		} catch (NoSuchAlgorithmException ex) {
@@ -204,6 +212,46 @@ public class UserDAOImpl implements UserDAO {
 
         return user;
 	}
+	
+	public boolean getUserStatus(String userId) {
+		Connection con = null;
+    	UserEntity user = new UserEntity();
+    	boolean status = false;
+        try {
+        	con=DBUtil.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement("SELECT status FROM user_tbl WHERE user_id=?");
+            preparedStatement.setString(1, userId);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+            	
+	                user.setStatus(rs.getInt("status"));
+	              
+            }
+           
+            if (user.getStatus()== 1){
+            	status = true; 
+            }else{
+            	status = false;
+            }
+            
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+        return status;
+	}
+
 
 	@Override
 	public boolean activate(String userId) {
@@ -271,6 +319,62 @@ public class UserDAOImpl implements UserDAO {
 
 		}
 		return result;
+	}
+	public UserEntity resetPassword(String email) {
+		Connection con = null;
+    	UserEntity user = new UserEntity();
+        try {
+        	con=DBUtil.getConnection();
+        	Methods method=new Methods();
+    		String randomCode=method.RandomCode();
+    		
+    		
+    		byte[] temp = randomCode.getBytes();  // convert password to byte 
+
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(temp);
+
+            byte[] hash = md.digest(); // digest the password
+            String encrypt = new String(Hex.encode(hash));//Hex.encode(svPass);
+        	
+            PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM emp.user_tbl WHERE email= ?");
+            preparedStatement.setString(1, email);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+            	 user.setUser_id(rs.getString("user_id"));
+            	 user.setFirst_name(rs.getString("first_name"));
+            	 user.setNic(rs.getString("nic"));
+            	 
+            }
+            System.out.println("User Pw reseted");
+            String MsgBody = "Hi " + user.getFirst_name() + ", \n \n Please follow the Username and Code for login to the System"
+                    + "\n \n Username: " + user.getNic() + " \n Password: " + randomCode + " \n \n After that you can enter new password. "
+                    + " \n \n Thanks you, \n System Administrator, \n Fit & Fun Health club";
+            method.sendMail(email, "User Registration for Fit & Fun Health club", MsgBody); 
+            
+            String sql = "UPDATE user_tbl SET status = 4 , password = "+randomCode+" WHERE user_id = ?";
+            PreparedStatement pre_statement = connection.prepareStatement(sql);
+            pre_statement.setString(1,user.getUser_id());
+            pre_statement.executeUpdate();
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+        return user;
 	}
 
 	  public UserEntity login(UserEntity loginUsers) {

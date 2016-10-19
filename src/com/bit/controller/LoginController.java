@@ -19,13 +19,14 @@ import javax.servlet.http.HttpSession;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.UserEntity;
+import com.bit.util.Methods;
 
 @WebServlet(name = "LoginCon", urlPatterns = { "/LoginCon" })
 public class LoginController extends HttpServlet {
 
 	RequestDispatcher rd = null;
 	Cookie cookie;
-
+	
 	public LoginController() {
 		cookie = new Cookie("JSESSIONID", null);
 	}
@@ -45,6 +46,22 @@ public class LoginController extends HttpServlet {
 
 			// }
 		}
+		else if (action.equalsIgnoreCase("resetPw")) {
+			String test = null;
+			HttpSession session = request.getSession();
+			session.removeAttribute("currentSessionUser");
+			session.invalidate();
+			String email = request.getParameter("email");
+			UserDAO dao = new UserDAOImpl();
+			dao.resetPassword(email);
+System.out.println("worning");
+			rd = request.getRequestDispatcher("login.jsp");
+
+			rd.forward(request, response);
+
+			// }
+		}
+		
 	}
 
 	@Override
@@ -53,6 +70,10 @@ public class LoginController extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		UserDAO userDAO = new UserDAOImpl();
+		
+
+		String action = request.getParameter("action");
+		if (action.equalsIgnoreCase("login")) {
 		try {
 			UserEntity user = new UserEntity();
 			user.setNic(request.getParameter("nic"));
@@ -78,6 +99,19 @@ public class LoginController extends HttpServlet {
 			}
 		} finally {
 			out.close();
+		}
+		}else if(action.equalsIgnoreCase("reset")){
+			String test = null;
+			HttpSession session = request.getSession();
+			session.removeAttribute("currentSessionUser");
+			session.invalidate();
+			String email = request.getParameter("resetEmail");
+			UserDAO dao = new UserDAOImpl();
+			dao.resetPassword(email);
+System.out.println("worning");
+			rd = request.getRequestDispatcher("login.jsp");
+
+			rd.forward(request, response);
 		}
 
 	}

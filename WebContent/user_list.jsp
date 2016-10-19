@@ -76,18 +76,21 @@
 													<td><a
 														href="UserCon?action=edit&user_id=<c:out value="${temp.user_id}"/>"
 														class="btn btn-default btn-grad btn-sm"><span><i
-																class="icon-edit" style="color: #455862;"></i></span></a> <c:if
+																class="icon-edit" style="color: #455862;"></i></span></a> 
+																<c:if
 															test="${temp.status ==1 }">
 															<a
 																href="UserCon?action=deactive&user_id=<c:out value="${temp.user_id}"/>"
 																class="navg status btn btn-default btn-grad btn-sm"><span><i
 																	class="icon-trash" style="color: #455862;"></i></span></a>
-														</c:if> <c:if test="${temp.status ==0 }">
+														</c:if> 
+														<c:if test="${temp.status ==0 }">
 															<a
 																href="UserCon?action=active&user_id=<c:out value="${temp.user_id}"/>"
 																class="status btn btn-default btn-grad btn-sm"><span><i
 																	class="icon-ok " style="color: #455862;"></i></span></a>
-														</c:if> <a class="btn btn-primary  btn-sm cont"
+														</c:if> 
+														<a class="btn btn-primary  btn-sm cont"
 														id="${temp.user_id}" data-toggle="modal"
 														data-target="#contact" data-original-title><span><i
 																class="icon-envelope-alt" style="color: #fff;"></i></span> <c:out
@@ -187,11 +190,9 @@
 									</div>
 
 
-									<!-- modal end -->
-
-
 
 								</div>
+								<!-- modal end -->
 							</div>
 						</div>
 					</div>

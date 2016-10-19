@@ -23,4 +23,8 @@ public interface UserDAO {
 	public List<UserEntity>getAllActiveUsers() ;
 	
 	public List<UserEntity>getAllActiveMemberUsers() ;
+	
+	public UserEntity resetPassword(String email);
+	
+	public boolean getUserStatus(String userId);
 }

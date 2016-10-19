@@ -23,7 +23,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Shedule List</h2>
+						<h2><small>Shedule List</small></h2>
 					</div>
 				</div>
 				<hr />

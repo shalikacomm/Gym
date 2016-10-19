@@ -58,7 +58,11 @@
 				<%
 					UserEntity currentUser = (UserEntity) (session.getAttribute("frontSessionUser"));
 						if (currentUser == null) { %>
-							<a class="btn  btn-primary" href="login.jsp">Log in</a>
+						
+						<a class="btn  btn-primary" href="login.jsp">Log in</a> 
+							
+										
+			
 				 <%	} else {
 					%>Hi, <%=currentUser.getFirst_name()%> <%
  	}

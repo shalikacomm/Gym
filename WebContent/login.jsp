@@ -5,6 +5,7 @@
 <%@page import="com.bit.entity.UserEntity" %>
 <!-- BEGIN HEAD -->
 <head>
+<link rel="stylesheet" href="assets/css/login.css" />
      <meta charset="UTF-8" />
     <title> Login Page</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -37,30 +38,41 @@
     </div>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
-            <form action="LoginCon" method="post" class="form-signin">
+            <form action="LoginCon?action=login" method="post" class="form-signin">
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">
                     Enter your Username and Password
                 </p>
-                <input type="text" placeholder="Enter your Username" name="nic" class="form-control" required/>
-                <input type="password" placeholder="Password" name="password" class="form-control" required/>
-                <button class="btn text-muted text-center btn-danger" type="submit">Sign in</button>
-              <div>
-
-                    <% UserEntity currentUser = (UserEntity) (session.getAttribute("InvalidUser"));
+       
+                <input type="text" placeholder="Enter your Username" name="nic" class="form-control" />
+                <input type="password" placeholder="Password" name="password" class="form-control" />
+              <button class="btn text-muted text-center btn-danger" type="submit">Sign in</button>
+            
+                           <% UserEntity currentUser = (UserEntity) (session.getAttribute("InvalidUser"));
                         if (currentUser != null) {
                     %>                                     
 <span class="text-danger">User Details are not found!</span>
                     <%}%>
-
+</form>
                 </div>
+                  <div id="forgot" class="tab-pane">
+            <form action="LoginCon?action=reset" method="post" class="form-signin">
+                <p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
+                <input type="email"  required="required" name="resetEmail" placeholder="Your E-mail"  class="form-control" />
+                <br />
+                <button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
             </form>
         </div>
-       
+            
+        </div>
+        <div class="text-center">
+        <ul class="list-inline">
+            <li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
+            <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
+                </ul>
+    </div>
     </div>
    
 
-
-</div>
 
 	  <!--END PAGE CONTENT -->     
 	      

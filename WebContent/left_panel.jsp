@@ -39,22 +39,13 @@
 		</a>
 			
 			</li>
-		<li class="panel "><a href="#" data-parent="#menu"
+		<li class="panel "><a href="UserCon?action=insert" data-parent="#menu"
 			data-toggle="collapse" class="accordion-toggle"
 			data-target="#register-nav"> 
-			<i class="glyphicon glyphicon-user">&nbsp;</i>	Registration <span class="pull-right"> <i
-					class="icon-angle-down"></i>
+			<i class="glyphicon glyphicon-user">&nbsp;</i>	Registration <span class="pull-right"> 
 			</span> 
 		</a>
-			<ul class="collapse" id="register-nav">
-
-				<li class=""><a href="MemberCon?action=insert"><i
-						class="icon-angle-right"></i> Member</a></li>
-				<li class=""><a href="InstructorController?action=list"><i
-						class="icon-angle-right"></i> Instructor </a></li>
-				<li class=""><a href="progress.html"><i
-						class="icon-angle-right"></i> Operator</a></li>
-			</ul></li>
+			</li>
 
 		<li class="panel"><a href="#" data-parent="#menu"
 			data-toggle="collapse" class="accordion-toggle"
@@ -63,13 +54,12 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="payment-nav">
-				<li><a href="pages_calendar.html"><i
-						class="icon-angle-right"></i> Barcode Register </a></li>
-				<li><a href="pages_timeline.html"><i
-						class="icon-angle-right"></i> Member Status </a></li>
-				<li><a href="pages_timeline.html"><i
-						class="icon-angle-right"></i> Generate Reports </a></li>
-				<li><a href="pages_timeline.html"><i
+		
+				<li><a href="MemberFeeCon?action=insert"><i
+						class="icon-angle-right"></i> Make Payments</a></li>
+				<li><a href="UserCon?action=list"><i
+						class="icon-angle-right"></i> Deactivated List </a></li>
+				<li><a href="UserCon?action=list"><i
 						class="icon-angle-right"></i> Send messages </a></li>
 			</ul>
 			</li>
@@ -81,34 +71,49 @@
 			</span>
 		</a>
 			<ul class="collapse" id="inventory-nav">
-				<li><a href="StockCon?action=insert"><i
-						class="icon-angle-right"></i> Add Inventory </a></li>
-				<li><a href="pages_timeline.html"><i
-						class="icon-angle-right"></i> Product Images </a></li>
+				<li><a href="ProductCon?action=list"><i
+						class="icon-angle-right"></i> Add Products </a></li>
 				<li><a href="ExerciseCon?action=list"><i
 						class="icon-angle-right"></i> Add Exercise </a></li>
+				<li><a href="ExerciseCon?action=list"><i
+						class="icon-angle-right"></i> Add Banks </a></li>
+				<li><a href="SystemCon?action=list"><i
+						class="icon-angle-right"></i> Add System Settings </a></li>
 				</ul>
 			</li>
 			
 				<li class="panel"><a href="#" data-parent="#menu"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#product-nav"> 
-			<i class="glyphicon glyphicon-briefcase">&nbsp;</i> Product Items <span class="pull-right"> 
+			<i class="glyphicon glyphicon-briefcase">&nbsp;</i> Inventory handling <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
 			</span> 
 		</a>
 			<ul class="collapse" id="product-nav">
+				<li><a href="StockCon?action=insert"><i
+						class="icon-angle-right"></i> Add inventory </a></li>
 				<li><a href="ProductCon?action=list"><i
-						class="icon-angle-right"></i> Item List </a></li>
-				<li><a href="ProductCon?action=insert"><i
-						class="icon-angle-right"></i> New Item </a></li>
-				<li><a href="pages_timeline.html"><i
-						class="icon-angle-right"></i> Update Product </a></li>
+						class="icon-angle-right"></i> View inventory </a></li>
+			
 				</ul>
 			</li>
 			
 			<li class="panel"><a href="#" data-parent="#menu"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#report-nav"> 
-			<i class="glyphicon glyphicon-print">&nbsp;</i> Generate Reports <span class="pull-right"> 
+			<i class="glyphicon glyphicon-stats">&nbsp;</i> Generate Reports <span class="pull-right"> 
+			<i class="icon-angle-down"></i>
+			</span> 
+		</a>
+			<ul class="collapse" id="report-nav">
+				<li><a href="pages_calendar.html"><i
+						class="icon-angle-right"></i> Unit Progress </a></li>
+				<li><a href="pages_timeline.html"><i
+						class="icon-angle-right"></i> Growth Reports </a></li>
+			
+				</ul>
+			</li>
+			<li class="panel"><a href="#" data-parent="#menu"
+			data-toggle="collapse" class="accordion-toggle"	data-target="#report-nav"> 
+			<i class="glyphicon glyphicon-barcode">&nbsp;</i> Generate Barcode <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
 			</span> 
 		</a>
@@ -123,14 +128,14 @@
 
 			<li class="panel"><a href="#" data-parent="#menu"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#shedule-nav"> 
-			<i class="fa fa-university">&nbsp;</i> Member Shedules <span class="pull-right"> 
+			<i class="glyphicon glyphicon-road">&nbsp;</i> Member Shedules <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
 			</span> 
 		</a>
 			<ul class="collapse" id="shedule-nav">
 				<li><a href="SheduleCon?action=insert"><i
 						class="icon-angle-right"></i> Add Member Shedules </a></li>
-				<li><a href="pages_timeline.html"><i
+				<li><a href="SheduleCon?action=list"><i
 						class="icon-angle-right"></i> Shedule List </a></li>
 				
 				</ul>
