@@ -2,8 +2,14 @@ package com.bit.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.bit.entity.BasicChartEntity;
+import com.bit.entity.ProductEntity;
 import com.bit.entity.SheduleDetailEntity;
 import com.bit.entity.SheduleEntitiy;
 import com.bit.util.DBUtil;
@@ -80,4 +86,39 @@ public void addBasicChartDetails(BasicChartEntity chartDetails) {
 		}
 	}
 }
+public List<BasicChartEntity> getAllWorkouts() {
+
+	connection = null;
+
+	List<BasicChartEntity> basic_charts = new ArrayList<BasicChartEntity>();
+	try {
+		connection = DBUtil.getConnection();
+		Statement statement = connection.createStatement();
+		ResultSet rs = statement.executeQuery("SELECT * FROM workout_charts");
+
+		while (rs.next()) {
+			BasicChartEntity charts = new BasicChartEntity();
+			charts.setWorkout_id(rs.getString("workout_id"));
+			charts.setWorkout_name(rs.getString("workout_name"));
+			charts.setDate_created(rs.getString("date_created"));
+			charts.setInstructor_name(rs.getString("instructor_name"));
+			charts.setStatus(rs.getInt("status"));
+			basic_charts.add(charts);
+		}
+
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		if (connection != null)
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+
+	return basic_charts;
+}
+
+
 }

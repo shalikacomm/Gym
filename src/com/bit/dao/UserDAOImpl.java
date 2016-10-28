@@ -3,6 +3,7 @@ package com.bit.dao;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,6 +13,7 @@ import java.util.List;
 
 import org.bouncycastle.util.encoders.Hex;
 
+import com.bit.entity.MemberPaymentEntity;
 import com.bit.entity.UserEntity;
 import com.bit.util.DBUtil;
 import com.bit.util.Methods;
@@ -52,10 +54,18 @@ public class UserDAOImpl implements UserDAO {
 			preparedStatement.setString(9, user.getRole());
 			preparedStatement.setDate(10, user.getDob());
 			preparedStatement.setInt(11, user.getMarital_status());
-			preparedStatement.setString(12, user.getMobile_number());
+			preparedStatement.setInt(12, user.getMobile_number());
 			preparedStatement.setInt(13, 3);
 			
 			int val=preparedStatement.executeUpdate();
+			
+			PreparedStatement preparedStatement2 = connection.prepareStatement(
+					"INSERT INTO image_tbl(user_id,image_path)"
+							+ " values (?, ?)");
+			// Parameters start with 1
+			preparedStatement2.setString(1, user.getUser_id());
+			preparedStatement2.setString(2, "none");
+			preparedStatement2.executeUpdate();
 			if(val>0){
 				 System.out.println("User Added");
 	                String MsgBody = "Hi " + user.getFirst_name() + ", \n \n Please follow the Username and Code for login to the System"
@@ -84,8 +94,48 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void updateUser(UserEntity user) {
-		// TODO Auto-generated method stub
+	public boolean updateUser(UserEntity user) {
+		Connection con = null;
+		boolean res = false;
+		try {
+			con = DBUtil.getConnection();
+			String sql = "UPDATE user_tbl SET first_name=?,last_name=? ,dob=?,nic=?,email=?,gender=?,marital_status=?,address=?,mobile_number=?,role=? WHERE user_id=?";
+
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
+			// Parameters start with 1
+			
+			preparedStatement.setString(1, user.getFirst_name());
+			preparedStatement.setString(2, user.getLast_name());
+			preparedStatement.setDate(3, user.getDob());
+			preparedStatement.setString(4, user.getNic());
+			preparedStatement.setString(5, user.getEmail());
+			preparedStatement.setString(6, user.getGender());
+			preparedStatement.setInt(7, user.getMarital_status());
+			preparedStatement.setString(8, user.getAddress());
+			preparedStatement.setInt(9, user.getMobile_number());
+			preparedStatement.setString(10, user.getRole());
+			preparedStatement.setString(11, user.getUser_id());
+		
+				
+			 int temp  = preparedStatement.executeUpdate();
+if (temp > 0){
+	res = true;
+}
+			 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		return res;
 
 	}
 
@@ -107,7 +157,7 @@ public class UserDAOImpl implements UserDAO {
 	                user.setGender(rs.getString("gender"));
 	                user.setAddress(rs.getString("address"));
 	                user.setMarital_status(rs.getInt("marital_status"));
-	                user.setMobile_number(rs.getString("mobile_number"));
+	                user.setMobile_number(rs.getInt("mobile_number"));
 	                user.setRole(rs.getString("role"));
 	                user.setStatus(rs.getInt("status"));
 	                user.setNic(rs.getString("nic"));
@@ -136,7 +186,7 @@ public class UserDAOImpl implements UserDAO {
 				user.setGender(rs.getString("gender"));
 				user.setAddress(rs.getString("address"));
 				user.setMarital_status(rs.getInt("marital_status"));
-				user.setMobile_number(rs.getString("mobile_number"));
+				user.setMobile_number(rs.getInt("mobile_number"));
 				user.setRole(rs.getString("role"));
 				user.setStatus(rs.getInt("status"));
 				user.setNic(rs.getString("nic"));
@@ -166,7 +216,7 @@ public class UserDAOImpl implements UserDAO {
 				user.setGender(rs.getString("gender"));
 				user.setAddress(rs.getString("address"));
 				user.setMarital_status(rs.getInt("marital_status"));
-				user.setMobile_number(rs.getString("mobile_number"));
+				user.setMobile_number(rs.getInt("mobile_number"));
 				user.setRole(rs.getString("role"));
 				user.setStatus(rs.getInt("status"));
 				user.setNic(rs.getString("nic"));
@@ -194,8 +244,13 @@ public class UserDAOImpl implements UserDAO {
 	                user.setFirst_name(rs.getString("first_name"));
 	                user.setLast_name(rs.getString("last_name"));
 	                user.setEmail(rs.getString("email"));
-	                user.setStatus(rs.getInt("status"));
+	                user.setGender(rs.getString("gender"));
 	                user.setNic(rs.getString("nic"));
+	                user.setDob(rs.getDate("dob"));
+	                user.setMarital_status(rs.getInt("marital_status"));
+	                user.setAddress(rs.getString("address"));
+	                user.setMobile_number(rs.getInt("mobile_number"));
+	                user.setRole(rs.getString("role"));
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -320,6 +375,60 @@ public class UserDAOImpl implements UserDAO {
 		}
 		return result;
 	}
+	
+	public boolean  deactivateExpiredMembers() {
+		connection = null;
+		boolean result=false;
+		UserDAO dao = new UserDAOImpl();
+		MemberPaymentDAO dao_pay = new MemberPaymentDAOImpl();
+		java.sql.Date date = getCurrentDatetime();
+		
+		
+		try {
+			connection = DBUtil.getConnection();
+			List<UserEntity> users = dao.getAllActiveMemberUsers();
+			for(int i=0; i< users.size(); i++){
+				String person = users.get(i).getUser_id();
+				MemberPaymentEntity lastDate = dao_pay.getLastActiveDate(person);
+				
+			/*	if(date.compareTo(lastDate)>0){
+	                System.out.println("Date1 is after Date2");
+				}
+			*/
+			String sql = "UPDATE user_tbl SET status = 0 WHERE user_id = ?";
+
+			PreparedStatement pre_statement = connection.prepareStatement(sql);
+		//	pre_statement.setString(1, );
+			int res=pre_statement.executeUpdate();
+		
+			if(res>0){
+				result=true;
+			}
+			}
+			} catch (SQLException e) {
+			e.printStackTrace();
+
+			// TODO: handle exception
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return result;
+		
+	}
+	public java.sql.Date getCurrentDatetime() {
+		java.util.Date today = new java.util.Date();
+		return new java.sql.Date(today.getTime());
+	}
+	
+
 	public UserEntity resetPassword(String email) {
 		Connection con = null;
     	UserEntity user = new UserEntity();

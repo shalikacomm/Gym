@@ -1,16 +1,21 @@
 package com.bit.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -19,7 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.UserEntity;
+import com.bit.util.DBUtil;
 import com.bit.util.Methods;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 @WebServlet(urlPatterns="/UserCon")
 public class UserController  extends HttpServlet{
@@ -114,6 +123,32 @@ public class UserController  extends HttpServlet{
 				return;
 			}
 		}
+		else if (action.equalsIgnoreCase("barcode")) {
+
+			try {
+				Connection con = DBUtil.getConnection();
+				File reportFile = new File(req.getRealPath("/reports/barcode_generate.jasper"));
+				Map parameters = new HashMap();
+				
+				String root = getServletContext().getRealPath("\\uploads\\");
+				System.out.println(root);
+				String user_id=req.getParameter("user_id");
+				parameters.put("user_id", user_id);
+				parameters.put("image_path", root+"\\"+user_id+".jpg");
+
+				byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getAbsolutePath(), parameters, con);
+
+				resp.setContentType("application/pdf");
+				resp.setContentLength(bytes.length);
+				ServletOutputStream outstream = resp.getOutputStream();
+				outstream.write(bytes, 0, bytes.length);
+				outstream.flush();
+				outstream.close();
+
+			} catch (JRException ex) {
+				ex.printStackTrace();
+			}
+		}
 		
 		if(forward!=""){
 		RequestDispatcher view = req.getRequestDispatcher(forward);
@@ -133,7 +168,7 @@ public class UserController  extends HttpServlet{
 		String email = req.getParameter("email");
 		String gender = req.getParameter("gender");
 		String address = req.getParameter("address");
-		String mobileNumber = req.getParameter("mobile_number");
+		Integer mobileNumber = Integer.parseInt(req.getParameter("mobile_number"));
 		String role = req.getParameter("role");
 		Integer marital_status=Integer.parseInt(req.getParameter("status"));
 		
@@ -174,9 +209,11 @@ public class UserController  extends HttpServlet{
 		boolean result=false;
 		if (userId.equals(generateID)) {
 			result=dao.addUser(user);
+			result = true;
 		} else {
 			dao.updateUser(user);
-		}
+			result = true;
+		} 
 		PrintWriter out=resp.getWriter();
 		
 		out.print(result);

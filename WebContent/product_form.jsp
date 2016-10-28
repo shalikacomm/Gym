@@ -103,8 +103,9 @@
 										</div>
 										<div class="col-md-4">
 											<select name="unit_id"
-												value="<c:out value ='${productobj.measuringUnit}'/>"
+												
 												class="form-control chzn-select" id="units">
+												<option value="value="<c:out value ='${productobj.measuringUnit}'/>"><c:out value ='${productobj.measuringUnit}'/></option>
 												<option value="packet">packets</option>
 												<option value="bottles">bottles</option>
 												<option value="kg">kg</option>

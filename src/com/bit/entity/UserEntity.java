@@ -4,11 +4,17 @@ import java.sql.Date;
 
 public class UserEntity {
 	
-	private String user_id,first_name,last_name,nic,email,password,gender,address,role,mobile_number;
+	private String user_id,first_name,last_name,nic,email,password,gender,address,role;
 	private Date dob;
-	private int marital_status,status;
+	private int marital_status,status,mobile_number;
 	private boolean valid;
 	
+	public int getMobile_number() {
+		return mobile_number;
+	}
+	public void setMobile_number(int mobile_number) {
+		this.mobile_number = mobile_number;
+	}
 	public boolean isValid() {
 		return valid;
 	}
@@ -81,13 +87,7 @@ public class UserEntity {
 	public void setMarital_status(int marital_status) {
 		this.marital_status = marital_status;
 	}
-	
-	public String getMobile_number() {
-		return mobile_number;
-	}
-	public void setMobile_number(String mobile_number) {
-		this.mobile_number = mobile_number;
-	}
+
 	public int getStatus() {
 		return status;
 	}

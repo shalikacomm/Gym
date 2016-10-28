@@ -1,13 +1,22 @@
 package com.bit.entity;
 
+import java.sql.Date;
+
 public class MemberPaymentEntity {
 	
 	
-	private String member_id,active_period,paid_date,card_type,bank_name,payment_id,user_id,payment_type;
+	private String member_id,paid_date,card_type,bank_name,payment_id,user_id,payment_type,active_period;
 		private Double additional_payments,fee_amount,total_subs,monthly_fee,discount;
 	private Integer first4,last4;
 	
 	
+	
+	public String getActive_period() {
+		return active_period;
+	}
+	public void setActive_period(String active_period) {
+		this.active_period = active_period;
+	}
 	public String getPayment_type() {
 		return payment_type;
 	}
@@ -76,12 +85,6 @@ public class MemberPaymentEntity {
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public String getActive_period() {
-		return active_period;
-	}
-	public void setActive_period(String active_period) {
-		this.active_period = active_period;
-	}
 	public String getPaid_date() {
 		return paid_date;
 	}
@@ -91,6 +94,7 @@ public class MemberPaymentEntity {
 	public Double getAdditional_payments() {
 		return additional_payments;
 	}
+	
 	public void setAdditional_payments(Double additional_payments) {
 		this.additional_payments = additional_payments;
 	}

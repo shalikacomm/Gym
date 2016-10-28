@@ -82,7 +82,25 @@ public class MemberController extends HttpServlet {
 				}
 
 			} 
-	
+		 else if (action.equalsIgnoreCase("get_image")) {
+				MemberDAO memberdao = new MemberDAOImpl();
+				String userId = req.getParameter("user_id");
+				//UserEntity user = userDao.getImagePath(userId);
+				String img_path=memberdao.getImagePath(userId);
+				
+				try (PrintWriter out = resp.getWriter()) {
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
+
+					//out.write("{ \"record\": \"" + img_path + "\"}");
+					out.write( img_path );
+
+					out.flush();
+					out.close();
+					return;
+				}
+
+			} 
 		
 		else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
@@ -154,20 +172,22 @@ public class MemberController extends HttpServlet {
 						
 						String fileName="";
 						if(item.getContentType().equalsIgnoreCase("image/jpeg")){
-						fileName = member.getMember_id()+".jpg";
+						fileName = member.getUser_id()+".jpg";
 						}else if(item.getContentType().equalsIgnoreCase("image/png")){
-							fileName = member.getMember_id()+".png";
+							fileName = member.getUser_id()+".png";
 						}else{
 							//return false;
 						}
-						String root = getServletContext().getRealPath("/");
-						File path = new File("C:\\Users\\amantha\\git\\Gym\\WebContent\\uploads");
+						String root = getServletContext().getRealPath("\\");
+					//	File path = new File("C:\\Users\\amantha\\git\\Gym\\WebContent\\uploads");
+                          File path = new File(root + "\\uploads\\");
 						if (!path.exists()) {
 							boolean status = path.mkdirs();
 						}
 
-						File uploadedFile = new File(path + "/" + fileName);
-						img_path = "C:\\Users\\amantha\\git\\Gym\\WebContent\\uploads\\" + fileName;
+						File uploadedFile = new File(path + "\\" + fileName);
+						//img_path = "C:\\Users\\amantha\\git\\Gym\\WebContent\\uploads\\" + fileName;									 
+						img_path = "/uploads/" + fileName;
 						System.out.println(uploadedFile.getAbsolutePath());
 						item.write(uploadedFile);
 					}
@@ -179,48 +199,13 @@ public class MemberController extends HttpServlet {
 						if (name.equalsIgnoreCase("user_id")) {
 							member.setUser_id(value);
 						}
-						if (name.equalsIgnoreCase("bicep")) {
-							member.setBicep(new Double(value));
-						}
-						if (name.equalsIgnoreCase("bmi")) {
-							member.setBmi(new Double(value));
-						}
-						if (name.equalsIgnoreCase("chest")) {
-							member.setChest(new Double(value));
-						}
-						if (name.equalsIgnoreCase("goal_weight")) {
-							member.setGoal_weight(new Double(value));
-						}
-						if (name.equalsIgnoreCase("height")) {
-							member.setHeight(new Double(value));
-						}
-						if (name.equalsIgnoreCase("hip")) {
-							member.setHip(new Double(value));
-						}
-						if (name.equalsIgnoreCase("member_id")) {
-							member.setMember_id(value);
-						}
-						if (name.equalsIgnoreCase("sholuder_length")) {
-							member.setShoulder_length(new Double(value));
-						}
-						if (name.equalsIgnoreCase("thigh")) {
-							member.setThigh(new Double(value));
-						}
-						if (name.equalsIgnoreCase("weight")) {
-							member.setWeight(new Double(value));
-						}
 						
 					}
 				}
-				member.setImg_path(img_path);
+				
 
-				String genID = method.generateID("M", "member_id", "member_tbl");
 				MemberDAO dao = new MemberDAOImpl();
-				if(genID.equals(member.getMember_id())){
-					dao.addMember(member);
-				}else{
-					dao.updateMember(member);
-				}
+				dao.updateImage(member.getUser_id(), img_path);
 				
 				PrintWriter out=resp.getWriter();
 				out.print(true);

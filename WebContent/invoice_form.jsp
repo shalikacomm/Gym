@@ -36,19 +36,21 @@
 	
 		
 			<div class="inner" style="min-height: 700px;">
+				<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="InvoiceCon?action=insert">Sell Products</a></li>
+    </ul>
+			
 				<form id="invoiceForm" class="form-horizontal" align="center"
 					method="post" action="InvoiceCon" novalidate>
-					<div class="row">
+						<div class="row" style="margin-top:-1%;">
 						<div class="col-lg-12">
 							<div class="box dark">
 								<header>
 								<div class="icons">
-									<i class="icon-bitbucket-sign "></i>
+									Sell Suppliment Products
 								</div>
-										<ul class="breadcrumb">
-  <li><a href="dashboard.jsp">Home</a></li>
-  <li><a href="InvoiceCon?action=insert">Sell Products</a></li>
-    </ul>
+										
 								</header>
 
 
@@ -553,6 +555,7 @@
 																			+ obj.first_name
 																			+ "</option>";
 																	$(div_data).appendTo(id);
+																	
 																});
 												$(id).chosen().trigger(
 														"chosen:updated");
@@ -656,6 +659,16 @@ function onFocus(el) {
 																								+ obj.description
 																								+ "</option>";
 																						$(div_data).appendTo("#inv_item"+ index);
+																						 var end=$(".inv_item").last().attr("id").replace("inv_item","");
+																					
+																						    for(i=0; i<end;i++){
+																                                var option=$("#inv_item"+i).val();
+																                                if(option==obj.productID){
+																                            $("#inv_item"+index+" option[value='"+option+"']").remove();
+																                        }
+																        }
+																						
+																						
 																					});
 
 																	$("#inv_item"+ index).chosen().trigger("chosen:updated");

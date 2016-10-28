@@ -2,13 +2,12 @@ package com.bit.dao;
 
 import java.util.List;
 
+import com.bit.entity.MemberPaymentEntity;
 import com.bit.entity.UserEntity;
 
 public interface UserDAO {
 
 	public boolean addUser(UserEntity user);
-
-	public void updateUser(UserEntity user);
 
 	public List<UserEntity> getAllUsers();
 
@@ -27,4 +26,10 @@ public interface UserDAO {
 	public UserEntity resetPassword(String email);
 	
 	public boolean getUserStatus(String userId);
+	
+	public boolean updateUser(UserEntity user);
+	
+	// public boolean deactivateExpiredMembers() ;
+	
+	
 }

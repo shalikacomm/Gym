@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="barcode_generate" language="groovy" pageWidth="297" pageHeight="210" orientation="Landscape" columnWidth="257" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="56aedb07-6e42-4276-a842-070e3ae53d0e">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="46"/>
+	<parameter name="user_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="image_path" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT
+     image_tbl.`user_id` AS image_tbl_user_id,
+     image_tbl.`image_path` AS image_tbl_image_path,
+     user_tbl.`first_name` AS user_tbl_first_name,
+     user_tbl.`last_name` AS user_tbl_last_name,
+     user_tbl.`nic` AS user_tbl_nic,
+     user_tbl.`gender` AS user_tbl_gender
+FROM
+     `user_tbl` user_tbl INNER JOIN `image_tbl` image_tbl ON user_tbl.`user_id` = image_tbl.`user_id`
+WHERE image_tbl.`user_id`=$P{user_id}]]>
+	</queryString>
+	<field name="image_tbl_user_id" class="java.lang.String"/>
+	<field name="image_tbl_image_path" class="java.lang.String"/>
+	<field name="user_tbl_first_name" class="java.lang.String"/>
+	<field name="user_tbl_last_name" class="java.lang.String"/>
+	<field name="user_tbl_nic" class="java.lang.String"/>
+	<field name="user_tbl_gender" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="42" splitType="Stretch">
+			<image>
+				<reportElement x="5" y="5" width="254" height="27" uuid="e202085a-47ac-44a1-9df4-73afdddd31bc"/>
+				<imageExpression><![CDATA["C:\\Users\\amantha\\Desktop\\project images\\fit&fun.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<detail>
+		<band height="124" splitType="Stretch">
+			<staticText>
+				<reportElement x="5" y="1" width="42" height="20" uuid="8c1d0454-f06c-4f05-bf8c-f7c9ab7611b1"/>
+				<text><![CDATA[ Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="21" width="42" height="20" uuid="13b1351d-c94b-4efb-8e6a-cac3b2126f8c"/>
+				<text><![CDATA[ NIC :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="47" y="1" width="72" height="20" uuid="697a8ddd-ad32-4c45-a97b-9276b3f184ad"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="119" y="1" width="100" height="20" uuid="af5925fa-4ced-43b9-86ae-1b262f96613d"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_last_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="47" y="21" width="100" height="20" uuid="9899942d-0074-4e3b-ad3a-eba9cdb7b15f"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_nic}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="13" y="40" width="88" height="84" uuid="2db221b1-d10a-4e26-93be-722454437d85"/>
+				<imageExpression><![CDATA[$P{image_path}]]></imageExpression>
+			</image>
+			<componentElement>
+				<reportElement stretchType="RelativeToBandHeight" x="106" y="52" width="138" height="42" uuid="14b2801c-454b-4e7e-a6bb-ddab56a1d92f"/>
+				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="Code128" drawText="false" checksumRequired="false">
+					<jr:codeExpression><![CDATA[$F{image_tbl_user_id}]]></jr:codeExpression>
+				</jr:barbecue>
+			</componentElement>
+			<textField>
+				<reportElement x="159" y="66" width="100" height="20" uuid="c46a487f-6e39-4a2d-ac35-055e7c6f92fd"/>
+				<textFieldExpression><![CDATA[$F{image_tbl_user_id}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

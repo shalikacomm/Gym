@@ -18,9 +18,14 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
-
-				<div class="panel panel-default">
-					<div class="panel-heading">Schedule Form</div>
+<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="SheduleCon?action=insert">Add Schedule</a></li>
+    </ul>
+				<div class="panel panel-default style="margin-top:-1%;">
+					<div class="panel-heading">
+					Add Member Shedules
+			</div>
 					<div class="panel-body">
 						<form action="SheduleCon" id="sheduleForm" method="POST"
 							enctype="multipart/form-data">

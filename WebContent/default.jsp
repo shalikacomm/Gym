@@ -30,12 +30,6 @@
 
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/js/login.js"></script>
-	<script>
-	 $('#thedate').datepicker({
-		    dateFormat: 'dd-mm-yy',
-		    altField: '#thealtdate',
-		    altFormat: 'yy-mm-dd'
-		});
-	</script>
+
 </body>
 </html>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,6 +15,15 @@
 <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
 <link rel="stylesheet"
 	href="assets/plugins/datepicker/css/datepicker.css" />
+	
+	<style>
+.popover-title {
+    background-color: #df6262;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align:;
+}
+</style>
 
 <!-- END PAGE LEVEL  STYLES -->
 
@@ -28,41 +38,64 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
-
+<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="UserCon?action=insert">Add Users</a></li>
+    </ul>
 
 				<div class="panel panel-default">
 					<div class="panel-heading">User Registration</div>
 					<div class="panel-body">
 						<form role="form" id="userForm" action="UserCon" method="POST">
+					<div class="row">
+															<div class="col-lg-12 col-md-12 col-sm-12">
+																<div class="container-fluid">
+																	<div class="row">
+																		<div class="col-md-6 col-sm-6 hide"
+																			id="divmessage_modal">
+																			<div style="margin-left:10%; width: 80%; padding: 10px;"
+																				id="spnmessage_modal" class="alert alert-success"
+																				role="alert"></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
 
+														<div class="row hide" id="processing_img">
+															<div class="col-md-4"></div>
+															<div class="col-md-6">
+																<img
+																	src="${pageContext.request.contextPath}/assets/img/processing.gif" />
+															</div>
+														</div>
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
 										<label> User ID </label> <input class="form-control"
-											name="user_id" value="${user_id }" readonly="readonly" />
+											name="user_id" value="${user_id }<c:out value="${userObject.user_id}" />" readonly="readonly" />
 									</div>
 								</div>
 							</div>
 							<div class="row">
-
-
+														
 								<div class="col-sm-3">
 									<div class="form-group">
-										<label> First Name</label><em style="color: red;">*</em> <input
-											name="first_name" class="form-control" />
+										<label> First Name</label><em style="color: red;">*</em> <input id="first_name" value="<c:out value="${userObject.first_name}" />"
+											name="first_name" class="form-control no_space"  />
 
 									</div>
 								</div>
 								<div class="col-sm-5">
 									<div class="form-group">
 										<label> Last Name</label><em style="color: red;">*</em> <input
-											name="last_name" class="form-control" />
+											name="last_name" class="form-control no_space" value="<c:out value="${userObject.last_name}" />"/>
 									</div>
 								</div>
 								<div class="col-sm-3">
 									<div class="form-group">
 										<label> Email</label><em style="color: red;">*</em> <input
-											name="email" class="form-control" />
+											name="email" class="form-control no_space" value="<c:out value="${userObject.email}" />"/>
 									</div>
 								</div>
 							</div>
@@ -70,9 +103,9 @@
 								<div class="col-sm-2">
 									<div class="form-group">
 										<label> NIC</label><em style="color: red;">*</em> <input
-											name="nic" type="text" class=" gur new-empty form-control"
+											name="nic" type="text" class=" gur new-empty form-control no_space"
 											id="member_nic" name="nic" placeholder="123456789V"
-											maxlength="10" title="Insert a Valid NIC" />
+											maxlength="10" title="Insert a Valid NIC" value="<c:out value="${userObject.nic}" />"/>
 									</div>
 								</div>
 								<div class="col-sm-3">
@@ -83,7 +116,7 @@
 										<div id="sandbox-container">
 											<div class="input-group date">
 												<input type="text" placeholder="YYYY-MM-DD" name="dob"
-													id="dob" class="all form-control"><span
+													id="dob" class="all form-control" value="<c:out value="${userObject.dob}" />"><span
 													class="input-group-addon"><li class= "glyphicon glyphicon-th"></li></span>
 											</div>
 											<label for="dob" class="error" id="doctor_bday-error"></label>
@@ -94,7 +127,7 @@
 								<div class="col-sm-2">
 									<div class="form-group">
 										<label>Mobile No.</label><em style="color: red;">*</em> <input
-											name="mobile_number" class="form-control"  maxlength="10"/>
+											name="mobile_number" class="form-control"  maxlength="10" value="<c:out value="${userObject.mobile_number}" />"/>
 									</div>
 								</div>
 								<div class="col-sm-2">
@@ -102,12 +135,12 @@
 										<div class="checkbox">
 											<label><b>Gender</b></label><em style="color: red;">*</em></br> <label>
 												<input class="uniform" type="radio" name="gender"
-												value="male" checked="checked" />Male
+												value="male" ${userObject.gender=='male'?'checked':''} />Male
 											</label>
 										</div>
 										<div class="checkbox">
 											<label> <input class="uniform" type="radio"
-												name="gender" value="female" /> Female
+												name="gender" ${userObject.gender=='female'?'checked':''} /> Female
 											</label>
 										</div>
 									</div>
@@ -116,7 +149,7 @@
 									<div class="form-group">
 										<label> Address</label>
 										<textarea class="form-control" id="address_perm" placeHolder="Enter your address"
-											name="address" cols="20" rows=""></textarea>
+											name="address" cols="20" rows=""><c:out value="${userObject.address}" /></textarea>
 									</div>
 								</div>
 
@@ -166,7 +199,7 @@
 									<div class="col-sm-2" style="float:right;">
 										<div class="form-group">
 											<input type="submit" value="Save"
-												class="btn btn-success btn-md " />
+												class="btn btn-success btn-sm " />
 										</div>
 									</div>
 								</div>
@@ -225,11 +258,24 @@
 				endDate : '-16y'
 			});
 		});
+		
+	
 	</script>
+<!-- 
+<script>
+$('.no_space').on('keypress', function(e) {
+    if (e.which == 32)
+    	$(this).popover({
+	          //  title: 'Warning!',
+            title: 'Please enter no spaces',
+            placement: 'bottom',
+            color: '#df6262'
+        }).popover('show');
+       
+});
+</script>
 
-
-
-
+ -->
 
 	<script type="text/javascript">
 		$(document)
@@ -241,32 +287,35 @@
 							$(function() {
 								formValidation();
 							});
-
 							$("#userForm")
 									.submit(
 											function(e) {
 												e.preventDefault();
-
 												if (!$("#userForm").valid())
 													return false;
-
-												$
-														.ajax({
+												 $("#processing_img").removeAttr("class", "hide");
+								                    $("#processing_img").attr("class", "row");
+												
+												$.ajax({
 															type : "POST",
 															url : "UserCon",
 															data : $(
 																	"#userForm")
 																	.serialize(),
-
 															success : function(
 																	data) {
-
 																if (data == 'true') {
-
+																	 $("#processing_img").attr("class", "hide");
+										                                $("#spnmessage_modal").removeAttr("class", "alert alert-danger");
+										                                $("#spnmessage_modal").attr("class", "alert alert-success");
+										                                $("#spnmessage_modal").html('<p><strong>Successfully Send the Email</strong></p>');
+										                                $("#divmessage_modal").removeAttr("class", "hide");
+										                                $("#divmessage_modal").fadeIn(1500);
+										                                $("#divmessage_modal").delay(2500).fadeOut(1500);
 																	swal(
 																			{
 																				title : "User Added !",
-																				text : "You created a User!",
+																				text : "Your credentials has been sent by a mail!",
 																				type : "success",
 																				showCancelButton : false,
 																				confirmButtonColor : "#DD6B55",
@@ -277,16 +326,20 @@
 																				window.location = "UserCon?action=list";
 																			});
 																} else {
+																	  $("#processing_img").attr("class", "hide");
+										                                $("#spnmessage_modal").removeAttr("class", "alert alert-success");
+										                                $("#spnmessage_modal").attr("class", "alert alert-danger");
+										                                $("#spnmessage_modal").html('<p><strong>Email not send check your internet connection </strong></p>');
+										                                $("#divmessage_modal").removeAttr("class", "hide");
+										                                $("#divmessage_modal").fadeIn(1500);
+										                                $("#divmessage_modal").delay(2500).fadeOut(1500);
 																	swal(
 																			"Data not saved!",
 																			"Please contact administrator!",
 																			"error");
 																}
-
 															}
-
 														});
-
 											});
 						});
 	</script>

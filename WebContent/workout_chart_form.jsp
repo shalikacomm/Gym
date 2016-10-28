@@ -55,10 +55,7 @@
 										<div class="col-sm-5">
                         <input id="text2" placeholder="please enter a workchart name" class="form-control" type="text" name="chartName">
                     </div>
-					<div class="col-sm-2">
-					<button class="btn panelAdd" type ="button">click here</button>
-					</div>
-									</div>
+													</div>
 								</div>
 							</div>
 							<hr />

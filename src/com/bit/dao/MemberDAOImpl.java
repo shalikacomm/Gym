@@ -97,6 +97,35 @@ public class MemberDAOImpl implements MemberDAO {
 			}
 		}
 	}
+	public void updateImage(String user_id,String user_path) {
+		Connection con = null;
+		try {
+			con=DBUtil.getConnection();
+			String sql="UPDATE image_tbl SET image_path=? WHERE user_id=?";
+			
+			PreparedStatement preparedStatement = con.prepareStatement(sql);
+			// Parameters start with 1
+			preparedStatement.setString(2,user_id);
+			preparedStatement.setString(1,user_path);
+			
+			
+			preparedStatement.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+	}
+	
+	
 
 	@Override
 	public List<MemberEntity> getAllMembers() {
@@ -129,6 +158,31 @@ public class MemberDAOImpl implements MemberDAO {
 	        }
 			return members;
 	}
+	public String getImagePath(String user_id) {
+		String path="";
+		connection = DBUtil.getConnection();
+		List<MemberEntity> members = new ArrayList<MemberEntity>();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("select image_path from image_tbl WHERE user_id='"+user_id+"'");
+			while (rs.next()) {
+				path=rs.getString("image_path");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+    		
+    		if (connection != null) {
+    			try {
+    				connection.close();
+    			} catch (SQLException e) {
+    				// TODO Auto-generated catch block
+    				e.printStackTrace();
+    			}
+    		}
+    	}
+		return path;
+	}
 	
 
 	@Override
@@ -159,7 +213,17 @@ public class MemberDAOImpl implements MemberDAO {
 	            }
 	        } catch (SQLException e) {
 	            e.printStackTrace();
-	        }
+	        }finally {
+	    		
+	    		if (connection != null) {
+	    			try {
+	    				connection.close();
+	    			} catch (SQLException e) {
+	    				// TODO Auto-generated catch block
+	    				e.printStackTrace();
+	    			}
+	    		}
+	    	}
 			return member;
 	}
 	

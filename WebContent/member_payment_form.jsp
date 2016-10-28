@@ -39,7 +39,7 @@
 
 								</div>
 								<div class="col-md-2">
-									<input class="form-control statSupp" name="stat" value="" type="text" id="statSupport"
+									<input class="form-control statSupp" name="stat" value="" type="hidden" id="statSupport"
 										readonly="readonly" />
 
 								</div>
@@ -172,10 +172,10 @@
 								</div>
 							
 								</div>
-								
-								<div class="col-md-2">
+								<em style="color: red;">(Rs.)</em>
+								<div class="col-md-1">
 									<input type="text" id="monthly_payment" name="monthly_payment"
-										readonly="readonly" class="form-control"
+										readonly="readonly" class="form-control" 
 										style="text-align: right;" value="${master_fee.monthly_fee}" />
 								</div>
 							</div>
@@ -185,7 +185,7 @@
 							<div class="form-group">
 								<div class="col-md-4">
 									<label for="limiter" class="control-label col-md-5"
-										style="float: right;">Gross Payment<em style="color: red;">(Rs.)</em></label>
+										style="float: right;">Gross Payment <em style="color: red;">(Rs.)</em></label>
 								</div>
 								<div class="col-md-2">
 									<input type="text" id="gross_payment" name="gross_payment"
@@ -515,11 +515,11 @@
 																	$("#lbl_status").empty().append(
 																					"<span class='label label-success'>Active</span>");
 																} else if (member_status.status == 2) {
-																	$(
-																			"#lbl_status")
-																			.empty()
-																			.append(
-																					"<span class='label label-warning'>Pending</span>");
+																	$("#lbl_status").empty().append("<span class='label label-warning'>Pending</span>");
+
+																}
+																else if (member_status.status == 3) {
+																	$("#lbl_status").empty().append("<span class='label label-info'>Fresh</span>");
 
 																}
 																var love = (member_status.status);
@@ -631,7 +631,7 @@
 			}else{
 				
 				var currentStatus = $('#statSupport').val();
-				if(currentStatus == (0 || 2)){
+				if(currentStatus == (0 || 2 || 3)){
 					var beginDate = new Date();
 				}else{
 					var beginDate = new Date(lastActive);

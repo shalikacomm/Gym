@@ -17,8 +17,12 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
+			<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="ChartCon?action=insert">Paoductive Charts</a></li>
+    </ul>
 
-				<div class="panel panel-default" style="margin-top: 5%;">
+				<div class="panel panel-default" style="margin-top: 1%;">
 					<div class="panel-heading">Charts</div>
 					<div class="panel-body">
 

@@ -29,12 +29,12 @@
     <!-- END HEAD -->
 
     <!-- BEGIN BODY -->
-<body >
-
+<!-- <body background=""> -->
+<body BACKGROUND="${pageContext.request.contextPath}/assets_front/images/login_wall.jpg"/>
    <!-- PAGE CONTENT --> 
     <div class="container">
     <div class="text-center">
-        <img src="assets/img/logo.jpg" />
+       <!--  <img src="assets/img/logo.jpg" /> -->
     </div>
     <div class="tab-content">
         <div id="login" class="tab-pane active">

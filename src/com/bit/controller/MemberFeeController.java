@@ -59,6 +59,44 @@ public class MemberFeeController extends HttpServlet {
 				}
 
 			} 
+			else if (action.equalsIgnoreCase("insert")) {
+				forward = INSERT_OR_EDIT;
+				Methods method = new Methods();
+				String generateID = method.generateID("P", "payment_id", "member_payment_tbl");
+				req.setAttribute("fee_id", generateID);
+				MemberPaymentDAO dao = new MemberPaymentDAOImpl();
+				MemberPaymentEntity pay = dao.getMonthlyFee();
+				req.setAttribute("master_fee",pay);
+				}
+		  
+			  else if (action.equalsIgnoreCase("getSubs")) {
+				  double due = 0;
+				  double total_due = 0;
+				  MemberPaymentDAO mem_dao = new MemberPaymentDAOImpl();
+					 String userId = req.getParameter("user_id");
+					List <MemberPaymentEntity> subList = mem_dao.getMemberSubs(userId);
+					for(int i =0;i<subList.size();i++){
+						  due = subList.get(i).getAdditional_payments();
+						  total_due += due; 
+						
+					}
+					System.out.println(total_due); 
+				//	double totalSubs = due ;
+					 Gson gson = new Gson();
+					 
+					 try (PrintWriter out = resp.getWriter()) {
+						 resp.setContentType("application/json");
+						 resp.setCharacterEncoding("UTF-8");
+						 
+						// out.write("{ \"record\":" + new Gson().toJson(total_due) + "}");
+						 out.print(total_due);
+						 
+						 out.flush();
+						 out.close();
+						 return;
+					 }
+					 
+				 } 
 		  else if (action.equalsIgnoreCase("getActiveDate")) {
 			  String userId = req.getParameter("user_id");
 			  MemberPaymentDAO dao = new MemberPaymentDAOImpl();
@@ -78,44 +116,9 @@ public class MemberFeeController extends HttpServlet {
 			  
 		  } 
 		  
-			else if (action.equalsIgnoreCase("insert")) {
-				forward = INSERT_OR_EDIT;
-				Methods method = new Methods();
-				String generateID = method.generateID("P", "payment_id", "member_payment_tbl");
-				req.setAttribute("fee_id", generateID);
-				MemberPaymentDAO dao = new MemberPaymentDAOImpl();
-				MemberPaymentEntity pay = dao.getMonthlyFee();
-				req.setAttribute("master_fee",pay);
-				}
+		
 		  
-		  else if (action.equalsIgnoreCase("getSubs")) {
-			  double due = 0;
-			  double total_due = 0;
-			  MemberPaymentDAO mem_dao = new MemberPaymentDAOImpl();
-				 String userId = req.getParameter("user_id");
-				List <MemberPaymentEntity> subList = mem_dao.getMemberSubs(userId);
-				for(int i =0;i<subList.size();i++){
-					  due = subList.get(i).getAdditional_payments();
-					  total_due += due; 
-					
-				}
-				System.out.println(total_due); 
-			//	double totalSubs = due ;
-				 Gson gson = new Gson();
-				 
-				 try (PrintWriter out = resp.getWriter()) {
-					 resp.setContentType("application/json");
-					 resp.setCharacterEncoding("UTF-8");
-					 
-					// out.write("{ \"record\":" + new Gson().toJson(total_due) + "}");
-					 out.print(total_due);
-					 
-					 out.flush();
-					 out.close();
-					 return;
-				 }
-				 
-			 } 
+		
 		
 		
 		

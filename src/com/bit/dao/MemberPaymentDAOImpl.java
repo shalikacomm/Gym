@@ -21,7 +21,7 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 		connection = DBUtil.getConnection();
 		MemberPaymentEntity lastDate = new MemberPaymentEntity();
 	        try {
-	            PreparedStatement preStmt = connection.prepareStatement("SELECT active_period FROM member_payment_tbl WHERE user_id =? ;");
+	            PreparedStatement preStmt = connection.prepareStatement("SELECT MAX(active_period) FROM member_payment_tbl WHERE user_id =?");
 	            preStmt.setString(1, userID);
 	            ResultSet rs = preStmt.executeQuery();
 	            
@@ -43,6 +43,38 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 			}
 			return lastDate;
 	}
+	/*public MemberPaymentEntity getLastActiveTimeMember(String user_id) {
+		Connection con = null;
+    	MemberPaymentEntity paid_detail = new MemberPaymentEntity();
+    	
+        try {
+        	con=DBUtil.getConnection();
+            PreparedStatement preparedStatement = con.prepareStatement("SELECT MAX(active_period) FROM member_payment_tbl WHERE user_id = ?");
+            preparedStatement.setString(1, user_id);
+            ResultSet rs = preparedStatement.executeQuery();
+
+            if (rs.next()) {
+            
+            	paid_detail.setActive_period(rs.getString(" MAX(active_period)"));
+	              
+            }
+        
+            
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+        return paid_detail;
+	}*/
 	
 	public UserEntity getMemberStatus(String userID) {
 		connection = DBUtil.getConnection();

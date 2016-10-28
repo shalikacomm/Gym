@@ -10,6 +10,7 @@
         }
         function NameValidation(value, element) {
             return /^[a-zA-Z.\s]+$/.test(value);
+           
         }
         function PhoneValidation(value, element) {
         	   return /[0-9]{10}/.test(value);
@@ -17,11 +18,16 @@
         function QtyValidation(value, element) {
         	return /[1-9]/.test(value);
         }
+        function NoSpace(value, element) {
+        	return /^[a-zA-Z_\-]+$/.test(value);
+        }
+     
       
         $.validator.addMethod("nic", valID, "Please insert valid NIC format");
         $.validator.addMethod("name_validation", NameValidation, "Please insert only alphabetic characters with . or spaces");
         $.validator.addMethod("phone_number", PhoneValidation,"Please insert valid Phone number");
         $.validator.addMethod("qty", QtyValidation,"Please Enter positive value");
+        $.validator.addMethod("no_space", NoSpace,"Please Enter no spaces");
      
       
 	
@@ -90,25 +96,30 @@
             desc: "required",
             first_name: {
             	required: true,
+            	no_space: true,
             	name_validation:true
             	},
             	
             last_name: {
             	required: true,
+            	no_space: true,
             	name_validation:true
             },
             email: {
                 required: true,
+                no_space: false,
                 email:true
             },
             nic: {
                 required: true,
+                no_space: false,
                 nic:true
             },
             mobile_number: {
             	phone_number:true,
+            	no_space: false,
                 required: true,
-                minlength: 3
+                minlength: 10
             },
                     
             address: {
@@ -142,23 +153,28 @@
         	
         	first_name:{
         		required:"Please fill this field",
+        		no_space:"No Spaces please",
         		name_validation: "Please insert only alphabetic characters"
         	},
         	  last_name: {
         		  required:"Please fill this field",
+        		  no_space:"No Spaces please",
           		name_validation: "Please insert only alphabetic characters"
               },
               email: {
                   required: "Please fill this field",
+                  no_space:"No Spaces please",
                   email: "Enter a valid e-mail"
               },
               nic: {
             	  nic: "Please insert valid NIC format",
+            	  no_space:"No Spaces please",
             		  required: "Please fill this field"
               },
               mobile_number: {
             	 
               	phone_number:"Please insert valid Phone number",
+              	no_space:"No Spaces please",
                   required: "Please fill this field",
                 minlength:"min length is 10"
               },
@@ -183,6 +199,33 @@
         }
     });
     
+    $('#manual_submit_form').validate({
+    	
+   	 rules: {        
+           desc: "required",
+           username: {
+           	required: true,
+           	name_validation:true
+           	}
+                },
+       messages: {
+       	
+    	   username:{
+       		required:"Please Use your ID",
+       		name_validation: "Please insert only alphabetic characters"
+       	},
+        },
+       errorClass: 'help-block',
+       errorElement: 'span',
+       highlight: function (element, errorClass, validClass) {
+           $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+           $(element).parents('.input-group-addon').removeClass('has-success').addClass('has-error');
+           
+       },
+       unhighlight: function (element, errorClass, validClass) {
+           $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+       }
+   });
     
     $('#exerciseForm').validate({
     	
@@ -212,6 +255,33 @@
        }
    	 }
    });
+    
+    $('#barcode_submit_form').validate({
+    	
+      	 rules: {
+      		barcode_name: {required: true,
+            
+          },
+          messages: {
+          	
+        	  barcode_name:{
+          		required:"Please Use Your ID",
+          		
+         		
+          	}
+             },
+          errorClass: 'has-error',
+          errorElement: 'span',
+          highlight: function (element, errorClass, validClass) {
+              $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+              $(element).parents('.input-group-addon').removeClass('has-success').addClass('has-error');
+              
+          },
+          unhighlight: function (element, errorClass, validClass) {
+              $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+          }
+      	 }
+      });
    
     
     $('#invoiceForm').validate({

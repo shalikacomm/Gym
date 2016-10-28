@@ -23,6 +23,9 @@ public interface MemberDAO {
 
 	public void deactivate(String memberId);
 
+	public void updateImage(String user_id,String user_path);
+	
+	public String getImagePath(String user_id);
 	
 	
 

@@ -2,6 +2,7 @@ package com.bit.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.bit.dao.BasicChartDAO;
 import com.bit.dao.BasicChartDAOImpl;
+import com.bit.dao.ProductDAO;
+import com.bit.dao.ProductDAOImpl;
 import com.bit.entity.BasicChartEntity;
+import com.bit.entity.ProductEntity;
 import com.bit.util.Methods;
 
 
@@ -34,6 +38,13 @@ public class BasicSheduleController extends HttpServlet {
 			String generateID = method.generateID("W", "workout_id", "workout_charts");
 			req.setAttribute("workoutID", generateID);
 		} 
+		else if (action.equalsIgnoreCase("list")) {
+			BasicChartDAO chart_dao = new BasicChartDAOImpl();
+			List<BasicChartEntity> list = chart_dao.getAllWorkouts();
+			req.setAttribute("workout", list);
+			forward = LIST_USER;
+
+		}
 		
 		if(forward !=""){
 			RequestDispatcher view = req.getRequestDispatcher(forward);

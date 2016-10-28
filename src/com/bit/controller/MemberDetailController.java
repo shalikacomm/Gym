@@ -33,7 +33,7 @@ public class MemberDetailController extends HttpServlet {
 
 		if (action.equalsIgnoreCase("list")) {
 			List<UserEntity> list = dao.getAllUsersbyMember();
-			req.setAttribute("memObject", list);
+			req.setAttribute("users", list);
 			forward = LIST_USER;
 
 		}
@@ -57,6 +57,24 @@ public class MemberDetailController extends HttpServlet {
 				resp.setCharacterEncoding("UTF-8");
 
 				out.write("{ \"record\":" + new Gson().toJson(members) + "}");
+
+				out.flush();
+				out.close();
+				return;
+			}
+		}
+		else if (action.equalsIgnoreCase("body_part")) {
+			String user_id = req.getParameter("userName");
+			//String bodyPart = req.getParameter("bodypart");
+			MemberDetailDAO memDao = new MemberDetailDAOImpl();
+			List <MemberDetailEntity> details = memDao.getprogress(user_id);
+			Gson gson = new Gson();
+
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+
+				out.write("{ \"record\":" + new Gson().toJson(details) + "}");
 
 				out.flush();
 				out.close();

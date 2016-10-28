@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Add Member Progress</title>
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/login.css" />
@@ -21,7 +21,7 @@
 			<div class="inner" style="min-height: 700px;">
 
 <div class="panel panel-default">
-					<div class="panel-heading">Member Details Registration</div>
+					<div class="panel-heading">Member Progress Details</div>
 					<div class="panel-body">
 						<form action="MemberDCon" method="POST" id="memDetailForm">
 

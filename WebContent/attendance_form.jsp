@@ -84,21 +84,20 @@
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
 
+<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="AttenCon?action=insert">Mark Attendance</a></li>
+    </ul>
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="box dark">
+							<div class="box dark style="margin-top:-1%;">
 								<header>
 								<div class="icons">
-									<i class="icon-glass"></i>
+								 Mark Attendance
 								</div>
-								<h5>Attendance Mark Details</h5>
-								</header>
-
-
-
-								</br>
 								
-								<div class="col-md-9" style="margin-top: 2.0%;">
+								</header>
+									<div class="col-md-9" style="margin-top: 2.0%;">
                         <div class="tabbable-panel">
                             <div class="tabbable-line">
                                 <ul class="nav nav-tabs "style="border-radius: 0px; color:  #333fff ; border-bottom: 3px solid  #333fff ; font-family: inherit; font-weight: 500;">
@@ -119,8 +118,13 @@
                                             <form id="barcode_submit_form" method="get" action="AttenCon">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label style=" font-size: 20.5px; margin-left:8%; margin-top:5%">Mark From Barcode</label>
+                                                        <label style=" font-size: 20.5px; margin-left:8%; margin-top:5%">Mark From Barcode</label>   <small class=" text-muted label label-warning">
+                                                 ${atten_id}
+                                                </small>  
                                                     </div>
+                                                 <input type="hidden" id="atten_id" name="atten_id"
+												readonly="readonly" class="form-control" style="hide"
+												value="${atten_id}"/>
                                                 </div>
                                                 <div class="col-md-9" style="margin-left:8%;">
                                                     <div class="row">
@@ -129,17 +133,14 @@
                                                                 <label style="font-size: 13.5px; margin-top:3%">Barcode ID</label>
                                                             </div>
                                                             <div class="col-md-4">
-                                                                <input class="form-control barcode" value="" type="text" id="barcode_id" name="barcode_id" />
+                                                            <div class="form-control">
+                                                                <input class="form-control" value="" type="text" id="barcode_id" name="barcode_name" />
+                                                            </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                               <br/>
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <button type="button" id ="barSub" class="btn btn-primary btn-sm" style=" border-radius: 6px; margin-left: 48%; background: primary; " >Submit</button>
-                                                           
-                                                        </div>
-                                                    </div></div>
+                                                    </div>
                                             </form>
                                         </div>
                                     </div>
@@ -148,19 +149,21 @@
                                             <form id="manual_submit_form" method="get" action="AttenCon">
                                                 <div class="row">
                                                     <div class="col-md-6">
-                                                        <label style=" font-size: 20.5px; margin-left:8%; margin-top:5%">Add Sub-service</label>
+                                                        <label style=" font-size: 20.5px; margin-left:8%; margin-top:5%">Mark Manually</label>&nbsp;<small class=" text-muted label label-warning">
+                                                 ${atten_id}
+                                                </small>  
                                                     </div>
                                                 </div>
                                                 <div class="col-md-9" style="margin-left:8%;">
                                                     <div class="row">
                                                                                                            
                                                         <div class="row">
-                                                            <div class="form-group" style="margin-top: 3%;">
+                                                            <div class="form-control" style="margin-top: 3%;">
                                                                 <div class="col-md-3">
                                                                     <label style="font-size: 13.5px; margin-top: 2%;">Username ID</label>
                                                                 </div>
                                                                 <div class="col-md-4">
-                                                                <input class="form-control username" value="" type="text" id="username_id" name="username" />
+                                                                <input class="form-control" value="" type="text" id="username_id" name="username" />
                                                             </div>
                                                             </div>
                                                         </div>
@@ -169,12 +172,25 @@
                                                     </div>
                                                     <br/>
                                                     <!--<hr style="margin-left: 15%; "/>-->
-                                                    <div class="row">
-                                                        <div class="col-md-12">
-                                                            <button type="button" class="btn btn-info btn-sm" style=" border-radius: 6px; margin-left: 48%; background: #27C3BB;">Submit</button>
-                                                            <input type="reset" class="btn btn-default btn-sm" style="margin-left: 60%; margin-top: -7.5%; " value="Reset" />
-                                                        </div>
-                                                    </div>
+                                                 	<div class="row">
+									<div class="form-actions no-margin-bottom"
+										style="text-align: center;">
+										<div class="col-sm-3"></div>
+										<div class="col-sm-6">
+											<div>
+												<input id="btn_save"
+													value="Save" class="btn btn-primary btn-sm " type="submit">
+													
+												<a data-toggle="modal" class="btn btn-default btn-grad  btn-sm img_btn"
+														id="${temp.user_id}" data-toggle="modal" href="#imageup"><input id="btn_reset" value="Check"
+													class="btn btn-warning btn-sm " type="button" /></a>
+												</div>
+											
+									
+
+										</div>
+									</div>
+								</div>
                                                 </div>
                                             </form>
                                         </div>
@@ -206,8 +222,103 @@
 	<%@include file="right_panel.jsp"%>
 
 	<%@include file="footer.jsp"%>
+	
+	<!-- modal start  image-->
+
+
+							<div class="col-lg-12">
+								<div class="modal fade" id="imageup" tabindex="-1" role="dialog"
+									aria-labelledby="myModalLabel" aria-hidden="true"
+									data-keyboard="false" data-backdrop="static">
+									<div class="modal-dialog modal-lg">
+										<!--<div class="modal-content">-->
+										<div class="panel with-nav-tabs panel-info modal-content">
+											<div class="panel-heading modal-header">
+												<button type="button" class="close" data-dismiss="modal"
+													aria-hidden="true">&times;</button>
+												<ul class="nav nav-tabs">
+													<li class="active"><a href="#doctor_info"
+														data-toggle="tab">Select Your Image</a></li>
+
+													<!--<li><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></li>-->
+												</ul>
+											</div>
+											<div class="panel-body modal-body">
+											<form id="imageForm" action="MemberCon" method="POST">
+												<div class="tab-content">
+												
+													<div class="tab-pane fade in active" id="doctor_info">
+													<div class="row">
+													<div class="col-sm-3"></div>
+													<div class="col-sm-6"><input id="img_user" type="text" readonly class="form-control" name="user_id">
+													</div>
+													<div class="col-sm-3"></div>
+													</div>
+														<div class="row">
+															<div class="col-md-6 " align="center" id="doc_img">
+																<img id="past_img" width="134" height="179" src="" >
+															</div>
+															<div class=" col-md-6 ">
+																					
+																			<div class="form-group">
+																				<label>Member Photo</label><em style="color: red;">*</em>
+																				
+																				<div class="fileupload fileupload-new"
+																					data-provides="fileupload">
+																					<div class="fileupload-preview thumbnail"
+																						style="width: 200px; height: 150px;"></div>
+																					<div>
+																						<span class="btn btn-file btn-success"><span
+																							class="fileupload-new">Select image</span><span
+																							class="fileupload-exists">Change</span> <input
+																							type="file" name="img_path" /></span> <a href="#"
+																							class="btn btn-danger fileupload-exists"
+																							data-dismiss="fileupload">Remove</a>
+																					</div>
+																				</div>
+																			</div>
+																		
+																		<div class=col-lg-4></div>
+																
+															</div>
+														</div>
+													</div>
+													<div>
+														<hr>
+													</div>
+													<div class="row">
+													<div>
+													<div class="col-sm-2">
+													<div class="form-group">
+														<button type="button" class="btn btn-default"
+															data-dismiss="modal">Close</button>
+													</div>
+													</div>
+													</div>
+													<div class="col-sm-2">
+													<div class="form-group">
+												<button type="submit" class="btn btn-success saveImg"
+														style="background: #27C3BB">Save Image</button>
+												</div>
+												</div>
+												</div>
+												</div>
+												</form>
+											</div>
+										</div>
+										<!--</div>-->
+									</div>
+								</div>
+							</div>
+							<!-- modal end -->
+	
+	
+		<script src="assets/js/jquery-ui.min.js"></script>
+	
+<script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script> 
 		<script src="assets/js/sweetalert.min.js"></script>
-	<script src="assets/js/jquery-ui.min.js"></script>
+	<script src="assets/js/validationInit.js"></script>
 	<script>
 /* 	$(document).ready(function(){
 		$(".barcode").focus();
@@ -217,41 +328,83 @@
 	<script>
 	$(document).ready(function(){
 		// alert(4566);
-		$('#barSub').on('click',function(){
-			
-			$('#barcode_id').keypress(function (e) {
-				alert(1235);
+		$('#barcode_id').focus();
+		$('#barcode_id').val(""); 
+		$('#barcode_submit_form').on('submit',function(e){
+			e.preventDefault();
+		
+			$('#barcode_id').on('keyup',function (e) {
 				 var key = e.which;
 				 if(key == 13)  // the enter key code
 				  {
-				    $('#barSub').click();
-				     
+								
+					
 				  }
 				}); 
 			
 			var user_id = $('#barcode_id').val();
 			//alert(user_id);
-			$.ajax({
+			 $.ajax({
 				method: 'get',
 				dataType : "json",
 				url: 'AttenCon?action=check&user_id='+user_id,
 				success: function(data){
 					var result = data.record;
+					
 					if(result== true){
-						swal("Product updated!", "You clicked the button!", "success");
+						swal({
+							  title: "Welcome to FIT & FUN!",
+							  text: "Work Hard play harder",
+							  timer: 2000,
+							  showConfirmButton: false
+							});
 						//alert("its activated");
-						window.location="attendance_form.jsp";
-					}else{
-					alert("its not activated");
+						window.location="AttenCon?action=mark";
+					}else if(result == false){
+						sweetAlert("Your Access Denied", "Please Contact Operator!", "error");
+						$('#barcode_id').val(""); 
 				}
 			
 		}
 		
-	});
+	}); 
 	});
 	});
 	
 	</script>
-	
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							$(function() {
+								formValidation();
+							});
+							$("#barcode_submit_form").submit(
+											function(e) {
+												e.preventDefault();
+												if (!$("#barcode_submit_form").valid())
+													return false;
+												$.ajax({
+															type : "POST",
+															url : "AttenCon",
+															data : $(
+																	"#barcode_submit_form")
+																	.serialize(),
+															success : function(
+																	data) {
+																if (data == 'true') {
+																	swal(function() {
+																				window.location = "AttenCon?action=mark";
+																			});
+																} else {
+																	
+																}
+															}
+
+														});
+
+											});
+						});
+	</script>
 </body>
 </html>

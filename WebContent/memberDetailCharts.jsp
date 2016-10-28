@@ -59,7 +59,7 @@ var ctx = $("#myChart");
 // console.log(ctx)
 
  var myChart = new Chart(ctx, {
-   type: 'bar',
+   type: 'line',
    data : {
        labels: dataName,
        datasets: [{

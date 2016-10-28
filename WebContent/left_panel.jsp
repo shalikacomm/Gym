@@ -140,6 +140,36 @@
 				
 				</ul>
 			</li>
+			
+					<li class="panel"><a href="#" data-parent="#menu"
+			data-toggle="collapse" class="accordion-toggle"	data-target="#workout-nav"> 
+			<i class="glyphicon glyphicon-picture">&nbsp;</i>Workout Charts<span class="pull-right"> 
+			<i class="icon-angle-down"></i>
+			</span> 
+		</a>
+			<ul class="collapse" id="workout-nav">
+				<li><a href="BasicSheduleCon?action=insert"><i
+						class="icon-angle-right"></i> Add WorkOut Charts </a></li>
+				<li><a href="BasicSheduleCon?action=list"><i
+						class="icon-angle-right"></i> Workout Chart Lits </a></li>
+				
+				</ul>
+			</li>
+			
+			<li class="panel"><a href="#" data-parent="#menu"
+			data-toggle="collapse" class="accordion-toggle"	data-target="#markAttendance-nav"> 
+			<i class="glyphicon glyphicon-user">&nbsp;</i>Mark Attendance<span class="pull-right"> 
+			<i class="icon-angle-down"></i>
+			</span> 
+		</a>
+			<ul class="collapse" id="markAttendance-nav">
+				<li><a href="AttenCon?action=mark"><i
+						class="icon-angle-right"></i> Mark Attendance</a></li>
+				<li><a href="BasicSheduleCon?action=list"><i
+						class="icon-angle-right"></i> Check Member Attendance</a></li>
+				
+				</ul>
+			</li>
 
 	</ul>
 
