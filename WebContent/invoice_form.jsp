@@ -13,14 +13,7 @@
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/modal.css" />
-<style>
-.popover-title {
-    background-color: #df6262;
-    color: #FFFFFF;
-    font-size: 12px;
-    text-align:;
-}
-</style>
+
 </head>
 <body class="padTop53 ">
 
@@ -143,11 +136,14 @@
 									<div class="col-md-1 text-center">
 										<strong>Std. Price</strong>
 									</div>
-									<div class="col-md-2 text-center">
+									<div class="col-md-1 text-center">
 										<strong>Unit</strong>
 									</div>
 									<div class="col-md-1 text-center" id="">
 										<strong>Qty</strong>
+									</div>
+									<div class="col-md-1 text-center" id="">
+										<strong>Stock</strong>
 									</div>
 									<div class="col-md-2 text-center">
 										<strong>Sub total</strong>
@@ -165,16 +161,20 @@
 										</div>
 										<div class="col-md-1 text-center" id="price">
 											<input readonly id="inv_price0"
-												class="form-control inv_price" name="inv_price"
+												class="form-control inv_price" name="inv_price" style="text-align: right"
 												id="inv_price0" type="text" />
 										</div>
-										<div class="col-md-2 text-center" id="unit">
+										<div class="col-md-1 text-center" id="unit">
 											<input readonly id="inv_unit0" class="form-control inv_unit"
 												name="inv_unit" type="text" />
 										</div>
 										<div class="col-md-1 text-center" id="quantity">
 											<input class="form-control child" name="inv_qty"
 												id="inv_qty0" type="text" />
+										</div>
+										<div class="col-md-1 text-center" id="stock">
+											<input class="form-control child" name="stock"
+												id="stock0" type="text" />
 										</div>
 										<div class="col-md-2 text-center" id="subTotal">
 											<input class="form-control" name="inv_sub_total"
@@ -727,8 +727,7 @@ function onFocus(el) {
 																		.log(data.record);
 																var product = data.record;
 
-																$("#inv_price"+ current_id)
-																		.val(product.sellingPrice);
+																$("#inv_price"+ current_id).val((product.sellingPrice).toFixed(2));
 																$("#inv_unit"+ current_id).val(product.measuringUnit);
 
 															}
@@ -841,7 +840,7 @@ function onFocus(el) {
 						
 						});
 	</script>
-	<script>
+<!-- 	<script>
 	
 function checknull() {
     var name = $('#address_input_slpw_adv').val();
@@ -852,7 +851,7 @@ function checknull() {
         alert('Proceed with submit');
     }
 }
-</script>
+</script> -->
 	<script>
 		$(document).ready(function() {
 							$(function() {

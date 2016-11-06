@@ -21,13 +21,17 @@
         function NoSpace(value, element) {
         	return /^[a-zA-Z_\-]+$/.test(value);
         }
-     
+        function Noleak(value, element) { 
+            return value.indexOf(" ") < 0 && value != "";
+        } 
+            
       
         $.validator.addMethod("nic", valID, "Please insert valid NIC format");
         $.validator.addMethod("name_validation", NameValidation, "Please insert only alphabetic characters with . or spaces");
         $.validator.addMethod("phone_number", PhoneValidation,"Please insert valid Phone number");
         $.validator.addMethod("qty", QtyValidation,"Please Enter positive value");
         $.validator.addMethod("no_space", NoSpace,"Please Enter no spaces");
+        $.validator.addMethod("noSpace", Noleak,"Please Enter no spaces or blanks");
      
       
 	
@@ -87,6 +91,48 @@
             $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
         }
     });
+    
+    $('#memPaymentForm').validate({
+        rules: {/*
+             this is for payment form validation */         
+                
+            gross_payment: {
+            	required: false,
+            	 min: true,
+            	number:true,
+            	
+            	
+            },
+            disc: {
+                required: false,
+                min: false,
+                number:true,
+                noSpace:true,
+            },
+            total_payment: {
+            	required: false,
+            	number:true,
+            	          	        }
+       
+        },
+        messages: {
+        	desc:"Please fill this field",
+        	disc:{
+        		min:"Please enter number greater than 0",
+        		
+        	},
+        },
+        errorClass: 'help-block',
+        errorElement: 'span',
+        highlight: function (element, errorClass, validClass) {
+            $(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+        }
+    });
+    
+    
     /*----------- END validate CODE -------------------------*/
   
     $('#userForm').validate({
@@ -96,24 +142,24 @@
             desc: "required",
             first_name: {
             	required: true,
-            	no_space: true,
-            	name_validation:true
+            	name_validation:true,
+            	no_space: false
             	},
             	
             last_name: {
             	required: true,
-            	no_space: true,
-            	name_validation:true
+            	name_validation:true,
+            	no_space: false
             },
             email: {
                 required: true,
-                no_space: false,
-                email:true
+                email:true,
+                no_space: false
             },
             nic: {
                 required: true,
-                no_space: false,
-                nic:true
+                nic:true,
+                no_space: false
             },
             mobile_number: {
             	phone_number:true,
@@ -153,28 +199,30 @@
         	
         	first_name:{
         		required:"Please fill this field",
-        		no_space:"No Spaces please",
-        		name_validation: "Please insert only alphabetic characters"
+        		name_validation: "Please insert only alphabetic characters",
+        	//	no_space:"No Spaces please"
+        		
         	},
         	  last_name: {
         		  required:"Please fill this field",
-        		  no_space:"No Spaces please",
-          		name_validation: "Please insert only alphabetic characters"
-              },
+        		  name_validation: "Please insert only alphabetic characters",
+        		//  no_space:"No Spaces please"
+        	  },
               email: {
                   required: "Please fill this field",
-                  no_space:"No Spaces please",
-                  email: "Enter a valid e-mail"
+                  email: "Enter a valid e-mail",
+                // no_space:"No Spaces please"
               },
               nic: {
             	  nic: "Please insert valid NIC format",
-            	  no_space:"No Spaces please",
-            		  required: "Please fill this field"
+            	  required: "Please fill this field",
+            	//  no_space:"No Spaces please"
+            		 
               },
               mobile_number: {
             	 
               	phone_number:"Please insert valid Phone number",
-              	no_space:"No Spaces please",
+            //  	no_space:"No Spaces please",
                   required: "Please fill this field",
                 minlength:"min length is 10"
               },

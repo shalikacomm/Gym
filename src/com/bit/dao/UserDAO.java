@@ -29,6 +29,8 @@ public interface UserDAO {
 	
 	public boolean updateUser(UserEntity user);
 	
+	public List<UserEntity>getAllMemberUsers();
+	
 	// public boolean deactivateExpiredMembers() ;
 	
 	

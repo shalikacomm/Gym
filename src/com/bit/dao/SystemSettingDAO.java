@@ -12,4 +12,6 @@ public interface SystemSettingDAO {
 	public SystemSettingEntity getSetById(String setID);
 	
 	public boolean updateSettings(SystemSettingEntity setting);
+	
+	
 }

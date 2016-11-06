@@ -169,11 +169,9 @@
 	<script type="text/javascript"
 		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script> 
 	<script src="assets/js/sweetalert.min.js"></script>
-	<script src="assets/js/validationInit.js"></script>
+ <script src="assets/js/validationInit.js"></script> 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							$(function() {
 								formValidation();
 							});

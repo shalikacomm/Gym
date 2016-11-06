@@ -68,8 +68,8 @@
 										style="float: right;">Current Status</label>
 								</div>
 								<div class="col-md-2">
-									<br />
-									<div id="lbl_status"></div>
+									
+									<div id="lbl_status" style="margin-top: 6%;"></div>
 								</div>
 							</div>
 						</div>
@@ -84,9 +84,14 @@
 										readonly="readonly" class="form-control"
 										style="text-align: right;" value="" />
 								</div>
+								<div class="col-md-4">
+									<label for="limiter" class="control-label"
+										style="float: left;"><var>Is active until shown date</var>
+</label>
+								</div>
 							</div>
 						</div>
-						<div class="row">
+						<div class="row" id="suppliment">
 							<div class="form-group">
 								<div class="col-md-4">
 									<label for="limiter" class="control-label col-md-5"
@@ -99,35 +104,16 @@
 								</div>
 							</div>
 						</div>
+					
 						<div class="row">
-							<div class="form-group">
-								<div class="col-md-4">
-									<label for="limiter" class="control-label col-md-5"
-										style="float: right;">Active Until</label>
-								</div>
-								<div class="col-md-2 text-center">
-									<div id="sandbox-container">
-										<div class="input-group date">
-											<input type="text" placeholder="YYYY-MM-DD" name="activeUntil" 
-												id="date" class="all form-control my_date"><span
-												class="input-group-addon"><li
-												class="glyphicon glyphicon-th"></li></span>
-										</div>
-										<label for="dob" class="error"></label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row">
-							<div class="form-group">
-								<div class="col-md-4">
+							<div class="col-md-4">
 									<label for="limiter" class="control-label col-md-5"
 										style="float: right;">Paying months</label>
 								</div>
 								<div class="col-md-2">
 								<div class="form-group">
 									
-									<div class="col-md-6">
+									<div class="col-md-6" style="margin-left: -3%;">
 										<select class="form-control" id="fee_mnul">
 											<option value = "0">0</option>
 											<option value = "1">1</option>
@@ -168,18 +154,38 @@
 										
 										</select>
 									</div>
-									<em style="color: blue;">X</em>
+									<em style="color: blue;"></em> &times;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+									<em style="color: red;">(Rs.)</em>
 								</div>
 							
 								</div>
-								<em style="color: red;">(Rs.)</em>
+								
 								<div class="col-md-1">
 									<input type="text" id="monthly_payment" name="monthly_payment"
 										readonly="readonly" class="form-control" 
 										style="text-align: right;" value="${master_fee.monthly_fee}" />
 								</div>
 							</div>
+						<div class="row">
+							<div class="form-group">
+								<div class="col-md-4">
+									<label for="limiter" class="control-label col-md-5"
+										style="float: right;">Active Until</label>
+								</div>
+								<div class="col-md-2 text-center">
+									<div id="sandbox-container">
+										<div class="input-group date">
+											<input type="text" placeholder="YYYY-MM-DD" name="activeUntil" 
+												id="date" class="all form-control my_date"><span
+												class="input-group-addon"><li
+												class="glyphicon glyphicon-th"></li></span>
+										</div>
+										<label for="dob" class="error"></label>
+									</div>
+								</div>
+							</div>
 						</div>
+						
 
 						<div class="row">
 							<div class="form-group">
@@ -200,11 +206,11 @@
 												style="float: right;">Discount<span>%</span></label>
 										</div>
 										<div class="col-md-2">
-											<div class="input-group pull-right discount">
-												<input class="form-control discount" type="text" data-mask="99" id="disc" 
-													name="disc" value =0 />
-													  <span class="input-group-addon">99%</span>
+										<div class="input-group pull-right discount">
+												<input class="form-control child" type="text" id="disc"
+													name="disc" value="0" placeholder="Disc" />
 											</div>
+										
 										</div>
 									</div>
 								</div>
@@ -404,8 +410,12 @@
 		months = $('#fee_mnul').val();
 		var stat = ${master_fee.monthly_fee};
 		var stuff = Number($('#due_payment').val());
+		var downpayment = Number($('#down_payment').val());
+		if(isNaN(downpayment)) {
+			var downpayment = 0;
+			}
 			var monthly_fee = Number(months*stat);
-			var gross_fee = monthly_fee+stuff ;
+			var gross_fee = monthly_fee+stuff+downpayment ;
 		$('#gross_payment').val((gross_fee).toFixed(2));
 		//var tot_pay = $('#total_payment').val();
 		//alert(tot_pay);
@@ -502,28 +512,54 @@
 												var mem_id = $("#mem_id").val();
 												$.ajax({type : 'GET',
 														url : 'MemberFeeCon?action=mem_status&user_id='+ mem_id,
-															success : function(
-																	data) {
-																var member_status = data.record;
+															success : function(data) {
+																var member_status = data[0].record;
 																if (member_status.status == 0) {
-																	$(
-																			"#lbl_status")
-																			.empty()
-																			.append(
-																					"<span class='label label-danger'>Inactive</span>");
+																	$("#downpayment").empty();
+																	$("#lbl_status").empty().append("<span class='label label-danger'>Inactive</span>");
+																	
 																} else if (member_status.status == 1) {
+																	$("#downpayment").empty();
 																	$("#lbl_status").empty().append(
 																					"<span class='label label-success'>Active</span>");
 																} else if (member_status.status == 2) {
 																	$("#lbl_status").empty().append("<span class='label label-warning'>Pending</span>");
-
+																	$("#suppliment").append('	<div class="row" id="downpayment">'
+																			+	'		<div class="form-group">'
+																			+	'<div class="col-md-4">'
+																			+	'	<label for="limiter" class="control-label col-md-5"'
+																			+	'		style="float: right;">Admission</label>'
+																			+	'</div>'
+																			+	'<div class="col-md-2">'
+																			+	'	<input type="text" id="down_payment" name="down_payment"'
+																			+	'		value="${downpay.value}" readonly="readonly" class="form-control"'
+																			+	'		style="text-align: right;" value=0 />'
+																			+	'</div>'
+																			+   ' </div>'
+																		+'</div>').hide().slideDown(1000);;	
 																}
 																else if (member_status.status == 3) {
 																	$("#lbl_status").empty().append("<span class='label label-info'>Fresh</span>");
-
+																	$("#suppliment").append('	<div class="row" id="downpayment">'
+																						+	'		<div class="form-group">'
+																						+	'<div class="col-md-4">'
+																						+	'	<label for="limiter" class="control-label col-md-5"'
+																						+	'		style="float: right;">Admission</label>'
+																						+	'</div>'
+																						+	'<div class="col-md-2">'
+																						+	'	<input type="text" id="down_payment" name="down_payment"'
+																						+	'		value="${downpay.value}" readonly="readonly" class="form-control"'
+																						+	'		style="text-align: right;" />'
+																						+	'</div>'
+																						+   ' </div>'
+																					+'</div>').hide().slideDown(1000);;		
 																}
 																var love = (member_status.status);
 																$('#statSupport').val(love);
+																
+														  		var last_pais_date = data[1].record1;
+																$('#act_date').val(last_pais_date.active_period);  
+																
 															}
 												
 														});
@@ -537,22 +573,18 @@
 															type : 'GET',
 															url : 'MemberFeeCon?action=getSubs&user_id='
 																	+ mem_id,
-															success : function(
-																	data) {
+															success : function(data) {
 																var member_subs = data;
-																$(
-																		'#due_payment')
-																		.val(
-																				member_subs);
-															}
+																									
+																$('#due_payment').val(member_subs);
+																		}
 
 														});
 											});
-							
+						/* 	
 							$("#mem_id").on('change',function() {
 								var mem_id = $("#mem_id").val();
-								$
-										.ajax({
+								$.ajax({
 											type : 'GET',
 											url : 'MemberFeeCon?action=getActiveDate&user_id='
 													+ mem_id,
@@ -565,7 +597,7 @@
 
 										});
 							});
-			
+			 */
 							
 			
 							
@@ -661,9 +693,9 @@
 							});
 							$("#memPaymentForm").submit(function(e) {
 												e.preventDefault();
-											/* 	if (!$("#memPaymentForm").valid())
+												if (!$("#memPaymentForm").valid())
 													return false;
- */
+
 												swal(
 														{
 															title : "Are you sure?",
@@ -673,8 +705,8 @@
 															confirmButtonColor : "#DD6B55",
 															confirmButtonText : "Yes, Proceed!",
 															cancelButtonText : "No, cancel!",
-															closeOnConfirm : false,
-															closeOnCancel : false
+															closeOnConfirm : true,
+															closeOnCancel : true
 														},
 														function(isConfirm) {
 															if (isConfirm) {
@@ -684,11 +716,11 @@
 																			data : $("#memPaymentForm").serialize(),
 																			success : function(
 																					data) {
-																				if (data == true) {
+																				if (data == 'true') {
 																					swal(
 																							{
-																								title : "Transacion Completed!",
-																								text : "You completed a selling cycle",
+																								title : "",
+																								text : "You membership has been updated",
 																								type : "success",
 																								showCancelButton : false,
 																								confirmButtonColor : "#DD6B55",
@@ -696,7 +728,9 @@
 																								closeOnConfirm : true
 																							},
 																							function() {
-																							//	 window.location = "InvoiceCon?action=invoice_list";
+																								 window.location = "MemberFeeCon?action=insert";
+																								
+
 																							});
 																				} else {
 																					swal(

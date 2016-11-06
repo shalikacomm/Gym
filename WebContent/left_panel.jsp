@@ -112,17 +112,15 @@
 				</ul>
 			</li>
 			<li class="panel"><a href="#" data-parent="#menu"
-			data-toggle="collapse" class="accordion-toggle"	data-target="#report-nav"> 
+			data-toggle="collapse" class="accordion-toggle"	data-target="#barcode-nav"> 
 			<i class="glyphicon glyphicon-barcode">&nbsp;</i> Generate Barcode <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
 			</span> 
 		</a>
-			<ul class="collapse" id="report-nav">
-				<li><a href="pages_calendar.html"><i
-						class="icon-angle-right"></i> Unit Progress </a></li>
-				<li><a href="pages_timeline.html"><i
-						class="icon-angle-right"></i> Growth Reports </a></li>
-			
+			<ul class="collapse" id="barcode-nav">
+				<li><a href="BarcodeCon?action=insert"><i
+						class="icon-angle-right"></i> Create Barcodes </a></li>
+				
 				</ul>
 			</li>
 

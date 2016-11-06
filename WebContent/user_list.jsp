@@ -13,7 +13,14 @@
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
 <link rel="stylesheet" href="assets/css/bootstrap-fileupload.min.css" />
 <!-- END PAGE LEVEL  STYLES -->
-
+	<style>
+.popover-title {
+    background-color: #df6262;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align:;
+}
+		</style>
 </head>
 
 <body class="padTop53 ">
@@ -22,13 +29,12 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner">
+				<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="UserCon?action=list">User List</a></li>
+    </ul>
 				<div class="row">
 					<div class="col-lg-12">
-
-
-						<h2>User List</h2>
-
-
 
 					</div>
 				</div>
@@ -268,7 +274,7 @@
 													<div class="tab-pane fade in active" id="doctor_info">
 													<div class="row">
 													<div class="col-sm-3"></div>
-													<div class="col-sm-6"><input id="img_user" type="text" readonly class="form-control" name="user_id">
+													<div class="col-sm-6"><input id="img_user" type="hidden" readonly class="form-control" name="user_id">
 													</div>
 													<div class="col-sm-3"></div>
 													</div>
@@ -361,6 +367,7 @@
 					success : function(response) {
 						if (response == 'true') {
 							swal("Image uploaded!", "This image will used as ur ID image!", "success")
+							 window.location = "UserCon?action=list";
 							 window.location = "UserCon?action=list";
 
 						} else {

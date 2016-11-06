@@ -2,6 +2,8 @@ package com.bit.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -19,9 +21,12 @@ import com.bit.dao.InvoiceDAO;
 import com.bit.dao.InvoiceDAOImpl;
 import com.bit.dao.MemberPaymentDAO;
 import com.bit.dao.MemberPaymentDAOImpl;
+import com.bit.dao.SystemSettingDAO;
+import com.bit.dao.SystemSettingDAOImpl;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.MemberPaymentEntity;
+import com.bit.entity.SystemSettingEntity;
 import com.bit.entity.UserEntity;
 import com.bit.util.Methods;
 import com.google.gson.Gson;
@@ -45,13 +50,13 @@ public class MemberFeeController extends HttpServlet {
 				UserEntity user = mem_dao.getMemberStatus(userId);
 				MemberPaymentDAO dao = new MemberPaymentDAOImpl();
 				MemberPaymentEntity dates = dao.getLastActiveDate(userId);
-				Gson gson = new Gson();
-
+				
 				try (PrintWriter out = resp.getWriter()) {
 					resp.setContentType("application/json");
 					resp.setCharacterEncoding("UTF-8");
 
-					out.write("{ \"record\":" + new Gson().toJson(user) + "}");
+					out.write("[{ \"record\":" + new Gson().toJson(user) + "},");
+					out.write("{ \"record1\":" + new Gson().toJson(dates) + "}]");
 				
 					out.flush();
 					out.close();
@@ -67,23 +72,27 @@ public class MemberFeeController extends HttpServlet {
 				MemberPaymentDAO dao = new MemberPaymentDAOImpl();
 				MemberPaymentEntity pay = dao.getMonthlyFee();
 				req.setAttribute("master_fee",pay);
+				SystemSettingDAO system = new SystemSettingDAOImpl();
+				SystemSettingEntity downPayment = system.getSetById("S0003");
+				req.setAttribute("downpay", downPayment);
 				}
 		  
 			  else if (action.equalsIgnoreCase("getSubs")) {
 				  double due = 0;
 				  double total_due = 0;
+				  double total_sub = 0;
+				  
 				  MemberPaymentDAO mem_dao = new MemberPaymentDAOImpl();
 					 String userId = req.getParameter("user_id");
 					List <MemberPaymentEntity> subList = mem_dao.getMemberSubs(userId);
 					for(int i =0;i<subList.size();i++){
 						  due = subList.get(i).getAdditional_payments();
 						  total_due += due; 
-						
+				
 					}
 					System.out.println(total_due); 
 				//	double totalSubs = due ;
-					 Gson gson = new Gson();
-					 
+										 
 					 try (PrintWriter out = resp.getWriter()) {
 						 resp.setContentType("application/json");
 						 resp.setCharacterEncoding("UTF-8");
@@ -115,12 +124,6 @@ public class MemberFeeController extends HttpServlet {
 			  }
 			  
 		  } 
-		  
-		
-		  
-		
-		
-		
 		
 		if (forward != "") {
 			RequestDispatcher view = req.getRequestDispatcher(forward);
@@ -132,7 +135,7 @@ public class MemberFeeController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		boolean pay_confirmed = false;
 		String payment_id = req.getParameter("payment_id");
 		String userID = req.getParameter("user_id");
 		UserDAO actDao = new UserDAOImpl();
@@ -155,9 +158,23 @@ public class MemberFeeController extends HttpServlet {
 		
 		MemberPaymentEntity pay  = new MemberPaymentEntity();
 			
+		/* SimpleDateFormat format = new SimpleDateFormat("YYYY-MM-DD");
+	        java.sql.Date parsed = null;
+			
+				try {
+					parsed =  format.parse(active_date);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}*/
+				
+				//String date = "2000-11-01"; // YYYY-MM-DD
+				java.sql.Date sqlDate = java.sql.Date.valueOf(active_date);
+				
+				
 			pay.setPayment_id(payment_id);
 			pay.setUser_id(userID);
-			pay.setActive_period(active_date);
+			pay.setActive_period(sqlDate);
 			pay.setAdditional_payments(due_payemnts);
 			pay.setFee_amount(gross_payemnt);
 			pay.setDiscount(Discount);
@@ -176,10 +193,10 @@ public class MemberFeeController extends HttpServlet {
 		System.out.println("totPay:" + totPay);
 		
 		MemberPaymentDAO daoAdd = new MemberPaymentDAOImpl();
-		daoAdd.addFeeDetails(pay);
+		pay_confirmed = daoAdd.addFeeDetails(pay);
 		
 		PrintWriter out = resp.getWriter();
-		out.print(true);
+		out.print(pay_confirmed);
 	}
 
 }

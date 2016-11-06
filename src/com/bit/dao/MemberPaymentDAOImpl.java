@@ -27,7 +27,7 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 	            
 	            if (rs.next()) {
 	            	
-	            	lastDate.setActive_period(rs.getString("active_period"));
+	            	lastDate.setActive_period(rs.getDate("MAX(active_period)"));
 	            	
 	            }
 	        } catch (SQLException e) {
@@ -162,7 +162,9 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 	}
 	
 	
-	public void addFeeDetails(MemberPaymentEntity feePay) {
+	public boolean addFeeDetails(MemberPaymentEntity feePay) {
+		boolean pay_res =false;
+		int res = 0;
 		connection = DBUtil.getConnection();
 		java.sql.Date date = getCurrentDatetime();
 
@@ -171,9 +173,9 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 					.prepareStatement("INSERT INTO member_payment_tbl  values (?,?, ?, ?, ?,?, ?,?,?,?,?,?)");
 			preparedStatement.setString(1, feePay.getPayment_id());
 			preparedStatement.setString(2, feePay.getUser_id());
-			preparedStatement.setString(3, feePay.getActive_period());
+			preparedStatement.setDate(3, feePay.getActive_period());
 			preparedStatement.setDouble(4, feePay.getAdditional_payments());
-			preparedStatement.setDouble(5, feePay.getFee_amount());
+			preparedStatement.setDouble(5, feePay.getTotal_subs());
 			preparedStatement.setDouble(6, feePay.getDiscount());
 			preparedStatement.setDate(7, date);
 			preparedStatement.setString(8, feePay.getPayment_type());
@@ -181,7 +183,10 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 			preparedStatement.setString(10, feePay.getCard_type());
 			preparedStatement.setInt(11, feePay.getFirst4());
 			preparedStatement.setInt(12, feePay.getLast4());
-			preparedStatement.executeUpdate();
+			res = preparedStatement.executeUpdate();
+			if(res>0){
+				pay_res = true;
+			}
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -195,6 +200,7 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 				}
 			}
 		}
+		return pay_res;
 	}
 
 	public java.sql.Date getCurrentDatetime() {

@@ -135,8 +135,8 @@
 																if (data == 'true') {
 																	swal(
 																			{
-																				title : "Good job!",
-																				text : "You created a product!",
+																				title : "",
+																				text : "Your system setting updated!",
 																				type : "success",
 																				showCancelButton : false,
 																				confirmButtonColor : "#DD6B55",
@@ -148,7 +148,7 @@
 																			});
 																} else {
 																	swal(
-																			"Data not saved!",
+																			"",
 																			"Please contact administrator!",
 																			"error");
 																}

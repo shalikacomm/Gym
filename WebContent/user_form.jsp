@@ -140,9 +140,9 @@
 										</div>
 										<div class="checkbox">
 											<label> <input class="uniform" type="radio"
-												name="gender" ${userObject.gender=='female'?'checked':''} /> Female
+												name="gender" value="female" ${userObject.gender=='female'?'checked':''} /> Female
 											</label>
-										</div>
+											</div>
 									</div>
 								</div>
 								<div class="col-sm-3">
@@ -161,12 +161,12 @@
 										<div class="checkbox">
 											<label><b>Marital Status</b></label><em style="color: red;">*</em></br> <label>
 												<input class="uniform" type="radio" name="status"
-												value="0" checked="checked" />Single
+												value="0" ${userObject.marital_status== '0' ?'checked':''} />Single
 											</label>
 										</div>
 										<div class="checkbox">
 											<label> <input class="uniform" type="radio"
-												name="status" value="1" /> Married
+												name="status" value="1" ${userObject.marital_status== '1' ?'checked':''}/> Married
 											</label>
 										</div>
 									</div>

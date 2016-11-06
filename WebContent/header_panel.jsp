@@ -16,6 +16,7 @@
 		</a>
 		<!-- LOGO SECTION -->
 		<header class="navbar-header">
+	
 
 			 <img
 				src="assets/img/logo.jpg" alt="" height="46" width="210" style="margin-left: -27% ; margin-top: -9px; padding-top: 10px;"/>

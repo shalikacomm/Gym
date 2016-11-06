@@ -14,7 +14,7 @@ public interface MemberPaymentDAO {
 	
 	public MemberPaymentEntity getMonthlyFee();
 	
-	public void addFeeDetails(MemberPaymentEntity feePay);
+	public boolean addFeeDetails(MemberPaymentEntity feePay);
 	
 	public MemberPaymentEntity getLastActiveDate(String userID);
 }
