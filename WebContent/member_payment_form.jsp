@@ -51,7 +51,7 @@
 									<label class="control-label col-md-5" style="float: right;">Select
 										Member</label>
 								</div>
-								<div class="col-md-4">
+								<div class="col-md-2">
 									<select name="user_id" class="form-control chzn-select"
 										id="mem_id">
 										<option></option>
@@ -69,7 +69,7 @@
 								</div>
 								<div class="col-md-2">
 									
-									<div id="lbl_status" style="margin-top: 6%;"></div>
+									<div id="lbl_status" style="margin-top: 6%; "></div>
 								</div>
 							</div>
 						</div>
@@ -77,24 +77,25 @@
 							<div class="form-group">
 								<div class="col-md-4">
 									<label for="limiter" class="control-label col-md-5"
-										style="float: right;">Last Active Date</label>
+										style="float: right;">Active Until</label>
 								</div>
 								<div class="col-md-2">
 									<input type="text" id="act_date" name="act_date"
 										readonly="readonly" class="form-control"
 										style="text-align: right;" value="" />
+										<label for="limiter" class="control-label"
+										style="float: left; color: red;"><var>Is active until shown date</var>
+</label>
 								</div>
 								<div class="col-md-4">
-									<label for="limiter" class="control-label"
-										style="float: left;"><var>Is active until shown date</var>
-</label>
+									
 								</div>
 							</div>
 						</div>
 						<div class="row" id="suppliment">
 							<div class="form-group">
 								<div class="col-md-4">
-									<label for="limiter" class="control-label col-md-5"
+									<label for="limiter" class="control-label col-md-8"
 										style="float: right;">Due Supplement Payments</label>
 								</div>
 								<div class="col-md-2">
@@ -110,11 +111,11 @@
 									<label for="limiter" class="control-label col-md-5"
 										style="float: right;">Paying months</label>
 								</div>
-								<div class="col-md-2">
+								<div class="col-md-4">
 								<div class="form-group">
 									
-									<div class="col-md-6" style="margin-left: -3%;">
-										<select class="form-control" id="fee_mnul">
+									<div class="col-md-6" style="">
+										<select class="form-control chzn-select" id="fee_mnul">
 											<option value = "0">0</option>
 											<option value = "1">1</option>
 											<option value = "2">2</option>
@@ -154,28 +155,31 @@
 										
 										</select>
 									</div>
-									<em style="color: blue;"></em> &times;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-									<em style="color: red;">(Rs.)</em>
+									<label for="limiter" class="control-label"
+										style="float: right;"><var> per month</var><em style="color: red;">(Rs.)</em>
+</label>
+									
 								</div>
 							
 								</div>
+								<div class="col-md-4"></div>
 								
 								<div class="col-md-1">
 									<input type="text" id="monthly_payment" name="monthly_payment"
 										readonly="readonly" class="form-control" 
-										style="text-align: right;" value="${master_fee.monthly_fee}" />
+										style="text-align: left;" value="${master_fee.monthly_fee}" />
 								</div>
 							</div>
 						<div class="row">
 							<div class="form-group">
 								<div class="col-md-4">
-									<label for="limiter" class="control-label col-md-5"
-										style="float: right;">Active Until</label>
+									<label for="limiter" class="control-label col-md-7"
+										style="float: right;">Last Deactivation Date</label>
 								</div>
 								<div class="col-md-2 text-center">
 									<div id="sandbox-container">
 										<div class="input-group date">
-											<input type="text" placeholder="YYYY-MM-DD" name="activeUntil" 
+											<input type="text" placeholder="YYYY-MM-DD" name="activeUntil"  readonly="readonly"
 												id="date" class="all form-control my_date"><span
 												class="input-group-addon"><li
 												class="glyphicon glyphicon-th"></li></span>
@@ -190,11 +194,11 @@
 						<div class="row">
 							<div class="form-group">
 								<div class="col-md-4">
-									<label for="limiter" class="control-label col-md-5"
+									<label for="limiter" class=" col-md-6"
 										style="float: right;">Gross Payment <em style="color: red;">(Rs.)</em></label>
 								</div>
 								<div class="col-md-2">
-									<input type="text" id="gross_payment" name="gross_payment"
+									<input type="text" id="gross_payment" name="gross_payment" readonly=""
 										class="form-control" style="text-align: right;" value="" />
 								</div>
 							</div>
@@ -202,14 +206,15 @@
 							<div class="row ">
 									<div class="form-group">
 										<div class="col-md-4">
-											<label for="text1" class="control-label col-md-5"
+											<label for="text1" class="col-md-5"
 												style="float: right;">Discount<span>%</span></label>
 										</div>
 										<div class="col-md-2">
-										<div class="input-group pull-right discount">
-												<input class="form-control child" type="text" id="disc"
-													name="disc" value="0" placeholder="Disc" />
-											</div>
+										
+										 <div class="input-group pull-right discount">
+												<input class="form-control child" type="number" id="disc"
+													name="disc" value="0"/>
+											</div> 
 										
 										</div>
 									</div>
@@ -217,11 +222,11 @@
 						<div class="row">
 							<div class="form-group">
 								<div class="col-md-4">
-									<label for="limiter" class="control-label col-md-5"
+									<label for="limiter" class=" col-md-5"
 										style="float: right;">Total Payment <em style="color: red;">(Rs.)</em></label>
 								</div>
 								<div class="col-md-2">
-									<input type="text" id="total_payment" name="total_payment"
+									<input type="text" id="total_payment" name="total_payment" readonly="readonly"
 										class="form-control" style="text-align: right;" value="" />
 										
 								</div>
@@ -294,7 +299,7 @@
 													</br>
 													<div class="row">
 														<div class="col-md-12">
-															<div class="col-md-2">
+															<div class="col-md-2" style="margin-top: 2%">
 																<span class="label label-info">First 4 No</span>
 															</div>
 															<div class="col-md-4">
@@ -303,8 +308,8 @@
 																	value="0000" placeholder="Card No" name="f4"
 																	tabindex="11" />
 															</div>
-															<div class="col-md-2">
-																<span class="label label-info">Last 4 No</span>
+															<div class="col-md-2" style="margin-top: 2%">
+																<span class="label label-info" style="margin-left: 33%">Last 4 No</span>
 															</div>
 															<div class="col-md-4">
 																<input class="form-control autotab l4"
@@ -316,13 +321,37 @@
 
 														</div>
 													</div>
-													</br>
+														<div class="row">
 													<div class="form-group">
-														<div class = "row">
-														<div class="col-md-7" style="margin-left: 13%; float:left;">
-															<select style="width: 60%;"
-																data-placeholder="Your Favorite Type of Bear"
-																class="form-control select-picker bank_drop"
+													<div class="col-md-3"></div>
+													<div class="col-md-12">
+													<label for="limiter" class="control-label"
+										style="float: left; color: red;"><var>(Pease Enter your credit card details)</var></label>
+													</div>
+													</div>
+													</div>
+														<div class="row">
+													<div class="form-group">
+													<div class="col-md-5"style="margin-left: -5%;">
+													<label for="limiter" class="control-label "
+										style="float: right;">Entitled Amount</label>
+													</div>
+													<div class="col-md-3">
+													<input type="text" id="chk_payment" name="chk_payment" readonly="readonly"
+														class="form-control" style="text-align: right;" value="" />
+													</div>
+													</div>
+													</div>
+													
+													<div class = "row">
+													<div class="form-group">
+														<div class="col-md-5"style="margin-left: -5%;">
+													<label for="limiter" class=""
+														style="float: right;">Select your Bank</label>
+													</div>
+														<div class="col-md-7" >
+															<select style="width: 60%;"												
+																class="form-control select-picker bank_drop "
 																data-live-search="true" tabindex="-1" name="bank_name">
 																<option selected="selected">Commercial Bank</option>
 																<option>Sampath Bank</option>
@@ -333,11 +362,12 @@
 															</select>
 														</div>
 														<div class="col-md-3">
-														<input type="text" id="chk_payment" name="chk_payment" readonly="readonly"
-														class="form-control" style="text-align: right;" value="" />
+														
 														</div>
 														</div>
 													</div>
+								
+												
 												</div>
 
 											</div>
@@ -353,8 +383,7 @@
 
 											<button type="button" class="btn btn-default"
 												data-dismiss="modal">Close</button>
-											<button class="btn btn-primary " type="submit">Check
-												Out</button>
+											<button class="btn btn-primary " type="submit">Print Receipt</button>
 										</div>
 									</div>
 								</div>
@@ -391,7 +420,7 @@
 		$(function() {
 			/*----------- BEGIN chosen CODE -------------------------*/
 
-			$(".chzn-select").chosen();
+			$(".chzn-select ").chosen();
 			$(".chzn-select-deselect").chosen({
 				allow_single_deselect : false
 
@@ -424,6 +453,11 @@
 	});
 	
 	}
+	$('#disc').on('keyup',function(){
+		 var disc_val = $('#disc').val();
+		
+	});
+	
 	
 	function calDiscount() {
 
@@ -460,6 +494,11 @@
 				
 			});
 			$('.prcd').on('click', function() {
+				$(function() {
+					formValidation();
+				});
+				if (!$("#memPaymentForm").valid())
+					return false;
 				total = $('#total_payment').val();
 				$('#pay_total').val(total);
 				$('#chk_payment').val(total);
@@ -516,7 +555,7 @@
 																var member_status = data[0].record;
 																if (member_status.status == 0) {
 																	$("#downpayment").empty();
-																	$("#lbl_status").empty().append("<span class='label label-danger'>Inactive</span>");
+																	$("#lbl_status").empty().append("<span class='label label-danger '>Inactive</span>");
 																	
 																} else if (member_status.status == 1) {
 																	$("#downpayment").empty();
@@ -642,7 +681,7 @@
 			// $('.page').animate('fadeIn').show('slow',true);
 			//	$('.page').hide('slow').fadeIn({queue: false, duration: 'slow'}).show('slow');
 			  
-			$('#sandbox-container .input-group.date .my_date').datepicker({
+/* 			$(' .input-group.date .my_date').datepicker({
 			
 				
 				format : "yyyy-mm-dd",
@@ -653,9 +692,10 @@
 				autoclose : true,
 				todayHighlight : false,
 				startDate : 'today'
-			});
+			}); */
 			
 			$('#fee_mnul').on('change',function(){
+				$('#date').addClass('show');
 			var multiNo =$('#fee_mnul').val();
 			var lastActive = $('#act_date').val();
 			if(lastActive == ""){
@@ -681,8 +721,11 @@
 				console.log(currentDate);
 	     //   $('#monthly_payment').val(currentDate);
 	   //     $('#date').val(currentDate);
-	        $(".my_date").datepicker("update",currentDate);
-	        
+	     //   $(".my_date").datepicker("update",currentDate);
+	       
+	       // $('.my_date').datepicker("setDate", currentDate);
+$('#date').val(currentDate);
+	       
 			});
 		});
 	</script> 
@@ -695,11 +738,11 @@
 												e.preventDefault();
 												if (!$("#memPaymentForm").valid())
 													return false;
-
+											var username =	$("#mem_id").val();
 												swal(
 														{
 															title : "Are you sure?",
-															text : "You will not be able to recover this imaginary file!",
+															text : "Your payment will be added to "+username+ " account",
 															type : "warning",
 															showCancelButton : true,
 															confirmButtonColor : "#DD6B55",

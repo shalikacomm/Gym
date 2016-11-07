@@ -18,20 +18,28 @@
         function QtyValidation(value, element) {
         	return /[1-9]/.test(value);
         }
+        function DiscountVal(value, element) {
+        	return /[0-9]/.test(value);
+        }
         function NoSpace(value, element) {
         	return /^[a-zA-Z_\-]+$/.test(value);
         }
         function Noleak(value, element) { 
             return value.indexOf(" ") < 0 && value != "";
         } 
+        function myDisc(value, element) {
+        	return /^(0|[0-99]\d?)\.\d{2}|100\.00$/.test(value);
+        }
             
       
         $.validator.addMethod("nic", valID, "Please insert valid NIC format");
         $.validator.addMethod("name_validation", NameValidation, "Please insert only alphabetic characters with . or spaces");
         $.validator.addMethod("phone_number", PhoneValidation,"Please insert valid Phone number");
         $.validator.addMethod("qty", QtyValidation,"Please Enter positive value");
+        $.validator.addMethod("disc", DiscountVal,"Please Enter valid discount");
         $.validator.addMethod("no_space", NoSpace,"Please Enter no spaces");
         $.validator.addMethod("noSpace", Noleak,"Please Enter no spaces or blanks");
+        $.validator.addMethod("my_disc", myDisc,"Please Enter a valid discount testerf");
      
       
 	
@@ -101,13 +109,14 @@
             	 min: true,
             	number:true,
             	
-            	
-            },
+            	            },
             disc: {
                 required: false,
-                min: false,
-                number:true,
-                noSpace:true,
+                min: 0,
+                max:100,
+               my_disc:false,
+               disc:true,
+                noSpace:false,
             },
             total_payment: {
             	required: false,
@@ -118,8 +127,9 @@
         messages: {
         	desc:"Please fill this field",
         	disc:{
-        		min:"Please enter number greater than 0",
-        		
+        		min:"Please enter a value greater than 0",
+        		max: "please enter a value less than 100",
+        		qty: "please enter numbers only",
         	},
         },
         errorClass: 'help-block',

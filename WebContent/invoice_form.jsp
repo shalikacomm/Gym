@@ -13,7 +13,14 @@
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/modal.css" />
-
+	<style>
+.popover-title {
+    background-color: #df6262;
+    color: #FFFFFF;
+    font-size: 12px;
+    text-align:;
+}
+		</style>
 </head>
 <body class="padTop53 ">
 
@@ -169,11 +176,11 @@
 												name="inv_unit" type="text" />
 										</div>
 										<div class="col-md-1 text-center" id="quantity">
-											<input class="form-control child" name="inv_qty"
+											<input class="form-control child purchase" name="inv_qty"
 												id="inv_qty0" type="text" />
 										</div>
-										<div class="col-md-1 text-center" id="stock">
-											<input class="form-control child" name="stock"
+										<div class="col-md-1 text-center" id="stockOnHand">
+											<input readonly="readonly" class="form-control stock" name="stock"
 												id="stock0" type="text" />
 										</div>
 										<div class="col-md-2 text-center" id="subTotal">
@@ -613,11 +620,14 @@ function onFocus(el) {
 														+ '<div class="col-md-1 text-center">'
 														+ '<input readonly class="form-control t_row" name="inv_price" id="inv_price'+index+'" type="text" />'
 														+ '</div>'
-														+ '<div class="col-md-2 text-center">'
+														+ '<div class="col-md-1 text-center">'
 														+ '<input readonly class="form-control" name="inv_unit" id ="inv_unit'+index+'" type="text" />'
 														+ '</div>'
 														+ '<div class="col-md-1 text-center">'
-														+ '<input class="form-control child" name="inv_qty" id = "inv_qty'+index+'" type="text" />'
+														+ '<input class="form-control child purchase" name="inv_qty" id = "inv_qty'+index+'" type="text" />'
+														+ '</div>'
+														+ '<div class="col-md-1 text-center">'
+														+ '<input readonly="readonly" class="form-control stock" name="stock" id = "stock'+index+'" type="text" />'
 														+ '</div>'
 														+ '<div class="col-md-2 text-center">'
 														+ '<input class="form-control" readonly="readonly" name="inv_sub_total" id="inv_sub_total'+index+'" type="text" style="text-align: right;" />'
@@ -629,8 +639,7 @@ function onFocus(el) {
 												
 												var inv_qty=$("[id^='inv_qty']").last().val();
 												var line_id = $("[id^='inv_qty']").last().attr('id'); 
-												var cur_id = line_id.replace(
-														"inv_qty", ""); 
+												var cur_id = line_id.replace("inv_qty", ""); 
 												// alert(current_id);
 												if(inv_qty == ""){
 													$('#inv_qty'+cur_id).popover({
@@ -729,12 +738,23 @@ function onFocus(el) {
 
 																$("#inv_price"+ current_id).val((product.sellingPrice).toFixed(2));
 																$("#inv_unit"+ current_id).val(product.measuringUnit);
+																$("#stock"+ current_id).val(product.stock);
 
 															}
 														});
 
 											});
-
+ 
+ 
+ /* 
+ // check with the available quantity
+ $("body").on('keyup',".stock",function() {
+		var inv_qty=$("[id^='stock']").last().val();
+		var line_id = $("[id^='stock']").last().attr('id'); 
+		var cur_id = line_id.replace("stock", ""); 
+		alert(cur_id);
+	 
+ }); */
 							//SUubTotal calcuation
 
 							$("body").on("keyup","[id^='inv_qty']",function() {
@@ -882,8 +902,7 @@ function checknull() {
 																			type : "POST",
 																			url : "InvoiceCon",
 																			data : $(
-																					"#invoiceForm")
-																					.serialize(),
+																					"#invoiceForm").serialize(),
 																			success : function(
 																					data) {
 																				if (data == 'true') {

@@ -144,7 +144,7 @@ public class ProductDAOImpl implements ProductDAO {
 				product.setPurchasePrice(rs.getFloat("purchase_price"));
 				product.setSellingPrice(rs.getFloat("selling_price"));
 				product.setReorderLevel(rs.getInt("reorder_level"));
-				// product.setStock(rs.getFloat("stock"));
+				product.setStock(rs.getFloat("stock"));
 				product.setMeasuringUnit(rs.getString("measuring_unit"));
 				product.setStatus(rs.getInt("status"));
 			}
