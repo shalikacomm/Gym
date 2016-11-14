@@ -19,9 +19,12 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
-
+	<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="BasicSheduleCon?action=insert">Basic Workout Charts</a></li>
+    </ul>
 	<div class="panel panel-default">
-					<div class="panel-heading">Workout Charts</div>
+					<div class="panel-heading">Basic Workout Charts</div>
 					<div class="panel-body">
 						<form action="BasicSheduleCon" id="workoutChartForm" method="POST"
 							enctype="multipart/form-data">
@@ -50,9 +53,9 @@
 							</div>
 							<div class="row inv_row" id="row" style="margin-left: 0%;">
 								<div class="col-sm-10">
-									<div class="form-group">
-										<label for="text2" class="control-label col-sm-2">Workchart Name</label>
-										<div class="col-sm-5">
+									<div class="form-group" style="margin-left: -1%;">
+										<label for="chartName" class="col-sm-2">Workchart Name</label>
+										<div class="col-sm-5 form-group" >
                         <input id="text2" placeholder="please enter a workchart name" class="form-control" type="text" name="chartName">
                     </div>
 													</div>
@@ -76,19 +79,19 @@
 								</div>
 							</div>
 							<div class="inv_body">
-								<div class="row inv_row" id="exer">
+								<div class="row inv_row " id="exer">
 									<div class="col-md-4 text-center" style="margin-left: 1%;">
 										<select id="exercise0" name="exerciseID"
 											class="form-control chzn-select inv_item keep">
 
 										</select>
 									</div>
-									<div class="col-md-2 text-center">
+									<div class="col-md-2 text-center form-group">
 										<input id="set_per_rep0" style="text-align: right;"
 											class="form-control inv_price" name="set_per_rep" type="text" />
 									</div>
 
-									<div class="col-md-2 text-center">
+									<div class="col-md-2 text-center form-group">
 										<input class="form-control" name="no_of_rep" id="no_of_rep0"
 											type="text" style="text-align: right;" />
 									</div>
@@ -122,19 +125,19 @@
 									style="text-align: center;">
 									<div class="col-sm-3"></div>
 									<div class="col-sm-6">
-										<div>
+										<div style="margin-left: -20%;">
 											<%
 												String role = currentUser.getRole();
 
 												if (role.equals("administrator") || role.equals("instructor")) {
 											%>
-											<button type="submit" class="btn btn-success">Save</button>
+											<button type="submit" class="btn-sm btn-success">Save</button>
 											<%
 												} 
 											%>
 											<input id="btn_reset" value="Reset"
-												class="btn btn-warning btn-md " type="reset" /> <a
-												class="btn btn-primary btn-md" href="ProductCon?action=list">Cancel</a>
+												class="btn btn-warning btn-sm " type="reset" /> <a
+												class="btn btn-primary btn-sm" href="ProductCon?action=list">Cancel</a>
 										</div>
 
 									</div>
@@ -157,6 +160,9 @@
 	
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/js/login.js"></script>
+		<script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+	<script src="assets/js/validationInit.js"></script>
 	
 		<script>
 		$(function() {
@@ -243,12 +249,12 @@
 														+ 'class="form-control chzn-select keep">'
 														+ '</select>'
 														+ '</div>'
-														+ '<div class="col-md-2 text-center">'
+														+ '<div class="col-md-2 text-center form-group">'
 														+ '<input id="set_per_rep'+index+'"'
 														+'class="form-control" style="text-align: right;" name="set_per_rep"'
 														+' type="text" />'
 														+ '</div>'
-														+ '<div class="col-md-2 text-center">'
+														+ '<div class="col-md-2 text-center form-group">'
 														+ '<input class="form-control" name="no_of_rep"'
 														+'id="no_of_rep'+index+'" style="text-align: right;" type="text"'
 														+'style="text-align: right;" />'
@@ -327,19 +333,20 @@
 	<script>
 		$(document)
 				.ready(function() {
+					
 							$(function() {
-								// formValidation();
+								formValidation();
 							});
 							$("#workoutChartForm").submit(function(e) {
 												e.preventDefault();
 												//alert("adad");
-												// if (!$("#workoutChartForm").valid())
-												//	return false; 
-
+												 if (!$("#workoutChartForm").valid())
+													return false; 
+									
 												swal(
 														{
 															title : "Are you sure?",
-															text : "You will not be able to recover this imaginary file!",
+															text : "This chart can be used for member workout charts!",
 															type : "warning",
 															showCancelButton : true,
 															confirmButtonColor : "#DD6B55",
@@ -362,8 +369,8 @@
 																				if (data == 'true') {
 																					swal(
 																							{
-																								title : "Transacion Completed!",
-																								text : "You completed a selling cycle",
+																								title : "",
+																								text : "You have added a new workout chart",
 																								type : "success",
 																								showCancelButton : false,
 																								confirmButtonColor : "#DD6B55",

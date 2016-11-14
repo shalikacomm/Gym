@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
 <link rel="stylesheet"
 	href="assets/plugins/datepicker/css/datepicker.css" />
+	<link rel="stylesheet" href="assets/css/sweetalert.css" />
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
@@ -79,12 +80,12 @@
 										<input readonly id="batch_no0" class="form-control"
 											name="batch_no" type="text" />
 									</div>
-									<div class="col-md-1 text-center ">
+									<div class="col-md-1 form-group text-center "style="margin-left: 0%;">
 										<input class="form-control child" name="qty" id="qty0"
 											type="text" />
 									</div>
 							
-									<div class="col-md-1 text-center">
+									<div class="col-md-1 text-center" style="margin-left: 1.2%;">
 										<button id="kmk" class="btn btn-danger  item_remove"
 											type="button">
 											<i class="icon-minus-sign"></i>
@@ -128,7 +129,10 @@
 	<%@include file="footer.jsp"%>
 	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
 	<script src="assets/js/jquery-ui.min.js"></script>
-	<script src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>.
+		<script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+	<script src="assets/js/validationInit.js"></script>
 	<script>
 	$(function() {
 		/*----------- BEGIN chosen CODE -------------------------*/
@@ -344,15 +348,15 @@ $(document).ready(function(){
 							/* $(function() {
 									$('#dp3').datepicker();
 								});  */
-						/* 	$(function() {
+							$(function() {
 								formValidation();
 							});
- */
+ 
 							$("#stockForm").submit(function(e) {
 												e.preventDefault();
 
-												/* if (!$("#userForm").valid())
-													return false; */
+												 if (!$("#stockForm").valid())
+													return false; 
 
 												$.ajax({
 															type : "POST",

@@ -1,14 +1,19 @@
 package com.bit.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,18 +30,23 @@ import com.bit.dao.SystemSettingDAO;
 import com.bit.dao.SystemSettingDAOImpl;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
+import com.bit.entity.MemberEntity;
 import com.bit.entity.MemberPaymentEntity;
 import com.bit.entity.SystemSettingEntity;
 import com.bit.entity.UserEntity;
+import com.bit.util.DBUtil;
 import com.bit.util.Methods;
 import com.google.gson.Gson;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 
 @WebServlet(urlPatterns = "/MemberFeeCon")
 public class MemberFeeController extends HttpServlet {
 	
 	private static String INSERT_OR_EDIT = "/member_payment_form.jsp";
-	private static String LIST_USER = "/member_list.jsp";
+	private static String LIST_USER = "/member_payment_list.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -64,6 +74,13 @@ public class MemberFeeController extends HttpServlet {
 				}
 
 			} 
+		  else if (action.equalsIgnoreCase("list")) {
+			  	MemberPaymentDAO dao_mem = new MemberPaymentDAOImpl();
+				List<MemberPaymentEntity> list = dao_mem.getPaymentList();
+				req.setAttribute("payments", list); // for jstl  pass object 
+				forward = LIST_USER;
+
+			}
 			else if (action.equalsIgnoreCase("insert")) {
 				forward = INSERT_OR_EDIT;
 				Methods method = new Methods();
@@ -124,6 +141,28 @@ public class MemberFeeController extends HttpServlet {
 			  }
 			  
 		  } 
+		  
+		  else if (action.equalsIgnoreCase("monthly_pay")) {
+
+				try {
+					Connection con = DBUtil.getConnection();
+					File reportFile = new File(req.getRealPath("/reports/monthly_payment.jasper"));
+					Map parameters = new HashMap();
+					parameters.put("payment_id", req.getParameter("pay_id"));
+
+					byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getAbsolutePath(), parameters, con);
+
+					resp.setContentType("application/pdf");
+					resp.setContentLength(bytes.length);
+					ServletOutputStream outstream = resp.getOutputStream();
+					outstream.write(bytes, 0, bytes.length);
+					outstream.flush();
+					outstream.close();
+
+				} catch (JRException ex) {
+					ex.printStackTrace();
+				}
+			}
 		
 		if (forward != "") {
 			RequestDispatcher view = req.getRequestDispatcher(forward);

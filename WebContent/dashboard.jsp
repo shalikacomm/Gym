@@ -33,33 +33,7 @@
 <!-- tiles styles  -->
  <link href="assets/bootstrap-notify-master/animate.css" rel="stylesheet" />
  <!-- this is for notifications -->
-<style>
-            /*@import url(http://fonts.googleapis.com/css?family=Old+Standard+TT:400,700);*/
-            [data-notify="container"][class*="alert-pastel-"] {
-                background-color: rgb(255, 255, 238);
-                border-width: 0px;
-                border-left: 15px solid rgb(255, 240, 106);
-                border-radius: 0px;
-                box-shadow: 0px 0px 5px rgba(51, 51, 51, 0.3);
-                font-family: 'Old Standard TT', serif;
-                letter-spacing: 1px;
-            }
-            [data-notify="container"].alert-pastel-info {
-                border-left-color: rgb(255, 179, 40);
-            }
-            [data-notify="container"].alert-pastel-danger {
-                border-left-color: rgb(255, 103, 76);
-            }
-            [data-notify="container"][class*="alert-pastel-"] > [data-notify="title"] {
-                color: rgb(80, 80, 57);
-                display: block;
-                font-weight: 700;
-                margin-bottom: 5px;
-            }
-            [data-notify="container"][class*="alert-pastel-"] > [data-notify="message"] {
-                font-weight: 400;
-            }
-        </style>
+
  <!-- this is for notifications end -->
 </head>
 <body class="padTop53 ">
@@ -67,11 +41,11 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+			<div class="inner" style="min-height: 700px; margin-top:1%;">
 	
 			 <!-- /. NAV SIDE  -->
      <!--  files tika daaapaLA  <div id="page-wrapper" >
-            <div id="page-inner">
+            <div id="page-inner" style="margin-top:1%;">
       -->           <div class="row">
                     <div class="col-lg-12">
                      <h2 style="padding-top: 3px;"><strong>ADMIN DASHBOARD</strong></h2>
@@ -82,7 +56,7 @@
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="alert alert-info">
-                             <strong>Welcome ${currentSessionUser.first_name }! </strong> You Have No pending Task For Today.
+                             <strong>Welcome ${currentSessionUser.first_name }! </strong> 
                         </div>
                        
                     </div>

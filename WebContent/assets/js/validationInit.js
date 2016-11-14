@@ -141,6 +141,77 @@
             $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
         }
     });
+    $('#workoutChartForm').validate({
+    	rules: {/*
+             this is for payment form validation */         
+    		
+    		chartName: {
+    			required: true,
+    		   			
+    		},
+    		set_per_rep: {
+    			required: true,
+    			min: 0,
+    			max:100,
+    			noSpace:true,
+    		},
+    		no_of_rep: {
+    			required: true,
+    			min: 0,
+    			max:100,
+    			noSpace:true,
+    		}
+    		
+    	},
+    	messages: {
+    		desc:"Please fill this field",
+    		set_per_rep:{
+    			required: "Please enter a valid value",
+    			min:"Please enter a value greater than 0",
+    			max: "please enter a value less than 100",
+    			
+    		},
+    	},
+    	errorClass: 'help-block',
+    	errorElement: 'span',
+    	highlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+    	},
+    	unhighlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+    	}
+    });
+    
+    $('#stockForm').validate({
+    	rules: {/*
+             this is for payment form validation */         
+    		
+    		qty: {
+    			required: true,
+    			min: 0,
+    			number:true,
+    			
+    		}
+    	
+    		
+    	},
+    	messages: {
+    		desc:"Please fill this field",
+    		qty:{
+    			min:"Please enter a value greater than 0",
+    			max: "please enter a value less than 100",
+    			number: "please enter numbers only",
+    		},
+    	},
+    	errorClass: 'help-block',
+    	errorElement: 'span',
+    	highlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+    	},
+    	unhighlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+    	}
+    });
     
     
     /*----------- END validate CODE -------------------------*/

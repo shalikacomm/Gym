@@ -25,6 +25,8 @@ import com.bit.entity.ProductEntity;
 import com.bit.entity.SheduleDetailEntity;
 import com.bit.entity.SheduleEntitiy;
 import com.bit.entity.UserEntity;
+import com.bit.entity.WorkoutDetailEntity;
+import com.bit.entity.WorkoutEntity;
 import com.bit.util.Methods;
 import com.google.gson.Gson;
 
@@ -151,6 +153,45 @@ public class SheduleController extends HttpServlet {
 				
 		
 	}
+			 else if (action.equalsIgnoreCase("getWorkOutNames")) {
+				 SheduleDAO Dao = new SheduleDAOImpl();
+				 List<WorkoutEntity> exercise = Dao.getWorkoutList();
+				 Gson gson = new Gson();
+				 
+				 try (PrintWriter out = resp.getWriter()) {
+					 resp.setContentType("application/json");
+					 resp.setCharacterEncoding("UTF-8");
+					 
+					 out.write("{ \"record\":" + new Gson().toJson(exercise) + "}");
+					 
+					 out.flush();
+					 out.close();
+					 return;
+				 }
+				 
+				 
+				 
+			 }
+			 else if (action.equalsIgnoreCase("getOneWorkout")) {
+				 SheduleDAO Dao = new SheduleDAOImpl();
+				 String workout_id = req.getParameter("work_id");
+				List<WorkoutDetailEntity> workoutDetail = Dao.getOneWorkout(workout_id);
+				 Gson gson = new Gson();
+				 
+				 try (PrintWriter out = resp.getWriter()) {
+					 resp.setContentType("application/json");
+					 resp.setCharacterEncoding("UTF-8");
+					 
+					 out.write("{ \"record\":" + new Gson().toJson(workoutDetail) + "}");
+					 
+					 out.flush();
+					 out.close();
+					 return;
+				 }
+				 
+				 
+				 
+			 }
 	
 		  if (forward != "") {
 				RequestDispatcher view = req.getRequestDispatcher(forward);

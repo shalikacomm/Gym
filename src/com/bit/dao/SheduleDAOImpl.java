@@ -15,6 +15,8 @@ import com.bit.entity.ProductEntity;
 import com.bit.entity.SheduleDetailEntity;
 import com.bit.entity.SheduleEntitiy;
 import com.bit.entity.StockEntity;
+import com.bit.entity.WorkoutDetailEntity;
+import com.bit.entity.WorkoutEntity;
 import com.bit.util.DBUtil;
 
 public class SheduleDAOImpl implements SheduleDAO {
@@ -184,6 +186,87 @@ public java.sql.Date getCurrentDatetime() {
 		}
 
 		return shedule_list;
+	}
+	
+	public List<WorkoutEntity> getWorkoutList() {
+		
+		connection = null;
+		
+		List<WorkoutEntity> workout_list = new ArrayList<WorkoutEntity>();
+		try {
+			connection = DBUtil.getConnection();
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery("SELECT * FROM workout_charts");
+			
+			while (rs.next()) {
+				WorkoutEntity workout = new WorkoutEntity();
+				workout.setWorkout_id(rs.getString("workout_id"));
+				workout.setWorkout_name(rs.getString("workout_name"));
+				workout.setDate_created(rs.getDate("date_created"));
+				workout.setInstructor_name(rs.getString("instructor_name"));
+				workout.setStatus(rs.getInt("status"));
+								
+				workout_list.add(workout);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		return workout_list;
+	}
+	public List<WorkoutDetailEntity> getOneWorkout(String workout_id) {
+		
+		connection = null;
+		
+		List<WorkoutDetailEntity> workout_list = new ArrayList<WorkoutDetailEntity>();
+		try {
+			connection = DBUtil.getConnection();
+			PreparedStatement preStmt = connection.prepareStatement(" SELECT "
+    +"  workout_chart_detail.`workout_id` AS workout_chart_detail_workout_id,"
+    +" workout_chart_detail.`exercise_id` AS workout_chart_detail_exercise_id,"
+    +" workout_chart_detail.`sets_per_rep` AS workout_chart_detail_sets_per_rep,"
+    +" workout_chart_detail.`no_of_reps` AS workout_chart_detail_no_of_reps,"
+    +" exercise_tbl.`exercise_id` AS exercise_tbl_exercise_id,"
+    +" exercise_tbl.`description` AS exercise_tbl_description"
+    +" FROM"
+    +" `exercise_tbl` exercise_tbl INNER JOIN `workout_chart_detail` workout_chart_detail ON exercise_tbl.`exercise_id` = workout_chart_detail.`exercise_id`"
+    +" WHERE"
+    +" workout_chart_detail.`workout_id`=?");
+			preStmt.setString(1, workout_id);
+			ResultSet rs = preStmt.executeQuery();
+			
+				
+			while (rs.next()) {
+				WorkoutDetailEntity workout = new WorkoutDetailEntity();
+				workout.setWorkout_id(rs.getString("workout_chart_detail_workout_id"));
+				workout.setWorkout_name(rs.getString("exercise_tbl_description"));
+				workout.setExercise_id(rs.getString("workout_chart_detail_exercise_id"));
+				workout.setSets_per_rep(rs.getInt("workout_chart_detail_sets_per_rep"));
+				workout.setNo_of_reps(rs.getInt("workout_chart_detail_no_of_reps"));
+							
+				workout_list.add(workout);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		return workout_list;
 	}
 	
 	public boolean deactivateShedule(String shedule_id) {

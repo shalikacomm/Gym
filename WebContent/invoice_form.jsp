@@ -761,7 +761,11 @@ function onFocus(el) {
 										elementID = this.id.replace("inv_qty","");
 
 										/* alert($("#inv_qty"+elementID).val()); */
+										var stock = $('#stock'+elementID).val();
 										qty = $("#inv_qty" + elementID).val();
+										if(qty > stock){
+											alert('your stock is over');
+										}
 										price = +($("#inv_price" + elementID).val());
 										subtotal = qty * price;
 										$("#inv_sub_total" + elementID).val(

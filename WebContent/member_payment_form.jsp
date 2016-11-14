@@ -20,6 +20,10 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
+					<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="MemberFeeCon?action=insert">Member Fee Payment</a></li>
+    </ul>
 				<div class="panel panel-default">
 					<div class="panel-heading">Member Fee Payment</div>
 					<div class="panel-body">
@@ -107,7 +111,7 @@
 						</div>
 					
 						<div class="row">
-							<div class="col-md-4">
+							<div class="col-md-4" >
 									<label for="limiter" class="control-label col-md-5"
 										style="float: right;">Paying months</label>
 								</div>
@@ -235,160 +239,146 @@
 
 						<div class="col-md-6"></div>
 						<div class="col-md-6">
-							<button class="btn btn-primary prcd" data-toggle="modal"
-								data-target="#formModal">Proceed to Payments</button>
+							<a data-toggle="modal" class="prcd btn btn-primary btn-md" style="border-radius: 6px;" id="" href="#payment_modal">Proceed to Payments</a>
 						</div>
 
 						<!-- 	Payment modal  -->
-						<div class="col-md-12">
-							<div class="modal fade" id="formModal" tabindex="-1"
-								role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-								<div class="modal-dialog">
-									<div class="modal-content">
-										<!-- 	<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">&times;</button>
-														<h4 class="modal-title" id="H2">Payment Select</h4>
-													</div> -->
-										<div class="modal-body">
-											<!-- 	// starts here  -->
+						<div class="row" style="margin-top: 1%;">
+                                    <div class="col-md-12">
+                                        <div class="col-md-7"></div>
+                                        <div class="col-md-5">
+                                            <div>
+                                                <div class="col-md-3"></div>
+                                                <div class="col-md-6">
+                                                    
 
-											<!-- 	<h1>
-															id of selected tab: <span id="idDisplay">cash</span>
-														</h1> -->
+                                                    <div class="col-lg-12">
+                                                        <div class="modal fade" id="payment_modal" tabindex="-1" role="dialog"  aria-labelledby="myModalLabel" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                                                            <div class="modal-dialog modal-lg">
+                                                                <!--<div class="modal-content">-->
+                                                                <div class="panel with-nav-tabs panel-info modal-content">
+                                                                    <div class="panel-heading modal-header" id="filter-bar">
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                                        <ul class="nav nav-tabs">
+                                                                            <li class="active"><a href="#cash" class="TabLink" data-toggle="tab">Cash Payment</a></li>
+                                                                            <li><a href="#credit" class="TabLink" data-toggle="tab">Credit Payment</a></li>
+                                                                            <!--<li><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></li>-->
+                                                                        </ul>                           
+                                                                    </div>
+                                                                    <div class="panel-body modal-body">
+                                                                        <div class="tab-content">
+                                                                            <div class="tab-pane fade in active" id="cash">
+                                                                                <div class="row">
+                                                                                    <div class=" col-md-12 col-lg-12 "><br/>
+                                                                                        <div class="row">
+                                                                                            <div class="col-lg-5 col-md-5 col-sm-5" style="padding-bottom: 10px;">
+                                                                                                <label>Full Amount(Rs.):</label>
+                                                                                            </div>
+                                                                                            <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                                                                                <input class="form-control" value="" id="total_cash_payment" style="text-align: right;" name="total_cash_payment" type="text" readonly />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div style="float:right; margin-right:11%;">
+                                                                                                <input type="submit" id="stdce" class="btn btn-primary" value="Pay Now" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="tab-pane fade" id="credit">
+                                                                                <div class="row">
+                                                                                    <div class="col-lg-12">
+                                                                                        <div class="modal-body" style="padding: 5px;">
+                                                                                            <div class="row">
+                                                                                                <div class="col-md-4">
+                                                                                                    <div class="checkbox">
+                                                                                                        <label> <input class="uniform" type="radio" value="visa" name="card" checked="checked" />
+                                                                                                            <img style="width: 70%;" src="${pageContext.request.contextPath}/logo/visa.gif"alt=""/>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-4">
+                                                                                                    <div class="checkbox">
+                                                                                                        <label> <input class="uniform" type="radio" value="master" name="card" />
+                                                                                                            <img style="width: 70%;" src="${pageContext.request.contextPath}/logo/master.gif"alt=""/>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <div class="col-md-4">
+                                                                                                    <div class="checkbox">
+                                                                                                        <label> <input class="uniform" type="radio" value="amex" name="card" />
+                                                                                                            <img style="width: 70%;" src="${pageContext.request.contextPath}/logo/amex.gif" alt=""/>
+                                                                                                        </label>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div><br/>
+                                                                                           
+                                                                                            <div class="row">
+                                                                                                <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top:1%;">
+                                                                                                    <span class="label label-success" style="padding: 6px;">First 4 Digits last 4 digits of the Card</span>  
+                                                                                                </div>
+                                                                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                                                                    <div class="col-md-6" style="margin-top: -3%;margin-left: -6%;"">
+                           																		 <input class="form-control" type="text" maxlength="4" name="f4" value= "1111"/>
+                       																																				 </div>
+                                                                                                    <div class="col-md-6" style="margin-top: -3%;">
+                           																		 <input class="form-control" type="text" maxlength="4" name = "l4"/ value="0000">
+                       																																				 </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="row" style="margin-top: 4%;">
+                                                                                                <div class="col-lg-5 col-md-5 col-sm-5" style="margin-top:1%;" >
+                                                                                                    <label>Choose a Bank:</label> 
+                                                                                                </div>
+                                                                                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                                                                                    <select style="width: 100%;" data-placeholder="Your Favorite Type of Bear" class="form-control select-picker bank_drop" data-live-search="true" tabindex="-1" name="bank_name">
+                                                                                                        <option>Commercial Bank</option>
+                                                                                                        <option>Sampath Bank</option>
+                                                                                                        <option>HSBC Bank</option>
+                                                                                                        <option>Nations Trust Bank</option>
+                                                                                                        <option>HNB Bank</option>
 
-											<div id="tabs" style="border: 0px solid #ffffff;">
-												<ul style="background: #d9edf7">
-													<li><a href="#cash">Cash</a></li>
-													<li><a href="#credit">Credit Card</a></li>
-												</ul>
-												<div id="cash">
+                                                                                                    </select>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                              <div class="row" style="margin-top:4%;">
+                                                                                                <div class="col-lg-5 col-md-5 col-sm-5" style="padding-bottom: 10px;">
+                                                                                                    <label>Full Amount(Rs.):</label>
+                                                                                                </div>
+                                                                                                <div class="col-lg-6 col-md-6 col-sm-6" style="padding-bottom: 10px;">
+                                                                                                    <input class="form-control" value="" id="total_credit_payment" name="total_credit_payment" style="text-align: right;" type="text" readonly />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="row">
+                                                                                            <div style="float:right; margin-right:12%;">
+                                                                                                <input type="submit" id="stdce" class="btn-sm btn-primary" value="Pay Now" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
 
-													<input readonly placeholder="Total" type="text"
-														id="pay_total" style="text-align: right;"
-														class="form-control">
-
-												</div>
-												<div id="credit">
-													<div class="row">
-														<div class="col-md-4">
-															<div class="checkbox">
-																<label> <input class="uniform" type="radio"
-																	value="amex" name="card" checked="checked" /> <img
-																	src="${pageContext.request.contextPath}/logo/amex.gif" />
-																</label>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<div class="checkbox">
-																<label> <input class="uniform" type="radio"
-																	value="visa" name="card" /> <img
-																	src="${pageContext.request.contextPath}/logo/visa.gif" />
-																</label>
-															</div>
-														</div>
-														<div class="col-md-4">
-															<div class="checkbox">
-																<label> <input class="uniform" type="radio"
-																	value="master" name="card" /> <img
-																	src="${pageContext.request.contextPath}/logo/master.gif" />
-																</label>
-															</div>
-														</div>
-													</div>
-													</br>
-													<div class="row">
-														<div class="col-md-12">
-															<div class="col-md-2" style="margin-top: 2%">
-																<span class="label label-info">First 4 No</span>
-															</div>
-															<div class="col-md-4">
-																<input class="form-control autotab f4"
-																	style="margin-left: 23%" type="text" maxlength="4"
-																	value="0000" placeholder="Card No" name="f4"
-																	tabindex="11" />
-															</div>
-															<div class="col-md-2" style="margin-top: 2%">
-																<span class="label label-info" style="margin-left: 33%">Last 4 No</span>
-															</div>
-															<div class="col-md-4">
-																<input class="form-control autotab l4"
-																	style="margin-left: 23%" type="text" maxlength="4"
-																	placeholder="Card No" value="1111" name="l4"
-																	tabindex="12" />
-															</div>
-
-
-														</div>
-													</div>
-														<div class="row">
-													<div class="form-group">
-													<div class="col-md-3"></div>
-													<div class="col-md-12">
-													<label for="limiter" class="control-label"
-										style="float: left; color: red;"><var>(Pease Enter your credit card details)</var></label>
-													</div>
-													</div>
-													</div>
-														<div class="row">
-													<div class="form-group">
-													<div class="col-md-5"style="margin-left: -5%;">
-													<label for="limiter" class="control-label "
-										style="float: right;">Entitled Amount</label>
-													</div>
-													<div class="col-md-3">
-													<input type="text" id="chk_payment" name="chk_payment" readonly="readonly"
-														class="form-control" style="text-align: right;" value="" />
-													</div>
-													</div>
-													</div>
-													
-													<div class = "row">
-													<div class="form-group">
-														<div class="col-md-5"style="margin-left: -5%;">
-													<label for="limiter" class=""
-														style="float: right;">Select your Bank</label>
-													</div>
-														<div class="col-md-7" >
-															<select style="width: 60%;"												
-																class="form-control select-picker bank_drop "
-																data-live-search="true" tabindex="-1" name="bank_name">
-																<option selected="selected">Commercial Bank</option>
-																<option>Sampath Bank</option>
-																<option>HSBC Bank</option>
-																<option>Nations Trust Bank</option>
-																<option>HNB Bank</option>
-
-															</select>
-														</div>
-														<div class="col-md-3">
-														
-														</div>
-														</div>
-													</div>
-								
-												
-												</div>
-
-											</div>
-
-
-											<!-- 	// ends here  -->
-											<div class="body"></div>
-										</div>
-
-										<div class="modal-footer">
-											<input type="hidden" id="payment_type" value="cash"
-												name="payment_type" />
-
-											<button type="button" class="btn btn-default"
-												data-dismiss="modal">Close</button>
-											<button class="btn btn-primary " type="submit">Print Receipt</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
+                                                                        </div>
+                                                                        <div class=" modal-footer">
+                                                                            <div class="col-md-5" hidden>
+                                                                                <input class="form-control" value="cash" id="payment_type" name="payment_type" type="text" placeholder="Payment Type" readonly=""/>
+                                                                            </div>
+                                                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>                        
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <!--</div>-->
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!--<button type="submit" class="btn btn-info btn-md" style=" border-radius: 6px; background: #27C3BB;">Proceed to Payments</button>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 						<!-- End payment modal -->
 
 						</form>
@@ -500,9 +490,12 @@
 				if (!$("#memPaymentForm").valid())
 					return false;
 				total = $('#total_payment').val();
-				$('#pay_total').val(total);
-				$('#chk_payment').val(total);
-			
+				$('#total_cash_payment').val(total);
+				$('#total_credit_payment').val(total);
+			 
+				$(".TabLink").click(function () {
+	                $('#payment_type').val($(this).prop("href").split('#')[1]);
+	            });
 				
 			});
 			
@@ -771,7 +764,7 @@ $('#date').val(currentDate);
 																								closeOnConfirm : true
 																							},
 																							function() {
-																								 window.location = "MemberFeeCon?action=insert";
+																								 window.location = "MemberFeeCon?action=list";
 																								
 
 																							});

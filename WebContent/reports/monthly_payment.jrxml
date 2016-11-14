@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="monthly_payment" language="groovy" pageWidth="421" pageHeight="595" columnWidth="381" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="43ae3613-894d-4335-9b3d-3f428f98a8b8">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="payment_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     user_tbl.`user_id` AS user_tbl_user_id,
+     user_tbl.`first_name` AS user_tbl_first_name,
+     member_payment_tbl.`payment_id` AS member_payment_tbl_payment_id,
+     member_payment_tbl.`user_id` AS member_payment_tbl_user_id,
+     member_payment_tbl.`active_period` AS member_payment_tbl_active_period,
+     member_payment_tbl.`fee_amount` AS member_payment_tbl_fee_amount,
+     member_payment_tbl.`paid_date` AS member_payment_tbl_paid_date,
+     member_payment_tbl.`payment_type` AS member_payment_tbl_payment_type,
+     member_payment_tbl.`additional_payments` AS member_payment_tbl_additional_payments,
+     member_payment_tbl.`disc_given` AS member_payment_tbl_disc_given
+FROM
+     `user_tbl` user_tbl INNER JOIN `member_payment_tbl` member_payment_tbl ON user_tbl.`user_id` = member_payment_tbl.`user_id`
+WHERE
+     member_payment_tbl.`payment_id` = $P{payment_id}]]>
+	</queryString>
+	<field name="user_tbl_user_id" class="java.lang.String"/>
+	<field name="user_tbl_first_name" class="java.lang.String"/>
+	<field name="member_payment_tbl_payment_id" class="java.lang.String"/>
+	<field name="member_payment_tbl_user_id" class="java.lang.String"/>
+	<field name="member_payment_tbl_active_period" class="java.sql.Date"/>
+	<field name="member_payment_tbl_fee_amount" class="java.lang.Double"/>
+	<field name="member_payment_tbl_paid_date" class="java.sql.Date"/>
+	<field name="member_payment_tbl_payment_type" class="java.lang.String"/>
+	<field name="member_payment_tbl_additional_payments" class="java.lang.Double"/>
+	<field name="member_payment_tbl_disc_given" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="154" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="381" height="62" uuid="7683f654-ef65-4408-b5dc-7cb39c26edc8"/>
+				<imageExpression><![CDATA["C:\\Users\\amantha\\Desktop\\project images\\recept_ori.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="83" width="381" height="65" uuid="401db26a-4cbe-46e8-930e-1843bc92ba77"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="11" y="103" width="89" height="20" uuid="40762a06-fd87-452b-89e4-238b647c7a60"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="222" y="83" width="85" height="20" uuid="9c1ce8db-5b45-43a7-9dd8-877525762fab"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Receipt Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="12" y="123" width="87" height="20" uuid="ff8e6be3-730e-4b18-a3e1-cf2803f1df97"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Payment Type    :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="221" y="102" width="72" height="20" uuid="1e4feb13-9a8e-4804-a3cf-05b41e993688"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Receipt No :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="84" width="100" height="20" uuid="e0b6d67f-3fcc-4b7c-860c-2796f6fc4270"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Details]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="102" width="100" height="20" uuid="34e35ed0-43b6-4f0c-afce-13bd8bd44ba6"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="123" width="100" height="20" uuid="76213ff9-5edf-429f-ab59-d163caf71015"/>
+				<textFieldExpression><![CDATA[$F{member_payment_tbl_payment_type}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="293" y="103" width="88" height="20" uuid="2b177c78-d762-4a1e-a731-36d1384c6699"/>
+				<textFieldExpression><![CDATA[$F{member_payment_tbl_payment_id}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="221" y="122" width="72" height="20" uuid="59979b20-665b-4dca-9c62-988a72b9cb2e"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date           :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="293" y="122" width="88" height="20" uuid="f2e07dbf-c86b-4f6e-9335-62d9e87eb8e8"/>
+				<textFieldExpression><![CDATA[$F{member_payment_tbl_paid_date}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="71" width="381" height="1" uuid="dfffdfec-eef3-4270-915a-81a5f7c3f102"/>
+			</line>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="97" y="9" width="105" height="20" uuid="8e0655bd-0779-46c1-81bf-dd1e1e4eaeb7"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Suppliment payments]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="4" y="9" width="92" height="20" uuid="7e54add8-313a-4581-a3b2-e2c5420d2881"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Name]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="4" width="380" height="1" uuid="82b3fd79-180b-4b1c-a99d-9b6df0a8969a"/>
+			</line>
+			<line>
+				<reportElement x="1" y="4" width="1" height="22" uuid="16662c52-c77c-4bf4-8130-38545ec7f3db"/>
+			</line>
+			<line>
+				<reportElement x="96" y="5" width="1" height="22" uuid="dc40724b-b0ef-4d0b-8103-d49c03b2e66a"/>
+			</line>
+			<line>
+				<reportElement x="202" y="5" width="1" height="22" uuid="1c897174-0a71-4097-b4a4-d146773fd983"/>
+			</line>
+			<line>
+				<reportElement x="379" y="5" width="1" height="21" uuid="c762cda2-6b5c-43c2-83d1-0c73b2bf377e"/>
+			</line>
+			<line>
+				<reportElement x="316" y="7" width="1" height="19" uuid="7a61f556-5e05-4b63-9193-2068bb8a5533"/>
+			</line>
+			<staticText>
+				<reportElement x="204" y="9" width="110" height="20" uuid="82bc20bf-2c4a-4966-a2a0-9d00b660c5e2"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Discount Alloawed(%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="319" y="10" width="57" height="17" uuid="bffc1738-a656-4423-8485-6fdf87c84f7f"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Amount]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="26" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="-8" width="381" height="1" uuid="b0918d94-0eea-4b9f-885a-07eafb2c573a"/>
+			</line>
+			<textField>
+				<reportElement x="28" y="3" width="72" height="20" uuid="179a119f-9d1d-42df-b3d8-b4dac83f17f9"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="176" y="2" width="34" height="20" uuid="308e8f0d-9204-4360-a89a-e0ca4415fa53"/>
+				<textFieldExpression><![CDATA[$F{member_payment_tbl_additional_payments}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="279" y="2" width="38" height="20" uuid="bb38240d-7837-4d1e-9c28-3926aa5b3fe3"/>
+				<textFieldExpression><![CDATA[$F{member_payment_tbl_disc_given}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="333" y="1" width="46" height="20" uuid="e6be82a1-2e30-416b-8dd4-9b1731fa7b1c"/>
+				<textFieldExpression><![CDATA[$F{member_payment_tbl_fee_amount}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="28">
+			<textField>
+				<reportElement x="332" y="4" width="46" height="20" uuid="de06a7c2-4947-487c-b880-9f8dc41f3da7"/>
+				<textFieldExpression><![CDATA[$F{member_payment_tbl_fee_amount}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="184" y="6" width="130" height="20" uuid="d3c44e6d-4a4b-4bcb-be16-82cf47ee6807"/>
+				<text><![CDATA[Total amount Paid (LKR):]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -55,18 +55,7 @@
 				<a class="navbar-brand" href="index.html"><img alt=""
 					src="assets_front/images/margo.png"
 					style="width: 140px; margin-top: -27px; height: 67px;"></a>
-				<%
-					UserEntity currentUser = (UserEntity) (session.getAttribute("frontSessionUser"));
-						if (currentUser == null) { %>
-						
-						<a class="btn  btn-primary" href="login.jsp">Log in</a> 
-							
-										
 			
-				 <%	} else {
-					%>Hi, <%=currentUser.getFirst_name()%> <%
- 	}
- %>
 				
 			</div>
 			<div class="navbar-collapse collapse" >
@@ -88,6 +77,22 @@
 					<li><a href="exercise_front.jsp">Exercise</a></li>
 					<li><a href="nutrition_front.jsp">Nutrition</a></li>
 					<li><a href="blog.html">Team</a></li>
+					<li><a href="contact.html">Member</a>
+					<ul class="dropdown">
+                                    <li><a href="about.html">Member Register</a>
+                                    </li>
+                                    <li>
+                                    <%
+					UserEntity currentUser = (UserEntity) (session.getAttribute("frontSessionUser"));
+						if (currentUser == null) { %>
+						<a href="login.jsp">Login</a> 
+				 <%	} else {
+					%>Hi, <%=currentUser.getFirst_name()%> <%
+ 						}
+						 %> 
+                                    </li>
+                                </ul>
+					</li>
 					<li><a href="contact.html">Contact Us</a></li>
 				</ul>
 				<!-- End Navigation List -->

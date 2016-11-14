@@ -494,7 +494,7 @@
                             <div class="team-member modern">
                                 <!-- Memebr Photo, Name & Position -->
                                 <div class="member-photo">
-                                    <img alt="" src="${pageContext.request.contextPath}/assets_front/images/team_members/owner.jpg" />
+                                    <img alt="" src="${pageContext.request.contextPath}/assets_front/images/team_members/owner.jpg"/>
                                     <div class="member-name">John Doe <span>Developer</span>
                                     </div>
                                 </div>

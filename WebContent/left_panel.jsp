@@ -1,13 +1,13 @@
 <%@page import="com.bit.entity.UserEntity"%>
 
 <!-- MENU SECTION -->
-<div id="left">
-	<div class="media user-media well-small">
+<div id="left" style="margin-top:1%;">
+	<div class="media user-media well-small" style="background-color: #219cd8;">
 		<a class="user-link" href="#"> <img
 			class="media-object img-thumbnail user-img" alt="User Picture"
 			src="assets/img/user.gif" />
 		</a> <br />
-		<div class="media-body">
+		<div class="media-body" style="color: #313331;">
 			<h5 class="media-heading">
 			 <% UserEntity currentUser = (UserEntity) (session.getAttribute("currentSessionUser"));%>
                 Hi, <span id="user"><%
@@ -26,10 +26,10 @@
 		<br />
 	</div>
 
-	<ul id="menu" class="collapse">
+	<ul id="menu" class="collapse" style="background-color: #219cd8;">
 
 
-		<li class="panel "><a href="dashboard.jsp" data-parent="#menu"
+		<li class="panel "><a href="dashboard.jsp" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"
 			data-target="#"> 
 			<i class="glyphicon glyphicon-dashboard">&nbsp;
@@ -39,7 +39,7 @@
 		</a>
 			
 			</li>
-		<li class="panel "><a href="UserCon?action=insert" data-parent="#menu"
+		<li class="panel "><a href="UserCon?action=insert" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"
 			data-target="#register-nav"> 
 			<i class="glyphicon glyphicon-user">&nbsp;</i>	Registration <span class="pull-right"> 
@@ -47,7 +47,7 @@
 		</a>
 			</li>
 
-		<li class="panel"><a href="#" data-parent="#menu"
+		<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"
 			data-target="#payment-nav"> <i class="glyphicon glyphicon-usd">&nbsp;</i> Payments Handling <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
@@ -64,7 +64,7 @@
 			</ul>
 			</li>
 			
-				<li class="panel"><a href="#" data-parent="#menu"
+				<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"
 			data-target="#inventory-nav"> <i class="glyphicon glyphicon-wrench">&nbsp;</i> Master data <span class="pull-right">
 			 <i class="icon-angle-down"></i>
@@ -82,7 +82,7 @@
 				</ul>
 			</li>
 			
-				<li class="panel"><a href="#" data-parent="#menu"
+				<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#product-nav"> 
 			<i class="glyphicon glyphicon-briefcase">&nbsp;</i> Inventory handling <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
@@ -97,7 +97,7 @@
 				</ul>
 			</li>
 			
-			<li class="panel"><a href="#" data-parent="#menu"
+			<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#report-nav"> 
 			<i class="glyphicon glyphicon-stats">&nbsp;</i> Generate Reports <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
@@ -111,7 +111,7 @@
 			
 				</ul>
 			</li>
-			<li class="panel"><a href="#" data-parent="#menu"
+			<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#barcode-nav"> 
 			<i class="glyphicon glyphicon-barcode">&nbsp;</i> Generate Barcode <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
@@ -124,7 +124,7 @@
 				</ul>
 			</li>
 
-			<li class="panel"><a href="#" data-parent="#menu"
+			<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#shedule-nav"> 
 			<i class="glyphicon glyphicon-road">&nbsp;</i> Member Shedules <span class="pull-right"> 
 			<i class="icon-angle-down"></i>
@@ -139,7 +139,21 @@
 				</ul>
 			</li>
 			
-					<li class="panel"><a href="#" data-parent="#menu"
+				<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
+			data-toggle="collapse" class="accordion-toggle"	data-target="#progress-nav"> 
+			<i class="glyphicon glyphicon-send">&nbsp;</i> Check Progress <span class="pull-right"> 
+			<i class="icon-angle-down"></i>
+			</span> 
+		</a>
+			<ul class="collapse" id="progress-nav">
+				<li><a href="MemberDCon?action=insert"><i
+						class="icon-angle-right"></i> Add performance details </a></li>
+				<li><a href="MemberDCon?action=list"><i
+						class="icon-angle-right"></i> Check progress </a></li>
+				
+				</ul>
+			</li>
+					<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#workout-nav"> 
 			<i class="glyphicon glyphicon-picture">&nbsp;</i>Workout Charts<span class="pull-right"> 
 			<i class="icon-angle-down"></i>
@@ -154,7 +168,7 @@
 				</ul>
 			</li>
 			
-			<li class="panel"><a href="#" data-parent="#menu"
+			<li class="panel"><a href="#" data-parent="#menu" style="color: #fff; border-top: 0px solid #219cd8;"
 			data-toggle="collapse" class="accordion-toggle"	data-target="#markAttendance-nav"> 
 			<i class="glyphicon glyphicon-user">&nbsp;</i>Mark Attendance<span class="pull-right"> 
 			<i class="icon-angle-down"></i>

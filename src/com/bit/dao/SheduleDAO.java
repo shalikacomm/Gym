@@ -5,6 +5,8 @@ import java.util.List;
 import com.bit.entity.ExerciseEntity;
 import com.bit.entity.SheduleDetailEntity;
 import com.bit.entity.SheduleEntitiy;
+import com.bit.entity.WorkoutDetailEntity;
+import com.bit.entity.WorkoutEntity;
 
 public interface SheduleDAO {
 	
@@ -21,4 +23,8 @@ public interface SheduleDAO {
 	public boolean deactivateShedule(String shedule_id);
 
 	public boolean activateShedule(String shedule_id)  ;
+	
+	public List<WorkoutEntity> getWorkoutList();
+	
+	public List<WorkoutDetailEntity> getOneWorkout(String workout_id) ;
 }

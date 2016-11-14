@@ -5,14 +5,24 @@ import java.sql.Date;
 public class MemberPaymentEntity {
 	
 	
-	private String member_id,card_type,bank_name,payment_id,user_id,payment_type;
+	private String member_id,card_type,bank_name,payment_id,user_id,payment_type,first_name;
 		private Double additional_payments,fee_amount,total_subs,monthly_fee,discount;
 	private Integer first4,last4;
 	private Date active_period,paid_date;
 	
 	
-	
-	
+	public String getFirst_name() {
+		return first_name;
+	}
+	public String getPayment_id() {
+		return payment_id;
+	}
+	public void setPayment_id(String payment_id) {
+		this.payment_id = payment_id;
+	}
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
 	public String getPayment_type() {
 		return payment_type;
 	}
@@ -26,12 +36,6 @@ public class MemberPaymentEntity {
 		this.user_id = user_id;
 	}
 	
-	public String getPayment_id() {
-		return payment_id;
-	}
-	public void setPayment_id(String payment_id) {
-		this.payment_id = payment_id;
-	}
 	public Integer getFirst4() {
 		return first4;
 	}

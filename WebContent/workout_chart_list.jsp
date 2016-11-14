@@ -22,8 +22,12 @@
 		<div id="content">
 			<div class="inner">
 				<div class="row">
+		
 					<div class="col-lg-12">
-						<h2>Workout List</h2>
+								<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="BasicSheduleCon?action=list">Basic Workout Charts List</a></li>
+    </ul>
 					</div>
 				</div>
 				<hr />

@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +43,56 @@ public class MemberPaymentDAOImpl implements MemberPaymentDAO {
 
 			}
 			return lastDate;
+	}
+	
+	public List<MemberPaymentEntity> getPaymentList() {
+		connection = DBUtil.getConnection();
+		List<MemberPaymentEntity> receipts = new ArrayList<MemberPaymentEntity>();
+		try {
+			Statement statement = connection.createStatement();
+			ResultSet rs=statement.executeQuery("SELECT "
+    +" user_tbl.`user_id` AS user_tbl_user_id,"
+     +"user_tbl.`first_name` AS user_tbl_first_name,"
+     +"member_payment_tbl.`payment_id` AS member_payment_tbl_payment_id,"
+     +"member_payment_tbl.`user_id` AS member_payment_tbl_user_id,"
+     +"member_payment_tbl.`active_period` AS member_payment_tbl_active_period,"
+     +"member_payment_tbl.`additional_payments` AS member_payment_tbl_additional_payments,"
+     +"member_payment_tbl.`fee_amount` AS member_payment_tbl_fee_amount,"
+     +"member_payment_tbl.`paid_date` AS member_payment_tbl_paid_date,"
+     +"member_payment_tbl.`payment_type` AS member_payment_tbl_payment_type,"
+     +"member_payment_tbl.`disc_given` AS member_payment_tbl_disc_given"
++" FROM "
+     +"`member_payment_tbl` member_payment_tbl INNER JOIN `user_tbl` user_tbl ON member_payment_tbl.`user_id` = user_tbl.`user_id`");
+
+			
+			while (rs.next()) {
+
+				MemberPaymentEntity receipt = new MemberPaymentEntity();
+				receipt.setPayment_id(rs.getString("member_payment_tbl_payment_id"));
+				receipt.setFirst_name(rs.getString("user_tbl_first_name"));
+				receipt.setPayment_type(rs.getString("member_payment_tbl_payment_type"));
+				receipt.setFee_amount(rs.getDouble("member_payment_tbl_fee_amount"));
+				receipt.setPaid_date(rs.getDate("member_payment_tbl_paid_date"));
+				receipt.setActive_period(rs.getDate("member_payment_tbl_active_period"));
+			
+
+				receipts.add(receipt);
+
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		return receipts;
 	}
 	/*public MemberPaymentEntity getLastActiveTimeMember(String user_id) {
 		Connection con = null;
