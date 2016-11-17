@@ -86,7 +86,7 @@
 
 <ul class="breadcrumb" style="margin-top:1%;">
   <li><a href="dashboard.jsp">Dashboard</a></li>
-  <li><a href="AttenCon?action=insert">Mark Attendance</a></li>
+  <li><a href="AttenCon?action=mark">Mark Attendance</a></li>
     </ul>
 					<div class="row">
 						<div class="col-lg-12">
@@ -133,7 +133,7 @@
                                                                 <label style="font-size: 13.5px; margin-top:3%">Barcode ID</label>
                                                             </div>
                                                             <div class="col-md-4">
-                                                            <div class="form-control">
+                                                            <div class="">
                                                                 <input class="form-control" value="" type="text" id="barcode_id" name="barcode_name" />
                                                             </div>
                                                             </div>
@@ -158,7 +158,7 @@
                                                     <div class="row">
                                                                                                            
                                                         <div class="row">
-                                                            <div class="form-control" style="margin-top: 3%;">
+                                                            <div class="" style="margin-top: 3%;">
                                                                 <div class="col-md-3">
                                                                     <label style="font-size: 13.5px; margin-top: 2%;">Username ID</label>
                                                                 </div>
@@ -238,7 +238,7 @@
 													aria-hidden="true">&times;</button>
 												<ul class="nav nav-tabs">
 													<li class="active"><a href="#doctor_info"
-														data-toggle="tab">Select Your Image</a></li>
+														data-toggle="tab">Enter user details</a></li>
 
 													<!--<li><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></li>-->
 												</ul>
@@ -249,39 +249,17 @@
 												
 													<div class="tab-pane fade in active" id="doctor_info">
 													<div class="row">
-													<div class="col-sm-3"></div>
-													<div class="col-sm-6"><input id="img_user" type="text" readonly class="form-control" name="user_id">
-													</div>
-													<div class="col-sm-3"></div>
-													</div>
-														<div class="row">
-															<div class="col-md-6 " align="center" id="doc_img">
-																<img id="past_img" width="134" height="179" src="" >
-															</div>
-															<div class=" col-md-6 ">
-																					
-																			<div class="form-group">
-																				<label>Member Photo</label><em style="color: red;">*</em>
-																				
-																				<div class="fileupload fileupload-new"
-																					data-provides="fileupload">
-																					<div class="fileupload-preview thumbnail"
-																						style="width: 200px; height: 150px;"></div>
-																					<div>
-																						<span class="btn btn-file btn-success"><span
-																							class="fileupload-new">Select image</span><span
-																							class="fileupload-exists">Change</span> <input
-																							type="file" name="img_path" /></span> <a href="#"
-																							class="btn btn-danger fileupload-exists"
-																							data-dismiss="fileupload">Remove</a>
-																					</div>
-																				</div>
-																			</div>
-																		
-																		<div class=col-lg-4></div>
-																
-															</div>
-														</div>
+													<div class="col-sm-6">
+													<div class="col-md-4 text-center" style="margin-left:1%;">
+											<select id="inv_item0" name="inv_item" class="form-control chzn-select inv_item keep">
+
+											</select>
+										</div></div>
+													
+											
+													</div> 	
+														
+														
 													</div>
 													<div>
 														<hr>
@@ -324,7 +302,21 @@
 		$(".barcode").focus();
 	}); */
 	</script>
-	
+		<script>
+		$(document).ready(function(){
+			$('.chzn-select').chosen().trigger("chosen:updated");
+			$(function() {
+			/*----------- BEGIN chosen CODE -------------------------*/
+
+			$(".chzn-select").chosen();
+			$(".chzn-select-deselect").chosen({
+				allow_single_deselect : false
+				 
+			});
+			/*----------- END chosen CODE -------------------------*/
+		});
+		});
+	</script>
 	<script>
 	$(document).ready(function(){
 		// alert(4566);

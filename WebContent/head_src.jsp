@@ -8,6 +8,12 @@
     <link rel="stylesheet" href="assets/css/MoneAdmin.css" />
     <link rel="stylesheet" href="assets/plugins/Font-Awesome/css/font-awesome.css" />
     <link rel="stylesheet" href="assets/css/breadcrumb.css" />
+     <!-- <link href="assets/assets_tiles/css/bootstrap.css" rel="stylesheet" /> -->
+     <!-- FONTAWESOME STYLES-->
+    <link href="assets/assets_tiles/css/font-awesome.css" rel="stylesheet" /> 
+
+        <!-- CUSTOM STYLES-->
+     <link href="assets/assets_tiles/css/custom.css" rel="stylesheet" /> 
     <!--END GLOBAL STYLES -->    
 
     

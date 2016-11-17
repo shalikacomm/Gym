@@ -16,22 +16,17 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+				<div class="inner" style="margin-top:1%;"> 	
+	<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="ExerciseCon?action=insert">Add Execise</a></li>
+    </ul>
 
 		<div class="row">
 					<div class="col-lg-12">
 						<div class="box dark">
-							<header>
-							<div class="icons">
-								<i class="icon-glass"></i>
-							</div>
-							<h5>Enter Exercise Details</h5>
-							</header>
-
 							<form id="exerciseForm" class="form-horizontal" align="center"
 								novalidate>
-
-
 								</br>
 								<div class="row">
 									<div class="form-group">
@@ -67,10 +62,10 @@
 										<div class="col-sm-6">
 											<div>
 												<input id="btn_save"
-													value="Save" class="btn btn-success btn-md " type="submit">
+													value="Save" class="btn-success btn-sm" type="submit">
 												<input id="btn_reset" value="Reset"
-													class="btn btn-warning btn-md " type="reset" /> <a
-													class="btn btn-primary btn-md"
+													class="btn-warning btn-sm " type="reset" /> <a
+													class="btn-primary btn-sm"
 													href="ExerciseCon?action=list">Cancel</a>
 											</div>
 

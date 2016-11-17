@@ -224,53 +224,52 @@
 			<script src="assets/plugins/dataTables/jquery.dataTables.js"></script>
 			<script src="assets/plugins/dataTables/dataTables.bootstrap.js"></script>
 		<script src="assets/plugins/jasny/js/bootstrap-fileupload.js"></script>
-		<script>
-		$(document).ready(function(){
-			$(".img_btn").click(function(){
-				var id=this.id;
-				$("#img_user").val(id);
-				//alert("${pageContext.request.contextPath}");
-			$("#past_img").attr("src","${pageContext.request.contextPath}/uploads/"+id+".jpg");
-				
-			});
-			
-			$("#imageForm").submit(function(e) {
-				e.preventDefault();
-				var formData = new FormData($("#imageForm")[0]); // change form id
-				var val = $("#img_user").val();
-				if (!val.match(/(?:jpg|png)$/)) {
-				    // inputted file path is not an image of one of the above types
-					sweetAlert("", "Please Select an image file!", "error");
-				}
-				else{
-				$.ajax({
-					url : 'MemberCon',
-					type : 'POST',
-					data : formData,
-					async : false,
-					cache : false,
-					contentType : false,
-					enctype : 'multipart/form-data',
-					processData : false,
-					success : function(response) {
-						if (response == 'true') {
-							swal("", "This image will used as ur ID image!", "success")
-							 window.location = "BarcodeCon?action=insert";
-							 window.location = "BarcodeCon?action=insert";
+		  <script>
+        $(document).ready(function(){
+            $(".img_btn").click(function(){
+                var id=this.id;
+                $("#img_user").val(id);
+                //alert("${pageContext.request.contextPath}");
+            $("#past_img").attr("src","${pageContext.request.contextPath}/uploads/"+id+".jpg");
+               
+            });
+           
+            $("#imageForm").submit(function(e) {
+                e.preventDefault();
+                var formData = new FormData($("#imageForm")[0]); // change form id
+                var val = $("#img_user").val();
+                if (!(/\.(gif|jpg|jpeg|png)$/i).test(val)) {              
+                    alert('You must select an image file only');               
+                    }
+                else{
+                $.ajax({
+                    url : 'MemberCon',
+                    type : 'POST',
+                    data : formData,
+                    async : false,
+                    cache : false,
+                    contentType : false,
+                    enctype : 'multipart/form-data',
+                    processData : false,
+                    success : function(response) {
+                        if (response == 'true') {
+                            swal("", "This image will used as ur ID image!", "success")
+                             window.location = "BarcodeCon?action=insert";
+                             window.location = "BarcodeCon?action=insert";
 
-						} else {
-							sweetAlert("", "Something went wrong!", "error");
-						}
+                        } else {
+                            sweetAlert("", "Something went wrong!", "error");
+                        }
 
-					}
-				});
-				}
-			});
-			
-		});
-		
-		
-		</script>
+                    }
+                });
+                }
+            });
+           
+        });
+       
+       
+        </script>
 		<script>
 		$('#dataTables-example').dataTable();
 		$(".print").click(function(){

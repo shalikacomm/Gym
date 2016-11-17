@@ -55,11 +55,11 @@
 		</a>
 			<ul class="collapse" id="payment-nav">
 		
-				<li><a href="MemberFeeCon?action=insert"><i
+				<li><a href="MemberFeeCon?action=insert" style="color: #fff;"><i
 						class="icon-angle-right"></i> Make Payments</a></li>
-				<li><a href="UserCon?action=list"><i
+				<li><a href="UserCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Deactivated List </a></li>
-				<li><a href="UserCon?action=list"><i
+				<li><a href="UserCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Send messages </a></li>
 			</ul>
 			</li>
@@ -71,13 +71,13 @@
 			</span>
 		</a>
 			<ul class="collapse" id="inventory-nav">
-				<li><a href="ProductCon?action=list"><i
+				<li><a href="ProductCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add Products </a></li>
-				<li><a href="ExerciseCon?action=list"><i
+				<li><a href="ExerciseCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add Exercise </a></li>
-				<li><a href="ExerciseCon?action=list"><i
+				<li><a href="ExerciseCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add Banks </a></li>
-				<li><a href="SystemCon?action=list"><i
+				<li><a href="SystemCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add System Settings </a></li>
 				</ul>
 			</li>
@@ -89,9 +89,9 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="product-nav">
-				<li><a href="StockCon?action=insert"><i
+				<li><a href="StockCon?action=insert" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add inventory </a></li>
-				<li><a href="ProductCon?action=list"><i
+				<li><a href="ProductCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> View inventory </a></li>
 			
 				</ul>
@@ -104,9 +104,9 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="report-nav">
-				<li><a href="pages_calendar.html"><i
+				<li><a href="pages_calendar.html" style="color: #fff;"><i
 						class="icon-angle-right"></i> Unit Progress </a></li>
-				<li><a href="pages_timeline.html"><i
+				<li><a href="pages_timeline.html" style="color: #fff;"><i
 						class="icon-angle-right"></i> Growth Reports </a></li>
 			
 				</ul>
@@ -118,7 +118,7 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="barcode-nav">
-				<li><a href="BarcodeCon?action=insert"><i
+				<li><a href="BarcodeCon?action=insert" style="color: #fff;"><i
 						class="icon-angle-right"></i> Create Barcodes </a></li>
 				
 				</ul>
@@ -131,9 +131,9 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="shedule-nav">
-				<li><a href="SheduleCon?action=insert"><i
+				<li><a href="SheduleCon?action=insert" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add Member Shedules </a></li>
-				<li><a href="SheduleCon?action=list"><i
+				<li><a href="SheduleCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Shedule List </a></li>
 				
 				</ul>
@@ -146,9 +146,9 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="progress-nav">
-				<li><a href="MemberDCon?action=insert"><i
+				<li><a href="MemberDCon?action=insert" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add performance details </a></li>
-				<li><a href="MemberDCon?action=list"><i
+				<li><a href="MemberDCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Check progress </a></li>
 				
 				</ul>
@@ -160,9 +160,9 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="workout-nav">
-				<li><a href="BasicSheduleCon?action=insert"><i
+				<li><a href="BasicSheduleCon?action=insert" style="color: #fff;"><i
 						class="icon-angle-right"></i> Add WorkOut Charts </a></li>
-				<li><a href="BasicSheduleCon?action=list"><i
+				<li><a href="BasicSheduleCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Workout Chart Lits </a></li>
 				
 				</ul>
@@ -175,9 +175,9 @@
 			</span> 
 		</a>
 			<ul class="collapse" id="markAttendance-nav">
-				<li><a href="AttenCon?action=mark"><i
+				<li><a href="AttenCon?action=mark" style="color: #fff;"><i
 						class="icon-angle-right"></i> Mark Attendance</a></li>
-				<li><a href="BasicSheduleCon?action=list"><i
+				<li><a href="BasicSheduleCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Check Member Attendance</a></li>
 				
 				</ul>

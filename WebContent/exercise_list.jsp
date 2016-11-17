@@ -20,20 +20,19 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner">
-				<div class="row">
-					<div class="col-lg-12">
-						<h2>Exercise List</h2>
-					</div>
-				</div>
+			<div class="inner" style="margin-top:1%;">
+						<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="ExerciseCon?action=list">Exercise List</a></li>
+    </ul>
 				<hr />
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								Product List <a class="pull-right"
+								Exercise List <a class="pull-right"
 									href="ExerciseCon?action=insert"><button style="margin-top: -9%;"
-										class="btn btn-primary">Add New</button></a>
+										class="btn-sm btn-primary">Add New</button></a>
 							</div>
 							<div class="panel-body">
 
@@ -52,7 +51,7 @@
 											<c:forEach items="${exercise}" var="temp">
 												<tr class="odd gradeX">
 													<td style="width: 10%;"><c:out value="${temp.exercise_id}" /></td>
-													<td style="width: 25%;"><c:out value="${temp.description}" /></td>
+													<td style="width: 65%;"><c:out value="${temp.description}" /></td>
 													<td>
 													<c:if test="${temp.status ==1 }">
 														<lable class=" label btn-success">Active</lable>

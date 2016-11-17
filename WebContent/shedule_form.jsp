@@ -294,8 +294,10 @@ $(document).ready(function(){
 							var row='<div class="row inv_row" id="exer">'+
 								'<div class="col-md-1"></div><div class="col-md-4 text-center" style="margin-left: 1%;">'+
 							'<select id="exercise0" name="exercise" value="'+obj.workout_name+'" class="form-control chzn-select inv_item keep">'
+							+'<option value="'+obj.workout_name+'">'+obj.workout_name+'</option>' 
 							+'</select>'
 						+'</div>'
+						
 						+'<div class="col-md-2 text-center">'
 						+	'<input id="set_per_rep0" style="text-align: right;"'
 						+		'class="form-control inv_price" name="set_per_rep" value="'+obj.sets_per_rep+'" type="text" />'

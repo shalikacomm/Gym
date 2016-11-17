@@ -14,7 +14,7 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+			<div class="inner" style="min-height: 700px;  margin-top:1%;">
 
 
 				<div class="row">

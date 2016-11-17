@@ -35,6 +35,14 @@
  <!-- this is for notifications -->
 
  <!-- this is for notifications end -->
+ <style type="text/css">
+ 	.navbar-top-links li{
+ 		margin-left:0px !important;
+ 	}
+ 	.icon-angle-right{
+ 	color: #fff;
+ 	}
+ </style>
 </head>
 <body class="padTop53 ">
 	<div id="wrap">
@@ -46,13 +54,11 @@
 			 <!-- /. NAV SIDE  -->
      <!--  files tika daaapaLA  <div id="page-wrapper" >
             <div id="page-inner" style="margin-top:1%;">
-      -->           <div class="row">
-                    <div class="col-lg-12">
-                     <h2 style="padding-top: 3px;"><strong>ADMIN DASHBOARD</strong></h2>
-                    </div>
-                </div>              
+      -->        	<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+    </ul>             
                  <!-- /. ROW  -->
-                  <hr />
+               
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="alert alert-info">

@@ -10,5 +10,5 @@ ul.breadcrumb li+li:before {
     color: black;
     content: "/\00a0";
 }
-ul.breadcrumb li a {color: blue;}
+ul.breadcrumb li a {color: #219cd8;}
 </style>

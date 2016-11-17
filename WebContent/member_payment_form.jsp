@@ -19,7 +19,7 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+			<div class="inner" style="min-height: 700px; margin-top:1%;">
 					<ul class="breadcrumb" style="margin-top:1%;">
   <li><a href="dashboard.jsp">Dashboard</a></li>
   <li><a href="MemberFeeCon?action=insert">Member Fee Payment</a></li>

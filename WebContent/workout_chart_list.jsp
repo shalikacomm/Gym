@@ -20,7 +20,7 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner">
+			<div class="inner" style="margin-top:1%;">
 				<div class="row">
 		
 					<div class="col-lg-12">

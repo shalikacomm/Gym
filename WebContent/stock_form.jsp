@@ -19,24 +19,21 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+			<div class="inner" style="margin-top:1%;">
+			<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="StockCon?action=insert">Add Inventory</a></li>
+    </ul>
 <form id="stockForm" class="form-horizontal" align="center"
 					method="post" action="StockCon" novalidate>
 
 				<div class="row page">
 					<div class="col-lg-12">
 						<div class="box dark staticParent">
-							<header>
-							<div class="icons">
-								<i class="icon-glass"></i>
-							</div>
-							<div class="col-md-2 text-center">
-							
-							</div>
-							</header>
+						
 							<div class="row">
 							<div class="col-md-1 text-center">
-	<span style="font-size:154px; font-family: Calibri; color:#455862; border-color:#DCFFFF; background-color:#DCFFFF;"><input readonly id="series_id" class="form-control"
+	<span style="font-size:154px; font-family: Calibri; color:#455862; border-color:#DCFFFF; background-color:#DCFFFF;"><input readonly id="series_id" class="form-control hidden"
 										name="series_id" value="${series_id}" id="inv_price0"
 										type="text" /></span></div></div>
 							<br />
@@ -132,7 +129,8 @@
 	<script src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>.
 		<script type="text/javascript"
 		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
-	<script src="assets/js/validationInit.js"></script>
+				<script src="assets/js/sweetalert.min.js"></script>
+			<script src="assets/js/validationInit.js"></script>
 	<script>
 	$(function() {
 		/*----------- BEGIN chosen CODE -------------------------*/
@@ -363,9 +361,9 @@ $(document).ready(function(){
 															url : "StockCon",
 															data : $("#stockForm").serialize(),
 
-															success : function(data) {
+															success : function(result) {
 
-																if (data == 'true') {
+																if (result == 'true') {
 
 																	swal(
 																			{
@@ -375,10 +373,10 @@ $(document).ready(function(){
 																				showCancelButton : false,
 																				confirmButtonColor : "#DD6B55",
 																				confirmButtonText : "OK!",
-																				closeOnConfirm : false
+																				closeOnConfirm : true
 																			},
 																			function() {
-																			//	window.location = "UserCon?action=list";
+																				window.location = "ProductCon?action=list";
 																			});
 																} else {
 																	swal(

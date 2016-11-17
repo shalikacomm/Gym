@@ -20,20 +20,19 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner">
-				<div class="row">
-					<div class="col-lg-12">
-						<h2>Product List</h2>
-					</div>
-				</div>
-				<hr />
+			<div class="inner" style="margin-top:1%;">
+				
+					<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="ProductCon?action=list">Product List</a></li>
+    </ul>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Product List <a class="pull-right"
 									href="ProductCon?action=insert"><button style="margin-top: -9%;"
-										class="btn btn-primary">Add New</button></a>
+										class="btn-sm btn-primary">Add New</button></a>
 							</div>
 							<div class="panel-body">
 
@@ -57,11 +56,11 @@
 												<tr class="odd gradeX">
 													<td style="width: 10%;"><c:out value="${temp.productID}" /></td>
 													<td style="width: 25%;"><c:out value="${temp.description}" /></td>
-													<td align="right" style="width: 15%;"><c:out value="${temp.purchasePrice}" /></td>
-													<td align="right" style="width: 15%;"><c:out value="${temp.sellingPrice}" /></td>
+													<td align="right" style="width: 12%;"><c:out value="${temp.purchasePrice}" /></td>
+													<td align="right" style="width: 12%;"><c:out value="${temp.sellingPrice}" /></td>
 													<td align="right" style="width: 10%;"><c:out value="${temp.reorderLevel}" /></td>
-													<td align="right" style="width: 10%;"><c:out value="${temp.stock}" /></td>
-													<td>
+													<td align="right" style="width: 11%;"><c:out value="${temp.stock}" /></td>
+													<td align="left" style="width: 5%;">
 													<c:if test="${temp.status ==1 }">
 														<lable class=" label btn-success">Active</lable>
 														</c:if> 

@@ -199,18 +199,13 @@ public class StockCon extends HttpServlet {
 	//	List<Integer> lsBatchNo = new ArrayList<Integer>();
 		StockEntity stockAdd = new StockEntity();
 		stockAdd.setSeriesID(seriesID);
+		boolean result = false;
 		for (int i = 0; i < inv_items.length; i++) {
-			
-			
-			boolean result = false; 
-	
 			System.out.println("products:" + inv_items[i]);
 			System.out.println(" expDate:" + expDate[i]);
 			System.out.println(" batch:" + batchNo[i]);
 			System.out.println(" qty:" + qty[i]);
-
-			
-		
+	
 			stockAdd.setProduct_id(inv_items[i]);
 			stockAdd.setExpiary_date(expDate[i]);
 			stockAdd.setBatch_no(Integer.parseInt(batchNo[i]));
@@ -221,10 +216,11 @@ public class StockCon extends HttpServlet {
 			
 			result = Series.addStock(stockAdd);
 			
-			PrintWriter out=resp.getWriter();
-			out.print(result);
+			
 			
 		}
+		PrintWriter out=resp.getWriter();
+		out.print(result);
 
 	/*	
 		for(Integer i:lsBatchNo){

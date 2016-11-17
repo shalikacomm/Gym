@@ -7,7 +7,7 @@
 %>
 <div id="top">
 
-	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: white; margin-top: -32px; padding-top: 3%; border: 2px solid #219cd8;">
+	<nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #3A90BB; margin-top: -32px; padding-top: 3%; border: 3px solid #219cd8;">
 		<a data-original-title="Show/Hide Menu" data-placement="bottom"
 			data-tooltip="tooltip"
 			class="accordion-toggle btn btn-primary btn-sm visible-xs"
@@ -18,7 +18,7 @@
 		<header class="navbar-header">
 	
 
-			 <img src="assets/img/logo1.jpg" alt="" height="46" width="190" style="margin-left: -22% ; margin-top: -11px; padding-top: 10px;"/>
+			 <img src="assets/img/logooo.png" alt="" height="46" width="190" style="margin-left: -22% ; margin-top: -11px; padding-top: 10px;"/>
 
 			
 		</header>
@@ -28,7 +28,7 @@
 
 			<!--ADMIN chat bar SECTIONS -->
 
-			<li class="dropdown"><a class="dropdown-toggle" style=" color: #fff; padding: 20px 16px 13px 20px; margin-top: -15%; background-color:#2191d8;"
+			<li class="dropdown" style="margin-left:0px !important;"><a class="dropdown-toggle" style=" color: #fff; padding: 20px 18px 13px 20px; margin-top: -15%; background-color:#2980B9;"
 				data-toggle="dropdown" href="#"> <i class="icon-user "></i>&nbsp;
 					<i class="icon-chevron-down "></i>
 			</a>
@@ -51,8 +51,8 @@
 
 			<!--ADMIN chat bar SECTIONS -->
 
-			<li class="dropdown"><a class="dropdown-toggle" style=" color: #fff; padding: 21px 0px 13px 17px; margin-top: -15%; background-color:#219cd8;"
-				data-toggle="dropdown" href="#"><span class="label label-danger" id="count" style="background-color:#f3142c;"></span> <i class="icon-globe"></i>&nbsp;
+			<li class="dropdown"><a class="dropdown-toggle" style=" color: #fff; padding: 21px 0px 13px 17px; margin-top: -15%; background-color:#16A085;"
+				data-toggle="dropdown" href="#"><span class="label label-danger" id="count" style="background-color:#f4111f;"></span> <i class="icon-globe"></i>&nbsp;
 					<i class="icon-chevron-down "></i>
 			</a>
 
