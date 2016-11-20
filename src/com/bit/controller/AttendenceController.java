@@ -2,6 +2,7 @@ package com.bit.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,6 +16,7 @@ import com.bit.dao.AttendanceDAOImpl;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.AttendenceEntity;
+import com.bit.entity.UserEntity;
 import com.bit.util.Methods;
 import com.google.gson.Gson;
 
@@ -48,12 +50,30 @@ public class AttendenceController extends HttpServlet{
 			}
 			
 		} 
+		else if (action.equalsIgnoreCase("users")) {
+			UserDAO userDao = new UserDAOImpl();
+			List<UserEntity> users = userDao.getAllUsers();
+			//Gson gson = new Gson();
+
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+
+				out.write("{ \"record\":" + new Gson().toJson(users) + "}");
+
+				out.flush();
+				out.close();
+				return;
+			}
+			
+		} 
 		else if (action.equalsIgnoreCase("mark")) {
 			forward = INSERT_OR_EDIT;
 			Methods method = new Methods();
 			String generateID = method.generateID("A", "attendance_id", "attendance_tbl");
 			req.setAttribute("atten_id", generateID);
 			
+			 
 		}
 		if (forward != "") {
 			RequestDispatcher view = req.getRequestDispatcher(forward);

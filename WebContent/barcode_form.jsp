@@ -28,23 +28,15 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner">
+			<div class="inner" style="margin-top:1%;">
 			<ul class="breadcrumb" style="margin-top:1%;">
   <li><a href="dashboard.jsp">Dashboard</a></li>
   <li><a href="BarcodeCon?action=insert">Print Barcodes</a></li>
     </ul>
 				<div class="row">
 					<div class="col-lg-12">
-
-
-				
-
-
 					</div>
 				</div>
-
-				<hr />
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">

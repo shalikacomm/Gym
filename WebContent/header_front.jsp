@@ -77,9 +77,9 @@
 					<li><a href="exercise_front.jsp">Exercise</a></li>
 					<li><a href="nutrition_front.jsp">Nutrition</a></li>
 					<li><a href="blog.html">Team</a></li>
-					<li><a href="contact.html">Member</a>
+					<li><a href="">Member</a>
 					<ul class="dropdown">
-                                    <li><a href="about.html">Member Register</a>
+                                    <li><a href="FRegisterCon?action=insert">Member Register</a>
                                     </li>
                                     <li>
                                     <%

@@ -297,6 +297,43 @@ if (temp > 0){
 
         return user;
 	}
+	public UserEntity getUserByNIC(String nic) {
+		Connection con = null;
+		UserEntity user = new UserEntity();
+		try {
+			con=DBUtil.getConnection();
+			PreparedStatement preparedStatement = con.prepareStatement("SELECT * FROM user_tbl WHERE nic=?");
+			preparedStatement.setString(1, nic);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if (rs.next()) {
+				user.setUser_id(rs.getString("user_id"));
+				user.setFirst_name(rs.getString("first_name"));
+				user.setLast_name(rs.getString("last_name"));
+				user.setEmail(rs.getString("email"));
+				user.setGender(rs.getString("gender"));
+				user.setNic(rs.getString("nic"));
+				user.setDob(rs.getDate("dob"));
+				user.setMarital_status(rs.getInt("marital_status"));
+				user.setAddress(rs.getString("address"));
+				user.setMobile_number(rs.getInt("mobile_number"));
+				user.setRole(rs.getString("role"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return user;
+	}
 	
 	public boolean getUserStatus(String userId) {
 		Connection con = null;
@@ -487,14 +524,16 @@ if (temp > 0){
             	 
             }
             System.out.println("User Pw reseted");
+            System.out.println("User Pw reseted :" +user.getNic());
             String MsgBody = "Hi " + user.getFirst_name() + ", \n \n Please follow the Username and Code for login to the System"
                     + "\n \n Username: " + user.getNic() + " \n Password: " + randomCode + " \n \n After that you can enter new password. "
                     + " \n \n Thanks you, \n System Administrator, \n Fit & Fun Health club";
             method.sendMail(email, "User Registration for Fit & Fun Health club", MsgBody); 
             
-            String sql = "UPDATE user_tbl SET status = 4 , password = "+randomCode+" WHERE user_id = ?";
-            PreparedStatement pre_statement = connection.prepareStatement(sql);
-            pre_statement.setString(1,user.getUser_id());
+            String sql = "UPDATE user_tbl SET status=3, password =? WHERE user_id = ?";
+            PreparedStatement pre_statement = con.prepareStatement(sql);
+            pre_statement.setString(1,encrypt);
+            pre_statement.setString(2,user.getUser_id());
             pre_statement.executeUpdate();
             
         } catch (SQLException e) {
@@ -515,6 +554,53 @@ if (temp > 0){
 
         return user;
 	}
+	
+	public UserEntity ChangePassword(UserEntity passDetails) {
+		Connection con = null;
+    	    try {
+        	con=DBUtil.getConnection();
+        	String username = passDetails.getNic();
+    		String password = passDetails.getPassword();
+    		UserEntity userData = getUserByNIC(username);
+    		
+    		
+    		byte[] temp = password.getBytes();  // convert password to byte 
+
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            md.update(temp);
+
+            byte[] hash = md.digest(); // digest the password
+            String encrypt = new String(Hex.encode(hash));//Hex.encode(svPass);
+        	
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE user_tbl SET password=?,status=? WHERE user_id=?");
+            
+            preparedStatement.setString(1,encrypt);
+            preparedStatement.setInt(2,1);
+            preparedStatement.setString(3, userData.getUser_id());
+           int res= preparedStatement.executeUpdate();
+     if(res>0){
+            System.out.println("change password succefully");
+     }else{
+         System.out.println("change password failed");
+     }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+
+        return passDetails;
+	}
 
 	  public UserEntity login(UserEntity loginUsers) {
 		  Connection conn = null;
@@ -531,7 +617,7 @@ if (temp > 0){
 	            String hash_value = new String(Hex.encode(svPass));// digest the password
 	            
 	            String searchQuery = "SELECT * from user_tbl where nic='" + username
-	                    + "' AND password='" + hash_value + "' AND status =1 ";
+	                    + "' AND password='" + hash_value + "'";
 	            try {
 	                conn = DBUtil.getConnection(); // Connect to the database
 	                stmt = conn.createStatement();

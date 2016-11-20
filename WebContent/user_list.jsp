@@ -28,8 +28,8 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner">
-				<ul class="breadcrumb" style="margin-top:1%;">
+			<div class="inner" >
+				<ul class="breadcrumb" style="margin-top:2%;">
   <li><a href="dashboard.jsp">Dashboard</a></li>
   <li><a href="UserCon?action=list">User List</a></li>
     </ul>
@@ -369,6 +369,7 @@
 							swal("Image uploaded!", "This image will used as ur ID image!", "success")
 							 window.location = "UserCon?action=list";
 							 window.location = "UserCon?action=list";
+							
 
 						} else {
 							sweetAlert("Oops...", "Something went wrong!", "error");

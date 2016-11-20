@@ -80,6 +80,9 @@
                      
                   </div>  -->
           
+       									   <% String role=currentUser.getRole();
+										if(role.equals("administrator")) { %>
+          
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="MemberCon?action=insert" >
@@ -216,6 +219,8 @@
                   </div>
                     
               </div>
+              
+         <% } %>     
                  <!-- /. ROW  -->  
           
 				  <div class="row">

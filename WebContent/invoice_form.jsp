@@ -29,9 +29,6 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 	
-	
-		
-				
 		<div id="content">
 	
 		

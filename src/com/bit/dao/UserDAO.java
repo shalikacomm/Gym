@@ -31,6 +31,8 @@ public interface UserDAO {
 	
 	public List<UserEntity>getAllMemberUsers();
 	
+	public UserEntity ChangePassword(UserEntity passDetails);
+	
 	// public boolean deactivateExpiredMembers() ;
 	
 	

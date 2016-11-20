@@ -60,11 +60,15 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+			<div class="inner" style="min-height: 700px;  margin-top:1%;">
+			<ul class="breadcrumb" style="margin-top:2%;">
+  			<li><a href="dashboard.jsp">Dashboard</a></li>
+  				<li><a href="MemberCon?action=insert">Add Measurements</a></li>
+    			</ul>
 
 
 				<div class="panel panel-default">
-					<div class="panel-heading">Member Details Registration</div>
+					<div class="panel-heading">Member Measurement Details</div>
 					<div class="panel-body">
 						<form action="MemberCon" method="POST" id="memForm"
 							enctype="multipart/form-data">
@@ -204,102 +208,9 @@
 											style="background: #27C3BB">Save</button>
 									</div>
 								</div>
-								<div class="col-sm-2">
-									<div class="form-group">
-										<a data-toggle="modal" class="payment btn btn-info btn-md"
-											style="border-radius: 6px; background: #27C3BB;" id=""
-											href="#imageup">Upload Image</a>
-
-									</div>
-								</div>
+							
 
 							</div>
-
-
-							<!-- modal start -->
-
-
-							<div class="col-lg-12">
-								<div class="modal fade" id="imageup" tabindex="-1" role="dialog"
-									aria-labelledby="myModalLabel" aria-hidden="true"
-									data-keyboard="false" data-backdrop="static">
-									<div class="modal-dialog modal-lg">
-										<!--<div class="modal-content">-->
-										<div class="panel with-nav-tabs panel-info modal-content">
-											<div class="panel-heading modal-header">
-												<button type="button" class="close" data-dismiss="modal"
-													aria-hidden="true">&times;</button>
-												<ul class="nav nav-tabs">
-													<li class="active"><a href="#doctor_info"
-														data-toggle="tab">Select Your Image</a></li>
-
-													<!--<li><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></li>-->
-												</ul>
-											</div>
-											<div class="panel-body modal-body">
-												<div class="tab-content">
-													<div class="tab-pane fade in active" id="doctor_info">
-														<div class="row">
-															<div class="col-md-3 col-lg-3 " align="center"
-																id="doc_img">
-																<!-- loading the doctor image from the AJAx call  -->
-															</div>
-															<div class=" col-md-9 col-lg-9 ">
-																<table class="table table-user-information">
-																	<tbody id="doc_detail">
-																		<div class="col-lg-8">
-																			<div class="form-group">
-																				<label>Member Photo</label><em style="color: red;">*</em>
-																				<div class="fileupload fileupload-new"
-																					data-provides="fileupload">
-																					<div class="fileupload-preview thumbnail"
-																						style="width: 200px; height: 150px;"></div>
-																					<div>
-																						<span class="btn btn-file btn-success"><span
-																							class="fileupload-new">Select image</span><span
-																							class="fileupload-exists">Change</span> <input
-																							type="file" name="img_path" /></span> <a href="#"
-																							class="btn btn-danger fileupload-exists"
-																							data-dismiss="fileupload">Remove</a>
-																					</div>
-																				</div>
-																			</div>
-																		</div>
-																	</tbody>
-																</table>
-															</div>
-														</div>
-													</div>
-													<div>
-														<hr>
-													</div>
-													<div class="row">
-													<div>
-													<div class="col-sm-2">
-													<div class="form-group">
-														<button type="button" class="btn btn-default"
-															data-dismiss="modal">Close</button>
-													</div>
-													</div>
-													</div>
-													<div class="col-sm-2">
-													<div class="form-group">
-												<button type="submit" class="btn btn-success saveImg"
-														style="background: #27C3BB">Save Image</button>
-												</div>
-												</div>
-												</div>
-												</div>
-											</div>
-										</div>
-										<!--</div>-->
-									</div>
-								</div>
-							</div>
-							<!-- modal end -->
-
-
-
 						</form>
 					</div>
 

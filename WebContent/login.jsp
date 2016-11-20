@@ -38,14 +38,16 @@
     </div>
     <div class="tab-content">
         <div id="login" class="tab-pane active">
-            <form action="LoginCon?action=login" method="post" class="form-signin">
+            <form action="LoginCon?action=login" method="post" class="form-signin" id="LoginForm
+            
+             ">
                 <p class="text-muted text-center btn-block btn btn-primary btn-rect">
                     Enter your Username and Password
                 </p>
        
                 <input type="text" placeholder="Enter your Username" name="nic" class="form-control" />
                 <input type="password" placeholder="Password" name="password" class="form-control" />
-              <button class="btn text-muted text-center btn-danger" type="submit">Sign in</button>
+              <button class="btn text-muted text-center btn-danger subClick" type="submit">Sign in</button>
             
                            <% UserEntity currentUser = (UserEntity) (session.getAttribute("InvalidUser"));
                         if (currentUser != null) {
@@ -81,7 +83,73 @@
       <script src="assets/plugins/bootstrap/js/bootstrap.js"></script>
    <script src="assets/js/login.js"></script>
       <!--END PAGE LEVEL SCRIPTS -->
+<script>
+		$(document).ready(function() {
+							$(function() {
+								formValidation();
+							});
+							$("#memPaymentForm").submit(function(e) {
+												e.preventDefault();
+												if (!$("#memPaymentForm").valid())
+													return false;
+											var username =	$("#mem_id").val();
+												swal(
+														{
+															title : "Are you sure?",
+															text : "Your payment will be added to "+username+ " account",
+															type : "warning",
+															showCancelButton : true,
+															confirmButtonColor : "#DD6B55",
+															confirmButtonText : "Yes, Proceed!",
+															cancelButtonText : "No, cancel!",
+															closeOnConfirm : true,
+															closeOnCancel : true
+														},
+														function(isConfirm) {
+															if (isConfirm) {
+																$.ajax({
+																			type : "POST",
+																			url : "MemberFeeCon",
+																			data : $("#memPaymentForm").serialize(),
+																			success : function(
+																					data) {
+																				if (data == 'true') {
+																					swal(
+																							{
+																								title : "",
+																								text : "You membership has been updated",
+																								type : "success",
+																								showCancelButton : false,
+																								confirmButtonColor : "#DD6B55",
+																								confirmButtonText : "OK!",
+																								closeOnConfirm : true
+																							},
+																							function() {
+																								 window.location = "MemberFeeCon?action=list";
+																								
 
+																							});
+																				} else {
+																					swal(
+																							"Data not saved!",
+																							"Please contact administrator!",
+																							"error");
+																				}
+																			}
+
+																		});
+															} else {
+																swal(
+																		"Cancelled",
+																		"Your Transaction details are removed:)",
+																		"error");
+															}
+														});
+
+											});
+						});
+	</script>
 </body>
+
     <!-- END BODY -->
 </html>

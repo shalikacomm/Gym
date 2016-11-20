@@ -5,6 +5,7 @@ package com.bit.controller;
  */
 import java.io.IOException;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -80,6 +81,7 @@ System.out.println("worning");
 			user.setPassword(request.getParameter("password"));
 			user =userDAO.login(user);// Send User name and Password to User DAO
 			if (user.isValid()) { // Check availability of the user
+				if(user.getStatus()==1){
 				if(user.getRole().equalsIgnoreCase("member")){
 					HttpSession session = request.getSession(true);
 					session.setAttribute("frontSessionUser", user);
@@ -88,6 +90,12 @@ System.out.println("worning");
 				HttpSession session = request.getSession(true);
 				session.setAttribute("currentSessionUser", user);
 				response.sendRedirect("dashboard.jsp"); // Redirect to Home page
+				}
+				
+				}else if(user.getStatus()==3){
+					HttpSession session = request.getSession(true);
+					session.setAttribute("freshUser", user);
+					response.sendRedirect("new_login.jsp"); 
 				}
 			} else {
 				HttpSession session = request.getSession(true);
@@ -113,6 +121,21 @@ System.out.println("worning");
 
 			rd.forward(request, response);
 		}
+		
+		else if (action.equalsIgnoreCase("passwordChange")) {
+			try {
+				UserDAO dao_new  = new UserDAOImpl();
+				UserEntity user = new UserEntity();
+				user.setNic(request.getParameter("username"));
+				user.setPassword(request.getParameter("password"));
+				dao_new.ChangePassword(user);// Send User name and Password to User DAO
+				
+					response.sendRedirect("login.jsp"); // Return to index page
+
+			} finally {
+				out.close();
+			}
+			}
 
 	}
 }

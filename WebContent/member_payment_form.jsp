@@ -521,18 +521,13 @@
 
 												$(div_data).appendTo(id);
 
-												$
-														.each(
-																data.record,
-																function(i, obj) {
+												$.each(data.record,function(i, obj) {
 																	div_data = "<option value=" + obj.user_id + ">"
 																			+ obj.user_id
 																			+ " "
 																			+ obj.first_name
 																			+ "</option>";
-																	$(div_data)
-																			.appendTo(
-																					id);
+																	$(div_data).appendTo(id);
 																});
 												$(id).chosen().trigger(
 														"chosen:updated");
@@ -547,17 +542,18 @@
 															success : function(data) {
 																var member_status = data[0].record;
 																if (member_status.status == 0) {
-																	$("#downpayment").empty();
+																	$(".down").empty();
 																	$("#lbl_status").empty().append("<span class='label label-danger '>Inactive</span>");
 																	
 																} else if (member_status.status == 1) {
-																	$("#downpayment").empty();
+																	$(".down").empty();
 																	$("#lbl_status").empty().append(
 																					"<span class='label label-success'>Active</span>");
 																} else if (member_status.status == 2) {
+																	$(".down").empty();
 																	$("#lbl_status").empty().append("<span class='label label-warning'>Pending</span>");
 																	$("#suppliment").append('	<div class="row" id="downpayment">'
-																			+	'		<div class="form-group">'
+																			+	'		<div class="form-group down">'
 																			+	'<div class="col-md-4">'
 																			+	'	<label for="limiter" class="control-label col-md-5"'
 																			+	'		style="float: right;">Admission</label>'
@@ -571,9 +567,10 @@
 																		+'</div>').hide().slideDown(1000);;	
 																}
 																else if (member_status.status == 3) {
+																	$(".down").empty();
 																	$("#lbl_status").empty().append("<span class='label label-info'>Fresh</span>");
 																	$("#suppliment").append('	<div class="row" id="downpayment">'
-																						+	'		<div class="form-group">'
+																						+	'		<div class="form-group down">'
 																						+	'<div class="col-md-4">'
 																						+	'	<label for="limiter" class="control-label col-md-5"'
 																						+	'		style="float: right;">Admission</label>'

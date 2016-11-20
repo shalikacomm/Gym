@@ -8,6 +8,9 @@
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
+<link rel="stylesheet" href="assets/css/bootstrap-select.min.css" />
+<link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
+
 <!--for the horizontal tabs-->
         <style>
             .tabbable-panel {
@@ -82,7 +85,7 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+			<div class="inner" style="min-height: 700px; margin-top:1%;">
 
 <ul class="breadcrumb" style="margin-top:1%;">
   <li><a href="dashboard.jsp">Dashboard</a></li>
@@ -181,8 +184,8 @@
 												<input id="btn_save"
 													value="Save" class="btn btn-primary btn-sm " type="submit">
 													
-												<a data-toggle="modal" class="btn btn-default btn-grad  btn-sm img_btn"
-														id="${temp.user_id}" data-toggle="modal" href="#imageup"><input id="btn_reset" value="Check"
+												<a data-toggle="modal" class="img_btn"
+														id="${temp.user_id}" data-toggle="modal" href="#imageup"><input id="check_user" value="Check"
 													class="btn btn-warning btn-sm " type="button" /></a>
 												</div>
 											
@@ -248,20 +251,18 @@
 												<div class="tab-content">
 												
 													<div class="tab-pane fade in active" id="doctor_info">
-													<div class="row">
-													<div class="col-sm-6">
-													<div class="col-md-4 text-center" style="margin-left:1%;">
-											<select id="inv_item0" name="inv_item" class="form-control chzn-select inv_item keep">
-
-											</select>
-										</div></div>
 													
-											
-													</div> 	
-														
-														
-													</div>
-													<div>
+													
+													<div class="row">
+                                                                    <div class="col-md-5" style="margin-top:1%;" >
+                                                                        <label>Select User ID:</label> 
+                                                                    </div>
+                                                                    <div class="col-md-4" >
+                                                                        <select style="" id="userDetails" class="form-control"  name="bank_name">
+                                                                                                                                                   </select>
+                                                                    </div>
+												</div>
+															<div>
 														<hr>
 													</div>
 													<div class="row">
@@ -297,26 +298,19 @@
 		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script> 
 		<script src="assets/js/sweetalert.min.js"></script>
 	<script src="assets/js/validationInit.js"></script>
+	<script src="assets/js/bootstrap-select.min.js"></script>
+   	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
+   
 	<script>
 /* 	$(document).ready(function(){
 		$(".barcode").focus();
 	}); */
 	</script>
 		<script>
-		$(document).ready(function(){
-			$('.chzn-select').chosen().trigger("chosen:updated");
-			$(function() {
-			/*----------- BEGIN chosen CODE -------------------------*/
-
-			$(".chzn-select").chosen();
-			$(".chzn-select-deselect").chosen({
-				allow_single_deselect : false
-				 
-			});
-			/*----------- END chosen CODE -------------------------*/
-		});
-		});
+	
 	</script>
+
+	
 	<script>
 	$(document).ready(function(){
 		// alert(4566);
@@ -364,6 +358,32 @@
 	});
 	
 	</script>
+	<script>
+	$(document).ready(function(){
+	$('#check_user').on('click',function(){
+	$.ajax({
+		type : "GET",
+		url : "AttenCon?action=users",
+		dataType : "json",
+		beforeSend : function(xhr) {
+			$("#userDetails").empty();
+		},
+		success : function(data) {
+			var div_data = "<option></option>";
+			$(div_data).appendTo("#userDetails");
+			$.each(data.record, function(i, obj) {
+				div_data = "<option value=" + obj.user_id + ">"
+						+ obj.first_name + "</option>";
+				$(div_data).appendTo("#userDetails");
+			});
+		
+			$('#userDetails').chosen().trigger("chosen:updated");
+		}
+	}); 	 	
+	});
+	});
+	</script>
+	
 	<script type="text/javascript">
 		$(document)
 				.ready(
