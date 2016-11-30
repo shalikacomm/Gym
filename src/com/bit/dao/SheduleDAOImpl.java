@@ -160,16 +160,29 @@ public java.sql.Date getCurrentDatetime() {
 		try {
 			connection = DBUtil.getConnection();
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * FROM shedule_tbl");
+			ResultSet rs = statement.executeQuery("SELECT "
+     +" shedule_tbl.`shedule_id` AS shedule_tbl_shedule_id,"
+     +"shedule_tbl.`user_id` AS shedule_tbl_user_id,"
+     +"shedule_tbl.`date_created` AS shedule_tbl_date_created,"
+     +"shedule_tbl.`instructor_name` AS shedule_tbl_instructor_name,"
+     +"shedule_tbl.`workout_no` AS shedule_tbl_workout_no,"
+     +"shedule_tbl.`status` AS shedule_tbl_status,"
+     +"user_tbl.`user_id` AS user_tbl_user_id,"
+     +"user_tbl.`first_name` AS user_tbl_first_name,"
+     +"user_tbl.`email` AS user_tbl_email"
+     +" FROM "
+     +"`user_tbl` user_tbl INNER JOIN `shedule_tbl` shedule_tbl ON user_tbl.`user_id` = shedule_tbl.`user_id`");
 
 			while (rs.next()) {
 				SheduleEntitiy shedule = new SheduleEntitiy();
-				shedule.setShedule_id(rs.getString("shedule_id"));
-				shedule.setUser_id(rs.getString("user_id"));
-				shedule.setDate_created(rs.getString("date_created"));
-				shedule.setInstructor_name(rs.getString("instructor_name"));
-				shedule.setWorkout_no(rs.getInt("workout_no"));
-				shedule.setStatus(rs.getInt("status"));
+				shedule.setShedule_id(rs.getString("shedule_tbl_shedule_id"));
+				shedule.setUser_id(rs.getString("shedule_tbl_user_id"));
+				shedule.setDate_created(rs.getString("shedule_tbl_date_created"));
+				shedule.setInstructor_name(rs.getString("shedule_tbl_instructor_name"));
+				shedule.setFirst_name(rs.getString("user_tbl_first_name"));
+				shedule.setEmail(rs.getString("user_tbl_email"));
+				shedule.setWorkout_no(rs.getInt("shedule_tbl_workout_no"));
+				shedule.setStatus(rs.getInt("shedule_tbl_status"));
 				
 				shedule_list.add(shedule);
 			}
@@ -222,6 +235,37 @@ public java.sql.Date getCurrentDatetime() {
 		
 		return workout_list;
 	}
+	public boolean deactivateShedule(String shedule_id) {
+		connection = null;
+		boolean result=false;
+		try {
+			connection = DBUtil.getConnection();
+			String sql = "UPDATE shedule_tbl SET status = 0 WHERE shedule_id = ?";
+
+			PreparedStatement pre_statement = connection.prepareStatement(sql);
+			pre_statement.setString(1, shedule_id);
+			int res=pre_statement.executeUpdate();
+
+			if(res>0){
+				result=true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+			// TODO: handle exception
+		} finally {
+			if (connection != null) {
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+
+		}
+		return result;
+	}
 	public List<WorkoutDetailEntity> getOneWorkout(String workout_id) {
 		
 		connection = null;
@@ -269,38 +313,7 @@ public java.sql.Date getCurrentDatetime() {
 		return workout_list;
 	}
 	
-	public boolean deactivateShedule(String shedule_id) {
-		connection = null;
-		boolean result=false;
-		try {
-			connection = DBUtil.getConnection();
-			String sql = "UPDATE shedule_tbl SET status = 0 WHERE shedule_id = ?";
-
-			PreparedStatement pre_statement = connection.prepareStatement(sql);
-			pre_statement.setString(1, shedule_id);
-			int res=pre_statement.executeUpdate();
-
-			if(res>0){
-				result=true;
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-
-			// TODO: handle exception
-		} finally {
-			if (connection != null) {
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-
-		}
-		return result;
-
-	}
+	
 	
 	public boolean activateShedule(String shedule_id) {
 

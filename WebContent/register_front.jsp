@@ -42,8 +42,7 @@
 				<div class="row">
 					<div class="col-md-6">
 						<h2 style="text-transform: none;">Members Application Form...</h2>
-						<p style="font-weight: bold; color: #8A5497;">The Best Care
-							for you Pet..</p>
+						<p style="font-weight: bold; color: #8A5497;"></p>
 					</div>
 					<div class="col-md-6">
 						<ul class="breadcrumbs">
@@ -104,13 +103,12 @@
 									</div>
 										<div class="col-md-4">
 										<div class="form-group">
-											<label style="color: #5f5f5f; font: bold 14px sans-serif;">First
-												Name</label><em style="color: red;">*</em> <input
+											<label style="color: #5f5f5f; font: bold 14px sans-serif;">First_Name</label><em style="color: red;">*</em> <input
 												class="form-control" type="text" id="petOwner_fname"
 												name="first_name" required="" placeholder="First Name" />
 										</div>
 									</div>
-									<div class="col-md-4"></div>
+									<div class=" form-group col-md-4"></div>
 								</div>
 								<div class="row">
 									<div class="col-md-4">
@@ -332,14 +330,7 @@
 	<script src="assets/js/validationInit.js"></script>
 	<script src="assets/js/sweetalert.min.js"></script>
 		<script src="assets/plugins/datepicker/js/bootstrap-datepicker.js"></script>
-	
-	<script>
-		$(document).ready(function() {
-	
-		});
-		
-	
-	</script>
+
 
 <script>
 		$(document).ready(function() {
@@ -363,17 +354,15 @@
 
 	<script type="text/javascript">
 		$(document).ready(function() {
-							/* $(function() {
-									$('#dp3').datepicker();
-								});  */
-						/* 	$(function() {
+						
+							$(function() {
 								formValidation();
-							}); */
+							}); 
 							$("#front_registration_form").submit(
 											function(e) {
 												e.preventDefault();
-											/* 	if (!$("#front_registration_form").valid())
-													return false; */
+											 	if (!$("#front_registration_form").valid())
+													return false; 
 												 $("#processing_img").removeAttr("class", "hide");
 								                    $("#processing_img").attr("class", "row");
 												

@@ -1,11 +1,17 @@
 package com.bit.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.ServletOutputStream;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -27,8 +33,12 @@ import com.bit.entity.SheduleEntitiy;
 import com.bit.entity.UserEntity;
 import com.bit.entity.WorkoutDetailEntity;
 import com.bit.entity.WorkoutEntity;
+import com.bit.util.DBUtil;
 import com.bit.util.Methods;
 import com.google.gson.Gson;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperRunManager;
 
 @WebServlet(urlPatterns = "/SheduleCon")
 public class SheduleController extends HttpServlet {
@@ -85,6 +95,23 @@ public class SheduleController extends HttpServlet {
 					return;
 				}
 
+			}
+			else if (action.equalsIgnoreCase("AllMemberUsers")) {
+				UserDAO userDao = new UserDAOImpl();
+				List<UserEntity> users = userDao.getAllMemberUsers();
+				Gson gson = new Gson();
+				
+				try (PrintWriter out = resp.getWriter()) {
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
+					
+					out.write("{ \"record\":" + new Gson().toJson(users) + "}");
+					
+					out.flush();
+					out.close();
+					return;
+				}
+				
 			}
 		  
 			else if(action.equalsIgnoreCase("deactivate")){
@@ -192,6 +219,67 @@ public class SheduleController extends HttpServlet {
 				 
 				 
 			 }
+			 else if (action.equalsIgnoreCase("sheduleEmail")) {
+
+					try {
+						Connection con = DBUtil.getConnection();
+						File reportFile = new File(req.getRealPath("/reports/workout_shedule.jasper"));
+						Map parameters = new HashMap();
+						parameters.put("shedule_id", req.getParameter("shedule_id"));
+
+						byte[] bytes = JasperRunManager.runReportToPdf(reportFile.getAbsolutePath(), parameters, con);
+
+						resp.setContentType("application/pdf");
+						resp.setContentLength(bytes.length);
+						ServletOutputStream outstream = resp.getOutputStream();
+						outstream.write(bytes, 0, bytes.length);
+						outstream.flush();
+						outstream.close();
+
+					} catch (JRException ex) {
+						ex.printStackTrace();
+					}
+				}
+			 else if (action.equalsIgnoreCase("sheduleEmailAttach")) {
+				 boolean res = false;
+				 String instructor = req.getParameter("instructor");
+				 String name = req.getParameter("first_name");
+				 String email = req.getParameter("email");
+				 String subject = "Workout Schedule";
+				 String msg_body = "Hi " +name+ ", \n \n Please find the attachment below, You can use this PDF as your workout schedule."
+	                        	                        + " \n \n Thanks you, \n "+instructor+", \n Gym Instructor,\n Fit & Fun Health club";
+				 try {
+					
+					 
+					 Methods method=new Methods();
+					 String filepath="C:\\AirDroid\\schedule.pdf";
+					 try {
+						method.ExportPDFquote(req.getRealPath("/reports/workout_shedule.jasper"), filepath,  req.getParameter("shedule_id"), "shedule_id");
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				String result =  method.SendMailAttachment(email,subject,msg_body, filepath);
+					 if(result != null){
+						 res = true;
+					 }else{
+						 res = false;
+					 }
+				 } catch (JRException ex) {
+					 ex.printStackTrace();
+				 }
+					try (PrintWriter out = resp.getWriter()) {
+						resp.setContentType("application/json");
+						resp.setCharacterEncoding("UTF-8");
+
+						out.print(res);
+
+						out.flush();
+						out.close();
+						return;
+					}
+			 }
+	
 	
 		  if (forward != "") {
 				RequestDispatcher view = req.getRequestDispatcher(forward);

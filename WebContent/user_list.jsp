@@ -91,7 +91,7 @@
 														href="UserCon?action=edit&user_id=<c:out value="${temp.user_id}"/>"
 														class="btn btn-default btn-grad btn-sm"><span><i
 																class="icon-edit" style="color: #455862;"></i></span></a> 
-																<c:if
+													    <c:if
 															test="${temp.status ==1 }">
 															<a
 																href="UserCon?action=deactive&user_id=<c:out value="${temp.user_id}"/>"
@@ -244,6 +244,8 @@
 				</div>
 
 				<%@include file="right_panel.jsp"%>
+			</div>
+			</div>
 			</div>
 			<%@include file="footer.jsp"%>
 			
@@ -399,15 +401,14 @@
 									$('#dataTables-example').dataTable();
 
 									$("#dataTables-example")
-											.on('click','.status',
-													function(e) {
+											.on('click','.status',function(e) {
 														e.preventDefault();
 														var url = this.href;
 
 														swal(
 																{
 																	title : "Are you sure?",
-																	text : "You will not be able to recover this imaginary file!",
+																	text : "",
 																	type : "warning",
 																	showCancelButton : true,
 																	confirmButtonColor : "#DD6B55",

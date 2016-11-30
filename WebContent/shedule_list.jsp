@@ -21,13 +21,12 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner">
-				<div class="row">
-					<div class="col-lg-12">
-						<h2><small>Shedule List</small></h2>
-					</div>
-				</div>
-				<hr />
-				<div class="row">
+						<ul class="breadcrumb" style="margin-top:2%;">
+  						<li><a href="dashboard.jsp">Dashboard</a></li>
+ 								 <li><a href="SheduleCon?action=insert">Add Schedule</a></li>
+ 								 <li><a href="SheduleCon?action=list">Schedule List </a></li>
+  								  </ul>
+							<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
@@ -36,29 +35,37 @@
 										class="btn btn-primary">Add New</button></a>
 							</div>
 							<div class="panel-body">
-
+	<div class="row hide" id="processing_img">
+															<div style="margin-left: 30%; margin-top: -7%;">
+																<img
+																	src="${pageContext.request.contextPath}/assets/img/processing.gif" />
+															</div>
+														</div>
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover"
 										id="dataTables-example">
 										<thead>
 											<tr>
-												<th>User ID</th>
-												<th>Instructor Name</th>
-												<th>Date Added</th>
-												<th>Workout No</th>
-												<th>Status</th>
-												<th>Action</th>
+												<th style="width: 10%;">Shedule ID</th>
+												<th style="width: 10%;">First Name</th>
+												<th style="width: 15%;">Email</th>
+												<th style="width: 5%;">Workout No</th>
+												<th style="width: 10%;">Date Added</th>
+												<th style="width: 10%;">Ins. Name</th>
+												<th style="width: 10%;">Status</th>
+												<th style="width: 15%;">Action</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:forEach items="${shedule}" var="temp">
 												<tr class="odd gradeX">
-													<td style="width: 10%;"><c:out value="${temp.user_id}" /></td>
-													<td style="width: 30%;"><c:out value="${temp.instructor_name}" /></td>
-													<td style="width: 30%;"><c:out value="${temp.instructor_name}" /></td>
-													<td align="left" style="width: 15%;"><c:out value="${temp.date_created}" /></td>
-													<td align="right" style="width: 15%;"><c:out value="${temp.workout_no}" /></td>
-													<td style="width: 15%;">
+													<td id="shedule${temp.shedule_id}"><c:out value="${temp.shedule_id}" /></td>
+													<td id="name${temp.shedule_id}"><c:out value="${temp.first_name}" /></td>
+													<td id="email${temp.shedule_id}"><c:out value="${temp.email}" /></td>
+													<td align="left"><c:out value="${temp.workout_no}" /></td>
+													<td align="left"><c:out value="${temp.date_created}" /></td>
+													<td id="instructor${temp.shedule_id}" align=""><c:out value="${temp.instructor_name}" /></td>
+													<td>
 													<c:if test="${temp.status ==1 }">
 														<lable class=" label btn-success">Active</lable>
 														</c:if> 
@@ -66,20 +73,27 @@
 														<lable class=" label btn-danger">Deactive</lable>
 														</c:if>
 													</td>
-													<td style="width: 15%;">
-													
-													 <a data-toggle="modal" class="view_item btn btn-default btn-grad btn-sm " class="bs-example" data-toggle="popover" title="View" id="<?php echo $rows->item_id; ?>" href="#view_item_modal"><i class=" icon-list" style="color:#455862;"></i></a>&nbsp;
-													<%-- <a href="SheduleCon?action=edit&shedule_id=<c:out value="${temp.shedule_id}"  />" class="btn btn-default btn-grad btn-sm" ><span ><i class="icon-edit" style="color:#455862;"></i></span></a> --%>
-														<c:if test="${temp.status ==1 }">
-														
-														<a
-															 href="SheduleCon?action=deactivate&shedule_id=<c:out value="${temp.shedule_id}"/>" class="navg status btn btn-default btn-grad btn-sm"><span><i class="icon-trash" style="color:#455862;"></i></span></a>
-														</c:if> 
-														
-														<c:if test="${temp.status ==0 }">
+													<td>
+													   <c:if
+															test="${temp.status ==1 }">
 															<a
-																href="SheduleCon?action=activate&shedule_id=<c:out value="${temp.shedule_id}"/>" class="status btn btn-default btn-grad btn-sm"><span><i class="icon-ok " style="color:#455862;"></i></span></a>
-														</c:if></td>
+																href="SheduleCon?action=deactivate&shedule_id=<c:out value="${temp.shedule_id}"/>"
+																class="navg status btn btn-default btn-grad btn-sm"><span><i
+																	class="icon-trash" style="color: #455862;"></i></span></a>
+														</c:if> 
+															<c:if test="${temp.status ==0 }">
+															<a
+																href="SheduleCon?action=activate&shedule_id=<c:out value="${temp.shedule_id}"/>"
+																class="status btn btn-default btn-grad btn-sm"><span><i
+																	class="icon-ok " style="color: #455862;"></i></span></a>
+														</c:if> 
+																<a
+																href="SheduleCon?action=sheduleEmail&shedule_id=<c:out value="${temp.shedule_id}"/>"target="_blank"
+																class="btn btn-default btn-grad btn-sm"><span><i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+</span></a>
+																	<button class="primary btn-sm pdf_send" id="${temp.shedule_id}">Send PDF</button>
+													</td>
+												
 												</tr>
 											</c:forEach>
 											<!-- Start modal -->
@@ -287,6 +301,56 @@
 		
 			});
 		</script>
+		<script>
+				$(document).ready(function() {
+					// click on button submit
+				$('#dataTables-example').dataTable();
+					$(".pdf_send").on('click', function() {
+					//	var test = (this.id).val();
+						var shedule_id = $('#shedule'+this.id).text();
+						var name = $('#name'+this.id).text();
+						var email = $('#email'+this.id).text();
+					//	alert(shedule);
+						var instructor = $('#instructor'+this.id).text();
+						
+
+	                    $("#processing_img").removeAttr("class", "hide");
+	                    $("#processing_img").attr("class", "row");
+						
+						$.ajax({
+							type : "GET", // type of action POST || GET
+							data : {
+								instructor : instructor,
+								first_name : name,
+								email : email,
+								shedule_id : shedule_id
+								
+							}, // post data || get data
+							url : 'SheduleCon?action=sheduleEmailAttach', // url where to submit the request
+							dataType: 'json',
+							success : function(res) {
+								 $("#processing_img").attr("class", "hide");
+	                                $("#spnmessage_modal").removeAttr("class", "alert alert-danger");
+	                                $("#spnmessage_modal").attr("class", "alert alert-success");
+	                                $("#spnmessage_modal").html('<p><strong>Successfully Send the Email</strong></p>');
+	                                $("#divmessage_modal").removeAttr("class", "hide");
+	                                $("#divmessage_modal").fadeIn(1500);
+	                                $("#divmessage_modal").delay(2500).fadeOut(1500);
+								console.log(res);
+							},
+							error : function() {
+								  $("#processing_img").attr("class", "hide");
+	                                $("#spnmessage_modal").removeAttr("class", "alert alert-success");
+	                                $("#spnmessage_modal").attr("class", "alert alert-danger");
+	                                $("#spnmessage_modal").html('<p><strong>Email not send check your internet connection </strong></p>');
+	                                $("#divmessage_modal").removeAttr("class", "hide");
+	                                $("#divmessage_modal").fadeIn(1500);
+	                                $("#divmessage_modal").delay(2500).fadeOut(1500);
+							}
+						})
+					});
+				});
+			</script>
 		<!-- END PAGE LEVEL SCRIPTS -->
 </body>
 </html>

@@ -27,4 +27,6 @@ public interface SheduleDAO {
 	public List<WorkoutEntity> getWorkoutList();
 	
 	public List<WorkoutDetailEntity> getOneWorkout(String workout_id) ;
+	
+	
 }

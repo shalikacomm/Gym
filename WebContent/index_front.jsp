@@ -42,7 +42,7 @@
 							src="assets_front/images/slider/bg1.jpg" alt="slider" style="max-height: 800px; max-width: 1600px;"> -->
 						<video autoplay="autoplay" lool="loop" muted="muted" width="100%">
 							<source
-								src="https://www.gymcube.com/sites/default/files/GymCube%20Video%20MP4.mp4"
+								src="${pageContext.request.contextPath}/assets_front/images/What Is GymCube.mp4#t=7,40"
 								type="video/mp4"></source>
 						</video>
 

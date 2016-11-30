@@ -32,8 +32,7 @@
 							title="Instagram" href="#"><i class="fa fa-instagram"></i></a></li>
 						<li><a class="vimeo itl-tooltip" data-placement="bottom"
 							title="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a></li>
-						<li><a class="skype itl-tooltip" data-placement="bottom"
-							title="Skype" href="#"><i class="fa fa-skype"></i></a></li>
+						
 					</ul>
 					<!-- End Social Links -->
 				</div>
@@ -79,22 +78,39 @@
 					<li><a href="blog.html">Team</a></li>
 					<li><a href="">Member</a>
 					<ul class="dropdown">
-                                    <li><a href="FRegisterCon?action=insert">Member Register</a>
-                                    </li>
-                                    <li>
-                                    <%
+                                    <li><a href="FRegisterCon?action=insert">Member Register</a></li>
+                                                               <%
 					UserEntity currentUser = (UserEntity) (session.getAttribute("frontSessionUser"));
-						if (currentUser == null) { %>
-						<a href="login.jsp">Login</a> 
+                                          
+                                             %>
+                                   <%	if (("member").equals(currentUser.getRole())) { %>
+                                         <%--     <%if(currentUser.getRole().equals("member")){%> --%>
+                                              <li>  
+                                              <%  String user_id = currentUser.getUser_id();  %>                 
+                    <a href="AttenCon?action=getCalendarFront&user_id=<%=user_id%>">Member Attendance</a></li> 
+ 										<%}else {%>
+            <li><p><% System.out.println( "Evaluating date now "+currentUser.getRole() );  %>i hate you</p></li>      
+         <%} %>
+                                    <li>
+                  
+                           
+					<%	if (currentUser == null) { %>
+						<a href="login.jsp">Login</a> </li>
 				 <%	} else {
-					%>Hi, <%=currentUser.getFirst_name()%> <%
+					%><li><a href="LoginCon?action=logout"><i class="icon-signout"></i>
+							Logout </a>
+							</li>
+					
+					<%-- <%=currentUser.getFirst_name()%> --%> <%
  						}
 						 %> 
-                                    </li>
-                                </ul>
-					</li>
+                                   </ul>
+                                   	</li>
 					<li><a href="contact.html">Contact Us</a></li>
 				</ul>
+                                   
+                                
+				
 				<!-- End Navigation List -->
 			</div>
 		</div>

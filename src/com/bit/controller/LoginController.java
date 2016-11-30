@@ -96,7 +96,12 @@ System.out.println("worning");
 					HttpSession session = request.getSession(true);
 					session.setAttribute("freshUser", user);
 					response.sendRedirect("new_login.jsp"); 
+				}else if(user.getStatus()==2){
+					HttpSession session = request.getSession(true);
+					session.setAttribute("freshUser", user);
+					response.sendRedirect("new_login.jsp"); 
 				}
+				
 			} else {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("InvalidUser", user);

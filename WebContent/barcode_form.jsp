@@ -170,7 +170,7 @@
 																						<span class="btn btn-file btn-success"><span
 																							class="fileupload-new">Select image</span><span
 																							class="fileupload-exists">Change</span> <input
-																							type="file" name="img_path" /></span> <a href="#"
+																							type="file" accept="image/*" onchange="FileSelected(this)" name="img_path" /></span> <a href="#"
 																							class="btn btn-danger fileupload-exists"
 																							data-dismiss="fileupload">Remove</a>
 																					</div>
@@ -217,11 +217,22 @@
 			<script src="assets/plugins/dataTables/dataTables.bootstrap.js"></script>
 		<script src="assets/plugins/jasny/js/bootstrap-fileupload.js"></script>
 		  <script>
+		  function FileSelected(sender)
+		  {
+		      if (!check(sender.value)) //check is you function to check extension 
+		      {sweetAlert("", "Please Select an Image File!", "error");}
+		   
+		  }
+		       
+		       function check(a)
+		       {
+		        return a.indexOf('jpg')>-1
+		  }
         $(document).ready(function(){
             $(".img_btn").click(function(){
                 var id=this.id;
                 $("#img_user").val(id);
-                //alert("${pageContext.request.contextPath}");
+                          //alert("${pageContext.request.contextPath}");
             $("#past_img").attr("src","${pageContext.request.contextPath}/uploads/"+id+".jpg");
                
             });
@@ -230,8 +241,8 @@
                 e.preventDefault();
                 var formData = new FormData($("#imageForm")[0]); // change form id
                 var val = $("#img_user").val();
-                if (!(/\.(gif|jpg|jpeg|png)$/i).test(val)) {              
-                    alert('You must select an image file only');               
+                if (false) {              
+                         
                     }
                 else{
                 $.ajax({

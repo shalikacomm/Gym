@@ -154,7 +154,6 @@
 					 method:'GET',
 					 url:'MemberDCon?action=body_part&userName='+ user,
 					 success: function(data){
-						 alert("done");
 						 console.log(data.record);
 							$.each(data.record,function(i,obj) {
 								 dataName.push(obj.date_added);

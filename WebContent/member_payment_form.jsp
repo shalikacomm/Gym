@@ -38,7 +38,7 @@
 										ID</label>
 								</div>
 								<div class="col-md-2">
-									<input class="form-control" name="payment_id" value="${fee_id}"
+									<input class="form-control pay_id" name="payment_id" value="${fee_id}"
 										readonly="readonly" />
 
 								</div>
@@ -119,8 +119,8 @@
 								<div class="form-group">
 									
 									<div class="col-md-6" style="">
-										<select class="form-control chzn-select" id="fee_mnul">
-											<option value = "0">0</option>
+										<select class="form-control chzn-select" id="fee_mnul" name="month">
+											<option value = >0</option>
 											<option value = "1">1</option>
 											<option value = "2">2</option>
 											<option value = "3">3</option>
@@ -280,7 +280,7 @@
                                                                                         </div>
                                                                                         <div class="row">
                                                                                             <div style="float:right; margin-right:11%;">
-                                                                                                <input type="submit" id="stdce" class="btn btn-primary" value="Pay Now" />
+                                                                                                <input type="submit" id="stdce" class="btn btn-primary print" value="Pay Now" href=""/>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -353,7 +353,7 @@
                                                                                         </div>
                                                                                         <div class="row">
                                                                                             <div style="float:right; margin-right:12%;">
-                                                                                                <input type="submit" id="stdce" class="btn-sm btn-primary" value="Pay Now" />
+                                                                                                <input type="submit" id="stdce" class="btn-sm btn-primary print" value="Pay Now" href=""/>
                                                                                             </div>
                                                                                         </div>
                                                                                     </div>
@@ -418,6 +418,19 @@
 			/*----------- END chosen CODE -------------------------*/
 		});
 	</script>
+	<!-- <script>
+	
+	var user  = $('#fee_mnul').val();
+	if(user == ""){
+	//	alert(123);
+		$('#checkme').popover({
+          //  title: 'Warning!',
+            title: 'Please Select a User',
+            placement: 'bottom',
+            color: '#df6262'
+        }).popover('show'); 
+	}
+	</script> -->
 	
 	<!-- cal gross payment -->
 	<script>
@@ -537,20 +550,21 @@
 
 							$("#mem_id").on('change',function() {
 												var mem_id = $("#mem_id").val();
+												$(".down").empty();
 												$.ajax({type : 'GET',
 														url : 'MemberFeeCon?action=mem_status&user_id='+ mem_id,
 															success : function(data) {
 																var member_status = data[0].record;
 																if (member_status.status == 0) {
-																	$(".down").empty();
+																	
 																	$("#lbl_status").empty().append("<span class='label label-danger '>Inactive</span>");
 																	
 																} else if (member_status.status == 1) {
-																	$(".down").empty();
+																
 																	$("#lbl_status").empty().append(
 																					"<span class='label label-success'>Active</span>");
 																} else if (member_status.status == 2) {
-																	$(".down").empty();
+																	
 																	$("#lbl_status").empty().append("<span class='label label-warning'>Pending</span>");
 																	$("#suppliment").append('	<div class="row" id="downpayment">'
 																			+	'		<div class="form-group down">'
@@ -567,7 +581,7 @@
 																		+'</div>').hide().slideDown(1000);;	
 																}
 																else if (member_status.status == 3) {
-																	$(".down").empty();
+																
 																	$("#lbl_status").empty().append("<span class='label label-info'>Fresh</span>");
 																	$("#suppliment").append('	<div class="row" id="downpayment">'
 																						+	'		<div class="form-group down">'
@@ -719,6 +733,7 @@ $('#date').val(currentDate);
 			});
 		});
 	</script> 
+
 <script>
 		$(document).ready(function() {
 							$(function() {
@@ -726,6 +741,7 @@ $('#date').val(currentDate);
 							});
 							$("#memPaymentForm").submit(function(e) {
 												e.preventDefault();
+												var pay_id = $('.pay_id').val();
 												if (!$("#memPaymentForm").valid())
 													return false;
 											var username =	$("#mem_id").val();
@@ -761,7 +777,7 @@ $('#date').val(currentDate);
 																								closeOnConfirm : true
 																							},
 																							function() {
-																								 window.location = "MemberFeeCon?action=list";
+																								window.open("MemberFeeCon?action=monthly_pay&pay_id="+pay_id,'_blank');
 																								
 
 																							});

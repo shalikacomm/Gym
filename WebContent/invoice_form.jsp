@@ -14,11 +14,11 @@
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/modal.css" />
 	<style>
-.popover-title {
+.popover-content {
     background-color: #df6262;
     color: #FFFFFF;
     font-size: 12px;
-    text-align:;
+    padding:2%;
 }
 		</style>
 </head>
@@ -123,12 +123,12 @@
 							<div class="box dark staticParent">
 								<header>
 								<div class="icons">
-									<i class="icon-glass"></i>
+									
 								</div>
 								<div class="col-md-2 text-center">
 									<input readonly id="invoice_id" class="form-control"
 										name="invoice_id" value="${invoice_id}" id="inv_price0"
-										type="text" />
+										type="hidden" />
 								</div>
 								</header>
 
@@ -221,7 +221,7 @@
 									<div class="form-group">
 										<div class="col-md-8">
 											<label for="text1" class="control-label col-md-5"
-												style="float: right;">Total(RS)</label>
+												style="float: right;">Total <em style="color: red;">(Rs.)</em></label>
 
 										</div>
 										<div class="col-md-2 text-center">
@@ -234,13 +234,13 @@
 								<div class="row ">
 									<div class="form-group">
 										<div class="col-md-8">
-											<label for="text1" class="control-label col-md-5"
+											<label for="text1" class=" col-md-0"
 												style="float: right;">Discount<span>%</span></label>
 										</div>
 										<div class="col-md-1">
 											<div class="input-group pull-right discount">
-												<input class="form-control child" type="text" id="disc"
-													name="disc" value="0" placeholder="Disc" />
+												<input class="form-control child" type="number" id="disc"
+													name="disc" value="0" />
 											</div>
 										</div>
 									</div>
@@ -264,7 +264,7 @@
 									<div class="form-group">
 										<div class="col-md-8">
 											<label for="text1" class="control-label col-md-5"
-												style="float: right;">Invoiced Total(RS)</label>
+												style="float: right;">Invoiced Total <em style="color: red;">(Rs.)</em></label>
 
 										</div>
 										<div class="col-md-2 text-center">
@@ -291,6 +291,7 @@
 													href="ProductCon?action=list">Cancel</a>
 											</div> -->
 
+
 										</div>
 									</div>
 								</div>
@@ -310,11 +311,15 @@
 											aria-hidden="true">
 											<div class="modal-dialog">
 												<div class="modal-content">
-													<!-- 	<div class="modal-header">
-														<button type="button" class="close" data-dismiss="modal"
-															aria-hidden="true">&times;</button>
-														<h4 class="modal-title" id="H2">Payment Select</h4>
-													</div> -->
+												
+														<div id="tabs" style="border: 0px solid #ffffff;">
+													 	<div class="modal-header">
+														<ul style = "background: #d9edf7">
+																<li><a href="#cash">Cash</a></li>
+																<li><a href="#credit">Credit Card</a></li>
+																<li class="three"><a href="#subs">Add to Subscription</a></li>
+															</ul>
+													</div>
 													<div class="modal-body">
 														<!-- 	// starts here  -->
 
@@ -322,17 +327,19 @@
 															id of selected tab: <span id="idDisplay">cash</span>
 														</h1> -->
 
-														<div id="tabs" style="border: 0px solid #ffffff;">
-															<ul style = "background: #d9edf7">
-																<li><a href="#cash">Cash</a></li>
-																<li><a href="#credit">Credit Card</a></li>
-																<li class="three"><a href="#subs">Add to Subscription</a></li>
-															</ul>
+															
 															<div id="cash">
-
+															
+															<div class="row">
+																<div class="col-md-6">
+																 <label style="margin-left:-2%;">Full Amount(Rs.):</label>
+																</div>
+																<div class="col-md-6">
 																<input readonly placeholder="Total" type="text"
 																	id="pay_total" style="text-align: right;"
 																	class="form-control">
+																	</div>
+															</div>
 
 															</div>
 															<div id="credit">
@@ -362,33 +369,31 @@
 																		</div>
 																	</div>
 																</div>
-																</br>
+																</br></br>
 																<div class="row">
-																	<div class="col-md-12">
-																		<div class="col-md-2">
-																			<span class="label label-info">First 4 No</span>
-																		</div>
-																		<div class="col-md-4">
+																		<div class=" col-md-5" style="margin-top:2%;">
+                                                                                                    <span class="label label-success" style="padding: 6px;">First 4 Digits last 4 digits of the Card</span>  
+                                                                                                </div>
+																		<div class="col-md-3" style="margin-left:7%;">
 																			<input class="form-control autotab f4"
-																				style="margin-left: 23%" type="text" maxlength="4" value ="0000" placeholder="Card No"
+																				style="margin-left:5%;" type="text" maxlength="4" value ="0000" placeholder="Card No"
 																				name="f4"  tabindex="11" />
 																		</div>
-																		<div class="col-md-2">
-																			<span class="label label-info">Last 4 No</span>
-																		</div>
-																		<div class="col-md-4">
+																		<div class="col-md-3" style="margin-left:0%;">
 																			<input class="form-control autotab l4"
-																				style="margin-left: 23%" type="text" maxlength="4"placeholder="Card No" value="1111" 
+																				style="" type="text" maxlength="4"placeholder="Card No" value="1111" 
 																				name="l4"  tabindex="12" />
 																		</div>
 
 
-																	</div>
 																</div>
 																</br>
+																<div class="row">
 																<div class="form-group">
-
-																	<div class="col-md-8" style="margin-left: 13%;">
+																	<div class="col-lg-5 col-md-5 col-sm-5" style="margin-top:1%;" >
+                                                                        <label>Choose a Bank:</label> 
+                                                                     </div>
+																	<div class="col-md-5" style="margin-left: 8%;">
 																		<select style="width: 60%;"
 																			data-placeholder="Your Favorite Type of Bear"
 																			class="form-control select-picker bank_drop"
@@ -403,24 +408,34 @@
 																		</select>
 																	</div>
 																</div>
+																</div>
+																<div class="row" style="margin-top:4%;">
+                                                                      <div class="col-md-5" style="padding-bottom: 10px;">
+                                                                         <label>Full Amount(Rs.):</label>
+                                                                     </div>
+                                                                    <div class="col-md-5" style="padding-bottom: 10px; margin-left: 8%;">
+                                                                        <input class="form-control" value="" id="total_credit_payment" name="total_credit_payment" style="text-align: right;" type="text" readonly />
+                                                                    </div>
+                                                               </div>
 															</div>
 															<div id="subs">
 																<div class="row">
-																	<input readonly placeholder="Total" type="text"
-																		id="pay_total" style="text-align: right;"
-																		class="form-control">
-																</div>
-																<div class="row">
-																	<input readonly placeholder="Total fee" type="text"
+																	<div class="col-md-5" style="margin-top:1%;" >
+                                                                        <label>Supplement Credit:</label> 
+                                                                     </div>
+                                                                     <div class="col-md-4" style="margin-left: 9%;">
+                                                                     <input readonly placeholder="Total fee" type="text"
 																		id="fee_total" style="text-align: right;"
 																		name="fee_total" class="form-control">
+                                                                     </div>
 																</div>
 															</div>
-														</div>
+														
 
 
 														<!-- 	// ends here  -->
-														<div class="body"></div>
+														<!-- <div class="body"></div> -->
+													</div>
 													</div>
 
 													<div class="modal-footer">
@@ -637,11 +652,11 @@ function onFocus(el) {
 												var inv_qty=$("[id^='inv_qty']").last().val();
 												var line_id = $("[id^='inv_qty']").last().attr('id'); 
 												var cur_id = line_id.replace("inv_qty", ""); 
-												// alert(current_id);
+												//alert(cur_id);
 												if(inv_qty == ""){
 													$('#inv_qty'+cur_id).popover({
 											          //  title: 'Warning!',
-											            title: 'Value can not be empty',
+											            content: 'Value can not be empty',
 											            placement: 'bottom',
 											            color: '#df6262'
 											        }).popover('show');
@@ -752,16 +767,16 @@ function onFocus(el) {
 		alert(cur_id);
 	 
  }); */
-							//SUubTotal calcuation
+							//SUubTotal & available stock validation  calcuation
 
 							$("body").on("keyup","[id^='inv_qty']",function() {
 										elementID = this.id.replace("inv_qty","");
 
 										/* alert($("#inv_qty"+elementID).val()); */
-										var stock = $('#stock'+elementID).val();
-										qty = $("#inv_qty" + elementID).val();
+										var stock = +$('#stock'+elementID).val();
+										 var qty = +$("#inv_qty" + elementID).val();
 										if(qty > stock){
-											alert('your stock is over');
+											sweetAlert("", "Your available stock is "+stock, "error");
 										}
 										price = +($("#inv_price" + elementID).val());
 										subtotal = qty * price;
@@ -772,13 +787,11 @@ function onFocus(el) {
 									});
 							//		Calcuate Grand total 
 							function totalCal() {
-								var count = Number($("[id^='inv_sub_total']")
-										.last().attr('id').replace("inv_sub_total", ""));
+								var count = Number($("[id^='inv_sub_total']").last().attr('id').replace("inv_sub_total", ""));
 
 								var total = 0;
 								for (i = 0; i <= count; i++) {
-									var inv_sub_total = $("#inv_sub_total" + i)
-											.val();
+									var inv_sub_total = $("#inv_sub_total" + i).val();
 
 									if (inv_sub_total !== undefined) {
 										var sub_total = Number(inv_sub_total);
@@ -836,8 +849,7 @@ function onFocus(el) {
 							/* 		Select the payment mode tab */
 
 							function getSelectedTabId() {
-								return $("#tabs .ui-tabs-panel:visible").attr(
-										"id");
+								return $("#tabs .ui-tabs-panel:visible").attr("id");
 							}
 
 							$(function() {
@@ -873,21 +885,37 @@ function checknull() {
     }
 }
 </script> -->
+<script>
+$(document).ready(function() {
+	$(function() {
+		formValidation();
+	});
+	$('.prcd').on('click',function(){
+		if (!$("#invoiceForm").valid())
+			return false;
+	});
+	
+});
+</script>
+
 	<script>
 		$(document).ready(function() {
-							$(function() {
-								formValidation();
-							});
+		
+				$(function() {
+					formValidation();
+				});
+			
+							
 							$("#invoiceForm").submit(function(e) {
 												e.preventDefault();
 												//alert("adad");
 												if (!$("#invoiceForm").valid())
 													return false;
-
+												var invoice_id = $('#invoice_id').val();
 												swal(
 														{
-															title : "Are you sure?",
-															text : "You will not be able to recover this imaginary file!",
+															title : "",
+															text : "Your transaction data will be saved",
 															type : "warning",
 															showCancelButton : true,
 															confirmButtonColor : "#DD6B55",
@@ -918,7 +946,8 @@ function checknull() {
 																								closeOnConfirm : true
 																							},
 																							function() {
-																							 window.location = "InvoiceCon?action=invoice_list";
+																							// window.location = "InvoiceCon?action=invoice_list";
+																							 window.open("InvoiceCon?action=recipt&inv_id="+invoice_id,'_blank');
 																							});
 																				} else {
 																					swal(

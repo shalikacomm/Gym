@@ -72,7 +72,7 @@ public class UserController  extends HttpServlet{
 			String MsgBody = "Hi " + first_name + "," 
                     +  " \n \n <strong>"+message_body + " </strong>"
                     + "\n \n (Dear valued customer this is a System Generated message)"
-                    + " \n \n Thank you, \n System Administrator, \n Fit & Fun gym Management System";
+                    + " \n \n Thank you, \n System Administrator, \n Fit & Fun Gym Management System";
 			
 			 result = method.sendMail(email, subject, MsgBody);
 			

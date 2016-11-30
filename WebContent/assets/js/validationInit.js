@@ -327,6 +327,106 @@
             $(element).parents('.form-group').removeClass('has-error').addClass('has-success');
         }
     });
+    $('#front_registration_form').validate({
+    	
+    	rules: {/*
+             this is product form validation */         
+    		desc: "required",
+    		First_Name: {
+    			name_validation:true,
+    			required: true,
+    			no_space: false,
+    		},
+    		
+    		last_name: {
+    			required: true,
+    			name_validation:true,
+    			no_space: false,
+    		},
+    		gender: {
+    			required: true,
+    			
+    		},
+    		email: {
+    			required: true,
+    			
+    		},
+    		nic: {
+    			required: true,
+    			nic:true,
+    			no_space: false
+    		},
+    		mobile_number: {
+    			phone_number:true,
+    			no_space: false,
+    			required: true,
+    			minlength: 10
+    		},
+    		
+    		address: {
+    			required: true,
+    			
+    		}, 
+    	
+    		dob: {
+    			required: true,
+    			    		},
+    		status: {
+    			    required: true,
+    			  },
+    	
+    	},
+    	messages: {
+    		
+    		first_name:{
+    			required:"Please fill this field",
+    			name_validation: "Please insert only alphabetic characters",
+    			//	no_space:"No Spaces please"
+    			
+    		},
+    		last_name: {
+    			required:"Please fill this field",
+    			name_validation: "Please insert only alphabetic characters",
+    			//  no_space:"No Spaces please"
+    		},
+    		email: {
+    			required: "Please fill this field",
+    			email: "Enter a valid e-mail",
+    			// no_space:"No Spaces please"
+    		},
+    		nic: {
+    			nic: "Please insert valid NIC format",
+    			required: "Please fill this field",
+    			//  no_space:"No Spaces please"
+    			
+    		},
+    		mobile_number: {
+    			
+    			phone_number:"Please insert valid Phone number",
+    			//  	no_space:"No Spaces please",
+    			required: "Please fill this field",
+    			minlength:"min length is 10"
+    		},
+    		
+    		address: {
+    			required: "Enter your address"
+    				
+    		}, 
+    		
+    		
+    		
+    	},
+    	errorClass: 'help-block',
+    	errorElement: 'span',
+    	highlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+    		$(element).parents('.input-group-addon').removeClass('has-success').addClass('has-error');
+    		
+    	},
+    	unhighlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+    	}
+    });
     
     $('#manual_submit_form').validate({
     	
@@ -435,6 +535,16 @@
                required: true,
                nic:true
            },
+           disc: {
+        	  
+               min: 0,
+               max:100,
+               disc:true,
+               
+                
+           },
+           
+           
         /*   inv_qty: {
         	   
         	   qty:true,
@@ -522,8 +632,11 @@
         
       	 rules: {
                  
-      		
-      		set_per_rep: {
+      		 
+      		 	description:{
+      		 		required: true
+      		 	},
+      		 	set_per_rep: {
               	required: true,
               	qty:true
               	},
@@ -560,6 +673,67 @@
           
           
       });
+    $('#memDetailForm').validate({
+    	
+    	rules: {
+    		
+    		user_id:{
+    			required: true,
+    		},
+    		
+    		height:{
+    			required: true,
+    			qty:true,
+    		},
+    		weight: {
+    			required: true,
+    			qty:true,
+    		},
+    		
+    		goal_weight: {
+    			required: true,
+    			qty:true,
+    		},           
+    		bicep: {
+    			required: true,
+    			qty:true,
+    		},           
+    		chest: {
+    			required: true,
+    			qty:true,
+    		},           
+    		hip: {
+    			required: true,
+    			qty:true,
+    		},           
+    		thigh: {
+    			required: true,
+    			qty:true,
+    		},           
+    		sholuder_length: {
+    			qty:true,
+    			required: true,
+    			
+    		}           
+    	},
+    	messages: {
+    		
+        		
+    		
+    	},
+    	errorClass: 'help-block',
+    	errorElement: 'span',
+    	highlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+    		$(element).parents('.input-group-addon').removeClass('has-success').addClass('has-error');
+    		
+    	},
+    	unhighlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+    	}
+    	
+    	
+    });
     
     
     });

@@ -177,7 +177,7 @@
 			<ul class="collapse" id="markAttendance-nav">
 				<li><a href="AttenCon?action=mark" style="color: #fff;"><i
 						class="icon-angle-right"></i> Mark Attendance</a></li>
-				<li><a href="BasicSheduleCon?action=list" style="color: #fff;"><i
+				<li><a href="AttenCon?action=getCalendar" style="color: #fff;"><i
 						class="icon-angle-right"></i> Check Member Attendance</a></li>
 				
 				</ul>

@@ -2,8 +2,8 @@ package com.bit.entity;
 
 public class BasicChartEntity {
 	
-	String workout_id,exercise_id,date_created,instructor_name,workout_name;
-	int sets_per_rep,no_of_reps,status;
+	private String workout_id,exercise_id,date_created,instructor_name,workout_name;
+	private int sets_per_rep,no_of_reps,status;
 	
 	public String getWorkout_id() {
 		return workout_id;

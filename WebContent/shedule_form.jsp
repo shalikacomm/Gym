@@ -81,21 +81,15 @@
 								<div class="form-group">
 									<div class="col-md-12">
 										<div class="col-md-3">
-											<label for="text2" class="control-label" style="">Workchart
+											<label for="text2" class="" style="">Workchart
 													Name(add these)</label>
 													 <select data-placeholder="Your Favorite Type of Bear"
 													class="form-control chzn-select bank_drop" id="drop2"
-													name="bank_name">
-													<option></option>
-													<option></option>
-													<option></option>
-													<option></option>
-													<option></option>
-
-												</select>
+													name="work_name">
+													</select>
 										</div>
 										<div class="col-md-3">
-											<label for="text2" class="control-label" style="">Chart Name</label>
+											<label for="text2" class="" style="">Chart Name</label>
 													<input id="desc" style="text-align: left;"
 											class="form-control" name="description" type="text" />
 										</div>
@@ -132,7 +126,7 @@
 
 							<div class="inv_body">
 
-								<div class="row inv_row" id="exer">
+								<div class="row inv_row form-group" id="exer" style="margin-bottom: 0%;">
 									<div class="col-md-1"></div>
 									<div class="col-md-4 text-center" style="margin-left: 1%;">
 										<select id="exercise0" name="exercise"
@@ -239,11 +233,8 @@
 	</script>
 
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$
-									.ajax({
+		$(document).ready(function() {
+							$.ajax({
 										type : "GET",
 										url : "SheduleCon?action=getWorkOutNames",
 										dataType : "json",
@@ -253,30 +244,21 @@
 										success : function(data) {
 											var div_data = "<option></option>";
 											$(div_data).appendTo("#drop2");
-											$
-													.each(
-															data.record,
-															function(i, obj) {
+											$.each(data.record,function(i, obj) {
 																div_data = "<option value=" + obj.workout_id + ">"
 																		+ obj.workout_name
 																		+ "</option>";
-																$(div_data)
-																		.appendTo(
-																				"#drop2");
+																$(div_data).appendTo("#drop2");
 															});
-											$("#drop2").chosen().trigger(
-													"chosen:updated");
+											$("#drop2").chosen().trigger("chosen:updated");
 										}
 									});
 
 						});
 	</script>
 	<script>
-		$(document)
-				.ready(
-						function() {
-							$
-									.ajax({
+		$(document).ready(function() {
+							$.ajax({
 										type : "GET",
 										url : "SheduleCon?action=exercises",
 										dataType : "json",
@@ -309,26 +291,16 @@
 						function() {
 							//	$('.bank_drop').selectpicker();
 
-							$("#drop2")
-									.on(
-											'change',
-											function() {
+							$("#drop2").on('change',function() {
 												var work_id = $('#drop2').val();
 
-												$
-														.ajax({
+												$.ajax({
 															type : 'GET',
-															url : "SheduleCon?action=getOneWorkout&work_id="
-																	+ work_id,
+															url : "SheduleCon?action=getOneWorkout&work_id="+ work_id,
 															success : function(
 																	data) {
 
-																$
-																		.each(
-																				data.record,
-																				function(
-																						i,
-																						obj) {
+																$.each(data.record,function(i,obj) {
 																					var row = '<div class="row inv_row" id="exer">'
 																							+ '<div class="col-md-1"></div><div class="col-md-4 text-center" style="margin-left: 1%;">'
 																							+ '<select id="exercise0" name="exercise" value="'+obj.workout_name+'" class="form-control chzn-select inv_item keep">'
@@ -354,15 +326,8 @@
 																							+ '</div>'
 																							+ '</div>';
 
-																					$(
-																							'.inv_body')
-																							.append(
-																									row);
-																					$(
-																							".keep")
-																							.chosen()
-																							.trigger(
-																									"chosen:updated");
+																					$('.inv_body').append(row);
+																					$(".keep").chosen().trigger("chosen:updated");
 																				});
 
 															}
@@ -372,35 +337,22 @@
 						});
 	</script>
 	<script>
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 
 							dropdownList("SheduleCon?action=users", "#user_id");
 
-							$("#user_id")
-									.on(
-											'change',
-											function() {
-												var user_id = $("#user_id")
-														.val();
-												$
-														.ajax({
+							$("#user_id").on('change',function() {
+												var user_id = $("#user_id").val();
+												$.ajax({
 															type : 'GET',
 															url : 'InvoiceCon?action=user_details&user_id='
 																	+ user_id,
 															success : function(
 																	data) {
 																var user = data.record;
-																$('#first_name')
-																		.val(
-																				user.first_name);
-																$('#email')
-																		.val(
-																				user.email);
-																$('#last_name')
-																		.val(
-																				user.last_name);
+																$('#first_name').val(user.first_name);
+																$('#email').val(user.email);
+																$('#last_name').val(user.last_name);
 															}
 
 														});
@@ -420,21 +372,15 @@
 
 												$(div_data).appendTo(id);
 
-												$
-														.each(
-																data.record,
-																function(i, obj) {
+												$.each(data.record,function(i, obj) {
 																	div_data = "<option value=" + obj.user_id + ">"
 																			+ obj.user_id
 																			+ " "
 																			+ obj.first_name
 																			+ "</option>";
-																	$(div_data)
-																			.appendTo(
-																					id);
+																	$(div_data).appendTo(id);
 																});
-												$(id).chosen().trigger(
-														"chosen:updated");
+												$(id).chosen().trigger("chosen:updated");
 											}
 										});
 							}
@@ -459,19 +405,16 @@
 				$("#exercise0").chosen().trigger("chosen:updated");
 			}
 		});
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							$(".chzn-select").prop('disabled', false).trigger(
 									'chosen:updated');
 							var index = 1;
-							$("#add-item")
-									.click(
+							$("#add-item").click(
 											function(e) {
 												e.preventDefault();
 
-												var inv_row = $('<div class="row inv_row" id="exer_row'+index+'">'
-														+ '<div class="col-md-1"></div><div class="col-md-4 text-center" style="margin-left:1%;">'
+												var inv_row = $('<div class="row inv_row form-group" id="exer_row'+index+'" >'
+														+ '<div class="col-md-1"></div><div class="col-md-4 text-center" style="margin-left:1%;margin-top: -1%;">'
 														+ '<select id="exer'+index+'" name="exercise"'
 												+ 'class="form-control chzn-select keep">'
 														+ '</select>'
@@ -498,42 +441,20 @@
 															type : "GET",
 															url : "SheduleCon?action=exercises",
 															dataType : "json",
-															beforeSend : function(
-																	xhr) {
-																$(
-																		"#exer"
-																				+ index)
-																		.empty();
+															beforeSend : function(xhr) {
+																$("#exer"+ index).empty();
 															},
-															success : function(
-																	data) {
+															success : function(data) {
 																var div_data = "<option></option>";
-																$(div_data)
-																		.appendTo(
-																				"#exer"
-																						+ index);
-																$
-																		.each(
-																				data.record,
-																				function(
-																						i,
-																						obj) {
+																$(div_data).appendTo("#exer"+ index);
+																$.each(data.record,function(i,obj) {
 																					div_data = "<option value=" + obj.exercise_id + ">"
 																							+ obj.description
 																							+ "</option>";
-																					$(
-																							div_data)
-																							.appendTo(
-																									"#exer"
-																											+ index);
+																					$(div_data).appendTo("#exer"+ index);
 																				});
 
-																$(
-																		"#exer"
-																				+ index)
-																		.chosen()
-																		.trigger(
-																				"chosen:updated");
+																$("#exer"+ index).chosen().trigger("chosen:updated");
 																index++;
 															}
 
@@ -574,15 +495,14 @@
 						});
 	</script>
 	<script>
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							$(function() {
 								formValidation();
 							});
-							$("#sheduleForm")
-									.submit(
-											function(e) {
+							
+							$("#sheduleForm").submit(function(e) {
+								var user = $('#first_name').val();
+								
 												e.preventDefault();
 												//alert("adad");
 												if (!$("#sheduleForm").valid())
@@ -590,8 +510,8 @@
 
 												swal(
 														{
-															title : "Are you sure?",
-															text : "You will not be able to recover this imaginary file!",
+															title : "",
+															text : "you can get your workout shedule now",
 															type : "warning",
 															showCancelButton : true,
 															confirmButtonColor : "#DD6B55",
@@ -602,20 +522,18 @@
 														},
 														function(isConfirm) {
 															if (isConfirm) {
-																$
-																		.ajax({
+																$.ajax({
 																			type : "POST",
 																			url : "SheduleCon",
 																			data : $(
-																					"#sheduleForm")
-																					.serialize(),
+																					"#sheduleForm").serialize(),
 																			success : function(
 																					data) {
 																				if (data == 'true') {
 																					swal(
 																							{
-																								title : "Transacion Completed!",
-																								text : "You completed a selling cycle",
+																								title : "",
+																								text : "Schedule added for user: "+user,
 																								type : "success",
 																								showCancelButton : false,
 																								confirmButtonColor : "#DD6B55",
@@ -623,7 +541,7 @@
 																								closeOnConfirm : true
 																							},
 																							function() {
-																								//	 window.location = "InvoiceCon?action=invoice_list";
+																									 window.location = "SheduleCon?action=insert";
 																							});
 																				} else {
 																					swal(

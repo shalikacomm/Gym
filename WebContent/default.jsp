@@ -22,7 +22,8 @@
 
 
 	</div>
-
+</div>
+</div>
 
 	<%@include file="right_panel.jsp"%>
 

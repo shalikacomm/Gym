@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="workout_shedule" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="787dcaf4-9a1b-43a2-8613-d7f910228adf">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="24"/>
+	<parameter name="shedule_id" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     shedule_detail_tbl.`shedule_id` AS shedule_detail_tbl_shedule_id,
+     shedule_detail_tbl.`exercise_id` AS shedule_detail_tbl_exercise_id,
+     shedule_detail_tbl.`sets_per_rep` AS shedule_detail_tbl_sets_per_rep,
+     shedule_detail_tbl.`no_of_rep` AS shedule_detail_tbl_no_of_rep,
+     shedule_tbl.`shedule_id` AS shedule_tbl_shedule_id,
+     shedule_tbl.`user_id` AS shedule_tbl_user_id,
+     shedule_tbl.`date_created` AS shedule_tbl_date_created,
+     shedule_tbl.`instructor_name` AS shedule_tbl_instructor_name,
+     shedule_tbl.`workout_no` AS shedule_tbl_workout_no,
+     shedule_tbl.`status` AS shedule_tbl_status,
+     user_tbl.`user_id` AS user_tbl_user_id,
+     user_tbl.`first_name` AS user_tbl_first_name,
+     user_tbl.`last_name` AS user_tbl_last_name
+FROM
+     `shedule_detail_tbl` shedule_detail_tbl INNER JOIN `shedule_tbl` shedule_tbl ON shedule_detail_tbl.`shedule_id` = shedule_tbl.`shedule_id`
+     INNER JOIN `user_tbl` user_tbl ON shedule_tbl.`user_id` = user_tbl.`user_id`
+WHERE
+shedule_tbl.`shedule_id` = $P{shedule_id}
+]]>
+	</queryString>
+	<field name="shedule_detail_tbl_shedule_id" class="java.lang.String"/>
+	<field name="shedule_detail_tbl_exercise_id" class="java.lang.String"/>
+	<field name="shedule_detail_tbl_sets_per_rep" class="java.lang.Integer"/>
+	<field name="shedule_detail_tbl_no_of_rep" class="java.lang.Integer"/>
+	<field name="shedule_tbl_shedule_id" class="java.lang.String"/>
+	<field name="shedule_tbl_user_id" class="java.lang.String"/>
+	<field name="shedule_tbl_date_created" class="java.sql.Date"/>
+	<field name="shedule_tbl_instructor_name" class="java.lang.String"/>
+	<field name="shedule_tbl_workout_no" class="java.lang.Integer"/>
+	<field name="shedule_tbl_status" class="java.lang.Integer"/>
+	<field name="user_tbl_user_id" class="java.lang.String"/>
+	<field name="user_tbl_first_name" class="java.lang.String"/>
+	<field name="user_tbl_last_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="182" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="93" uuid="5252eeb3-57f4-4786-9ca5-c5a1b4cdf6ea"/>
+				<imageExpression><![CDATA["C:\\Users\\amantha\\Desktop\\project images\\workout_plan.jpg"]]></imageExpression>
+			</image>
+			<rectangle>
+				<reportElement x="0" y="100" width="555" height="69" uuid="cdf6921d-6960-4a2b-8962-351f3b74224d"/>
+			</rectangle>
+			<line>
+				<reportElement x="0" y="99" width="555" height="1" uuid="62b7a97b-6a3a-4a42-aa00-a21a1ea287ed"/>
+			</line>
+			<line>
+				<reportElement x="276" y="100" width="1" height="69" uuid="046336b8-ca9c-429e-b6d1-aec8f39f8b00"/>
+			</line>
+			<staticText>
+				<reportElement x="88" y="102" width="100" height="20" uuid="cdb79f07-0d80-49c4-bfcb-c4ff2e196abc"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="100" width="100" height="20" uuid="d5ded021-472a-4feb-a9d8-172193a05f54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Workout Details]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="122" width="100" height="20" uuid="694e7c54-cfeb-44c8-a0cb-2b6dda9989d4"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="149" width="100" height="20" uuid="80b073d5-699e-4e11-a63d-022265cb2f2b"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instructor Name :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="122" width="100" height="20" uuid="08eab9e1-f848-4e48-aeaf-75eed9ec35f6"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Schedule ID :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="283" y="149" width="100" height="20" uuid="408e3ec0-0a91-44f0-906a-7955b6478f83"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Date :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="113" y="122" width="100" height="20" uuid="b7d3006b-9f13-4a59-a58e-bbba2a6b4e96"/>
+				<textFieldExpression><![CDATA[$F{user_tbl_first_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="111" y="148" width="100" height="20" uuid="e92591eb-e871-4f9d-9a51-cdb339c2ad8e"/>
+				<textFieldExpression><![CDATA[$F{shedule_tbl_instructor_name}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="122" width="100" height="20" uuid="f020e70c-4ed1-451a-a3c7-7d484b4f9d3c"/>
+				<textFieldExpression><![CDATA[$F{shedule_detail_tbl_shedule_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="383" y="149" width="100" height="20" uuid="28d28b7e-7562-4047-a07a-9b5e9210a1b2"/>
+				<textFieldExpression><![CDATA[$F{shedule_tbl_date_created}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="36" splitType="Stretch">
+			<staticText>
+				<reportElement x="74" y="11" width="93" height="20" uuid="f4030d81-f7ab-415a-af4f-e20014cf293d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Exercise Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="438" y="10" width="57" height="20" uuid="e775777b-89ef-4253-9e2a-a704c84eed00"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No of Rep]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="259" y="12" width="72" height="20" uuid="34a7c99c-dc5f-4653-9210-7da767c70af2"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sets Per Rep]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="10" width="555" height="1" uuid="539aaae0-bf49-4e7f-ad08-149fd8fe8652"/>
+			</line>
+			<line>
+				<reportElement x="0" y="31" width="555" height="1" uuid="265eb914-2f1a-4186-938e-d3e2a70cd6cd"/>
+			</line>
+			<line>
+				<reportElement x="0" y="11" width="1" height="20" uuid="18f51ba3-de3e-479f-bd87-f8cf4d6615ac"/>
+			</line>
+			<line>
+				<reportElement x="233" y="11" width="1" height="19" uuid="03cea1b1-2b7a-4019-98f6-fc33d6a2b425"/>
+			</line>
+			<line>
+				<reportElement x="380" y="11" width="1" height="19" uuid="ab9f2a4c-1b94-4f0a-a7d8-16fbc1bdb293"/>
+			</line>
+			<line>
+				<reportElement x="554" y="11" width="1" height="19" uuid="8a0d3d38-9c1b-4bd5-9b46-44eedcf98b0e"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<textField>
+				<reportElement x="2" y="3" width="100" height="20" uuid="f627b01a-19b3-40bb-950b-962e3df3d11e"/>
+				<textFieldExpression><![CDATA[$F{shedule_detail_tbl_exercise_id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="3" width="16" height="20" uuid="3f9e9d53-4e46-44b5-8df5-a39ea67d8cf7"/>
+				<textFieldExpression><![CDATA[$F{shedule_detail_tbl_sets_per_rep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="451" y="3" width="15" height="20" uuid="91827bbd-700f-46d0-ad53-84c94866f85c"/>
+				<textFieldExpression><![CDATA[$F{shedule_detail_tbl_no_of_rep}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="89" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="34" width="116" height="20" uuid="4eef0201-939b-4caf-b161-8c7ba8a83450"/>
+				<text><![CDATA[Authorised Signature]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="28" width="116" height="1" uuid="4d8a4932-d7c9-4ab8-8795-7ac72b202275"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="423" y="34" width="67" height="20" uuid="b949d254-8b54-4fcb-a035-aa388eed7ebc"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="490" y="34" width="50" height="20" uuid="4569b279-6e6a-428b-8625-9b0d3b4d02be"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="10" y="59" width="100" height="20" uuid="a5aa1452-acb1-411f-b926-afe1d2977809"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

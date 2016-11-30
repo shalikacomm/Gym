@@ -32,7 +32,7 @@
 
 							<div class="row">
 								<div class="form-group">
-									<div class="col-md-6">
+									<div class="col-md-12">
 										<div class="col-md-3">
 											<label>Workout ID </label> <input class="form-control"
 												name="workout_id" value="${workoutID}" readonly="readonly" />
@@ -46,22 +46,21 @@
 								</div>
 
 							</div>
-							<div class="row">
-								<div class="col-sm-2">
-									<div class="form-group"></div>
-								</div>
-							</div>
-							<div class="row inv_row" id="row" style="margin-left: 0%;">
-								<div class="col-sm-10">
+						</br>
+							<div class="row "style="">
+								<div class="col-sm-12">
+								<div class="col-md-3">
 									<div class="form-group" style="margin-left: -1%;">
-										<label for="chartName" class="col-sm-2">Workchart Name</label>
-										<div class="col-sm-5 form-group" >
+										<label for="chartName">Workchart Name</label></div>
+										
+										<div class="form-group" style="margin-top:-1%;" >
                         <input id="text2" placeholder="please enter a workchart name" class="form-control" type="text" name="chartName">
-                    </div>
-													</div>
+                    </div></div>	
+												
 								</div>
 							</div>
 							<hr />
+							<div class="col-md-1"></div>
 							<div class="row">
 								<div class="col-md-4 text-center">
 									<strong>Exercise ID</strong>
@@ -78,6 +77,7 @@
 									<strong></strong>
 								</div>
 							</div>
+							<div class="col-md-1"></div>
 							<div class="inv_body">
 								<div class="row inv_row " id="exer">
 									<div class="col-md-4 text-center" style="margin-left: 1%;">
@@ -243,7 +243,7 @@
 							$("#add-item").click(function(e) {
 												e.preventDefault();
 
-												var inv_row = $('<div class="row inv_row" id="exer_row'+index+'">'
+												var inv_row = $('<div class="col-md-1"></div> <div class="row inv_row" id="exer_row'+index+'">'
 														+ '<div class="col-md-4 text-center" style="margin-left:1%;">'
 														+ '<select id="exer'+index+'" name="exerciseID"'
 														+ 'class="form-control chzn-select keep">'

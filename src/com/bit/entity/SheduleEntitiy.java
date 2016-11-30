@@ -2,10 +2,21 @@ package com.bit.entity;
 
 public class SheduleEntitiy {
 
-	private String shedule_id,user_id,date_created,instructor_name,goal_type;
+	private String shedule_id,user_id,date_created,instructor_name,goal_type,first_name,email;
 	private int workout_no,status;
 	
-	
+	public String getFirst_name() {
+		return first_name;
+	}
+	public void setFirst_name(String first_name) {
+		this.first_name = first_name;
+	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	public String getShedule_id() {
 		return shedule_id;
 	}

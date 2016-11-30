@@ -18,7 +18,11 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner" style="min-height: 700px;">
+			<div class="inner" style="min-height: 700px; margin-top:1%;">
+			<ul class="breadcrumb" style="margin-top:1%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="MemberDCon?action=insert">Enter Member Details</a></li>
+    </ul>
 
 <div class="panel panel-default">
 					<div class="panel-heading">Member Progress Details</div>
@@ -35,7 +39,7 @@
 											<option value="<c:out value="${memObject.user_id}" />">${memObject.user_id}</option>
 											<option></option>
 											<c:forEach items="${users}" var="temp">
-												<option value="<c:out value= "${temp.user_id}" />">${temp.user_id}</option>
+												<option value="<c:out value= "${temp.user_id}" />">${temp.user_id} ${temp.first_name}</option>
 											</c:forEach>
 										</select>
 									</div>
@@ -82,7 +86,7 @@
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Height</label><em style="color: red;">*</em>(m)<input type="number" step="0.1" 
+										<label>Height</label><em style="color: red;">*</em>(m)<input type="text" 
 											 id="height" value="<c:out value="${memObject.height}" />" name="height"
 											min="1" class="form-control" />
 
@@ -91,7 +95,7 @@
 								<div class="col-sm-2">
 									<div class="form-group">
 										<label>Weight</label><em style="color: red;">*</em>(kg)<input
-											type="number" step="0.1" id="weight"
+											type="text" id="weight"
 											value="<c:out value="${memObject.weight}" />" name="weight"
 											min="1" class="form-control" />
 									</div>
@@ -105,7 +109,7 @@
 								</div>
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label> Goal Weight</label><input id="goal_weight" type="number" step="0.1"
+										<label> Goal Weight</label><em style="color: red;">*</em>(kg)<input id="goal_weight"
 											value="<c:out value="${memObject.goal_weight}" />"
 											name="goal_weight" min="1" class="form-control" />
 									</div>
@@ -114,28 +118,28 @@
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Bicep</label><input id="bicep" type="number" step="0.1"
+										<label>Bicep</label><em style="color: red;">*</em>(inches)<input id="bicep"
 											value="<c:out value="${memObject.bicep}" />" name="bicep" min="1"
 											class="form-control" />
 									</div>
 								</div>
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Chest</label><input id="biceps" type="number" step="0.1"
+										<label>Chest</label><em style="color: red;">*</em>(inches)<input id="biceps"
 											value="<c:out value="${memObject.chest}" />" name="chest" min="1"
 											class="form-control" />
 									</div>
 								</div>
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Hip</label><input id="biceps" type="number" step="0.1"
+										<label>Hip</label><em style="color: red;">*</em>(inches)<input id="biceps" 
 											value="<c:out value="${memObject.hip}" />" name="hip" min="1"
 											class="form-control" />
 									</div>
 								</div>
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Thigh</label><input id="biceps" type="number" step="0.1"
+										<label>Thigh</label><em style="color: red;">*</em>(inches)<input id="biceps" 
 											value="<c:out value="${memObject.thigh}" />" name="thigh" min="1"
 											class="form-control" />
 									</div>
@@ -145,7 +149,7 @@
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Sholuder Length</label><input type="number" step="0.1"
+										<label>Sholuder Length</label><em style="color: red;">*</em>(inches)<input
 											value="<c:out value="${memObject.shoulder_length}" />"
 											name="sholuder_length" min="1" class="form-control" />
 									</div>
@@ -180,7 +184,9 @@
 	<script src="assets/js/login.js"></script>
 		<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
 		<script src="assets/js/sweetalert.min.js"></script>
-	
+		<script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+	<script src="assets/js/validationInit.js"></script>
 	<script>
 		$(function() {
 			/*----------- BEGIN chosen CODE -------------------------*/
@@ -241,19 +247,17 @@
 	
 	<script type="text/javascript">
 		$(document).ready(function() {
-							/* $(function() {
-									$('#dp3').datepicker();
-								});  */
-						/* 	$(function() {
+						
+						$(function() {
 								formValidation();
 							});
- */
+ 
 							$("#memDetailForm").submit(function(e) {
 												e.preventDefault();
-
-												/* if (!$("#userForm").valid())
-													return false; */
-
+												var user = $('#users').val();
+											 if (!$("#memDetailForm").valid())
+													return false; 
+										
 												$.ajax({
 															type : "POST",
 															url : "MemberDCon",
@@ -265,8 +269,8 @@
 
 																	swal(
 																			{
-																				title : "Stock Added !",
-																				text : "You Added a new Stock Series!",
+																				title : "",
+																				text : "Member measurements details added to "+user,
 																				type : "success",
 																				showCancelButton : false,
 																				confirmButtonColor : "#DD6B55",
@@ -274,7 +278,7 @@
 																				closeOnConfirm : true
 																			},
 																			function() {
-																			//	window.location = "UserCon?action=list";
+																				window.location = "MemberDCon?action=insert";
 																			});
 																} else {
 																	swal(

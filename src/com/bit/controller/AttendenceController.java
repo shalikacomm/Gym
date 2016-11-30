@@ -16,6 +16,7 @@ import com.bit.dao.AttendanceDAOImpl;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.AttendenceEntity;
+import com.bit.entity.CalenderEntity;
 import com.bit.entity.UserEntity;
 import com.bit.util.Methods;
 import com.google.gson.Gson;
@@ -24,7 +25,9 @@ import com.google.gson.Gson;
 public class AttendenceController extends HttpServlet{
 	 
 	private static String INSERT_OR_EDIT = "/attendance_form.jsp";
-	private static String LIST_USER = "/product_list.jsp";
+	private static String LIST_USER = "";
+	private static String SEE_USER_ATTEN = "/calendar.jsp";
+	private static String SEE_USER_FRONT_ATTEN = "/attendence_front.jsp";
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -52,7 +55,7 @@ public class AttendenceController extends HttpServlet{
 		} 
 		else if (action.equalsIgnoreCase("users")) {
 			UserDAO userDao = new UserDAOImpl();
-			List<UserEntity> users = userDao.getAllUsers();
+			List<UserEntity> users = userDao.getAllMemberUsers();
 			//Gson gson = new Gson();
 
 			try (PrintWriter out = resp.getWriter()) {
@@ -67,6 +70,58 @@ public class AttendenceController extends HttpServlet{
 			}
 			
 		} 
+		else if (action.equalsIgnoreCase("getAttendance")) {
+			String user_id  = req.getParameter("user_id");
+			AttendanceDAO attenDao = new AttendanceDAOImpl();
+			List<CalenderEntity> cal = attenDao.getAttendanceUser(user_id);
+			//Gson gson = new Gson();
+			forward = SEE_USER_ATTEN;
+			req.setAttribute("user_id", user_id);
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+				
+				out.write(new Gson().toJson(cal));
+				
+				
+				out.flush();
+				out.close();
+				return;
+			}
+		}
+		else if (action.equalsIgnoreCase("getFrontMemAttendance")) {
+			String user_id  = req.getParameter("user_id");
+			AttendanceDAO attenDao = new AttendanceDAOImpl();
+			List<CalenderEntity> cal = attenDao.getAttendanceUser(user_id);
+			forward = SEE_USER_FRONT_ATTEN;
+			req.setAttribute("user_id", user_id);
+			try (PrintWriter out = resp.getWriter()) {
+				resp.setContentType("application/json");
+				resp.setCharacterEncoding("UTF-8");
+				
+				out.write(new Gson().toJson(cal));
+				
+				
+				out.flush();
+				out.close();
+				return;
+			}
+		
+		}
+			else if (action.equalsIgnoreCase("getCalendar")) {
+				String user_id  = req.getParameter("user_id");
+				forward = SEE_USER_ATTEN;
+				req.setAttribute("user_id", user_id);
+		
+			
+		} 
+			else if (action.equalsIgnoreCase("getCalendarFront")) {
+				String user_id  = req.getParameter("user_id");
+				forward = SEE_USER_FRONT_ATTEN;
+				req.setAttribute("user_id", user_id);
+				
+				
+			} 
 		else if (action.equalsIgnoreCase("mark")) {
 			forward = INSERT_OR_EDIT;
 			Methods method = new Methods();

@@ -53,13 +53,8 @@ public class FrontRegisterDAOImpl implements FrontRegisterDAO{
 			
 			int val=preparedStatement.executeUpdate();
 			
-			PreparedStatement preparedStatement2 = connection.prepareStatement(
-					"INSERT INTO image_tbl(user_id,image_path)"
-							+ " values (?, ?)");
 			// Parameters start with 1
-			preparedStatement2.setString(1, user.getUser_id());
-			preparedStatement2.setString(2, "none");
-			preparedStatement2.executeUpdate();
+		
 			if(val>0){
 				 System.out.println("User Added");
 	                String MsgBody = "Hi " + user.getFirst_name() + ", \n \n Please follow the Username and Code for login to the System"
@@ -73,7 +68,7 @@ public class FrontRegisterDAOImpl implements FrontRegisterDAO{
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
-		}finally {
+		}finally { 
 			if(connection != null){
 				try {
 					connection.close();

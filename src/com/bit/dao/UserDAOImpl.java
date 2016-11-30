@@ -59,14 +59,7 @@ public class UserDAOImpl implements UserDAO {
 			
 			int val=preparedStatement.executeUpdate();
 			
-			PreparedStatement preparedStatement2 = connection.prepareStatement(
-					"INSERT INTO image_tbl(user_id,image_path)"
-							+ " values (?, ?)");
-			// Parameters start with 1
-			preparedStatement2.setString(1, user.getUser_id());
-			preparedStatement2.setString(2, "none");
-			preparedStatement2.executeUpdate();
-			if(val>0){
+				if(val>0){
 				 System.out.println("User Added");
 	                String MsgBody = "Hi " + user.getFirst_name() + ", \n \n Please follow the Username and Code for login to the System"
 	                        + "\n \n Username: " + user.getNic() + " \n Password: " + randomCode + " \n \n After that you can enter new password. "

@@ -2,10 +2,15 @@ package com.bit.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.bit.entity.AttendenceEntity;
-
+import com.bit.entity.CalenderEntity;
+import com.bit.entity.WorkoutEntity;
 import com.bit.util.DBUtil;
 
 public class AttendanceDAOImpl implements AttendanceDAO{
@@ -47,6 +52,42 @@ public class AttendanceDAOImpl implements AttendanceDAO{
 	public java.sql.Date getCurrentDatetime() {
 		java.util.Date today = new java.util.Date();
 		return new java.sql.Date(today.getTime());
+	}
+	
+public List<CalenderEntity> getAttendanceUser(String user_id) {
+		
+		connection = null;
+		
+		List<CalenderEntity> calender_list = new ArrayList<CalenderEntity>();
+		try {
+			connection = DBUtil.getConnection();
+			 PreparedStatement preStmt = connection.prepareStatement("SELECT * FROM emp.attendance_tbl WHERE user_id=?");
+	            preStmt.setString(1, user_id);
+	            ResultSet rs = preStmt.executeQuery();
+		
+			while (rs.next()) {
+				CalenderEntity calender = new CalenderEntity();
+				calender.setId(rs.getString("attendance_id"));
+				calender.setTitle(rs.getString("user_id"));
+				calender.setStart(rs.getDate("date_entered"));
+				calender.setEnd(rs.getDate("date_entered"));
+				calender.setAllday(false);
+				
+				calender_list.add(calender);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		return calender_list;
 	}
 	
 	

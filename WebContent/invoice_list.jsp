@@ -26,6 +26,7 @@
 
 														<ul class="breadcrumb">
   <li><a href="dashboard.jsp">Home</a></li>
+  <li><a href="InvoiceCon?action=insert">Sell Items</a></li>
   <li><a href="InvoiceCon?action=list">Receipt List</a></li>
     </ul>
 		</div>
@@ -38,8 +39,8 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Invoice List <a class="pull-right"
-									href="MemberCon?action=insert"><button
-										class=" btn-primary">Add New</button></a>
+									href="InvoiceCon?action=insert"><button
+										class=" btn-primary btn-sm">Add New</button></a>
 							</div>
 							<div class="panel-body">
 
