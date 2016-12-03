@@ -6,7 +6,7 @@
 <head>
 
 <!-- Basic -->
-<title>FIT & FUN HEALTH CLUB | Home</title>
+<title>FIT & FUN HEALTH CLUB | Nutrition</title>
 
 <!-- Define Charset -->
 <meta charset="utf-8">
@@ -24,53 +24,68 @@
 </head>
 <body>
 
-	<!-- Container -->
-	<div id="container">
 
-		<!-- Start Header -->	<%@include file="header_front.jsp" %>
+<div id="container">
+
+		<!-- Start Header -->
+		<%@include file="header_front.jsp"%>
 		<!-- End Header -->
-		  <!-- Start Page Banner -->
-    <div class="page-banner" style="padding:40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h2>About Us</h2>
-            <p>We Are Professional</p>
-          </div>
-          <div class="col-md-6">
-            <ul class="breadcrumbs">
-              <li><a href="#">Home</a></li>
-              <li>About Us</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- End Page Banner -->
+		<!-- Start Page Banner -->
+		 <div class="page-banner"
+			style="padding: 40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-6">
+						<h2 style="text-transform: none;">Members Application Form...</h2>
+						<p style="font-weight: bold; color: #8A5497;"></p>
+					</div>
+					<div class="col-md-6">
+						<ul class="breadcrumbs">
+							<li><a href="<?php echo base_url(); ?>site_main/index">Home</a></li>
+							<li>Member</li>
+							<li>Become a Member</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Page Banner -->
 
 		<!-- Start Content -->
 
+		<div id="content">
+			<div class="container">
+				<div class="page-content"
+					style="background-image: url('<?php echo base_url(); ?>/admin_assets/img/petowner_bg_img1.jpg'); background-size: 33% 90%; margin-left:-10%; background-repeat: no-repeat;">
 
-		<section id="home">
-			<!-- Carousel -->
-			hjhjhjhjhjhjhjhjhhj
-			jhhjhj
-			<!-- /carousel -->
-		</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+					<div class="row">
+						<div class="col-lg-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3" style="margin-left: 36%; margin-top: 4%;">
+							
+							
+							<div class="project-content col-md-4">
+						<h4><span>Project Description</span></h4>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam sed facilisis purus. Donec interdum massa at ipsum vehicula tristique. Maecenas bibendum dictum tincidunt. Sed nec justo ac libero consequat tincidunt. Cras eget molestie justo.</p>
+						<h4><span>Project Details</span></h4>
+						<ul>
+							<li><strong>Client:</strong> iThemesLab</li>
+							<li><strong>Status:</strong> Finish on 30 Dec, 2013</li>
+							<li><strong>Skills:</strong> creative, web design</li>
+						</ul>
+						<div class="post-share">
+							<span>Share This:</span>
+							<a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+							<a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
+							<a class="gplus" href="#"><i class="fa fa-google-plus"></i></a>
+							<a class="linkedin" href="#"><i class="fa fa-linkedin"></i></a>
+							<a class="mail" href="#"><i class="fa fa-envelope"></i></a>
+						</div>
+					</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- End Content -->
 
@@ -84,8 +99,9 @@
 		<!-- End Footer -->
 
 	</div>
-	<!-- End Container -->
 
+	<!-- Container -->
+	
 	<!-- Go To Top Link -->
 	<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 

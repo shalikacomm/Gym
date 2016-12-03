@@ -26,20 +26,16 @@
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
 
-                        <div class="row" style="margin-top:1.5%;">
-                        <div class="col-lg-12">
-                            <h2> Full Calendar </h2>
-                        </div>
-                    </div>
-
-                    <hr />
-                    
-                   <div class="row">
+                 				<ul class="breadcrumb" style="margin-top:2%;">
+  <li><a href="dashboard.jsp">Dashboard</a></li>
+  <li><a href="AttenCon?action=getCalendar">View Attendance</a></li>
+    </ul>
+			                   <div class="row">
                         <div class="col-lg-12">
 
                             <div class="box">
                                 <header style=" height: 50px;">
-                                    <h5>Calendar</h5>
+                                    <h5>Select User</h5>
                                 </header>
                                 <div class="body">
                                 <div class="row inv_row" id="row" style="margin-left: 0%;">

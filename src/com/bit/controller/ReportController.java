@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bit.dao.ProductDAO;
+import com.bit.dao.ProductDAOImpl;
+import com.bit.entity.ProductEntity;
 import com.bit.entity.ReportEntity;
 import com.bit.entity.UserEntity;
 import com.bit.util.DBUtil;
@@ -27,7 +30,8 @@ import net.sf.jasperreports.engine.JasperRunManager;
 @WebServlet(urlPatterns = "/ReportCon")
 public class ReportController extends HttpServlet{
 	
-	
+	private static String INSERT_OR_EDIT = "/product_form.jsp";
+	private static String LIST_USER = "/product_stock_report.jsp";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getParameter("action");
@@ -39,6 +43,7 @@ public class ReportController extends HttpServlet{
 		
 
 		}
+	
 	}
 	
 @Override

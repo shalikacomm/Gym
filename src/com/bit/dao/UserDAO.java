@@ -33,6 +33,12 @@ public interface UserDAO {
 	
 	public UserEntity ChangePassword(UserEntity passDetails);
 	
+	public void AutoExpireMembers();
+	
+	public boolean UserEmailChecker(String email);
+	
+	public boolean UserIdChecker(String nic);
+	
 	// public boolean deactivateExpiredMembers() ;
 	
 	

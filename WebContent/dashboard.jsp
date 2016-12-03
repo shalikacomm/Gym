@@ -69,29 +69,20 @@
                     </div>
                   <!-- /. ROW  --> 
                             <div class="row text-center pad-top" style="margin-left: 200px;">
-              <!--     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                      <div class="div-square">
-                           <a href="blank.html" >
- <i class="fa fa-circle-o-notch fa-5x"></i>
-                      <h4>Check Data</h4>
-                      </a>
-                      </div>
-                     
-                     
-                  </div>  -->
+     
           
        									   <% String role=currentUser.getRole();
 										if(role.equals("administrator")) { %>
           
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="MemberCon?action=insert" >
- <i class="fa fa fa-user fa-5x"></i>
-                      <h4>Reg. Member</h4>
+                           <a href="UserCon?action=insert" >
+                          
+ <i class="fa  icon-user fa-5x"></i>
+                      <h4>Add User</h4>
                       </a>
                       </div>
-                     
-                     
+                        
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
@@ -105,9 +96,9 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="blank.html" >
- <i class="fa fa-thumbs-o-down fa-5x"></i>
-                      <h4>Deactivated</h4>
+                           <a href="BarcodeCon?action=insert" >
+ <i class="fa icon-barcode  fa-5x"></i>
+                      <h4>Barcode ID</h4>
                       </a>
                       </div>
                      
@@ -116,7 +107,7 @@
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="MemberFeeCon?action=insert" >
- <i class="fa fa-money  fa-5x"></i>
+ <i class="fa icon-money   fa-5x"></i>
                       <h4>Payables</h4>
                       </a>
                       </div>
@@ -132,34 +123,13 @@
                       <div class="div-square">
                            <a href="ProductCon?action=list" >
  <i class="fa fa-spoon fa-5x"></i>
-                      <h4>Products</h4>
+                      <h4>Add Products</h4>
                       </a>
                       </div>
                      
                  
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                      <div class="div-square">
-                           <a href="blank.html" >
- <i class="fa fa-bell-o fa-5x"></i>
-                      <h4>Notifications </h4>
-                      </a>
-                      </div>
-                     
-                     
-                  </div>
-                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
-                      <div class="div-square">
-                           <a href="InvoiceCon?action=insert" >
- <i class="fa fa-globe  fa-5x"></i>
-<!--  <i class="fa fa-user fa-5x"></i> -->
-                      <h4>Sell Products</h4>
-                      </a>
-                      </div>
-                     
-                     
-                  </div>
-                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="StockCon?action=insert" >
  <i class="glyphicon glyphicon-cutlery fa-4x"></i>
@@ -169,6 +139,28 @@
                      
                      
                   </div> 
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="InvoiceCon?action=insert" >
+ <i class="fa icon-eur   fa-5x"></i>
+<!--  <i class="fa fa-user fa-5x"></i> -->
+                      <h4>Sell Products</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="ProductCon?action=insert" >
+ <i class="fa icon-circle-arrow-up fa-5x"></i>
+<!--  <i class="fa icon-eur  fa-5x"></i> -->
+                      <h4>View Products</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
               </div>   
                   <!-- /. ROW  -->    
                  <div class="row text-center pad-top" style="margin-left: 200px;">
@@ -176,32 +168,257 @@
           
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
+                           <a href="BasicSheduleCon?action=insert" >
+ <i class="fa icon-suitcase  fa-5x"></i>
+                      <h4>Gym Workout</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="BasicSheduleCon?action=list" >
+ <i class="fa  icon-eye-open   fa-5x"></i>
+                      <h4>View Workout</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="SheduleCon?action=insert" >
+ <i class="fa icon-gamepad   fa-5x"></i>
+                      <h4>Mem Workout</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="SheduleCon?action=list" >
+ <i class="fa icon-paper-clip  fa-5x"></i>
+                      <h4>Send Workout</h4>
+                      </a>
+                      </div>
+                            </div>
+      
+              </div>
+                 <div class="row text-center pad-top" style="margin-left: 200px;">
+                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberCon?action=insert" >
+ <i class="fa fa  icon-male   fa-5x"></i>
+                      <h4>Measurements</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberDCon?action=list" >
+ <i class="fa fa icon-trophy  fa-5x"></i>
+                      <h4>Progress</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="AttenCon?action=mark" >
+ <i class="fa fa icon-ok   fa-5x"></i>
+                      <h4>Attendance</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="AttenCon?action=getCalendar" >
+ <i class="fa fa icon-calendar  fa-5x"></i>
+                      <h4>Calendar</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  
+         
+                    
+              </div>
+                <div class="row text-center pad-top" style="margin-left: 200px;">
+                   
+          
+                
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="income.jsp" >
+ <i class="fa fa icon-print fa-5x"></i>
+                      <h4>Income Report</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="SystemCon?action=list" >
+ <i class="fa fa  icon-cogs  fa-5x"></i>
+                      <h4>Sys.Settings</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="InvoiceCon?action=invoice_list" >
+ <i class="fa fa icon-copy fa-5x"></i>
+                      <h4>Sup.Receipts</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberFeeCon?action=list" >
+ <i class="fa fa icon-copy  fa-5x"></i>
+                      <h4>Pay.Receipts</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  
+         
+                    
+              </div>
+              
+         <% }else if(role.equals("operator")) {  %>     
+         
+         
+                    <!-- /. ROW  -->    
+               
+                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
                            <a href="UserCon?action=insert" >
                           
- <i class="fa fa-graduation-cap fa-5x"></i>
-                      <h4>Add Users</h4>
+ <i class="fa  icon-user fa-5x"></i>
+                      <h4>Add User</h4>
                       </a>
                       </div>
                         
                   </div>
-                  
-                   
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="UserCon?action=member_list" >
+ <i class=" fa fa-users fa-5x"></i>
+                      <h4>Manage Users</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="BarcodeCon?action=insert" >
+ <i class="fa icon-barcode  fa-5x"></i>
+                      <h4>Barcode ID</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberFeeCon?action=insert" >
+ <i class="fa icon-money   fa-5x"></i>
+                      <h4>Payables</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+              </div>
+                 <!-- /. ROW  --> 
+                <div class="row text-center pad-top" style="margin-left: 200px;">
+                 
+        
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="InvoiceCon?action=insert" >
+ <i class="fa icon-eur   fa-5x"></i>
+<!--  <i class="fa fa-user fa-5x"></i> -->
+                      <h4>Sell Products</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="ProductCon?action=insert" >
+ <i class="fa icon-circle-arrow-up fa-5x"></i>
+<!--  <i class="fa icon-eur  fa-5x"></i> -->
+                      <h4>View Products</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                     <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="InvoiceCon?action=invoice_list" >
- <i class="fa fa-file-text fa-5x"></i>
-                      <h4>Receipts</h4>
+ <i class="fa fa icon-copy fa-5x"></i>
+                      <h4>Sup.Receipts</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberFeeCon?action=list" >
+ <i class="fa fa icon-copy  fa-5x"></i>
+                      <h4>Pay.Receipts</h4>
                       </a>
                       </div>
                      
                      
                   </div>
                   
+              </div>   
+                  <!-- /. ROW  -->    
+                 <div class="row text-center pad-top" style="margin-left: 200px;">
+      
+              </div>
+                 <div class="row text-center pad-top" style="margin-left: 200px;">
+                 
+                 
+                        
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberDCon?action=list" >
+ <i class="fa fa icon-trophy  fa-5x"></i>
+                      <h4>Progress</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                 <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
                            <a href="AttenCon?action=mark" >
- <i class="fa fa-key fa-5x"></i>
-                      <h4>Admin </h4>
+ <i class="fa fa icon-ok   fa-5x"></i>
+                      <h4>Attendance</h4>
                       </a>
                       </div>
                      
@@ -209,18 +426,99 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="SystemCon?action=list" >
- <i class="fa fa-cog fa-4x"></i>
-                      <h4>System Settings</h4>
+                           <a href="AttenCon?action=getCalendar" >
+ <i class="fa fa icon-calendar  fa-5x"></i>
+                      <h4>Calendar</h4>
                       </a>
                       </div>
                      
                      
                   </div>
+                  
+         
                     
               </div>
+      
+         <% }	else if(role.equals("instructor")) { %>   
+         					          
+    
+            
+               
+         
+              </div>
+                <!-- /. ROW  -->    
+                 <div class="row text-center pad-top" style="margin-left: 200px;">
+                   
+          
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="BasicSheduleCon?action=insert" >
+ <i class="fa icon-suitcase  fa-5x"></i>
+                      <h4>Gym Workout</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="BasicSheduleCon?action=list" >
+ <i class="fa  icon-eye-open   fa-5x"></i>
+                      <h4>View Workout</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="SheduleCon?action=insert" >
+ <i class="fa icon-gamepad   fa-5x"></i>
+                      <h4>Mem Workout</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="SheduleCon?action=list" >
+ <i class="fa icon-paper-clip  fa-5x"></i>
+                      <h4>Send Workout</h4>
+                      </a>
+                      </div>
+                            </div>
+      
+              </div>
+                 <div class="row text-center pad-top" style="margin-left: 200px;">
+                             <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberCon?action=insert" >
+ <i class="fa fa  icon-male   fa-5x"></i>
+                      <h4>Measurements</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+                
+                  <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
+                      <div class="div-square">
+                           <a href="MemberDCon?action=list" >
+ <i class="fa fa icon-trophy  fa-5x"></i>
+                      <h4>Progress</h4>
+                      </a>
+                      </div>
+                     
+                     
+                  </div>
+    
+              </div>
+         
               
-         <% } %>     
+              
+         <% } %> 
+         
                  <!-- /. ROW  -->  
           
 				  <div class="row">

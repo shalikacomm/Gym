@@ -23,7 +23,10 @@
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
 			<div class="inner" style="min-height: 700px;">
-			
+					<ul class="breadcrumb"style="margin-top:2%;">
+  <li><a href="dashboard.jsp">Home</a></li>
+  <li><a href="ProductCon?action=insert">Add Products</a></li>
+    </ul>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="box dark">

@@ -24,53 +24,142 @@
 </head>
 <body>
 
-	<!-- Container -->
-	<div id="container">
 
-		<!-- Start Header -->	<%@include file="header_front.jsp" %>
+<div id="container">
+
+		<!-- Start Header -->
+		<%@include file="header_front.jsp"%>
 		<!-- End Header -->
-		  <!-- Start Page Banner -->
-    <div class="page-banner" style="padding:40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
+		<!-- Start Page Banner -->
+		 <div class="page-banner" style="padding:40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
       <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h2>Nutrition</h2>
-            <p>Energize with us</p>
-          </div>
-          <div class="col-md-6">
+      <div class="col-md-8" style="margin-top:-2%; margin-left:-3%; margin-bottom:1%;">
+            <h2>Get Energized with Foods</h2>
+             </div>
+             <div class="col-md-4" style="margin-top:-3%;">
             <ul class="breadcrumbs">
              <li><a href="index_front.jsp">Home</a></li>
               <li><a href="#">Nutrition</a></li>
             
             </ul>
           </div>
+        <div class="row">
+        
+        <img src="${pageContext.request.contextPath}/assets_front/images/FoodCube.jpg" alt="" width="150%"  style="margin-left:-15%; margin-bottom:-4%; max-width: 130%;"/>
+        
         </div>
       </div>
     </div>
-    <!-- End Page Banner -->
+		<!-- End Page Banner -->
 
 		<!-- Start Content -->
 
+		<div id="content">
+			<div class="container">
+				<div class="page-content"
+					style="background-image: url(''); background-size: 33% 90%; margin-left:-10%; background-repeat: no-repeat;">
 
-		<section id="home">
-			<!-- Carousel -->
-			
-			<!-- /carousel -->
-		</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+					<div class="row">
+						<div class="col-lg-12 col-sm-8 col-md-6 " style=" ">
+							
+							<p style="font-size:36px; margin-left: 36%; font-family: helvetica_neueregular;"><b>FIT & FUN - Get Energized with Us..</b></p>
+							<hr style="height:25%;"/>
+							<div class="col-md-6 sidebar left-sidebar">
+						<!-- images bar -->
+						<div class="widget widget-popular-posts">
+							<ul>
+								<li>
+									<div class="widget-thumb">
+										<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/Healthy Menu receipes.png" alt="" style="width:100%; height:100%;"/></a>
+									<h5 style="color:#f36510; font-family: Trebutch MS;">Need some more food inspiration? Check out these delicious but<br/> healthy recipes.</h5>
+										</div><br/>
+									<br/>
+									<div class="clearfix"></div>
+								</li>
+								<li>
+									<div class="widget-thumb">
+										<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/interesting Articles.jpg" alt=""  style="width:100%; height:100%;"/></a>
+									<h5 style="color:#f36510; font-family: Trebutch MS;">Knowledge is power! Read nutrition information that you can trust.</h5>
+										</div>
+									<br/>
+									<div class="clearfix"></div>
+								</li>
+								<li>
+									<div class="widget-thumb">
+										<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/Start your diet today .png" alt=""  style="width:100%; height:100%;"/></a>
+									<h5 style="color:#f36510; font-family:Trebutch MS;">Forget 'diets'. Begin your nutrition journey and learn what's right<br/> for you, as an individual, for life</h5>
+										</div>
+									<br/>
+									<div class="clearfix"></div>
+								</li>
+								<li>
+									<div class="widget-thumb">
+										<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/Ben Coomber Awesome Supplements.jpg" alt=""  style="width:100%; height:100%;"/></a>
+									<h5 style="color:#f36510; font-family: Trebutch MS;">What supplements should you take for optimal health, performance<br/> and recovery from exercise?</h5>
+										</div>
+									<br/>
+									<div class="clearfix"></div>
+								</li>
+							</ul>
+							
+						 </div>
+					 </div>
+					 <div class="col-md-6">
+					 
+					 <div class="row"><br/>
+					<p style="font-size:28px; margin-left: 36%;  "><b>12-week diet plan </b></p>
+					<br/>
+					<h2 style="color:#f36510; font-family:Trebutch MS;">So you want to lose weight?</h2><br/>
+					<p  style="font-size:18px; font-family:Trebutch MS;"> Most people know that the weight-loss equation is largely dependent on how much exercise you do and what type of diet you follow. While physical activity at least three times a week will help you shed those extra kilos, most experts agree that diet is the first thing you need to change in order to see results.</p>
+					 
+					 <br/>
+					<h2 style="color:#f36510; font-family:Trebutch MS;">Making the change</h2><br/>
+					<p  style="font-size:18px; font-family:Trebutch MS;"> Many of us have eating habits that have been ingrained in us since we were kids. For example, a bowl of ice-cream after dinner, pizza at least once a week or a sweet treat to reward ourselves. In order to successfully lose weight you need to </p>
+					
+					<br/>
+					<h2 style="color:#f36510; font-face:Trebutch MS;">Review your diet</h2><br/>
+					<p  style="font-size:18px; font-face:Trebutch MS;"> A good starting point is to review your diet and make the following changes:</p>
+					<ol>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Record everything you eat in a food diary. Be honest with yourself – a cheeky lie here and there won’t get you anywhere!</li>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Eat smaller meals, more often. This can help boost your metabolism (the rate at which you burn food).</li>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Opt for low-gi carbs, such as pasta, sweet potato and wholegrain bread.</li>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Drink plenty of water – at least eight glasses a day to prevent dehydration.</li>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Learn to read food labels. Concentrate on grams of nutrients instead of percentages. </li>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Eat less than 30 per cent of your kilojoule intake in the form of fat. Reduce saturated fat (from sources like meat and dairy) but make sure you include good fats, such as Omega-3. </li>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Don’t deny yourself the occasional treat – just don’t keep chocolate and lollies readily available!</li>
+					</ol>
+					
+					<br/>
+					<h2 style="color:#f36510; font-family:Trebutch MS;">The rules</h2><br/>
+					<p  style="font-size:18px; font-face:Trebutch MS;"> The following diet plan is designed to help you change your eating habits. For maximum results, follow the guidelines below:</p>
+					<ol>
+					<li  style="font-size:17px; font-family:Trebutch MS;"> No alcohol for the duration of the two weeks </li>
+					<li  style="font-size:17px; font-family:Trebutch MS;"> Tea, coffee and diet soft drinks are okay but limit yourself to two a day</li>
+					<li  style="font-size:17px; font-family:Trebutch MS;"> Never skip meals</li>
+					</ol>
+					
+					<br/>
+					<h2 style="color:#f36510; font-family:Trebutch MS;">Help is at hand</h2><br/>
+					<p  style="font-size:18px; font-face:Trebutch MS;"> Losing weight can be difficult, so it’s important to arm yourself with the necessary tools and advice to help you stay on track. Here are a few tips that may help:</p>
+					 <ol>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Water – keep a water bottle handy at all times. Our body can often mistake hunger for thirst, so now there’s no excuse to reach for a chocolate bar.</li>
+					<li  style="font-size:17px; font-family:Trebutch MS;">Invest in a few inexpensive fitness tools, such as a pedometer, free weights, a skipping rope and some boxing gloves. Flick through old fitness mags for ideas and inspiration.</li>
+					<li  style="font-size:17px; font-family:Trebutch MS;"> Be realistic! If you’re a size 16, chances are that you won’t morph into Elle overnight, but with a lot of determination you will get the body you’ve always wanted.</li>
+					
+					</ol>
+					 
+					 <br/>
+					<h2 style="color:#f36510; font-family:Trebutch MS;">How it works</h2><br/>
+					<p  style="font-size:18px; font-family:Trebutch MS;"> Create your daily menu by choosing one meal from each of the following categories.</p>
+					 
+					 
+					 </div>
+					 
+					 </div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- End Content -->
 
@@ -84,8 +173,9 @@
 		<!-- End Footer -->
 
 	</div>
-	<!-- End Container -->
 
+	<!-- Container -->
+	
 	<!-- Go To Top Link -->
 	<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 

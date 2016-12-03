@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bit.dao.AttendanceDAO;
+import com.bit.dao.AttendanceDAOImpl;
 import com.bit.dao.MemberDAO;
 import com.bit.dao.MemberDAOImpl;
 import com.bit.dao.MemberDetailDAO;
 import com.bit.dao.MemberDetailDAOImpl;
+import com.bit.entity.CalenderEntity;
 import com.bit.entity.MemberDetailEntity;
 import com.bit.entity.MemberEntity;
 import com.bit.entity.UserEntity;
@@ -25,6 +28,7 @@ import com.google.gson.Gson;
 public class MemberDetailController extends HttpServlet {
 	private static String INSERT_OR_EDIT = "/memberDetail_form.jsp";
 	private static String LIST_USER = "/member_details_list.jsp";
+	private static String LIST_USER_FRONT = "/check_progress_front.jsp";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String action = req.getParameter("action");
@@ -47,6 +51,15 @@ public class MemberDetailController extends HttpServlet {
 			req.setAttribute("users", users);
 			forward = INSERT_OR_EDIT;
 		} 
+		
+		else if (action.equalsIgnoreCase("getProgressFront")) {
+			String user_id  = req.getParameter("user_id");
+			forward = LIST_USER_FRONT;
+			req.setAttribute("user_id", user_id);
+			
+			
+		}
+		
 		else if (action.equalsIgnoreCase("members")) {
 			MemberDAO memDao = new MemberDAOImpl();
 			List<UserEntity> members = memDao.getAllUsersbyMember();
@@ -81,6 +94,8 @@ public class MemberDetailController extends HttpServlet {
 				return;
 			}
 		}
+
+	
 		if (forward != "") {
 			RequestDispatcher view = req.getRequestDispatcher(forward);
 			view.forward(req, resp);

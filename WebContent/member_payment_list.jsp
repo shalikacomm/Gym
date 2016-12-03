@@ -19,21 +19,12 @@
 		<%@include file="header_panel.jsp"%>
 		<%@include file="left_panel.jsp"%>
 		<div id="content">
-			<div class="inner">
-				<div class="row">
-					<div class="col-lg-12">
-
-
-														<ul class="breadcrumb">
+			<div class="inner" style="min-height: 700px;">
+			<ul class="breadcrumb"style="margin-top:2%;">
   <li><a href="dashboard.jsp">Home</a></li>
   <li><a href="MemberFeeCon?action=list">Payment List</a></li>
     </ul>
-		</div>
-				</div>
-
-				<hr />
-
-				<div class="row">
+					<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">

@@ -1,4 +1,4 @@
- <div class="container">
+ <div class="container" style="height:60%;">
         <div class="row footer-widgets">
           
           <!-- Start Subscribe & Social Links Widget -->
@@ -15,125 +15,35 @@
                             <h4>Follow Us<span class="head-line"></span></h4>
                             <ul class="social-icons">
                                 <li>
-                                    <a class="facebook" href="#"><i class="fa fa-facebook"></i></a>
+                                    <a class="facebook" href="https://www.facebook.com/www.fitfunhc.lk/"><i class="fa fa-facebook"></i></a>
                                 </li>
-                                <li>
-                                    <a class="twitter" href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
+                                 <li>
                                     <a class="google" href="#"><i class="fa fa-google-plus"></i></a>
                                 </li>
-                                <li>
-                                    <a class="dribbble" href="#"><i class="fa fa-dribbble"></i></a>
-                                </li>
-                                <li>
-                                    <a class="linkdin" href="#"><i class="fa fa-linkedin"></i></a>
-                                </li>
-                                <li>
-                                    <a class="flickr" href="#"><i class="fa fa-flickr"></i></a>
-                                </li>
-                                <li>
-                                    <a class="tumblr" href="#"><i class="fa fa-tumblr"></i></a>
-                                </li>
+                               
                                 <li>
                                     <a class="instgram" href="#"><i class="fa fa-instagram"></i></a>
                                 </li>
-                                <li>
-                                    <a class="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a>
-                                </li>
-                                <li>
-                                    <a class="skype" href="#"><i class="fa fa-skype"></i></a>
-                                </li>
+                             
                             </ul>
                         </div>
                     </div><!-- .col-md-3 -->
                     <!-- End Subscribe & Social Links Widget -->
-                    
-                    
-                    <!-- Start About us Widget -->
-                    <div class="col-md-3">
-                        <div class="footer-widget twitter-widget">
-                            <h4>About Us<span class="head-line"></span></h4>
-                            <ul>
-                                <li>
-                                    <p> Discover and learn the very best home workouts, with guided exercise programmes you can do from anywhere. 
-                                    You select your body part focused workout sessions whenever you want. We also guide you through the minefield 
-                                    that is nutrition. All of which will help you burn more calories throughout the day, lose fat,
-                                     get fit and tone up conveniently so you get maximum results in minimum amount of time.</p>
-                                    
-                                </li>
-                               
-                            </ul>
-                        </div>
-                    </div><!-- .col-md-3 -->
-                    <!-- End About us Widget -->
-
-
-                    <!-- Start Flickr Widget -->
-                    <div class="col-md-3">
-                        <div class="footer-widget flickr-widget">
-                            <h4>Flicker Feed<span class="head-line"></span></h4>
-                            <ul class="flickr-list">
-                                <li>
-                                    <a href="assets_front/images/flickr-01.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-01.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-02.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-02.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-03.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-03.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-04.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-04.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-05.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-05.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-06.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-06.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-07.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-07.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-08.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-08.jpg">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="assets_front/images/flickr-09.jpg" class="lightbox">
-                                        <img alt="" src="images/flickr-09.jpg">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div><!-- .col-md-3 -->
-                    <!-- End Flickr Widget -->
-
+                 
                     
                     <!-- Start Contact Widget -->
                     <div class="col-md-3">
                         <div class="footer-widget contact-widget">
-                            <h4><img src="images/footer-margo.png" class="img-responsive" alt="Footer Logo" /></h4>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-                            <ul>
-                                <li><span>Phone Number:</span> +01 234 567 890</li>
-                                <li><span>Email:</span> company@company.com</li>
-                                <li><span>Website:</span> www.yourdomain.com</li>
+                            <h4><img src="images/footer-margo.png" class="img-responsive" alt="About US" /></h4>
+<p>The commen  of the Gym by Mr. Amarasekarage Don Sandun Salitha on 
+09.11.2014.  FIT AND FUN HEALTH CLUB (pvt)  Ltd  located  in Kaduwela.  They 
+operate in similar health clubs around Sri Lanka like Kotikawatta, Anuradhapura. 
+Its main focus is to provide good health care practices to the society.
+They have mainly 02 qualified Coaches at Kaduwela Health club, which they 
+available at day and night to provide a good service to its community.</p>                            <ul>
+                               <li><strong>Monday - Friday[except on poya days]</strong> - 9am to 11pm</li>
+					<li><strong>Saturday</strong> - 9am to 10pm</li>
+					<li><strong>Sunday</strong> - 9am to 12pm</li>
                             </ul>
                         </div>
                     </div><!-- .col-md-3 -->
@@ -146,13 +56,11 @@
         <div class="copyright-section">
           <div class="row">
             <div class="col-md-6">
-              <p>&copy; 2014 Margo -  All Rights Reserved</p>
+              <p>&copy; 2016 FIT & FUN Gym -  All Rights Reserved</p>
             </div>
             <div class="col-md-6">
               <ul class="footer-nav">
-                <li><a href="#">Sitemap</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="contact_front.jsp">Contact</a></li>
               </ul>
             </div>            
           </div>

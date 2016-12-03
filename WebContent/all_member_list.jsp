@@ -46,7 +46,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								User List<a class="pull-right" href="UserCon?action=insert"><button
-										class="btn-sm btn-primary" style="margin-top: -9%;">Add
+										class="btn btn-primary" style="margin-top: -9%;">Add
 										New</button></a>
 							</div>
 							<div class="panel-body">
@@ -116,7 +116,7 @@
 																class="status btn btn-default btn-grad btn-sm"><span><i
 																	class="icon-ok " style="color: #455862;"></i></span></a>
 														</c:if> 
-														<a class="btn btn-sm cont btn-default btn-grad" title="email"
+														<a class="btn btn-sm cont btn-default btn-grad" 
 														id="${temp.user_id}" data-toggle="modal"
 														data-target="#contact" data-original-title><span><i
 																class="icon-envelope-alt "style="color: #455862;"></i></span></a>
@@ -430,7 +430,7 @@
 																									"User Updated!",
 																									"You clicked the button!",
 																									"success");
-																							window.location = "UserCon?action=list";
+																							window.location = "UserCon?action=member_list";
 																						} else {
 
 																						}

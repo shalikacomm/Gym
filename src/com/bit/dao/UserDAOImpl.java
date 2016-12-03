@@ -60,11 +60,13 @@ public class UserDAOImpl implements UserDAO {
 			int val=preparedStatement.executeUpdate();
 			
 				if(val>0){
+					 String link = "'http://localhost:8080/TestEE/login.jsp'";
 				 System.out.println("User Added");
 	                String MsgBody = "Hi " + user.getFirst_name() + ", \n \n Please follow the Username and Code for login to the System"
 	                        + "\n \n Username: " + user.getNic() + " \n Password: " + randomCode + " \n \n After that you can enter new password. "
+	                        +"\n Login to System using following link : "+ link
 	                        + " \n \n Thanks you, \n System Administrator, \n Fit & Fun Health club";
-	                result = method.sendMail(user.getEmail(), "User Registration for Fit & Fun Health club", MsgBody);
+	                result = method.sendMail(user.getEmail(),"User Registration for Fit & Fun Health club", MsgBody);
 				result=true;
 			}
 		} catch (NoSuchAlgorithmException ex) {
@@ -366,6 +368,83 @@ if (temp > 0){
 
         return status;
 	}
+	public boolean UserEmailChecker(String email) {
+		Connection con = null;
+		UserEntity user = new UserEntity();
+		boolean status = false;
+		try {
+			con=DBUtil.getConnection();
+			PreparedStatement preparedStatement = con.prepareStatement("SELECT email FROM user_tbl WHERE email=?");
+			preparedStatement.setString(1, email);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if (rs.next()) {
+				
+				user.setEmail(rs.getString("email"));
+				
+			}
+			
+			if (user.getEmail() != null){
+				status = false; 
+			}else{
+				status = true;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return status;
+	}
+	
+	public boolean UserIdChecker(String nic) {
+		Connection con = null;
+		UserEntity user = new UserEntity();
+		boolean status = false;
+		try {
+			con=DBUtil.getConnection();
+			PreparedStatement preparedStatement = con.prepareStatement("SELECT nic FROM user_tbl WHERE nic=?");
+			preparedStatement.setString(1, nic);
+			ResultSet rs = preparedStatement.executeQuery();
+			
+			if (rs.next()) {
+				
+				user.setNic(rs.getString("nic"));
+				
+			}
+			
+			if (user.getNic() != null){
+				status = false; 
+			}else{
+				status = true;
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			if (con != null) {
+				try {
+					con.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return status;
+	}
 
 
 	@Override
@@ -401,6 +480,47 @@ if (temp > 0){
     		}
     	}
     	return result;
+	}
+	public void AutoExpireMembers(){
+		
+		Connection con = null;
+		UserEntity user = new UserEntity();
+		
+		
+		 try {
+	        	con=DBUtil.getConnection();
+	            PreparedStatement preparedStatement = con.prepareStatement(" SELECT distinct t1.user_id " 
+	            		+" FROM member_payment_tbl t1 "
+	            		+" WHERE CURDATE() > (SELECT MAX(t2.active_period)"
+	            		+" FROM member_payment_tbl t2 "
+	            	    +" WHERE t2.user_id = t1.user_id)");
+	          
+	            ResultSet rs = preparedStatement.executeQuery();
+
+	            while(rs.next()) {
+	            	
+		           String user_change = rs.getString("user_id");
+		              System.out.println(user_change);
+		              deactivateUser(user_change);
+	            }
+	        
+	            
+	            
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				if (con != null) {
+					try {
+						con.close();
+					} catch (SQLException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}
+			}
+
+	       
+		
 	}
 
 	@Override

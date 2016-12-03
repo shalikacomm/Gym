@@ -27,7 +27,7 @@ public class LoginController extends HttpServlet {
 
 	RequestDispatcher rd = null;
 	Cookie cookie;
-	
+
 	public LoginController() {
 		cookie = new Cookie("JSESSIONID", null);
 	}
@@ -46,23 +46,26 @@ public class LoginController extends HttpServlet {
 			rd.forward(request, response);
 
 			// }
-		}
-		else if (action.equalsIgnoreCase("resetPw")) {
-			String test = null;
-			HttpSession session = request.getSession();
-			session.removeAttribute("currentSessionUser");
-			session.invalidate();
+		} else if (action.equalsIgnoreCase("resetPw")) {
+
 			String email = request.getParameter("email");
 			UserDAO dao = new UserDAOImpl();
 			dao.resetPassword(email);
-System.out.println("worning");
-			rd = request.getRequestDispatcher("login.jsp");
+			System.out.println("password resetted");
+			boolean result = true;
+			try (PrintWriter out = response.getWriter()) {
+				response.setContentType("application/json");
+				response.setCharacterEncoding("UTF-8");
 
-			rd.forward(request, response);
+				out.print(result);
 
+				out.flush();
+				out.close();
+				return;
+			}
 			// }
 		}
-		
+
 	}
 
 	@Override
@@ -71,49 +74,51 @@ System.out.println("worning");
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		UserDAO userDAO = new UserDAOImpl();
-		
 
 		String action = request.getParameter("action");
 		if (action.equalsIgnoreCase("login")) {
-		try {
-			UserEntity user = new UserEntity();
-			user.setNic(request.getParameter("nic"));
-			user.setPassword(request.getParameter("password"));
-			user =userDAO.login(user);// Send User name and Password to User DAO
-			if (user.isValid()) { // Check availability of the user
-				if(user.getStatus()==1){
-				if(user.getRole().equalsIgnoreCase("member")){
-					HttpSession session = request.getSession(true);
-					session.setAttribute("frontSessionUser", user);
-					response.sendRedirect("index_front.jsp");
-				}else {
-				HttpSession session = request.getSession(true);
-				session.setAttribute("currentSessionUser", user);
-				response.sendRedirect("dashboard.jsp"); // Redirect to Home page
-				}
-				
-				}else if(user.getStatus()==3){
-					HttpSession session = request.getSession(true);
-					session.setAttribute("freshUser", user);
-					response.sendRedirect("new_login.jsp"); 
-				}else if(user.getStatus()==2){
-					HttpSession session = request.getSession(true);
-					session.setAttribute("freshUser", user);
-					response.sendRedirect("new_login.jsp"); 
-				}
-				
-			} else {
-				HttpSession session = request.getSession(true);
-				session.setAttribute("InvalidUser", user);
-				//session.setAttribute("msg", "User details not found ");
-				response.sendRedirect("login.jsp"); // Return to index page
+			try {
+				UserEntity user = new UserEntity();
+				userDAO.AutoExpireMembers();
+				user.setNic(request.getParameter("nic"));
+				user.setPassword(request.getParameter("password"));
+				user = userDAO.login(user);// Send User name and Password to
+											// User DAO
+				if (user.isValid()) { // Check availability of the user
+					if (user.getStatus() == 1) {
+						if (user.getRole().equalsIgnoreCase("member")) {
+							HttpSession session = request.getSession(true);
+							session.setAttribute("frontSessionUser", user);
+							response.sendRedirect("index_front.jsp");
+						} else {
+							HttpSession session = request.getSession(true);
+							session.setAttribute("currentSessionUser", user);
+							response.sendRedirect("dashboard.jsp"); // Redirect
+																	// to Home
+																	// page
+						}
 
-				
+					} else if (user.getStatus() == 3) {
+						HttpSession session = request.getSession(true);
+						session.setAttribute("freshUser", user);
+						response.sendRedirect("new_login.jsp");
+					} else if (user.getStatus() == 2) {
+						HttpSession session = request.getSession(true);
+						session.setAttribute("freshUser", user);
+						response.sendRedirect("new_login.jsp");
+					}
+
+				} else {
+					HttpSession session = request.getSession(true);
+					session.setAttribute("InvalidUser", user);
+					// session.setAttribute("msg", "User details not found ");
+					response.sendRedirect("login.jsp"); // Return to index page
+
+				}
+			} finally {
+				out.close();
 			}
-		} finally {
-			out.close();
-		}
-		}else if(action.equalsIgnoreCase("reset")){
+		} else if (action.equalsIgnoreCase("reset")) {
 			String test = null;
 			HttpSession session = request.getSession();
 			session.removeAttribute("currentSessionUser");
@@ -121,26 +126,27 @@ System.out.println("worning");
 			String email = request.getParameter("resetEmail");
 			UserDAO dao = new UserDAOImpl();
 			dao.resetPassword(email);
-System.out.println("worning");
+			System.out.println("worning");
 			rd = request.getRequestDispatcher("login.jsp");
 
 			rd.forward(request, response);
 		}
-		
+
 		else if (action.equalsIgnoreCase("passwordChange")) {
 			try {
-				UserDAO dao_new  = new UserDAOImpl();
+				UserDAO dao_new = new UserDAOImpl();
 				UserEntity user = new UserEntity();
 				user.setNic(request.getParameter("username"));
 				user.setPassword(request.getParameter("password"));
-				dao_new.ChangePassword(user);// Send User name and Password to User DAO
-				
-					response.sendRedirect("login.jsp"); // Return to index page
+				dao_new.ChangePassword(user);// Send User name and Password to
+												// User DAO
+
+				response.sendRedirect("login.jsp"); // Return to index page
 
 			} finally {
 				out.close();
 			}
-			}
+		}
 
 	}
 }

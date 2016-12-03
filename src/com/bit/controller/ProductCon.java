@@ -50,8 +50,10 @@ public class ProductCon extends HttpServlet {
 			req.setAttribute("product", list);
 			forward = LIST_USER;
 
-		} else if (action.equalsIgnoreCase("edit")) {
-
+		} 
+	
+		
+		else if (action.equalsIgnoreCase("edit")) {
 			String prd_id = req.getParameter("prd_id");
 			ProductDAO prd_dao = new ProductDAOImpl();
 			ProductEntity product = prd_dao.getProductById(prd_id);

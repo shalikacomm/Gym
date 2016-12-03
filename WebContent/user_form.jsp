@@ -323,7 +323,12 @@ $('.no_space').on('keypress', function(e) {
 																				closeOnConfirm : false
 																			},
 																			function() {
+																				<% String role2=currentUser.getRole();
+																				if(role2.equals("administrator")) { %>
 																				window.location = "UserCon?action=list";
+																				<%}else{%>
+																				window.location = "UserCon?action=member_list";
+																				<%} %>
 																			});
 																} else {
 																	  $("#processing_img").attr("class", "hide");

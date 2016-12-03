@@ -34,6 +34,7 @@ import net.sf.jasperreports.engine.JasperRunManager;
 public class UserController  extends HttpServlet{
 	private static String INSERT_OR_EDIT = "/user_form.jsp";
 	private static String LIST_USER = "/user_list.jsp";
+	private static String MEMBER_LIST = "/all_member_list.jsp";
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
@@ -47,7 +48,14 @@ public class UserController  extends HttpServlet{
 			req.setAttribute("users", list);
 			forward = LIST_USER;
 
-		} else if (action.equalsIgnoreCase("insert")) {
+		}else if(action.equalsIgnoreCase("member_list")) {	
+			List<UserEntity> list = dao.getAllMemberUsers();
+			req.setAttribute("users", list);
+			forward = MEMBER_LIST;
+
+		}
+		
+		else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
 			Methods method = new Methods();
 			String generateID = method.generateID("U", "user_id", "user_tbl");
@@ -61,6 +69,23 @@ public class UserController  extends HttpServlet{
 			req.setAttribute("userObject", user);
 
 		}
+		
+		 else if (action.equalsIgnoreCase("checkExistingMail")) {
+				String email = req.getParameter("email");
+					boolean result = false;
+					result = dao.UserEmailChecker(email);
+					try (PrintWriter out = resp.getWriter()) {
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
+
+					out.print(result);
+
+					out.flush();
+					out.close();
+					return;
+				}
+
+			}
 		else if (action.equalsIgnoreCase("sendEmail")) {
 			boolean result = false;
 			Methods method = new Methods();

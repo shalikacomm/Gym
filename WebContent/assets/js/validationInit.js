@@ -349,12 +349,23 @@
     		},
     		email: {
     			required: true,
-    			
+    			 remote: {
+                     url: 'UserCon?action=checkExistingMail',
+                     type: 'GET',
+                     data: { email: $('#email').val()},
+                     async: true
+                 }
     		},
     		nic: {
     			required: true,
     			nic:true,
-    			no_space: false
+    			 remote: {
+                     url: 'UserCon?action=UserIdChecker',
+                     type: 'GET',
+                     data: { nic: $('#user_nic').val()},
+                     async: true
+                 }
+    			
     		},
     		mobile_number: {
     			phone_number:true,
@@ -392,11 +403,13 @@
     		email: {
     			required: "Please fill this field",
     			email: "Enter a valid e-mail",
+    			remote: "This email already exist!",
     			// no_space:"No Spaces please"
     		},
     		nic: {
     			nic: "Please insert valid NIC format",
     			required: "Please fill this field",
+    			remote: "This NIC already exist!",
     			//  no_space:"No Spaces please"
     			
     		},
@@ -412,8 +425,7 @@
     			required: "Enter your address"
     				
     		}, 
-    		
-    		
+    	
     		
     	},
     	errorClass: 'help-block',

@@ -24,7 +24,7 @@
 
 				<ul class="breadcrumb" style="margin-top: 2%;">
 					<li><a href="dashboard.jsp">Dashboard</a></li>
-					<li><a href="UserCon?action=list">User List</a></li>
+					<li><a href="income.jsp">Income Reports</a></li>
 				</ul>
 				
 				<div class="row">
@@ -82,8 +82,7 @@
                                                         <select class="form-control selectpicker" data-live-search="true"  id="incoem_type" name="income_type">
                                                             <option value="suppliment">Supplement Income</option>                                                             
                                                             <option value="subscription">Monthly Subscription Income</option>                                                             
-                                                            <option value="total">Total Income</option>                                                             
-                                         
+                                                         
                                                         </select>
                                                     </div>
                                                 </div>

@@ -24,15 +24,8 @@
 					<!-- Start Social Links -->
 					<ul class="social-list">
 						<li><a class="facebook itl-tooltip" data-placement="bottom"
-							title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-						<li><a class="twitter itl-tooltip" data-placement="bottom"
-							title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-
-						<li><a class="instgram itl-tooltip" data-placement="bottom"
-							title="Instagram" href="#"><i class="fa fa-instagram"></i></a></li>
-						<li><a class="vimeo itl-tooltip" data-placement="bottom"
-							title="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a></li>
-						
+							title="Facebook" href="https://www.facebook.com/www.fitfunhc.lk/"><i class="fa fa-facebook"></i></a></li>
+										
 					</ul>
 					<!-- End Social Links -->
 				</div>
@@ -53,7 +46,7 @@
 				<!-- End Toggle Nav Link For Mobiles -->
 				<a class="navbar-brand" href="index.html"><img alt=""
 					src="assets_front/images/margo.png"
-					style="width: 140px; margin-top: -27px; height: 67px;"></a>
+					style="width: 142px; margin-top: -27px; height: 69px;"></a>
 			
 				
 			</div>
@@ -75,38 +68,34 @@
 					<li><a class="active" href="index_front.jsp">Home</a></li>
 					<li><a href="exercise_front.jsp">Exercise</a></li>
 					<li><a href="nutrition_front.jsp">Nutrition</a></li>
-					<li><a href="blog.html">Team</a></li>
 					<li><a href="">Member</a>
 					<ul class="dropdown">
                                     <li><a href="FRegisterCon?action=insert">Member Register</a></li>
-                                                               <%
-					UserEntity currentUser = (UserEntity) (session.getAttribute("frontSessionUser"));
-                                          
-                                             %>
+                    <%	UserEntity currentUser = (UserEntity) (session.getAttribute("frontSessionUser")); %>
+                    <%	if (currentUser != null) {  %>
                                    <%	if (("member").equals(currentUser.getRole())) { %>
-                                         <%--     <%if(currentUser.getRole().equals("member")){%> --%>
                                               <li>  
                                               <%  String user_id = currentUser.getUser_id();  %>                 
                     <a href="AttenCon?action=getCalendarFront&user_id=<%=user_id%>">Member Attendance</a></li> 
+                     <li><a href="MemberDCon?action=getProgressFront&user_id=<%=user_id%>">Check Performance</a></li>
  										<%}else {%>
             <li><p><% System.out.println( "Evaluating date now "+currentUser.getRole() );  %>i hate you</p></li>      
-         <%} %>
-                                    <li>
-                  
-                           
-					<%	if (currentUser == null) { %>
-						<a href="login.jsp">Login</a> </li>
-				 <%	} else {
-					%><li><a href="LoginCon?action=logout"><i class="icon-signout"></i>
+         							<%} %>
+         
+        
+         
+                                    
+                   <li><a href="LoginCon?action=logout"><i class="icon-signout"></i>
 							Logout </a>
-							</li>
+							</li>					
 					
-					<%-- <%=currentUser.getFirst_name()%> --%> <%
- 						}
-						 %> 
+				<%	} else {%>
+			<li>	<a href="login.jsp">Login</a> </li>
+						 <%	} %> 
+						 
                                    </ul>
                                    	</li>
-					<li><a href="contact.html">Contact Us</a></li>
+					<li><a href="contact_front.jsp">About Us</a></li>
 				</ul>
                                    
                                 

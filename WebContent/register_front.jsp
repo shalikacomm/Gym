@@ -31,7 +31,6 @@
 
 	<!-- Container -->
 	<div id="container">
-
 		<!-- Start Header -->
 		<%@include file="header_front.jsp"%>
 		<!-- End Header -->
@@ -61,7 +60,7 @@
 		<div id="content">
 			<div class="container">
 				<div class="page-content"
-					style="background-image: url('<?php echo base_url(); ?>/admin_assets/img/petowner_bg_img1.jpg'); background-size: 33% 90%; margin-left:-10%; background-repeat: no-repeat;">
+					style="background-image: url('${pageContext.request.contextPath}/assets_front/images/registration_12.jpg'); background-size: 33% 90%; margin-left:-10%; background-repeat: no-repeat;">
 
 					<!--Registration form start-->
 						<div class="row hide" id="processing_img">
@@ -152,7 +151,7 @@
 											<label for="petOwner_nic"
 												style="color: #5f5f5f; font: bold 14px sans-serif;">NIC</label><em
 												style="color: red;">*</em> <input type="text"
-												class=" gur new-empty form-control" id="petOwner_nic"
+												class=" gur new-empty form-control" id="user_nic"
 												name="nic" required="" placeholder="123456789V"
 												maxlength="10" required="required" />
 										</div>

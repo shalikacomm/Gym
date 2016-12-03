@@ -6,7 +6,7 @@
 <head>
 
 <!-- Basic -->
-<title>FIT & FUN HEALTH CLUB | Contact US</title>
+<title>FIT & FUN HEALTH CLUB | Nutrition</title>
 
 <!-- Define Charset -->
 <meta charset="utf-8">
@@ -24,146 +24,121 @@
 </head>
 <body>
 
-	<!-- Container -->
-	<div id="container">
+
+<div id="container">
 
 		<!-- Start Header -->
-		<div class="hidden-header"></div>
-		<header class="clearfix">
-
-			<!-- Start Top Bar -->
-			<div class="top-bar">
-				<div class="container">
-					<div class="row">
-						<div class="col-md-6">
-							<!-- Start Contact Info -->
-							<ul class="contact-details">
-								<li><a href="#"><i class="fa fa-map-marker"></i> No
-										03,Sesatha Bulding,Kaduwela,Sri lanka</a></li>
-								<li><a
-									href="https://www.facebook.com/www.fitfunhc.lk/?fref=ts#"><i
-										class="fa fa-envelope-o"></i>@www.fitfunhc.lk</a></li>
-								<li><a href="#"><i class="fa fa-phone"></i> +94 71 284
-										0229</a></li>
-							</ul>
-							<!-- End Contact Info -->
-						</div>
-						<div class="col-md-6">
-							<!-- Start Social Links -->
-							<ul class="social-list">
-								<li><a class="facebook itl-tooltip" data-placement="bottom"
-									title="Facebook" href="#"><i class="fa fa-facebook"></i></a></li>
-								<li><a class="twitter itl-tooltip" data-placement="bottom"
-									title="Twitter" href="#"><i class="fa fa-twitter"></i></a></li>
-
-								<li><a class="instgram itl-tooltip" data-placement="bottom"
-									title="Instagram" href="#"><i class="fa fa-instagram"></i></a>
-								</li>
-								<li><a class="vimeo itl-tooltip" data-placement="bottom"
-									title="vimeo" href="#"><i class="fa fa-vimeo-square"></i></a></li>
-								<li><a class="skype itl-tooltip" data-placement="bottom"
-									title="Skype" href="#"><i class="fa fa-skype"></i></a></li>
-							</ul>
-							<!-- End Social Links -->
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- End Top Bar -->
-
-			<!-- Start Header ( Logo & Naviagtion ) -->
-			<div class="navbar navbar-default navbar-top">
-				<div class="container">
-					<div class="navbar-header">
-						<!-- Stat Toggle Nav Link For Mobiles -->
-						<button type="button" class="navbar-toggle" data-toggle="collapse"
-							data-target=".navbar-collapse">
-							<i class="fa fa-bars"></i>
-						</button>
-						<!-- End Toggle Nav Link For Mobiles -->
-						<a class="navbar-brand" href="index.html"><img alt=""
-							src="assets_front/images/margo.png"
-							style="width: 140px; margin-top: -27px; height: 67px;"></a>
-					</div>
-					<div class="navbar-collapse collapse">
-						<!-- Stat Search -->
-						<div class="search-side">
-							<a href="#" class="show-search"><i class="fa fa-search"></i></a>
-							<div class="search-form">
-								<form autocomplete="off" role="search" method="get"
-									class="searchform" action="#">
-									<input type="text" value="" name="s" id="s"
-										placeholder="Search the site...">
-								</form>
-							</div>
-						</div>
-						<!-- End Search -->
-						<!-- Start Navigation List -->
-						<ul class="nav navbar-nav navbar-right">
-							<li><a href="index_front.jsp">Home</a>
-								
-								</li>
-							<li><a  href="login.jsp">LogIn</a>
-								</li>
-							<li><a href="exercise_front.jsp">Exercise</a>
-							
-								</li>
-							<li><a href="nutrition_front.jsp">Nutrition</a>
-							</li>
-							<li><a href="team_front.jsp">Team</a>
-								</li>
-							<li><a  class="active" href="contact_front.jsp">Contact Us</a></li>
-						</ul>
-						<!-- End Navigation List -->
-					</div>
-				</div>
-			</div>
-			<!-- End Header ( Logo & Naviagtion ) -->
-
-		</header>
+		<%@include file="header_front.jsp"%>
 		<!-- End Header -->
-		  <!-- Start Page Banner -->
-    <div class="page-banner" style="padding:40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-            <h2>Contact US</h2>
-            <p>We Are Professional</p>
-          </div>
-          <div class="col-md-6">
+		<!-- Start Page Banner -->
+		 <div class="page-banner"
+			style="padding: 40px 0; background: url(images/slide-02-bg.jpg) center #f9f9f9;">
+			<div class="container">
+		    <div class="col-md-8" style="margin-top:-2%; margin-left:-3%; margin-bottom:1%;">
+            <h2>Learn More About Us</h2>
+             </div>
+             <div class="col-md-4" style="margin-top:-3%;">
             <ul class="breadcrumbs">
-              <li><a href="index_front.jsp">Home</a></li>
-              <li>Contact Us</li>
+             <li><a href="index_front.jsp">Home</a></li>
+              <li><a href="contact_front.jsp">About Us</a></li>
+            
             </ul>
           </div>
+        <div class="row">
+        
+        <img src="${pageContext.request.contextPath}/assets_front/images/about_us.jpg" alt="" width="150%"  style="margin-left:-15%; margin-bottom:-4%; max-width: 130%; max-height:80%;"/>
+        
         </div>
-      </div>
-    </div>
-    <!-- End Page Banner -->
+			</div>
+		</div>
+		<!-- End Page Banner -->
 
 		<!-- Start Content -->
 
+		<div id="content">
+			<div class="container">
+				<div class="page-content"
+					style="background-image: url('<?php echo base_url(); ?>/admin_assets/img/petowner_bg_img1.jpg'); background-size: 33% 90%; margin-left:-10%; background-repeat: no-repeat;">
 
-		<section id="home">
-			<!-- Carousel -->
-			hjhjhjhjhjhjhjhjhhj
-			jhhjhj
-			<!-- /carousel -->
-		</section>
+					<div class="row">
+			
+			<div class="col-md-8">
+				
+				<!-- Classic Heading -->
+				<h4 class="classic-title"><span>Contact Us</span></h4>
+				
+				<!-- Start Contact Form -->
+    <form role="form" class="contact-form" id="contact-form" method="post">
+    <div class="form-group">
+    <div class="controls">
+    <input type="text" placeholder="Name" name="name">
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="controls">
+    <input type="email" class="email" placeholder="Email" name="email">
+    </div>
+    </div>
+    <div class="form-group">
+    <div class="controls">
+    <input type="text" class="requiredField" placeholder="Subject" name="subject">
+    </div>
+    </div>
 
+    <div class="form-group">
 
-
-
-
-
-
-
-
-
-
-
-
-
+    <div class="controls">
+    <textarea rows="7"  placeholder="Message" name="message"></textarea>
+    </div>
+    </div>
+    <button type="submit" id="submit" class="btn-system btn-large">Send</button><div id="success" style="color:#34495e;"></div>
+    </form>
+				<!-- End Contact Form -->
+				
+			</div>
+			
+			<div class="col-md-4">
+				
+				<!-- Classic Heading -->
+				<h3 class="classic-title"><span>Information</span></h3>
+				
+				<!-- Some Info -->
+				<p style="font-size:18px; font-face:Trebutch MS; color:#f36510;">The commen  of the Gym by Mr. Amarasekarage Don Sandun Salitha on 
+09.11.2014.  FIT AND FUN HEALTH CLUB (pvt)  Ltd  located  in Kaduwela.  They 
+operate in similar health clubs around Sri Lanka like Kotikawatta, Anuradhapura. 
+Its main focus is to provide good health care practices to the society.
+They have mainly 02 qualified Coaches at Kaduwela Health club, which they 
+available at day and night to provide a good service to its community.</p>
+				
+				<!-- Divider -->
+				<div class="hr1" style="margin-bottom:10px;"></div>
+				
+				<!-- Info - Icons List -->
+				<ul class="icons-list">
+					<li style="font-size:16px; font-face:Trebutch MS;"><i class="fa fa-globe">  </i> <strong>Address:</strong>  No 03,Sesatha Bulding,Kaduwela,Sri lanka.</li>
+					<li style="font-size:16px; font-face:Trebutch MS;"><i class="fa fa-envelope-o"></i> <strong>Email:</strong> fitandfunmessenger@gmail.com</li>
+					<li style="font-size:16px; font-face:Trebutch MS;"><i class="fa fa-mobile"></i> <strong>Phone:</strong>  +94 71 2840229</li>
+				</ul>
+				
+				<!-- Divider -->
+				<div class="hr1" style="margin-bottom:15px;"></div>
+				
+				<!-- Classic Heading -->
+				<h4 class="classic-title"><span>Working Hours</span></h4>
+				
+				<!-- Info - List -->
+				<ul class="list-unstyled">
+					<li style="font-size:16px; font-face:Trebutch MS;"><strong>Monday - Friday[except on poya days]</strong>- 9am to 11pm</li>
+					<li style="font-size:16px; font-face:Trebutch MS;"><strong>Saturday</strong> - 9am to 10pm</li>
+					<li style="font-size:16px; font-face:Trebutch MS;"><strong>Sunday</strong> - 9am to 12pm</li>
+				</ul>
+				
+			</div>
+			
+		</div>
+				</div>
+			</div>
+		</div>
 
 		<!-- End Content -->
 
@@ -177,8 +152,9 @@
 		<!-- End Footer -->
 
 	</div>
-	<!-- End Container -->
 
+	<!-- Container -->
+	
 	<!-- Go To Top Link -->
 	<a href="#" class="back-to-top"><i class="fa fa-angle-up"></i></a>
 

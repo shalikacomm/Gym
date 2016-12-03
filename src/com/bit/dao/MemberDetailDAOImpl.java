@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bit.entity.CalenderEntity;
 import com.bit.entity.InvoiceEntity;
 import com.bit.entity.MemberDetailEntity;
 import com.bit.entity.ProductEntity;
@@ -87,7 +88,92 @@ public class MemberDetailDAOImpl implements MemberDetailDAO {
 		
 	}
 	
+public List<MemberDetailEntity> getPerformance(String body_part, String user) {
+		
+		connection = null;
+		
+		List<MemberDetailEntity> performances = new ArrayList<MemberDetailEntity>();
+		try {
+			connection = DBUtil.getConnection();
+			 PreparedStatement preStmt = connection.prepareStatement("SELECT"+body_part+"FROM emp.member_detail_tbl WHERE user_id=?");
+	             preStmt.setString(1, user);
+	            ResultSet rs = preStmt.executeQuery();
+		
+			while (rs.next()) {
+				MemberDetailEntity data = new MemberDetailEntity();
+				 if(body_part=="weight"){
+						data.setWeight(rs.getDouble("weight"));	
+						 }else if(body_part=="height"){
+						data.setHeight(rs.getDouble("height"));	
+						 }
+						 else if(body_part=="goal_weight"){
+							 data.setGoal_weight(rs.getDouble("goal_weight"));	
+						 }
+						 else if(body_part=="chest"){
+							 data.setChest(rs.getDouble("chest"));		
+						 }
+						 else if(body_part=="hip"){
+							 data.setHip(rs.getDouble("hip"));		
+						 }
+						 else if(body_part=="shoulder_length"){
+							 data.setShoulder_length(rs.getDouble("shoulder_length"));		
+						 }
+						 else if(body_part=="thigh"){
+							 data.setThigh(rs.getDouble("thigh"));	
+						 }
+						 else if(body_part=="bicep"){
+							 data.setBicep(rs.getDouble("bicep"));	
+						 }
+				performances.add(data);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+		}
+		
+		return performances;
+	}
 	
+public List<MemberDetailEntity> getPerformanceDates(String user_id) {
+	
+	connection = null;
+	
+	List<MemberDetailEntity> performance_date = new ArrayList<MemberDetailEntity>();
+	try {
+		connection = DBUtil.getConnection();
+		PreparedStatement preStmt = connection.prepareStatement("SELECT date_added FROM emp.member_detail_tbl WHERE user_id=?");
+		preStmt.setString(1, user_id);
+		ResultSet rs = preStmt.executeQuery();
+		
+		while (rs.next()) {
+			MemberDetailEntity data = new MemberDetailEntity();
+		
+			data.setDate_added(rs.getString("date_added"));
+					
+			performance_date.add(data);
+		}
+		
+	} catch (SQLException e) {
+		e.printStackTrace();
+	} finally {
+		if (connection != null)
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+	
+	return performance_date;
+}
+
 	
 	
 	

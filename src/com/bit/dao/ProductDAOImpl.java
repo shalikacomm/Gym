@@ -269,7 +269,7 @@ if(res>0){
 		try {
 			connection = DBUtil.getConnection();
 			Statement statement = connection.createStatement();
-			ResultSet rs = statement.executeQuery("SELECT * FROM product_tbl WHERE status = 1 AND reorder_level < stock");
+			ResultSet rs = statement.executeQuery("SELECT * FROM product_tbl WHERE status = 1 AND reorder_level > stock");
 
 			while (rs.next()) {
 				ProductEntity product = new ProductEntity();
