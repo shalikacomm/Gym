@@ -10,11 +10,12 @@
 		<div class="media-body" style="color: #313331;">
 			<h5 class="media-heading">
 			 <% UserEntity currentUser = (UserEntity) (session.getAttribute("currentSessionUser"));%>
-                Hi, <span id="user"><%
+                <span id="user"><%
                     if (currentUser == null) {
                         response.sendRedirect("errorLogin.jsp");
                     } else {%>
-                    <%=currentUser.getFirst_name()%>
+                    <strong><%= currentUser.getRole() %></strong><br/>
+                    <%= currentUser.getFirst_name()%>
 			<% } %></h5>
 			<ul class="list-unstyled user-info">
 
@@ -222,9 +223,9 @@
 		
 				<li><a href="MemberFeeCon?action=insert" style="color: #fff;"><i
 						class="icon-angle-right"></i> Make Payments</a></li>
-				<li><a href="UserCon?action=member_list" style="color: #fff;"><i
+				<li><a href="UserCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Member List </a></li>
-				<li><a href="UserCon?action=member_list" style="color: #fff;"><i
+				<li><a href="UserCon?action=list" style="color: #fff;"><i
 						class="icon-angle-right"></i> Send messages </a></li>
 			</ul>
 			</li>

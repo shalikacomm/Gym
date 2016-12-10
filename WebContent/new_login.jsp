@@ -37,13 +37,13 @@
        <!--  <img src="assets/img/logo.jpg" /> -->
     </div>
     <div class="tab-content">
-        <div id="login" class="tab-pane active">
-            <form action="LoginCon?action=passwordChange" method="post" class="form-signin">
+        <div id="login" class="tab-pane active form-group">
+            <form action="LoginCon?action=passwordChange" method="post" class="form-signin" id="new_login">
                  <p class="text-muted text-center btn-block btn btn-primary btn-rect">User Password Change</p>
                  <input type="text" placeholder="Username" class="form-control" name ="username"readonly="readonly" value="${freshUser.nic}" />
-                <input type="password" placeholder="password" class="form-control" name="password"/>
+                <input type="password" placeholder=" new password" id="password" class="form-control" name="password"/>
                 <input type="password" placeholder="Re type password" class="form-control" name ="re_password"/>
-                <button class="btn text-muted text-center btn-success" type="submit">Change Password</button>
+                <button class="btn text-muted text-center btn-success sub" type="submit">Change Password</button>
             </form>
 
                 </div>
@@ -59,8 +59,24 @@
       <script src="assets/plugins/jquery-2.0.3.min.js"></script>
       <script src="assets/plugins/bootstrap/js/bootstrap.js"></script>
    <script src="assets/js/login.js"></script>
+   <script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script> 
+		<script src="assets/js/validationInit.js"></script>
       <!--END PAGE LEVEL SCRIPTS -->
 
+<script>
+$(document).ready(function(){
+	
+	$(function() {
+		formValidation();
+	});
+	$(".sub").on('click',function() {
+				if (!$("#new_login").valid())
+					return false;
+			
+			});
+});
+</script>
 </body>
     <!-- END BODY -->
 </html>

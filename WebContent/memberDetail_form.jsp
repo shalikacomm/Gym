@@ -88,7 +88,7 @@
 									<div class="form-group">
 										<label>Height</label><em style="color: red;">*</em>(m)<input type="text" 
 											 id="height" value="<c:out value="${memObject.height}" />" name="height"
-											min="1" class="form-control" />
+										 class="form-control" />
 
 									</div>
 								</div>
@@ -97,7 +97,7 @@
 										<label>Weight</label><em style="color: red;">*</em>(kg)<input
 											type="text" id="weight"
 											value="<c:out value="${memObject.weight}" />" name="weight"
-											min="1" class="form-control" />
+											 class="form-control" />
 									</div>
 								</div>
 								<div class="col-sm-2">
@@ -111,36 +111,36 @@
 									<div class="form-group">
 										<label> Goal Weight</label><em style="color: red;">*</em>(kg)<input id="goal_weight"
 											value="<c:out value="${memObject.goal_weight}" />"
-											name="goal_weight" min="1" class="form-control" />
+											name="goal_weight" class="form-control" />
 									</div>
 								</div>
 							</div>
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Bicep</label><em style="color: red;">*</em>(inches)<input id="bicep"
-											value="<c:out value="${memObject.bicep}" />" name="bicep" min="1"
+										<label>Bicep</label>(inches)<input id="bicep"
+											value="<c:out value="${memObject.bicep}" />0" name="bicep"
 											class="form-control" />
 									</div>
 								</div>
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Chest</label><em style="color: red;">*</em>(inches)<input id="biceps"
-											value="<c:out value="${memObject.chest}" />" name="chest" min="1"
+										<label>Chest</label>(inches)<input id="biceps"
+											value="<c:out value="${memObject.chest}" />0" name="chest"
 											class="form-control" />
 									</div>
 								</div>
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Hip</label><em style="color: red;">*</em>(inches)<input id="biceps" 
-											value="<c:out value="${memObject.hip}" />" name="hip" min="1"
+										<label>Hip</label>(inches)<input id="biceps" 
+											value="<c:out value="${memObject.hip}" />0" name="hip"
 											class="form-control" />
 									</div>
 								</div>
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Thigh</label><em style="color: red;">*</em>(inches)<input id="biceps" 
-											value="<c:out value="${memObject.thigh}" />" name="thigh" min="1"
+										<label>Thigh</label>(inches)<input id="biceps" 
+											value="<c:out value="${memObject.thigh}" />0" name="thigh"
 											class="form-control" />
 									</div>
 								</div>
@@ -149,9 +149,9 @@
 							<div class="row">
 								<div class="col-sm-2">
 									<div class="form-group">
-										<label>Sholuder Length</label><em style="color: red;">*</em>(inches)<input
-											value="<c:out value="${memObject.shoulder_length}" />"
-											name="sholuder_length" min="1" class="form-control" />
+										<label>Shoulder Length</label>(inches)<input
+											value="<c:out value="${memObject.shoulder_length}" />0"
+											name="sholuder_length"class="form-control" />
 									</div>
 								</div>
 						
@@ -181,12 +181,13 @@
 	<%@include file="footer.jsp"%>
 	
 	<script src="assets/js/jquery-ui.min.js"></script>
+	<script type="text/javascript"
+		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
+	<script src="assets/js/validationInit.js"></script>
 	<script src="assets/js/login.js"></script>
 		<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
 		<script src="assets/js/sweetalert.min.js"></script>
-		<script type="text/javascript"
-		src="assets/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
-	<script src="assets/js/validationInit.js"></script>
+		
 	<script>
 		$(function() {
 			/*----------- BEGIN chosen CODE -------------------------*/
@@ -231,8 +232,8 @@
 			bmi_cal();
 		});
 		function bmi_cal() {
-			var height = Number($('#height').val());
-			var weight = Number($('#weight').val());
+			var height = $('#height').val()*1;
+			var weight = $('#weight').val()*1;
 
 			power_height = height * height;
 

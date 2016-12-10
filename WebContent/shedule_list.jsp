@@ -266,13 +266,13 @@
 					
 					
 					swal({
-							  title: "Are you sure?",
-							  text: "You will not be able to recover this imaginary file!",
+							  title: "",
+							  text: "Your schedule updated!",
 							  type: "warning",
 							  showCancelButton: true,
 							  confirmButtonColor: "#DD6B55",
-							  confirmButtonText: "Yes, delete it!",
-							  cancelButtonText: "No, cancel plx!",
+							  confirmButtonText: "Yes!",
+							  cancelButtonText: "No!",
 							  closeOnConfirm: true,
 							  closeOnCancel: true
 							},

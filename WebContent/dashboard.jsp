@@ -62,6 +62,7 @@
                 <div class="row">
                     <div class="col-lg-12 ">
                         <div class="alert alert-info">
+                    
                              <strong>Welcome ${currentSessionUser.first_name }! </strong> 
                         </div>
                        
@@ -209,7 +210,7 @@
                  <div class="row text-center pad-top" style="margin-left: 200px;">
                              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="MemberCon?action=insert" >
+                           <a href="MemberDCon?action=insert" >
  <i class="fa fa  icon-male   fa-5x"></i>
                       <h4>Measurements</h4>
                       </a>
@@ -319,7 +320,7 @@
                   </div>
                   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="UserCon?action=member_list" >
+                           <a href="UserCon?action=list" >
  <i class=" fa fa-users fa-5x"></i>
                       <h4>Manage Users</h4>
                       </a>
@@ -493,7 +494,7 @@
                  <div class="row text-center pad-top" style="margin-left: 200px;">
                              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-6">
                       <div class="div-square">
-                           <a href="MemberCon?action=insert" >
+                           <a href="MemberDCon?action=insert" >
  <i class="fa fa  icon-male   fa-5x"></i>
                       <h4>Measurements</h4>
                       </a>

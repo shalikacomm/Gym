@@ -254,8 +254,8 @@
 										</div>
 										<div class="col-md-1 vatc">
 											<div class="input-group pull-right vat">
-												<input type="text" id="vat" name="vat" readonly="readonly"
-													class="form-control" value="8" />
+												<input type="text" id="vat" name="vat" readonly="readonly" 
+													class="form-control" value="${vat_val}" />
 											</div>
 										</div>
 									</div>
@@ -948,6 +948,7 @@ $(document).ready(function() {
 																							function() {
 																							// window.location = "InvoiceCon?action=invoice_list";
 																							 window.open("InvoiceCon?action=recipt&inv_id="+invoice_id,'_blank');
+																							 location.reload();
 																							});
 																				} else {
 																					swal(

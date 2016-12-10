@@ -39,14 +39,13 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-6">
-						<h2 style="text-transform: none;">Members Application Form...</h2>
+						<h2 style="text-transform: none;">Members Attendance Form...</h2>
 						<p style="font-weight: bold; color: #8A5497;"></p>
 					</div>
 					<div class="col-md-6">
 						<ul class="breadcrumbs">
-							<li><a href="<?php echo base_url(); ?>site_main/index">Home</a></li>
-							<li>Member</li>
-							<li>Become a Member</li>
+							<li><a href="index_front.jsp">Home</a></li>
+							<li>Attendance</li>
 						</ul>
 					</div>
 				</div>

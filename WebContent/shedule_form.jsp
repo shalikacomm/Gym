@@ -303,8 +303,8 @@
 																$.each(data.record,function(i,obj) {
 																					var row = '<div class="row inv_row" id="exer">'
 																							+ '<div class="col-md-1"></div><div class="col-md-4 text-center" style="margin-left: 1%;">'
-																							+ '<select id="exercise0" name="exercise" value="'+obj.workout_name+'" class="form-control chzn-select inv_item keep">'
-																							+ '<option value="'+obj.workout_name+'">'
+																							+ '<select id="exercise0" name="exercise"  class="form-control chzn-select inv_item keep">'
+																							+ '<option value="'+obj.exercise_id+'">'
 																							+ obj.workout_name
 																							+ '</option>'
 																							+ '</select>'
@@ -312,15 +312,15 @@
 
 																							+ '<div class="col-md-2 text-center">'
 																							+ '<input id="set_per_rep0" style="text-align: right;"'
-						+		'class="form-control inv_price" name="set_per_rep" value="'+obj.sets_per_rep+'" type="text" />'
+																							+		'class="form-control inv_price" name="set_per_rep" value="'+obj.sets_per_rep+'" type="text" />'
 																							+ '</div>'
 																							+ '<div class="col-md-2 text-center">'
 																							+ '<input class="form-control" name="no_of_rep" value="'+obj.no_of_reps+'" id="no_of_rep0"'
-						+		'type="text" style="text-align: right;" />'
+																							+		'type="text" style="text-align: right;" />'
 																							+ '</div>'
 																							+ '<div class="col-md-1 text-center">'
 																							+ '<button id="kmk" class="btn btn-danger  item_remove"'
-						+		'type="button">'
+																							+		'type="button">'
 																							+ '<i class="icon-minus-sign"></i>'
 																							+ '</button>'
 																							+ '</div>'
@@ -413,8 +413,8 @@
 											function(e) {
 												e.preventDefault();
 
-												var inv_row = $('<div class="row inv_row form-group" id="exer_row'+index+'" >'
-														+ '<div class="col-md-1"></div><div class="col-md-4 text-center" style="margin-left:1%;margin-top: -1%;">'
+												var inv_row = $('<div class="row inv_row form-group style="margin-top:-1%;" id="exer_row'+index+'" >'
+														+ '<div class="col-md-1"></div><div class="col-md-4 text-center" style="margin-left:1%;">'
 														+ '<select id="exer'+index+'" name="exercise"'
 												+ 'class="form-control chzn-select keep">'
 														+ '</select>'

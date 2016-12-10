@@ -45,7 +45,7 @@
 					</div>
 					<div class="col-md-6">
 						<ul class="breadcrumbs">
-							<li><a href="<?php echo base_url(); ?>site_main/index">Home</a></li>
+							<li><a href="index_front.jsp">Home</a></li>
 							<li>Member</li>
 							<li>Become a Member</li>
 						</ul>
@@ -151,7 +151,7 @@
 											<label for="petOwner_nic"
 												style="color: #5f5f5f; font: bold 14px sans-serif;">NIC</label><em
 												style="color: red;">*</em> <input type="text"
-												class=" gur new-empty form-control" id="user_nic"
+												class=" gur new-empty form-control" id="nic"
 												name="nic" required="" placeholder="123456789V"
 												maxlength="10" required="required" />
 										</div>
@@ -201,7 +201,7 @@
 										<div class="form-group">
 											<label style="color: #5f5f5f; font: bold 14px sans-serif;">Mobile
 												Number</label><em style="color: red;">*</em> <input
-												class="form-control" type="text" id="petOwner_mobile"
+												class="form-control" type="text" id="petOwner_mobile" maxlength="10"
 												name="mobile_number" required="" placeholder="Mobile" />
 										</div>
 									</div>

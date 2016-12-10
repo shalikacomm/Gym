@@ -29,6 +29,8 @@ import com.bit.dao.MemberDAO;
 import com.bit.dao.MemberDAOImpl;
 import com.bit.dao.ProductDAO;
 import com.bit.dao.ProductDAOImpl;
+import com.bit.dao.SystemSettingDAO;
+import com.bit.dao.SystemSettingDAOImpl;
 import com.bit.dao.UserDAO;
 import com.bit.dao.UserDAOImpl;
 import com.bit.entity.InvoiceEntity;
@@ -115,6 +117,8 @@ public class InvoiceController extends HttpServlet {
 			Methods method = new Methods();
 			String generateID = method.generateID("I", "invoice_id", "invoice_tbl");
 			req.setAttribute("invoice_id", generateID);
+			SystemSettingDAO vatDao = new SystemSettingDAOImpl();
+			req.setAttribute("vat_val",vatDao.getVat());
 				}
 
 		else if (action.equalsIgnoreCase("invoice_list")) {

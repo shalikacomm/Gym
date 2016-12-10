@@ -68,8 +68,8 @@
         </div>
         <div class="text-center">
         <ul class="list-inline" style="color: #fff;">
-            <li><a class="text-muted" href="FRegisterCon?action=insert" >Register</a></li>
-            <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
+            <li><a class="text-muted" href="FRegisterCon?action=insert" ><font color="blue">Register</font></a></li>
+            <li><a class="text-muted" href="#forgot" data-toggle="tab"><font color="#f4b342">Forgot Password</font></a></li>
                 </ul>
     </div>
     </div>

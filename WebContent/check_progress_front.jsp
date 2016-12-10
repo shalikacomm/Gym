@@ -35,13 +35,13 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h2>About Us</h2>
+            <h2>Check Progress</h2>
             <p>We Are Professional</p>
           </div>
           <div class="col-md-6">
             <ul class="breadcrumbs">
-              <li><a href="#">Home</a></li>
-              <li>About Us</li>
+              <li><a href="index_front.jsp">Home</a></li>
+              <li>Check Progress</li>
             </ul>
           </div>
         </div>
@@ -55,11 +55,11 @@
 					<div class="panel-body">
 						<form action="MemberDCon" method="POST" id="memDetailList">
 
-						<div class="row" type="hidden">
-						<input id="user_data" value=${user_id}>
+						<div class="row" >
+						<input id="user_data" value=${user_id} type="hidden">
 						</div>
 							<div class="row col-md-8" id="inv_row">
-											
+											<br/>
 							<div class="form-group col-md-3">
 							<label>Plaese select body part</label>
 							</div>

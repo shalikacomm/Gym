@@ -12,4 +12,5 @@ public interface InsDAO {
 	public List<InsEntity> getAllInstructors();
 	
 	public InsEntity getUserById(String ins_id);
+	
 }

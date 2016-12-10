@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="invoice_report" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="12c91483-e136-4445-b2f8-d7c595515d57">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="384"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -141,13 +141,13 @@ WHERE
 				<reportElement x="384" y="135" width="107" height="20" uuid="27821e74-946e-4ab0-bedc-852f3fe8f5fa"/>
 				<textFieldExpression><![CDATA[$F{invoice_product_tbl_invoice_id}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="384" y="163" width="107" height="20" uuid="c0bc1ae1-869b-42ff-bacb-a95146b848ed"/>
 				<textFieldExpression><![CDATA[$F{invoice_tbl_transaction_date}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="0" y="0" width="555" height="99" uuid="89f254f6-735d-4ef2-85ea-840925dbb865"/>
-				<imageExpression><![CDATA["C:\\Users\\amantha\\Desktop\\project images\\recept_ori.jpg"]]></imageExpression>
+				<reportElement x="0" y="0" width="555" height="114" uuid="12497b9b-a3a5-4975-9f36-359d1ba7cad0"/>
+				<imageExpression><![CDATA["C:\\Users\\amantha\\Desktop\\project images\\subs_recept_rec.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -168,18 +168,18 @@ WHERE
 				<text><![CDATA[Qty]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="463" y="10" width="57" height="20" uuid="3148921b-173f-4eb7-94fc-f878d4c140ee"/>
+				<reportElement x="463" y="10" width="77" height="20" uuid="3148921b-173f-4eb7-94fc-f878d4c140ee"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Amount]]></text>
+				<text><![CDATA[Amount(LKR)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="355" y="10" width="72" height="20" uuid="6e4b773b-900c-4208-873b-0f430ee6183f"/>
+				<reportElement x="355" y="10" width="82" height="20" uuid="6e4b773b-900c-4208-873b-0f430ee6183f"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Std.Price]]></text>
+				<text><![CDATA[Std.Price(LKR)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="10" y="10" width="87" height="20" uuid="6f68f5f5-4245-44b9-abbf-906e5379375d"/>
@@ -221,15 +221,18 @@ WHERE
 				<textFieldExpression><![CDATA[$F{product_tbl_description}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="302" y="0" width="29" height="20" uuid="2ea3059f-8e70-44a8-9ab3-b0bd1b235fe8"/>
+				<reportElement x="313" y="0" width="29" height="20" uuid="2ea3059f-8e70-44a8-9ab3-b0bd1b235fe8"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{invoice_product_tbl_qty}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="477" y="0" width="43" height="20" uuid="d661f40a-7a1c-42d5-aa66-034c87b75f6b"/>
+				<reportElement x="482" y="0" width="58" height="20" uuid="d661f40a-7a1c-42d5-aa66-034c87b75f6b"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{invoice_product_tbl_item_total}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="374" y="0" width="52" height="20" uuid="f469ed8a-2a8e-4f0a-b81e-cbeca374850a"/>
+				<reportElement x="383" y="0" width="52" height="20" uuid="f469ed8a-2a8e-4f0a-b81e-cbeca374850a"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{product_tbl_selling_price}]]></textFieldExpression>
 			</textField>
 			<textField>
@@ -333,7 +336,9 @@ WHERE
 			</textField>
 			<textField>
 				<reportElement x="504" y="87" width="50" height="20" uuid="950943dd-42eb-49e1-be59-0aebc677b31b"/>
-				<textElement textAlignment="Right"/>
+				<textElement textAlignment="Right">
+					<font isUnderline="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{invoice_tbl_invoiced_total}]]></textFieldExpression>
 			</textField>
 			<frame>

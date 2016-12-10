@@ -8,8 +8,8 @@
 <%@include file="head_src.jsp"%>
 <link rel="stylesheet" href="assets/css/jquery-ui.css" />
 <link rel="stylesheet" href="assets/css/sweetalert.css" />
-<link rel="stylesheet" href="assets/css/bootstrap-select.min.css" />
-<link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
+
+ <link rel="stylesheet" href="assets/plugins/chosen/chosen.min.css" />
 
 <!--for the horizontal tabs-->
 <style>
@@ -164,7 +164,7 @@
 											<div class="tab-pane" id="tab_default_2">
 												<br />
 												<div class="row">
-													<form id="manual_submit_form" method="get"
+													<form id="manual_submit_form" method="POST"
 														action="AttenCon">
 														<div class="row">
 															<div class="col-md-6">
@@ -283,7 +283,7 @@
 										</div>
 										<div class="col-md-4">
 											<select style="" id="userDetails"
-												class="form-control chzn-select" name="bank_name">
+												class="form-control chz" name="bank_name">
 											</select>
 										</div>
 									</div>
@@ -339,7 +339,7 @@
 
 	<script src="assets/js/jquery-ui.min.js"></script>
 	<script src="assets/js/sweetalert.min.js"></script>
-	<script src="assets/js/bootstrap-select.min.js"></script>
+	
 	<script src="assets/plugins/chosen/chosen.jquery.min.js"></script>
 
 	<script>
@@ -430,7 +430,7 @@
 																					$(div_data).appendTo("#userDetails");
 																				});
 
-																$('#userDetails').chosen().trigger("chosen:updated");
+																// $('.chz').trigger("chosen:updated").chosen();
 															}
 														});
 											});
@@ -519,6 +519,30 @@
 					type : "POST",
 					url : "AttenCon",
 					data : $("#barcode_submit_form").serialize(),
+					success : function(data) {
+						if (data == 'true') {
+						
+							window.location = "AttenCon?action=mark";
+						} else {
+
+						}
+					}
+
+				});
+
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+	
+			$("#manual_submit_form").submit(function(e) {
+				e.preventDefault();
+				
+				$.ajax({
+					type : "POST",
+					url : "AttenCon",
+					data : $("#manual_submit_form").serialize(),
 					success : function(data) {
 						if (data == 'true') {
 						

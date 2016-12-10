@@ -13,5 +13,5 @@ public interface SystemSettingDAO {
 	
 	public boolean updateSettings(SystemSettingEntity setting);
 	
-	
+	public double getVat();
 }

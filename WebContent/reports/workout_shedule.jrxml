@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="workout_shedule" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="787dcaf4-9a1b-43a2-8613-d7f910228adf">
 	<property name="ireport.zoom" value="1.4641000000000006"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="24"/>
+	<property name="ireport.y" value="0"/>
 	<parameter name="shedule_id" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
@@ -20,13 +20,16 @@
      shedule_tbl.`status` AS shedule_tbl_status,
      user_tbl.`user_id` AS user_tbl_user_id,
      user_tbl.`first_name` AS user_tbl_first_name,
-     user_tbl.`last_name` AS user_tbl_last_name
+     user_tbl.`last_name` AS user_tbl_last_name,
+     exercise_tbl.`exercise_id` AS exercise_tbl_exercise_id,
+     exercise_tbl.`description` AS exercise_tbl_description,
+     exercise_tbl.`status` AS exercise_tbl_status
 FROM
      `shedule_detail_tbl` shedule_detail_tbl INNER JOIN `shedule_tbl` shedule_tbl ON shedule_detail_tbl.`shedule_id` = shedule_tbl.`shedule_id`
      INNER JOIN `user_tbl` user_tbl ON shedule_tbl.`user_id` = user_tbl.`user_id`
+     INNER JOIN `exercise_tbl` exercise_tbl ON shedule_detail_tbl.`exercise_id` = exercise_tbl.`exercise_id`
 WHERE
-shedule_tbl.`shedule_id` = $P{shedule_id}
-]]>
+     shedule_tbl.`shedule_id` = $P{shedule_id}]]>
 	</queryString>
 	<field name="shedule_detail_tbl_shedule_id" class="java.lang.String"/>
 	<field name="shedule_detail_tbl_exercise_id" class="java.lang.String"/>
@@ -41,6 +44,9 @@ shedule_tbl.`shedule_id` = $P{shedule_id}
 	<field name="user_tbl_user_id" class="java.lang.String"/>
 	<field name="user_tbl_first_name" class="java.lang.String"/>
 	<field name="user_tbl_last_name" class="java.lang.String"/>
+	<field name="exercise_tbl_exercise_id" class="java.lang.String"/>
+	<field name="exercise_tbl_description" class="java.lang.String"/>
+	<field name="exercise_tbl_status" class="java.lang.Integer"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -113,7 +119,7 @@ shedule_tbl.`shedule_id` = $P{shedule_id}
 				<reportElement x="383" y="122" width="100" height="20" uuid="f020e70c-4ed1-451a-a3c7-7d484b4f9d3c"/>
 				<textFieldExpression><![CDATA[$F{shedule_detail_tbl_shedule_id}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="383" y="149" width="100" height="20" uuid="28d28b7e-7562-4047-a07a-9b5e9210a1b2"/>
 				<textFieldExpression><![CDATA[$F{shedule_tbl_date_created}]]></textFieldExpression>
 			</textField>
@@ -166,7 +172,7 @@ shedule_tbl.`shedule_id` = $P{shedule_id}
 		<band height="25" splitType="Stretch">
 			<textField>
 				<reportElement x="2" y="3" width="100" height="20" uuid="f627b01a-19b3-40bb-950b-962e3df3d11e"/>
-				<textFieldExpression><![CDATA[$F{shedule_detail_tbl_exercise_id}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{exercise_tbl_description}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="285" y="3" width="16" height="20" uuid="3f9e9d53-4e46-44b5-8df5-a39ea67d8cf7"/>

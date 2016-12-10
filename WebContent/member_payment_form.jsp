@@ -707,9 +707,15 @@
 			}else{
 				
 				var currentStatus = $('#statSupport').val();
-				if(currentStatus == (0 || 2 || 3)){
+				if(currentStatus == 3){
 					var beginDate = new Date();
-				}else{
+				}else if(currentStatus == 0){
+					var beginDate = new Date();
+				}
+				else if(currentStatus == 2){
+					var beginDate = new Date();
+				}
+				else{
 					var beginDate = new Date(lastActive);
 				}
 				
@@ -778,7 +784,7 @@ $('#date').val(currentDate);
 																							},
 																							function() {
 																								window.open("MemberFeeCon?action=monthly_pay&pay_id="+pay_id,'_blank');
-																								
+																								location.reload();
 
 																							});
 																				} else {

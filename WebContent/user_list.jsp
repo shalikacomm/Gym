@@ -57,11 +57,12 @@
 										<thead>
 											<tr>
 												<th style="width: 10%;">ID</th>
-												<th style="width: 20%;">Name</th>
-												<th style="width: 25%;">Email</th>
-												<th style="width: 15%;">Role</th>
+												<th style="width: 15%;">Name</th>
+												<th style="width: 20%;">Email</th>
+												<th style="width: 10%;">Role</th>
 												<th style="width: 10%;">Status</th>
-												<th style="width: 20%;">Action</th>
+												<th style="width: 10%;">Action</th>
+												<th style="width: 5%;">Reset Pass</th>
 
 											</tr>
 										</thead>
@@ -88,31 +89,31 @@
 														</c:if>
 														</td>
 													<td><a
-														href="UserCon?action=edit&user_id=<c:out value="${temp.user_id}"/>"
+														href="UserCon?action=edit&user_id=<c:out value="${temp.user_id}"/>" title="edit"
 														class="btn btn-default btn-grad btn-sm"><span><i
 																class="icon-edit" style="color: #455862;"></i></span></a> 
 													    <c:if
 															test="${temp.status ==1 }">
 															<a
-																href="UserCon?action=deactive&user_id=<c:out value="${temp.user_id}"/>"
+																href="UserCon?action=deactive&user_id=<c:out value="${temp.user_id}"/>" title="change status"
 																class="navg status btn btn-default btn-grad btn-sm"><span><i
 																	class="icon-trash" style="color: #455862;"></i></span></a>
 														</c:if> 
 														<c:if test="${temp.status ==0 }">
 															<a
-																href="UserCon?action=active&user_id=<c:out value="${temp.user_id}"/>"
+																href="UserCon?action=active&user_id=<c:out value="${temp.user_id}"/>" title="change status"
 																class="status btn btn-default btn-grad btn-sm"><span><i
 																	class="icon-ok " style="color: #455862;"></i></span></a>
 														</c:if> 
 															<c:if test="${temp.status ==2 }">
 															<a
-																href="UserCon?action=active&user_id=<c:out value="${temp.user_id}"/>"
+																href="UserCon?action=active&user_id=<c:out value="${temp.user_id}"/>" title="change status"
 																class="status btn btn-default btn-grad btn-sm"><span><i
 																	class="icon-ok " style="color: #455862;"></i></span></a>
 														</c:if> 
 															<c:if test="${temp.status ==3 }">
 															<a
-																href="UserCon?action=active&user_id=<c:out value="${temp.user_id}"/>"
+																href="UserCon?action=active&user_id=<c:out value="${temp.user_id}"/>" title="change status"
 																class="status btn btn-default btn-grad btn-sm"><span><i
 																	class="icon-ok " style="color: #455862;"></i></span></a>
 														</c:if> 
@@ -121,15 +122,20 @@
 														data-target="#contact" data-original-title><span><i
 																class="icon-envelope-alt "style="color: #455862;"></i></span></a>
 																
-																<a data-toggle="modal" class="btn btn-default btn-grad  btn-sm img_btn"
+											<%-- 					<a data-toggle="modal" class="btn btn-default btn-grad  btn-sm img_btn"
 														id="${temp.user_id}" data-toggle="modal"
 														 href="#imageup"><span><i
-																class="icon-instagram " style="color: #455862;"></i></span></a>
+																class="icon-instagram " style="color: #455862;"></i></span></a> --%>
+														</td>
+														<td>
+														<c:if test="${temp.status ==1 }">
+													
 														<a
-																href="LoginCon?action=resetPw&email=<c:out value="${temp.email}"/>"
+														
+																href="LoginCon?action=resetPw&email=<c:out value="${temp.email}"/>" title="reset password"
 																class="status btn btn-default btn-grad btn-sm"><span><i
-																	class="icon-user " style="color: #455862;"></i></span></a>
-																
+																	class="icon-repeat  " style="color: #455862;"></i></span></a>
+																</c:if> 
 																</td>
 																
 																		</tr>
@@ -400,20 +406,19 @@
 
 									$('#dataTables-example').dataTable();
 
-									$("#dataTables-example")
-											.on('click','.status',function(e) {
+									$("#dataTables-example").on('click','.status',function(e) {
 														e.preventDefault();
 														var url = this.href;
 
 														swal(
 																{
-																	title : "Are you sure?",
+																	title : "",
 																	text : "",
 																	type : "warning",
 																	showCancelButton : true,
 																	confirmButtonColor : "#DD6B55",
-																	confirmButtonText : "Yes, delete it!",
-																	cancelButtonText : "No, cancel plx!",
+																	confirmButtonText : "Yes!",
+																	cancelButtonText : "No!",
 																	closeOnConfirm : true,
 																	closeOnCancel : true
 																},

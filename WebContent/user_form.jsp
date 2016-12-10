@@ -299,12 +299,11 @@ $('.no_space').on('keypress', function(e) {
 												$.ajax({
 															type : "POST",
 															url : "UserCon",
-															data : $(
-																	"#userForm")
-																	.serialize(),
+															data : $("#userForm").serialize(),
 															success : function(
 																	data) {
-																if (data == 'true') {
+																
+																if (data == 1) {
 																	 $("#processing_img").attr("class", "hide");
 										                                $("#spnmessage_modal").removeAttr("class", "alert alert-danger");
 										                                $("#spnmessage_modal").attr("class", "alert alert-success");
@@ -327,10 +326,41 @@ $('.no_space').on('keypress', function(e) {
 																				if(role2.equals("administrator")) { %>
 																				window.location = "UserCon?action=list";
 																				<%}else{%>
-																				window.location = "UserCon?action=member_list";
+																				window.location = "UserCon?action=list";
 																				<%} %>
 																			});
-																} else {
+																}
+																else if(data == 2){
+																	 $("#processing_img").attr("class", "hide");
+										                                $("#spnmessage_modal").removeAttr("class", "alert alert-danger");
+										                                $("#spnmessage_modal").attr("class", "alert alert-success");
+										                                $("#spnmessage_modal").html('<p><strong>User Updated Successfully </strong></p>');
+										                                $("#divmessage_modal").removeAttr("class", "hide");
+										                                $("#divmessage_modal").fadeIn(1500);
+										                                $("#divmessage_modal").delay(2500).fadeOut(1500);
+																	swal(
+																			{
+																				title : "User Updated!",
+																				text : "Your details has been updated!",
+																				type : "success",
+																				showCancelButton : false,
+																				confirmButtonColor : "#DD6B55",
+																				confirmButtonText : "OK!",
+																				closeOnConfirm : false
+																			},
+																			function() {
+																				<% String update_role=currentUser.getRole();
+																				if(update_role.equals("administrator")) { %>
+																				window.location = "UserCon?action=list";
+																				<%}else{%>
+																				window.location = "UserCon?action=list";
+																				<%} %>
+																			});
+																	
+																	
+																}
+																
+																else {
 																	  $("#processing_img").attr("class", "hide");
 										                                $("#spnmessage_modal").removeAttr("class", "alert alert-success");
 										                                $("#spnmessage_modal").attr("class", "alert alert-danger");

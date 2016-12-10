@@ -3,7 +3,7 @@
     $(document).ready(function () {
     	
     	
-
+    	
 
         function valID(value, element) {
             return /^[0-9]{9}[VXvx]+$/.test(value);
@@ -215,7 +215,38 @@
     
     
     /*----------- END validate CODE -------------------------*/
-  
+    $("#new_login").validate({
+        rules: {
+       
+        	password: {
+              required : true,
+              minlength : 5
+          },
+          re_password: {
+              required : true,
+              equalTo : "#password"            
+          }
+        },
+        messages: {
+        	password: {
+              required : "Please enter new password",
+              minlength : "Enter at least five characters"
+          },
+          re_password: {
+              required : "Please confirm new password"            
+          }
+        },
+     	errorClass: 'help-block',
+    	errorElement: 'span',
+    	highlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-success').addClass('has-error');
+    	},
+    	unhighlight: function (element, errorClass, validClass) {
+    		$(element).parents('.form-group').removeClass('has-error').addClass('has-success');
+    	}
+    });
+    
+    
     $('#userForm').validate({
     	
     	 rules: {/*
@@ -352,26 +383,24 @@
     			 remote: {
                      url: 'UserCon?action=checkExistingMail',
                      type: 'GET',
-                     data: { email: $('#email').val()},
+                  //   data: { email: $('#email').val()},
                      async: true
                  }
     		},
     		nic: {
     			required: true,
-    			nic:true,
-    			 remote: {
+    			nic : true,
+    			remote: {
                      url: 'UserCon?action=UserIdChecker',
                      type: 'GET',
-                     data: { nic: $('#user_nic').val()},
+                   //  data: { nic: $('#nic').val()},
                      async: true
                  }
     			
     		},
     		mobile_number: {
     			phone_number:true,
-    			no_space: false,
-    			required: true,
-    			minlength: 10
+    		
     		},
     		
     		address: {
@@ -707,24 +736,24 @@
     			qty:true,
     		},           
     		bicep: {
-    			required: true,
-    			qty:true,
+    			
+    			number:true,
     		},           
     		chest: {
-    			required: true,
-    			qty:true,
+    			
+    			number:true,
     		},           
     		hip: {
-    			required: true,
-    			qty:true,
+    			
+    			number:true,
     		},           
     		thigh: {
-    			required: true,
-    			qty:true,
+    			
+    			number:true,
     		},           
     		sholuder_length: {
-    			qty:true,
-    			required: true,
+    			
+    			number:true,
     			
     		}           
     	},

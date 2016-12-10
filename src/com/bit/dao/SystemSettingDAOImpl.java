@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.bit.entity.MemberPaymentEntity;
 import com.bit.entity.ProductEntity;
 import com.bit.entity.SystemSettingEntity;
 import com.bit.util.DBUtil;
@@ -116,6 +117,34 @@ if (temp > 0){
 		}
 		return res;
 	}
+	
+	public double getVat() {
+		double vat = 0;
+		connection = DBUtil.getConnection();
+
+	        try {
+	            PreparedStatement preStmt = connection.prepareStatement("SELECT value FROM emp.system_set_tbl WHERE description = 'vat'");
+	            ResultSet rs = preStmt.executeQuery();
+	            
+	            if (rs.next()) {
+	            	
+	            	vat =rs.getDouble("value");
+	            	
+	            }
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }finally {
+				if (connection != null)
+					try {
+						connection.close();
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+
+			}
+			return vat;
+	}
+	
 
 
 }

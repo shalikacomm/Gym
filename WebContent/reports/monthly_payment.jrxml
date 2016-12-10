@@ -38,10 +38,6 @@ WHERE
 	</background>
 	<title>
 		<band height="154" splitType="Stretch">
-			<image>
-				<reportElement x="0" y="0" width="381" height="62" uuid="7683f654-ef65-4408-b5dc-7cb39c26edc8"/>
-				<imageExpression><![CDATA["C:\\Users\\amantha\\Desktop\\project images\\recept_ori.jpg"]]></imageExpression>
-			</image>
 			<rectangle>
 				<reportElement x="0" y="83" width="381" height="65" uuid="401db26a-4cbe-46e8-930e-1843bc92ba77"/>
 			</rectangle>
@@ -99,26 +95,30 @@ WHERE
 				</textElement>
 				<text><![CDATA[Date           :]]></text>
 			</staticText>
-			<textField>
+			<textField pattern="dd/MM/yyyy">
 				<reportElement x="293" y="122" width="88" height="20" uuid="f2e07dbf-c86b-4f6e-9335-62d9e87eb8e8"/>
 				<textFieldExpression><![CDATA[$F{member_payment_tbl_paid_date}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="71" width="381" height="1" uuid="dfffdfec-eef3-4270-915a-81a5f7c3f102"/>
 			</line>
+			<image>
+				<reportElement x="0" y="0" width="381" height="83" uuid="bdad7b68-caee-43d1-a67c-91e621229b81"/>
+				<imageExpression><![CDATA["C:\\Users\\amantha\\Desktop\\project images\\subs_recept.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<columnHeader>
 		<band height="35" splitType="Stretch">
 			<staticText>
-				<reportElement x="97" y="9" width="105" height="20" uuid="8e0655bd-0779-46c1-81bf-dd1e1e4eaeb7"/>
+				<reportElement x="85" y="9" width="110" height="20" uuid="8e0655bd-0779-46c1-81bf-dd1e1e4eaeb7"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Suppliment payments]]></text>
+				<text><![CDATA[Supp payments(LKR)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="4" y="9" width="92" height="20" uuid="7e54add8-313a-4581-a3b2-e2c5420d2881"/>
+				<reportElement x="4" y="9" width="80" height="20" uuid="7e54add8-313a-4581-a3b2-e2c5420d2881"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
@@ -131,30 +131,30 @@ WHERE
 				<reportElement x="1" y="4" width="1" height="22" uuid="16662c52-c77c-4bf4-8130-38545ec7f3db"/>
 			</line>
 			<line>
-				<reportElement x="96" y="5" width="1" height="22" uuid="dc40724b-b0ef-4d0b-8103-d49c03b2e66a"/>
+				<reportElement x="84" y="5" width="1" height="22" uuid="dc40724b-b0ef-4d0b-8103-d49c03b2e66a"/>
 			</line>
 			<line>
-				<reportElement x="202" y="5" width="1" height="22" uuid="1c897174-0a71-4097-b4a4-d146773fd983"/>
+				<reportElement x="195" y="5" width="1" height="22" uuid="1c897174-0a71-4097-b4a4-d146773fd983"/>
 			</line>
 			<line>
 				<reportElement x="379" y="5" width="1" height="21" uuid="c762cda2-6b5c-43c2-83d1-0c73b2bf377e"/>
 			</line>
 			<line>
-				<reportElement x="316" y="7" width="1" height="19" uuid="7a61f556-5e05-4b63-9193-2068bb8a5533"/>
+				<reportElement x="307" y="7" width="1" height="19" uuid="7a61f556-5e05-4b63-9193-2068bb8a5533"/>
 			</line>
 			<staticText>
-				<reportElement x="204" y="9" width="110" height="20" uuid="82bc20bf-2c4a-4966-a2a0-9d00b660c5e2"/>
+				<reportElement x="197" y="9" width="110" height="20" uuid="82bc20bf-2c4a-4966-a2a0-9d00b660c5e2"/>
 				<textElement textAlignment="Center">
 					<font isBold="true"/>
 				</textElement>
 				<text><![CDATA[Discount Alloawed(%)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="319" y="10" width="57" height="17" uuid="bffc1738-a656-4423-8485-6fdf87c84f7f"/>
+				<reportElement x="313" y="9" width="66" height="17" uuid="bffc1738-a656-4423-8485-6fdf87c84f7f"/>
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<text><![CDATA[Amount]]></text>
+				<text><![CDATA[Amount(LKR)]]></text>
 			</staticText>
 		</band>
 	</columnHeader>
@@ -168,15 +168,17 @@ WHERE
 				<textFieldExpression><![CDATA[$F{user_tbl_first_name}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="176" y="2" width="34" height="20" uuid="308e8f0d-9204-4360-a89a-e0ca4415fa53"/>
+				<reportElement x="151" y="2" width="44" height="20" uuid="308e8f0d-9204-4360-a89a-e0ca4415fa53"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{member_payment_tbl_additional_payments}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="279" y="2" width="38" height="20" uuid="bb38240d-7837-4d1e-9c28-3926aa5b3fe3"/>
+				<reportElement x="269" y="2" width="38" height="20" uuid="bb38240d-7837-4d1e-9c28-3926aa5b3fe3"/>
 				<textFieldExpression><![CDATA[$F{member_payment_tbl_disc_given}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="333" y="1" width="46" height="20" uuid="e6be82a1-2e30-416b-8dd4-9b1731fa7b1c"/>
+				<textElement textAlignment="Right"/>
 				<textFieldExpression><![CDATA[$F{member_payment_tbl_fee_amount}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -185,6 +187,9 @@ WHERE
 		<band height="28">
 			<textField>
 				<reportElement x="332" y="4" width="46" height="20" uuid="de06a7c2-4947-487c-b880-9f8dc41f3da7"/>
+				<textElement textAlignment="Right">
+					<font isUnderline="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$F{member_payment_tbl_fee_amount}]]></textFieldExpression>
 			</textField>
 			<staticText>

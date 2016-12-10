@@ -30,6 +30,15 @@ import com.bit.util.Methods;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperRunManager;
 
+
+
+/******************************************
+* Author : Amanda Shalika
+* Description : User COntroller
+* Created Date : 04/03/2016
+* Last modified Date : 05/10/2016
+*******************************************/
+
 @WebServlet(urlPatterns="/UserCon")
 public class UserController  extends HttpServlet{
 	private static String INSERT_OR_EDIT = "/user_form.jsp";
@@ -44,7 +53,7 @@ public class UserController  extends HttpServlet{
 		UserDAO dao = new UserDAOImpl();
 		
 		if (action.equalsIgnoreCase("list")) {	
-			List<UserEntity> list = dao.getAllUsers();
+			List<UserEntity> list = dao.getAllUsers(); // get every user role in to an array list
 			req.setAttribute("users", list);
 			forward = LIST_USER;
 
@@ -57,7 +66,7 @@ public class UserController  extends HttpServlet{
 		
 		else if (action.equalsIgnoreCase("insert")) {
 			forward = INSERT_OR_EDIT;
-			Methods method = new Methods();
+			Methods method = new Methods(); // generate the new User id 
 			String generateID = method.generateID("U", "user_id", "user_tbl");
 			req.setAttribute("user_id", generateID);
 
@@ -69,7 +78,9 @@ public class UserController  extends HttpServlet{
 			req.setAttribute("userObject", user);
 
 		}
-		
+		/* this method is used to check the existing mails are entered   
+		 * register users, if exist boolean result will be true.
+		 * */
 		 else if (action.equalsIgnoreCase("checkExistingMail")) {
 				String email = req.getParameter("email");
 					boolean result = false;
@@ -86,6 +97,28 @@ public class UserController  extends HttpServlet{
 				}
 
 			}
+		/* use to check the existing ID card numbers are entering, if existing id value 
+		 * entered method will return false */
+		 else if (action.equalsIgnoreCase("UserIdChecker")) {
+			
+				String nic = req.getParameter("nic");
+					boolean result = false;
+					result = dao.UserIdChecker(nic);
+					try (PrintWriter out = resp.getWriter()) {
+					resp.setContentType("application/json");
+					resp.setCharacterEncoding("UTF-8");
+
+					out.print(result);
+
+					out.flush();
+					out.close();
+					return;
+				}
+
+			}
+		
+		/* this method is used to send mails to user in user_list.jsp page 
+		 * as parameters subject, message_body have to be send manually*/
 		else if (action.equalsIgnoreCase("sendEmail")) {
 			boolean result = false;
 			Methods method = new Methods();
@@ -95,7 +128,7 @@ public class UserController  extends HttpServlet{
 			String subject = req.getParameter("subject");
 			String message_body = req.getParameter("message_body");
 			String MsgBody = "Hi " + first_name + "," 
-                    +  " \n \n <strong>"+message_body + " </strong>"
+                    +  " \n \n "+message_body + " "
                     + "\n \n (Dear valued customer this is a System Generated message)"
                     + " \n \n Thank you, \n System Administrator, \n Fit & Fun Gym Management System";
 			
@@ -148,11 +181,12 @@ public class UserController  extends HttpServlet{
 				return;
 			}
 		}
+		/* uses to generate barcodes for registered members*/
 		else if (action.equalsIgnoreCase("barcode")) {
 
 			try {
 				Connection con = DBUtil.getConnection();
-				File reportFile = new File(req.getRealPath("/reports/barcode_generate.jasper"));
+				File reportFile = new File(req.getRealPath("/reports/barcode_generate.jasper"));// report.jrxml folder contains the source file
 				Map parameters = new HashMap();
 				
 				String root = getServletContext().getRealPath("\\uploads\\");
@@ -175,7 +209,7 @@ public class UserController  extends HttpServlet{
 			}
 		}
 		
-		if(forward!=""){
+		if(forward!=""){ // used to redirect to pages
 		RequestDispatcher view = req.getRequestDispatcher(forward);
 		view.forward(req, resp);
 		}
@@ -225,23 +259,23 @@ public class UserController  extends HttpServlet{
 		user.setMobile_number(mobileNumber);
 		user.setRole(role);
 		user.setMarital_status(marital_status);
-		
+		System.out.println("thisis test :" +user.getRole());
 		UserDAO dao=new UserDAOImpl();
 		
 		Methods methods = new Methods();
 		String generateID = methods.generateID("U", "user_id", "user_tbl");
-		
+		int result_int ;
 		boolean result=false;
 		if (userId.equals(generateID)) {
 			result=dao.addUser(user);
-			result = true;
+			 result_int = 1;
 		} else {
 			dao.updateUser(user);
-			result = true;
+			 result_int = 2;
 		} 
 		PrintWriter out=resp.getWriter();
 		
-		out.print(result);
+		out.print(result_int);
 
 	}
 	

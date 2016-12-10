@@ -37,10 +37,7 @@
                             <h4><img src="images/footer-margo.png" class="img-responsive" alt="About US" /></h4>
 <p>The commen  of the Gym by Mr. Amarasekarage Don Sandun Salitha on 
 09.11.2014.  FIT AND FUN HEALTH CLUB (pvt)  Ltd  located  in Kaduwela.  They 
-operate in similar health clubs around Sri Lanka like Kotikawatta, Anuradhapura. 
-Its main focus is to provide good health care practices to the society.
-They have mainly 02 qualified Coaches at Kaduwela Health club, which they 
-available at day and night to provide a good service to its community.</p>                            <ul>
+operate in similar health clubs around Sri Lanka like Kotikawatta, Anuradhapura.</p>                            <ul>
                                <li><strong>Monday - Friday[except on poya days]</strong> - 9am to 11pm</li>
 					<li><strong>Saturday</strong> - 9am to 10pm</li>
 					<li><strong>Sunday</strong> - 9am to 12pm</li>

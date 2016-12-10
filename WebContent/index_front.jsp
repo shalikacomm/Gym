@@ -52,7 +52,7 @@
 						<!-- <img class="img-responsive"
 							src="assets_front/images/slider/bg1.jpg" alt="slider" style="max-height: 800px; max-width: 1600px;"> -->
 						
-						<video autoplay="autoplay" lool="loop" muted="muted" width="100%">
+						<video autoplay="autoplay" lool="loop" muted="muted" width="100%" height="150%">
 							<source  class="video-js"
 								src="${pageContext.request.contextPath}/assets_front/images/What Is GymCube.mp4#t=7,40"
 								type="video/mp4"></source>
@@ -60,15 +60,15 @@
 
 						<div class="slider-content">
 							<div class="col-md-12 text-center">
-								<h2 class="animated2"
-									style="color: white; margin-top: -12%; text-transform: none;">
+								<h3 class="animated2"
+									style=" margin-top: -22%; font-family: Georgia; text-transform: none;">
+									<span>Join Us to Tone Up..</span>
+								</h3>	
+								<h2 class="animated3" style="color: #f36510; margin-top: 8%; text-transform: none;">
 									<span><strong>Lose Fat, Tone Up, Get Up<br />
 											<br />Your Online Gym
 									</strong> </span>
-								</h2>
-								<!-- <h3 class="animated3">
-									<span>The ultimate aim of your business</span>
-								</h3> -->
+								</h2>							 
 								<p class="animated4"
 									style="margin-top: 20%; text-transform: none;">
 									<a href="FRegisterCon?action=insert" class="slider btn btn-system btn-large"
@@ -77,6 +77,10 @@
 										style="font-size: 30px;"></i>
 									</a>
 								</p>
+								<h3 class="animated2"
+									style=" margin-top: 9%; font-family: Georgia; text-transform: none;">
+									<span>Make Your Dream Strength...</span>
+								</h3>
 							</div>
 						</div>
 					</div>
@@ -97,23 +101,23 @@
 
 					<ul style="list-style-type: disc;">
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 12%;">Diet
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 12%;">Diet
 							advice, recipes and knowledge</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Help
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Help
 							to build your perfect diet</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Access
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Access
 							to members only community</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Help
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Help
 							to build your perfect diet</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Access
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">Access
 							to members only community</li>
 					</ul>
 					<a href="FRegisterCon?action=insert" class="slider btn btn-system btn-large"
-										style="border-radius: 25px;  background-color:#fff; color:orange; border-color:orange;">Join the Team n Get Results!&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right "
+										style="border-radius: 25px;  background-color:#f36510; color:#fff; border-color:orange;">Join the Team n Get Results!&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right "
 										style="font-size: 30px;"></i>
 									</a>
 
@@ -126,18 +130,18 @@
 
 					<ul style="list-style-type: disc;">
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 12%;">£7.95 Billed Monthly</li>
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 12%;">£7.95 Billed Monthly</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ONLY 26p a day!</li>
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ONLY 26p a day!</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ENJOY 10 days FREE trial</li>
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ENJOY 10 days FREE trial</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ONLY 19p a day!t</li>
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ONLY 19p a day!t</li>
 						<li
-							style="color: #fff; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ENJOY 30 days FREE trial</li>
+							style="color: #f36510; font-size: 20px; font-family: 'helvetica_neueregular', Arial, sans-serif; margin-top: 5%;">ENJOY 30 days FREE trial</li>
 					</ul>
 					<a href="exercise_front.jsp" class="slider btn btn-system btn-large"
-										style="border-radius: 25px; background-color:#fff; color:orange; border-color:orange;">Energized With Us!&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right "
+										style="border-radius: 25px; background-color:#f36510; color:#fff; border-color:orange;">Energized With Us!&nbsp;&nbsp;&nbsp;<i class="fa fa-angle-right "
 										style="font-size: 30px;"></i>
 									</a>
 
@@ -145,7 +149,7 @@
 			</div>
 		</div>
 
-		<p style="color:#f36510; font-size:36px; margin-bottom:5%; font-face: Trebutch Ms; text-align:center;"><i>Forget 'diets'. Begin your nutrition journey and learn what's right for you, as an individual,<br/><br/> for life.. Make the change.</i></p>
+		<p style="color:#f36510; font-size:34px; margin-bottom:5%; font-face: Georgia; text-align:center;"><i>Forget 'diets'. Begin your nutrition journey and learn what's right for you, as an individual,<br/><br/> for life.. Make the change.</i></p>
 		
 
 		<!-- Start Purchase Section -->
@@ -588,6 +592,62 @@
 
                     </div>
                     <!-- End Team Members -->
+                    
+                       <!-- Start Client/Partner Section -->
+        <div class="partner">
+        <div class="container">
+            <div class="row">
+
+                <!-- Start Big Heading -->
+		<div class="big-title text-center">
+			<h1>May be you should <strong>Train</strong></h1>
+			<p class="title-desc">as hard as you Hate</p>
+		</div>
+		<!-- End Big Heading -->
+		
+		<!--Start Clients Carousel-->
+		<div class="our-clients">
+			<div class="clients-carousel custom-carousel touch-carousel navigation-3" data-appeared-items="5" data-navigation="true">
+				
+				<!-- Client 1 -->
+				<div class="client-item item">
+					<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/back1.jpg" alt="" /></a>
+				</div>
+				
+				<!-- Client 2 -->
+				<div class="client-item item">
+					<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/back2.png" alt="" /></a>
+				</div>
+				
+				<!-- Client 3 -->
+				<div class="client-item item">
+					<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/back3.png" alt="" /></a>
+				</div>
+				
+				<!-- Client 4 -->
+				<div class="client-item item">
+					<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/back4.jpg" alt="" /></a>
+				</div>
+				
+				<!-- Client 5 -->
+				<div class="client-item item">
+					<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/back5.png" alt="" /></a>
+				</div>
+				
+				<!-- Client 6 -->
+				<div class="client-item item">
+					<a href="#"><img src="${pageContext.request.contextPath}/assets_front/images/back6.png" alt="" /></a>
+				</div>
+				
+	
+				</div>
+				
+			</div>
+		</div>
+		<!-- End Clients Carousel -->
+            </div><!-- .row -->
+        </div><!-- .container -->
+        </div>
 
             </div><!-- .container -->
         </div>

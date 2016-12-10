@@ -255,11 +255,12 @@
                     enctype : 'multipart/form-data',
                     processData : false,
                     success : function(response) {
-                        if (response == 'true') {
+                    	    if (response == 'true') {
                             swal("", "This image will used as ur ID image!", "success")
                              window.location = "BarcodeCon?action=insert";
                              window.location = "BarcodeCon?action=insert";
-
+                             window.location = "BarcodeCon?action=insert";
+							reload.location();	
                         } else {
                             sweetAlert("", "Something went wrong!", "error");
                         }

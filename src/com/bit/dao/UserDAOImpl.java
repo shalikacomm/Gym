@@ -18,6 +18,12 @@ import com.bit.entity.UserEntity;
 import com.bit.util.DBUtil;
 import com.bit.util.Methods;
 
+/******************************************
+* Author : Amanda Shalika
+* Description : User DB models
+* Created Date : 04/03/2016
+* Last modified Date : 05/10/2016
+*******************************************/
 public class UserDAOImpl implements UserDAO {
 
 	private Connection connection;
@@ -48,7 +54,7 @@ public class UserDAOImpl implements UserDAO {
 			preparedStatement.setString(3, user.getLast_name());
 			preparedStatement.setString(4, user.getNic());
 			preparedStatement.setString(5, user.getEmail());
-			preparedStatement.setString(6, encrypt);
+			preparedStatement.setString(6, encrypt); // save the sha-2 encrypted password
 			preparedStatement.setString(7, user.getGender());
 			preparedStatement.setString(8, user.getAddress());
 			preparedStatement.setString(9, user.getRole());
@@ -223,7 +229,7 @@ if (temp > 0){
 		return users;
 		
 	}
-	
+	/* will return all the users with the member role  */
 	public List<UserEntity>getAllMemberUsers() {
 		connection = DBUtil.getConnection();
 		List<UserEntity> users = new ArrayList<UserEntity>();
@@ -368,6 +374,7 @@ if (temp > 0){
 
         return status;
 	}
+	/* send the email as a parameter and will return false if same email is existing */
 	public boolean UserEmailChecker(String email) {
 		Connection con = null;
 		UserEntity user = new UserEntity();
@@ -570,15 +577,11 @@ if (temp > 0){
 			for(int i=0; i< users.size(); i++){
 				String person = users.get(i).getUser_id();
 				MemberPaymentEntity lastDate = dao_pay.getLastActiveDate(person);
-				
-			/*	if(date.compareTo(lastDate)>0){
-	                System.out.println("Date1 is after Date2");
-				}
-			*/
+		
 			String sql = "UPDATE user_tbl SET status = 0 WHERE user_id = ?";
 
 			PreparedStatement pre_statement = connection.prepareStatement(sql);
-		//	pre_statement.setString(1, );
+	
 			int res=pre_statement.executeUpdate();
 		
 			if(res>0){
